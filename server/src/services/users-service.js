@@ -1,6 +1,6 @@
-import serviceErrors from './service-errors.js';
+import * as errors from '../constants/service-errors.js';
 import bcrypt from 'bcrypt';
-import { DEFAULT_USER_ROLE } from './../config.js';
+import { DEFAULT_USER_ROLE } from '../constants/config.js';
 
 /**
 * Creates a new user record into the system. 
@@ -14,26 +14,26 @@ import { DEFAULT_USER_ROLE } from './../config.js';
 */
 const createUser = usersData => {
     return async (userData) => {
-        const { username, password, passwordConfirm, email } = userData;
 
-        const existingUser = await usersData.getWithRole(username);
+        const { username, password, passwordConfirm, email, firstName, lastName } = userData;
+        const existingUser = await usersData.checkIfUsernameIsFree(username);
 
         if (existingUser) {
             return {
-                error: serviceErrors.DUPLICATE_RECORD,
+                error: errors.DUPLICATE_RECORD,
                 user: null,
             };
         }
 
         if (password !== passwordConfirm) {
             return {
-                error: serviceErrors.NO_MATCH,
+                error: errors.NO_MATCH,
                 user: null,
             };
         }
 
         const passwordHash = await bcrypt.hash(password, 10);
-        const user = await usersData.createAccount(username, passwordHash, email, DEFAULT_USER_ROLE);
+        const user = await usersData.createAccount(username, passwordHash, email, firstName, lastName, DEFAULT_USER_ROLE);
 
         return { error: null, user: user };
     };

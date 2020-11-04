@@ -2,8 +2,8 @@ export const DB_CONFIG = {
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'MarVel147',
-    database: 'mydb',
+    password: 'QWErty123!',
+    database: 'photo_contest_db',
 };
 
 export const PORT = 4000;
@@ -12,4 +12,4 @@ export const PRIVATE_KEY = 'kYp3s6v9y$B&E(H+MbQeThWmZq4t7w!z%C*F-J@NcRfUjXn2r5u8
 
 export const TOKEN_LIFETIME = 60 * 60; 
 
-export const DEFAULT_USER_ROLE = 'user';
+export const DEFAULT_USER_ROLE = 'Photo Junkie';

@@ -10,8 +10,8 @@ INSERT INTO `photo_contest_db`.`contest_phases` (`type`) VALUES ('Phase I');
 INSERT INTO `photo_contest_db`.`contest_phases` (`type`) VALUES ('Phase II');
 INSERT INTO `photo_contest_db`.`contest_phases` (`type`) VALUES ('Finished');
 
-INSERT INTO `photo_contest_db`.`content_restrictions` (`type`) VALUES ('Open');
-INSERT INTO `photo_contest_db`.`content_restrictions` (`type`) VALUES ('Invitational');
+INSERT INTO `photo_contest_db`.`contest_restrictions` (`type`) VALUES ('Open');
+INSERT INTO `photo_contest_db`.`contest_restrictions` (`type`) VALUES ('Invitational');
 
 
 
