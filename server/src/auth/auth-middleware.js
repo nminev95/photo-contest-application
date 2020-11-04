@@ -4,6 +4,7 @@ const authMiddleware = passport.authenticate('jwt', { session: false });
 
 const roleMiddleware = roleNameArray => {
     return (req, res, next) => {
+        
         const role = roleNameArray.find(role => req.user && req.user.role === role);
 
         if (role) {

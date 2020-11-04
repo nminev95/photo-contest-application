@@ -16,7 +16,7 @@ const createUser = usersData => {
     return async (userData) => {
 
         const { username, password, passwordConfirm, email, firstName, lastName } = userData;
-        const existingUser = await usersData.checkIfUsernameIsFree(username);
+        const existingUser = await usersData.getUserInfo(username);
 
         if (existingUser) {
             return {
@@ -39,6 +39,35 @@ const createUser = usersData => {
     };
 };
 
+/**
+* Signing in the user.
+* @param module user data SQL queries module.
+* @callback 
+* @async
+* @param {string} username - The unique username.
+* @param {string} password - User password.
+* @return {Promise<object>}
+*/
+const signInUser = usersData => {
+    return async (username, password) => {
+
+        const user = await usersData.getUserInfo(username);
+
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+            return {
+                error: ERRORS.INVALID_SIGNIN,
+                user: null,
+            };
+        }
+
+        return {
+            error: null,
+            user: user,
+        };
+    };
+};
+
 export default {
     createUser,
+    signInUser,
 };

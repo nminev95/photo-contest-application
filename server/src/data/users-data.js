@@ -31,18 +31,22 @@ const createAccount = async (username, password, email, firstName, lastName, rol
 };
 
 /** 
-* Check if a username in the database is free. 
+* Finds a user in the database by username. 
 * @async
-* @param {string} username - The username to be checked.
+* @param {string} username - The username of the  searched user.
 * @returns {Promise<object>} Promise with the user data if found in the database.
 */
-const checkIfUsernameIsFree = async (username) => {
+const getUserInfo = async (username) => {
 
     const sql = `
-        SELECT 
-            *
-        FROM 
-            users 
+        SELECT
+            u.id, u.username, u.password, r.type as role
+        FROM
+            users u
+        JOIN
+            roles r
+        ON
+            u.role_id = r.id
         WHERE 
             username = ?
     `;
@@ -54,5 +58,5 @@ const checkIfUsernameIsFree = async (username) => {
 
 export default {
     createAccount,
-    checkIfUsernameIsFree,
+    getUserInfo,
 };

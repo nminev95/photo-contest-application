@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { PRIVATE_KEY, TOKEN_LIFETIME } from '../constants/config.js';
 
 const createToken = (payload) => {
+    
     const token = jwt.sign(
         payload,
         PRIVATE_KEY,

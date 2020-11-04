@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom';
 import { passwordRequired, usernameRequired } from '../../../validations/helper-errors';
 import axios from '../../../requests/axios';
 import userEndpoints from '../../../requests/user-requests';
+import { useAuth } from '../../../custom-hooks/useAuth';
+import decode from 'jwt-decode';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginPage = () => {
 
+    const { setLoginState } = useAuth();
     const history = useHistory();
     const classes = useStyles();
     const [form, setForm] = useState({
@@ -80,17 +83,17 @@ const LoginPage = () => {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        
+
         const userData = Object.values(form).reduce((data, input) => {
             return { ...data, [input.name]: input.value };
         }, {});
-        
+
         axios.post(userEndpoints.loginUser, userData)
             .catch((error) => {
-                if (error.response.status === 400) {
+                if (error.response.status === 401) {
                     swal({
                         title: "Oops!",
-                        text: "Looks like the entered username/password combination is invalid",
+                        text: "Looks like the entered username/password combination is invalid.",
                         icon: "error",
                         button: "Try again"
                     })
@@ -98,9 +101,13 @@ const LoginPage = () => {
             })
             .then((response) => {
                 if (response) {
+                    localStorage.setItem("token", response.data.token);
+                    const user = decode(response.data.token);
+                    setLoginState({ user: user });
+
                     swal({
                         title: "Success!",
-                        text: "You have logged in successfully!",
+                        text: "You have logged in successfully.",
                         icon: "success",
                         button: false,
                         timer: 1500
