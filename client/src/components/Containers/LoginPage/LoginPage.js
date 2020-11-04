@@ -4,8 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import swal from '@sweetalert/with-react';
 import { useHistory } from 'react-router-dom';
-import { emailError, firstNameError, lastNameError, passwordError, usernameError } from '../../../validations/helper-errors';
-import { VALIDATE_EMAIL_REGEX, VALIDATE_PASSWORD_REGEX } from '../../../constants/constants';
+import { passwordRequired, usernameRequired } from '../../../validations/helper-errors';
 import axios from '../../../requests/axios';
 import userEndpoints from '../../../requests/user-requests';
 
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const RegisterPage = () => {
+const LoginPage = () => {
 
     const history = useHistory();
     const classes = useStyles();
@@ -29,48 +28,8 @@ const RegisterPage = () => {
             type: 'text',
             validators: {
                 required: true,
-                minLen: 6,
-                maxLen: 30,
             },
-            error: usernameError,
-            valid: true,
-            value: '',
-        },
-        email: {
-            name: 'email',
-            label: 'Email',
-            type: 'email',
-            validators: {
-                required: true,
-                regex: VALIDATE_EMAIL_REGEX,
-            },
-            error: emailError,
-            valid: true,
-            value: '',
-        },
-        firstName: {
-            name: 'firstName',
-            label: 'First name',
-            type: 'text',
-            validators: {
-                required: true,
-                minLen: 2,
-                maxLen: 30,
-            },
-            error: firstNameError,
-            valid: true,
-            value: '',
-        },
-        lastName: {
-            name: 'lastName',
-            label: 'Last name',
-            type: 'text',
-            validators: {
-                required: true,
-                minLen: 2,
-                maxLen: 30,
-            },
-            error: lastNameError,
+            error: usernameRequired,
             valid: true,
             value: '',
         },
@@ -80,21 +39,8 @@ const RegisterPage = () => {
             type: 'password',
             validators: {
                 required: true,
-                regex: VALIDATE_PASSWORD_REGEX,
             },
-            error: passwordError,
-            valid: true,
-            value: '',
-        },
-        passwordConfirm: {
-            name: 'passwordConfirm',
-            label: 'Confirm password',
-            type: 'password',
-            validators: {
-                required: true,
-                regex: VALIDATE_PASSWORD_REGEX,    // 8 characters, 1 letter, 1 number, 1 special char
-            },
-            error: passwordError,
+            error: passwordRequired,
             valid: true,
             value: '',
         },
@@ -134,29 +80,19 @@ const RegisterPage = () => {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-
+        
         const userData = Object.values(form).reduce((data, input) => {
             return { ...data, [input.name]: input.value };
         }, {});
-
-        if (userData.password !== userData.passwordConfirm) {
-            swal({
-                title: "Oops!",
-                text: "Looks like passwords don't match! Please try again.",
-                icon: "error",
-                button: "Okay"
-            })
-            return;
-        }
-
-        axios.post(userEndpoints.registerUser, userData)
+        
+        axios.post(userEndpoints.loginUser, userData)
             .catch((error) => {
-                if (error.response.status === 409) {
+                if (error.response.status === 400) {
                     swal({
                         title: "Oops!",
-                        text: "Looks like the username you have entered is already taken! Please try a different one.",
+                        text: "Looks like the entered username/password combination is invalid",
                         icon: "error",
-                        button: "Okay"
+                        button: "Try again"
                     })
                 }
             })
@@ -164,17 +100,18 @@ const RegisterPage = () => {
                 if (response) {
                     swal({
                         title: "Success!",
-                        text: "Account created successfully! Click on the button to procced to login page.",
+                        text: "You have logged in successfully!",
                         icon: "success",
-                        button: "Proceed"
+                        button: false,
+                        timer: 1500
                     }).then(() => {
-                        history.push('/users/login');
+                        history.push('/home');
                     });
 
                 }
             })
     }
-    
+
     const renderView = Object.values(form).map((input) => {
         if (input.valid) {
             return (
@@ -213,10 +150,10 @@ const RegisterPage = () => {
         <div>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
                 {renderView}
-                <Button type="submit" variant="contained" color="primary">Register</Button>
+                <Button type="submit" variant="contained" color="primary">Login</Button>
             </form>
         </div>
     )
 }
 
-export default RegisterPage;
+export default LoginPage;
