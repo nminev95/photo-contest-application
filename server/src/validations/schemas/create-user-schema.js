@@ -49,7 +49,7 @@ export const createUserSchema = {
         }
         
         if (typeof value !== 'string' || value.trim().length < 2 || value.trim().length > 40) {
-            return 'Last name should be a string in range [8..100]';
+            return 'Last name should be a string in range [2..100]';
         }
 
         return null;

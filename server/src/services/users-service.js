@@ -1,4 +1,4 @@
-import * as errors from '../constants/service-errors.js';
+import * as ERRORS from '../constants/service-errors.js';
 import bcrypt from 'bcrypt';
 import { DEFAULT_USER_ROLE } from '../constants/config.js';
 
@@ -20,14 +20,14 @@ const createUser = usersData => {
 
         if (existingUser) {
             return {
-                error: errors.DUPLICATE_RECORD,
+                error: ERRORS.DUPLICATE_RECORD,
                 user: null,
             };
         }
 
         if (password !== passwordConfirm) {
             return {
-                error: errors.NO_MATCH,
+                error: ERRORS.NO_MATCH,
                 user: null,
             };
         }
