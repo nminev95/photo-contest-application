@@ -1,7 +1,7 @@
 const Homepage = () => {
-    return <div>
-        <p>hehahahaha</p>
-    </div>
+    return (
+        <h1>You are home.</h1>
+    )
 }
 
 export default Homepage;

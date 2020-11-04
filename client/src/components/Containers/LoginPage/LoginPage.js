@@ -101,10 +101,6 @@ const LoginPage = () => {
             })
             .then((response) => {
                 if (response) {
-                    localStorage.setItem("token", response.data.token);
-                    const user = decode(response.data.token);
-                    setLoginState({ user: user });
-
                     swal({
                         title: "Success!",
                         text: "You have logged in successfully.",
@@ -112,7 +108,9 @@ const LoginPage = () => {
                         button: false,
                         timer: 1500
                     }).then(() => {
-                        history.push('/home');
+                        localStorage.setItem("token", response.data.token);
+                        const user = decode(response.data.token);
+                        setLoginState({ isLoggedIn: true, user: user });
                     });
 
                 }
