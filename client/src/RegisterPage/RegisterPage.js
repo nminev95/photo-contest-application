@@ -3,6 +3,10 @@ import { VALIDATE_EMAIL_REGEX, VALIDATE_PASSWORD_REGEX } from '../constants/cons
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import axios from '../requests/axios';
+import userEndpoints from '../requests/user-requests';
+import swal from '@sweetalert/with-react';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RegisterPage = () => {
 
+    const history = useHistory();
     const classes = useStyles();
     const [form, setForm] = useState({
         username: {
@@ -126,8 +131,41 @@ const RegisterPage = () => {
         const userData = Object.values(form).reduce((data, input) => {
             return { ...data, [input.name]: input.value };
         }, {});
-    
 
+        if (userData.password !== userData.passwordConfirm) {
+            swal({
+                title: "Oops!",
+                text: "Looks like passwords don't match! Please try again.",
+                icon: "error",
+                button: "Okay"
+            })
+            return;
+        }
+
+        axios.post(userEndpoints.registerUser, userData)
+            .catch((error) => {
+                if (error.response.status === 409) {
+                    swal({
+                        title: "Oops!",
+                        text: "Looks like the username you have entered is already taken! Please try a different one.",
+                        icon: "error",
+                        button: "Okay"
+                    })
+                }
+            })
+            .then((response) => {
+                if (response) {
+                    swal({
+                        title: "Success!",
+                        text: "Account created successfully! Click on the button to procced to login page.",
+                        icon: "success",
+                        button: "Proceed"
+                    }).then(() => {
+                        history.push('/users/login');
+                    });
+
+                }
+            })
     }
 
     const renderView = Object.values(form).map((input) => {
@@ -152,7 +190,7 @@ const RegisterPage = () => {
         <div>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
                 {renderView}
-                <Button variant="contained" color="primary">Register</Button>
+                <Button type="submit" variant="contained" color="primary">Register</Button>
             </form>
         </div>
     )
