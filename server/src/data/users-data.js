@@ -94,7 +94,7 @@ const getById = async (id) => {
 };
 
 const getMessagesById = async (id) => {
-    
+
     const sql = `
         SELECT 
             id AS messageId,
@@ -112,11 +112,24 @@ const getMessagesById = async (id) => {
     return result[0];
 };
 
+const sendMessage = async (message, recepientId, senderId) => {
 
+    const sql = `
+        INSERT INTO 
+            messages (message, sendDate, recepient_id, sender_id)
+        VALUES 
+            (?, (SELECT NOW()), ?, ?)
+    `;
+
+    const result = await pool.query(sql, [message, recepientId, senderId]);
+
+    return result[0];
+};
 
 export default {
     createAccount,
     getUserInfo,
     getById,
     getMessagesById,
+    sendMessage,
 };

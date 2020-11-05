@@ -14,7 +14,6 @@ import { DEFAULT_USER_ROLE } from '../constants/config.js';
 */
 const createUser = usersData => {
     return async (userData) => {
-
         const { username, password, passwordConfirm, email, firstName, lastName } = userData;
         const existingUser = await usersData.getUserInfo(username);
 
@@ -50,7 +49,6 @@ const createUser = usersData => {
 */
 const signInUser = usersData => {
     return async (username, password) => {
-
         const user = await usersData.getUserInfo(username);
 
         if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -91,7 +89,7 @@ const getUserById = usersData => {
 };
 
 /**
-* Gets user information found by unique user number.
+* Gets user messages found by unique user number.
 * @param module users data SQL queries module.
 * @callback 
 * @async
@@ -113,10 +111,36 @@ const getUserMessages = usersData => {
     };
 };
 
+/**
+* Gets user information found by unique user number.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
+const sendPrivateMessage = usersData => {
+    return async (message, recepientId, senderId) => {
+        const user = await usersData.getById(recepientId);
+
+        if (!user) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                message: null,
+            };
+        }
+
+        const sentMessage = await usersData.sendMessage(message, recepientId, senderId);
+
+        return { error: null, message: sentMessage };
+    };
+};
+
 
 export default {
     createUser,
     signInUser,
     getUserById,
     getUserMessages,
+    sendPrivateMessage,
 };
