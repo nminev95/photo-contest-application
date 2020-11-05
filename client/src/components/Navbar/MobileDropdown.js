@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,11 +19,11 @@ const StyledMenu = withStyles({
         getContentAnchorEl={null}
         anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'center',
+            horizontal: 'left',
         }}
         transformOrigin={{
             vertical: 'top',
-            horizontal: 'center',
+            horizontal: 'left',
         }}
         {...props}
     />
@@ -42,17 +41,21 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 const useStyles = makeStyles((theme) => ({
-    dropdown: {
-        display: 'none',
-        [theme.breakpoints.down('sm')]: {
-            display: 'flex'
+    menuDropdown: {
+        [theme.breakpoints.only('xs')]: {
+            marginLeft: "-17px"
         },
-    }
+        [theme.breakpoints.only('sm')]: {
+            marginLeft: "-24px"
+        },
+    },
 }))
 
-export default function MobileDropdown() {
+const MobileDropdown = () => {
+
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const classes = useStyles();
+    const styles = useStyles();
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -63,9 +66,11 @@ export default function MobileDropdown() {
 
     return (
         <Fragment>
-            <MenuItem className={classes.dropdown} onClick={handleClick}><MenuIcon />
+            <MenuItem style={{ height: "83px" }} onClick={handleClick}><MenuIcon />
             </MenuItem>
             <StyledMenu
+                className={styles.menuDropdown}
+                // style={{ marginLeft: "-17px" }}
                 id="customized-menu"
                 anchorEl={anchorEl}
                 keepMounted
@@ -94,3 +99,5 @@ export default function MobileDropdown() {
         </Fragment>
     );
 }
+
+export default MobileDropdown;

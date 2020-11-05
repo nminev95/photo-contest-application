@@ -8,7 +8,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import { Avatar } from '@material-ui/core';
 import MobileDropdown from './MobileDropdown'
 
@@ -27,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -52,16 +50,21 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
+  },
+  dropdown: {
+    padding: '0',
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex'
+    },
   }
 }));
 
-export default function PrimarySearchAppBar() {
+const Navbar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -74,10 +77,6 @@ export default function PrimarySearchAppBar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -96,35 +95,30 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <MenuItem><MobileDropdown /></MenuItem>
-          {/* <Typography className={classes.title} variant="h6" noWrap>
-            Logo
-          </Typography> */}
+          <MenuItem className={classes.dropdown}><MobileDropdown /></MenuItem>
           <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
           <MenuItem className={classes.navLinks}>All Contests</MenuItem>
           <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
-          <div className={classes.grow} />   
-          <MenuItem>
+          <div className={classes.grow} />
+          <MenuItem style={{padding: "0"}}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
           </MenuItem>
-          <MenuItem>
+          <MenuItem style={{padding: "0"}}>
             <IconButton aria-label="show 11 new notifications" color="inherit">
               <Badge badgeContent={11} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
           </MenuItem>
-          <MenuItem style={{ top: "0", left: "0" }} onClick={handleProfileMenuOpen}>
+          <MenuItem style={{ top: "0", left: "0", paddingLeft: "0", paddingRight: "0" }} onClick={handleProfileMenuOpen}>
             <IconButton
               aria-label="account of current user"
               aria-controls="primary-search-account-menu"
@@ -137,8 +131,9 @@ export default function PrimarySearchAppBar() {
           </MenuItem>
         </Toolbar>
       </AppBar>
-      {/* {renderMobileMenu} */ }
-  { renderMenu }
+      { renderMenu}
     </div >
   );
 }
+
+export default Navbar;
