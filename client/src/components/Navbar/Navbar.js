@@ -9,7 +9,8 @@ import Menu from '@material-ui/core/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Avatar } from '@material-ui/core';
-import MobileDropdown from './MobileDropdown'
+import MobileDropdown from './MobileDropdown';
+import ProfileDropdown from './ProfileDropdown';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -90,15 +91,14 @@ const Navbar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <ProfileDropdown />
     </Menu>
   );
 
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{paddingRight: "0", paddingLeft: "0"}}>
           <MenuItem className={classes.dropdown}><MobileDropdown /></MenuItem>
           <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
           <MenuItem className={classes.navLinks}>All Contests</MenuItem>
@@ -118,16 +118,8 @@ const Navbar = () => {
               </Badge>
             </IconButton>
           </MenuItem>
-          <MenuItem style={{ top: "0", left: "0", paddingLeft: "0", paddingRight: "0" }} onClick={handleProfileMenuOpen}>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="primary-search-account-menu"
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
-            </IconButton>
-            <p>Profile</p>
+          <MenuItem style={{ top: "0", left: "0", padding: "0", paddingRight: "7px"}} >
+          <ProfileDropdown>Profile</ProfileDropdown>
           </MenuItem>
         </Toolbar>
       </AppBar>

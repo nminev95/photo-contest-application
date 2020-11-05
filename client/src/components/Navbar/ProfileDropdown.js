@@ -7,7 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Avatar } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 
 const StyledMenu = withStyles({
     paper: {
@@ -43,15 +44,15 @@ const StyledMenuItem = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
     menuDropdown: {
         [theme.breakpoints.only('xs')]: {
-            marginLeft: "-17px"
+            marginLeft: "16px"
         },
-        [theme.breakpoints.only('sm')]: {
-            marginLeft: "-24px"
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: "16px"
         },
     },
 }))
 
-const MobileDropdown = () => {
+const ProfileDropdown = () => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const styles = useStyles();
@@ -66,7 +67,17 @@ const MobileDropdown = () => {
 
     return (
         <Fragment>
-            <MenuItem style={{ height: "83px" }} onClick={handleClick}><MenuIcon />
+            <MenuItem style={{ padding: "0" }}>
+                <IconButton
+                    style={{ height: "83px" }}
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                    onClick={handleClick}
+                >
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                </IconButton>
             </MenuItem>
             <StyledMenu
                 className={styles.menuDropdown}
@@ -80,23 +91,29 @@ const MobileDropdown = () => {
                     <ListItemIcon>
                         <SendIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
+                    <ListItemText primary="View profile" />
                 </StyledMenuItem>
                 <StyledMenuItem>
                     <ListItemIcon>
                         <DraftsIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="All contests" />
+                    <ListItemText primary="Your entries" />
                 </StyledMenuItem>
                 <StyledMenuItem>
                     <ListItemIcon>
                         <InboxIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="Explore photos" />
+                    <ListItemText primary="Settings" />
+                </StyledMenuItem>
+                <StyledMenuItem>
+                    <ListItemIcon>
+                        <InboxIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
                 </StyledMenuItem>
             </StyledMenu>
         </Fragment>
     );
 }
 
-export default MobileDropdown;
+export default ProfileDropdown;
