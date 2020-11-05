@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -11,7 +10,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Avatar } from '@material-ui/core';
-// import './Navbar.css'
+import MobileDropdown from './MobileDropdown'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -48,6 +47,12 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  navLinks: {
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  }
 }));
 
 export default function PrimarySearchAppBar() {
@@ -92,93 +97,48 @@ export default function PrimarySearchAppBar() {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem style={{ top: "0", left: "0" }} onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Photo Contest
-          </Typography>
-          <MenuItem>All Contests</MenuItem>
-          <MenuItem>Explore photos</MenuItem>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
+          <MenuItem><MobileDropdown /></MenuItem>
+          {/* <Typography className={classes.title} variant="h6" noWrap>
+            Logo
+          </Typography> */}
+          <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
+          <MenuItem className={classes.navLinks}>All Contests</MenuItem>
+          <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
+          <div className={classes.grow} />   
+          <MenuItem>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+          </MenuItem>
+          <MenuItem>
+            <IconButton aria-label="show 11 new notifications" color="inherit">
+              <Badge badgeContent={11} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+          </MenuItem>
+          <MenuItem style={{ top: "0", left: "0" }} onClick={handleProfileMenuOpen}>
             <IconButton
-              edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
+              aria-controls="primary-search-account-menu"
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <Avatar alt="Remy Sharp" src="asdasdas" className={classes.large} />
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
             </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+            <p>Profile</p>
+          </MenuItem>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </div>
+      {/* {renderMobileMenu} */ }
+  { renderMenu }
+    </div >
   );
 }
