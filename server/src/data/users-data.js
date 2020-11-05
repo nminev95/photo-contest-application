@@ -65,7 +65,7 @@ const getUserInfo = async (username) => {
 * @param {number} id - The unique user number.
 * @return {Promise<object>}
 */
-const getUserById = async (id) => {
+const getById = async (id) => {
 
     const sql = `
         SELECT 
@@ -99,5 +99,5 @@ const getUserById = async (id) => {
 export default {
     createAccount,
     getUserInfo,
-    getUserById,
+    getById,
 };
