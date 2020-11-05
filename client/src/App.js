@@ -9,6 +9,7 @@ import decode from 'jwt-decode';
 import GuardedRoute from './hoc/GuardedRoute';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Navbar from './components/Navbar/Navbar';
+import ProfilePage from './containers/ProfilePage/ProfilePage';
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
             <GuardedRoute exact path="/" auth={!authValue.isLoggedIn} component={LandingPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/register" auth={!authValue.isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/login" auth={!authValue.isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
+            <GuardedRoute exact path="/profile" auth={authValue.isLoggedIn} component={ProfilePage} redirectRoute={'/home'} />
             <GuardedRoute path="/home" auth={authValue.isLoggedIn} component={Homepage} redirectRoute={'/'} />
             
           </Switch>

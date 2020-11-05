@@ -56,7 +56,48 @@ const getUserInfo = async (username) => {
     return result[0];
 };
 
+
+/**
+* Gets user information found by unique user number.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
+const getUserById = async (id) => {
+
+    const sql = `
+        SELECT 
+            u.id AS id, 
+            u.username AS username, 
+            u.email AS email, 
+            u.firstName AS firstName,
+            u.lastName AS lastName,
+            u.points AS points,
+            u.info AS info,
+            r.type AS rank,
+           (SELECT DATE_FORMAT(u.registerDate, "%M %d %Y")) AS registered
+        FROM 
+            users u
+        JOIN    
+            ranks r
+        ON 
+            u.rank_id = r.id
+        WHERE 
+            u.id = ?
+    `;
+
+    const result = await pool.query(sql, [id]);
+
+    return result[0];
+};
+
+
+
+
 export default {
     createAccount,
     getUserInfo,
+    getUserById,
 };
