@@ -5,6 +5,7 @@ import usersData from '../data/users-data.js';
 import usersService from '../services/users-service.js';
 import { createUserSchema } from '../validations/schemas/create-user-schema.js';
 import { createValidator } from '../validations/validator-middleware.js';
+import { authMiddleware } from '../auth/auth-middleware.js';
 
 const usersController = express.Router();
 
@@ -46,7 +47,25 @@ usersController
                     token: token,
                 });
             }
-        });
+        },
+    )
+    .get('/:id',
+        authMiddleware,
+        async (req, res) => {
+            const { id } = req.params;
+
+            const { user, error } = await usersService.getUserById(usersData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'User not found!' });
+
+            } else {
+                res.status(200).send(user);
+            }
+        },
+    );
+
+
 
 
 export default usersController;

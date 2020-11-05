@@ -67,7 +67,31 @@ const signInUser = usersData => {
     };
 };
 
+/**
+* Gets user information found by unique user number.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
+const getUserById = usersData => {
+    return async (id) => {
+        const user = await usersData.getById(id);
+
+        if (!user) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                user: null,
+            };
+        }
+
+        return { error: null, user: user };
+    };
+};
+
 export default {
     createUser,
     signInUser,
+    getUserById,
 };

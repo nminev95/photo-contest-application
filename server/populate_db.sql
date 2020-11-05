@@ -1,3 +1,10 @@
+ALTER table users auto_increment = 1;
+ALTER table ranks auto_increment = 1;
+ALTER table roles auto_increment = 1;
+ALTER table contest_phases auto_increment = 1;
+ALTER table contest_restrictions auto_increment = 1;
+
+
 INSERT INTO `photo_contest_db`.`roles` (`type`) VALUES ('Organizer');
 INSERT INTO `photo_contest_db`.`roles` (`type`) VALUES ('Photo Junkie');
 
