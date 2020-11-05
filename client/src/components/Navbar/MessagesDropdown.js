@@ -2,15 +2,10 @@ import React, { Fragment } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import MenuIcon from '@material-ui/icons/Menu';
-import { Badge, IconButton } from '@material-ui/core';
+import { Badge, IconButton, List } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import MessagePreview from '../MessagePreview/MessagePreview';
+import Link from '@material-ui/core/Link';
 
 const StyledMenu = withStyles({
     paper: {
@@ -31,17 +26,6 @@ const StyledMenu = withStyles({
         {...props}
     />
 ));
-
-const StyledMenuItem = withStyles((theme) => ({
-    root: {
-        '&:focus': {
-            backgroundColor: theme.palette.primary.main,
-            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-                color: theme.palette.common.white,
-            },
-        },
-    },
-}))(MenuItem);
 
 const useStyles = makeStyles((theme) => ({
     menuDropdown: {
@@ -101,6 +85,15 @@ const MessagesDropdown = () => {
                 <MenuItem>
                     <MessagePreview />
                 </MenuItem>
+                <Link
+                    component="button"
+                    variant="body2"
+                    onClick={() => {
+                        console.info("I'm a button.");
+                    }}
+                >
+                See all messages
+                </Link>
             </StyledMenu>
         </Fragment>
     );

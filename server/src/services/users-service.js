@@ -90,8 +90,33 @@ const getUserById = usersData => {
     };
 };
 
+/**
+* Gets user information found by unique user number.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
+const getUserMessages = usersData => {
+    return async (id) => {
+        const messages = await usersData.getMessagesById(id);
+
+        if (!messages) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                user: null,
+            };
+        }
+
+        return { error: null, messages: messages };
+    };
+};
+
+
 export default {
     createUser,
     signInUser,
     getUserById,
+    getUserMessages,
 };

@@ -93,6 +93,24 @@ const getById = async (id) => {
     return result[0];
 };
 
+const getMessagesById = async (id) => {
+    
+    const sql = `
+        SELECT 
+            id AS messageId,
+            message AS message,
+            sendDate AS date,
+            username AS username
+        FROM
+            messages
+        WHERE 
+            recepient_id = ?
+    `;
+
+    const result = await pool.query(sql, [id]);
+
+    return result[0];
+};
 
 
 
@@ -100,4 +118,5 @@ export default {
     createAccount,
     getUserInfo,
     getById,
+    getMessagesById,
 };

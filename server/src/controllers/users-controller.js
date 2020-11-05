@@ -63,6 +63,20 @@ usersController
                 res.status(200).send(user);
             }
         },
+    )
+    .get('/:id/messages',
+        authMiddleware,
+        async (req, res) => {
+            const { id } = req.params;
+
+            const { messages, error } = await usersService.getUserMessages(usersData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(204).send({ message: 'You dont have new messages!'});
+            } else {
+                res.status(200).send(messages);
+            }
+        },
     );
 
 
