@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 });
 
 const SingleContest = () => {
+    
     const classes = useStyles();
 
     return (
@@ -32,17 +33,16 @@ const SingleContest = () => {
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         Category
-          </Typography>
+                    </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                       Do not miss the chance!
-          </Typography>
+                        Do not miss the chance!
+                    </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions style={{justifyContent: 'center'}}>
+            <CardActions style={{ justifyContent: 'center' }}>
                 <Button size="small" color="primary"  >
                     Join
-        </Button>
-                
+                </Button>
             </CardActions>
         </Card>
     );
