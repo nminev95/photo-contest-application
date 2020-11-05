@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         margin: `5px 0 0 ${theme.spacing(9)}px`,
     },
     hours: {
-        textAlign: 'right'
+        textAlign: 'right',
     }
 }));
 
@@ -39,13 +39,13 @@ const MessagePreview = () => {
             >
                 @Username
             </Typography>
-            <ListItem>
-                <ListItemText primary="Hello there, I really liked your ph..." />
+            <ListItem style={{ paddingBottom: "0", paddingTop: "0"}}>
+                <ListItemText primary="Hello there, I really liked your photo and wo..." />
             </ListItem>
-            <ListItem style={{ textAlign: "right" }}>
+            <ListItem style={{ paddingTop: "0", left: "125px" }}>
                 <ListItemText secondary="2 hours ago" />
             </ListItem>
-            <Divider component="li" variant="inset" />
+            <Divider />
         </List>
     )
 }

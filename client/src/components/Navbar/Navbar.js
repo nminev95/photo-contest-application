@@ -11,6 +11,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Avatar } from '@material-ui/core';
 import MobileDropdown from './MobileDropdown';
 import ProfileDropdown from './ProfileDropdown';
+import MessagesDropdown from './MessagesDropdown';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -98,28 +99,24 @@ const Navbar = () => {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar style={{paddingRight: "0", paddingLeft: "0"}}>
+        <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
           <MenuItem className={classes.dropdown}><MobileDropdown /></MenuItem>
           <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
           <MenuItem className={classes.navLinks}>All Contests</MenuItem>
           <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
           <div className={classes.grow} />
-          <MenuItem style={{padding: "0"}}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+          <MenuItem style={{ padding: "0" }}>
+            <MessagesDropdown />
           </MenuItem>
-          <MenuItem style={{padding: "0"}}>
+          <MenuItem style={{ padding: "0" }}>
             <IconButton aria-label="show 11 new notifications" color="inherit">
               <Badge badgeContent={11} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
           </MenuItem>
-          <MenuItem style={{ top: "0", left: "0", padding: "0", paddingRight: "7px"}} >
-          <ProfileDropdown>Profile</ProfileDropdown>
+          <MenuItem style={{ top: "0", left: "0", padding: "0", paddingRight: "7px" }} >
+            <ProfileDropdown>Profile</ProfileDropdown>
           </MenuItem>
         </Toolbar>
       </AppBar>
