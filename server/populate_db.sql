@@ -1,4 +1,4 @@
-ALTER table users = 1;
+ALTER table users auto_increment = 1;
 ALTER table ranks auto_increment = 1;
 ALTER table roles auto_increment = 1;
 ALTER table contest_phases auto_increment = 1;
