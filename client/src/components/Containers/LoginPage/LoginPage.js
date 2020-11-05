@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import swal from '@sweetalert/with-react';
-import { useHistory } from 'react-router-dom';
 import { passwordRequired, usernameRequired } from '../../../validations/helper-errors';
 import axios from '../../../requests/axios';
 import userEndpoints from '../../../requests/user-requests';
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 const LoginPage = () => {
 
     const { setLoginState } = useAuth();
-    const history = useHistory();
     const classes = useStyles();
     const [form, setForm] = useState({
         username: {

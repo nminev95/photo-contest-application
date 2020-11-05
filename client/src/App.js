@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 import Homepage from './components/Containers/Homepage/Homepage';
 import LoginPage from './components/Containers/LoginPage/LoginPage';
@@ -8,6 +8,7 @@ import AuthContext from './context/AuthContext';
 import decode from 'jwt-decode';
 import GuardedRoute from './hoc/GuardedRoute';
 import LandingPage from './components/Containers/LandingPage/LandingPage';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
     <div className="App">
       <Router>
         <AuthContext.Provider value={{ ...authValue, setLoginState: setAuthValue }}>
+          <Navbar />
           <Switch>
             <GuardedRoute exact path="/" auth={!authValue.isLoggedIn} component={LandingPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/register" auth={!authValue.isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
