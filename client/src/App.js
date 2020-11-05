@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import Homepage from './components/Containers/Homepage/Homepage';
-import LoginPage from './components/Containers/LoginPage/LoginPage';
-import RegisterPage from './components/Containers/RegisterPage/RegisterPage';
+import Homepage from './containers/Homepage/Homepage';
+import LoginPage from './containers/LoginPage/LoginPage';
+import RegisterPage from './containers/RegisterPage/RegisterPage';
 import AuthContext from './context/AuthContext';
 import decode from 'jwt-decode';
 import GuardedRoute from './hoc/GuardedRoute';
-import LandingPage from './components/Containers/LandingPage/LandingPage';
+import LandingPage from './containers/LandingPage/LandingPage';
 import Navbar from './components/Navbar/Navbar';
 
 const App = () => {

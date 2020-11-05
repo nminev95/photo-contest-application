@@ -3,11 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import swal from '@sweetalert/with-react';
-import { passwordRequired, usernameRequired } from '../../../validations/helper-errors';
-import axios from '../../../requests/axios';
-import userEndpoints from '../../../requests/user-requests';
-import { useAuth } from '../../../custom-hooks/useAuth';
-import decode from 'jwt-decode';
+import { useHistory } from 'react-router-dom';
+import { emailError, firstNameError, lastNameError, passwordError, usernameError } from '../../validations/helper-errors';
+import { VALIDATE_EMAIL_REGEX, VALIDATE_PASSWORD_REGEX } from '../../constants/constants';
+import axios from '../../requests/axios';
+import userEndpoints from '../../requests/user-requests';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LoginPage = () => {
+const RegisterPage = () => {
 
-    const { setLoginState } = useAuth();
+    const history = useHistory();
     const classes = useStyles();
     const [form, setForm] = useState({
         username: {
@@ -29,8 +29,48 @@ const LoginPage = () => {
             type: 'text',
             validators: {
                 required: true,
+                minLen: 6,
+                maxLen: 30,
             },
-            error: usernameRequired,
+            error: usernameError,
+            valid: true,
+            value: '',
+        },
+        email: {
+            name: 'email',
+            label: 'Email',
+            type: 'email',
+            validators: {
+                required: true,
+                regex: VALIDATE_EMAIL_REGEX,
+            },
+            error: emailError,
+            valid: true,
+            value: '',
+        },
+        firstName: {
+            name: 'firstName',
+            label: 'First name',
+            type: 'text',
+            validators: {
+                required: true,
+                minLen: 2,
+                maxLen: 30,
+            },
+            error: firstNameError,
+            valid: true,
+            value: '',
+        },
+        lastName: {
+            name: 'lastName',
+            label: 'Last name',
+            type: 'text',
+            validators: {
+                required: true,
+                minLen: 2,
+                maxLen: 30,
+            },
+            error: lastNameError,
             valid: true,
             value: '',
         },
@@ -40,8 +80,21 @@ const LoginPage = () => {
             type: 'password',
             validators: {
                 required: true,
+                regex: VALIDATE_PASSWORD_REGEX,
             },
-            error: passwordRequired,
+            error: passwordError,
+            valid: true,
+            value: '',
+        },
+        passwordConfirm: {
+            name: 'passwordConfirm',
+            label: 'Confirm password',
+            type: 'password',
+            validators: {
+                required: true,
+                regex: VALIDATE_PASSWORD_REGEX,    // 8 characters, 1 letter, 1 number, 1 special char
+            },
+            error: passwordError,
             valid: true,
             value: '',
         },
@@ -86,14 +139,24 @@ const LoginPage = () => {
             return { ...data, [input.name]: input.value };
         }, {});
 
-        axios.post(userEndpoints.loginUser, userData)
+        if (userData.password !== userData.passwordConfirm) {
+            swal({
+                title: "Oops!",
+                text: "Looks like passwords don't match! Please try again.",
+                icon: "error",
+                button: "Okay"
+            })
+            return;
+        }
+
+        axios.post(userEndpoints.registerUser, userData)
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response.status === 409) {
                     swal({
                         title: "Oops!",
-                        text: "Looks like the entered username/password combination is invalid.",
+                        text: "Looks like the username you have entered is already taken! Please try a different one.",
                         icon: "error",
-                        button: "Try again"
+                        button: "Okay"
                     })
                 }
             })
@@ -101,20 +164,17 @@ const LoginPage = () => {
                 if (response) {
                     swal({
                         title: "Success!",
-                        text: "You have logged in successfully.",
+                        text: "Account created successfully! Click on the button to procced to login page.",
                         icon: "success",
-                        button: false,
-                        timer: 1500
+                        button: "Proceed"
                     }).then(() => {
-                        localStorage.setItem("token", response.data.token);
-                        const user = decode(response.data.token);
-                        setLoginState({ isLoggedIn: true, user: user });
+                        history.push('/users/login');
                     });
 
                 }
             })
     }
-
+    
     const renderView = Object.values(form).map((input) => {
         if (input.valid) {
             return (
@@ -153,10 +213,10 @@ const LoginPage = () => {
         <div>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
                 {renderView}
-                <Button type="submit" variant="contained" color="primary">Login</Button>
+                <Button type="submit" variant="contained" color="primary">Register</Button>
             </form>
         </div>
     )
 }
 
-export default LoginPage;
+export default RegisterPage;
