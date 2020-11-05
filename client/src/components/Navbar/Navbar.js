@@ -11,7 +11,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Avatar } from '@material-ui/core';
-import './Navbar.css'
+// import './Navbar.css'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -118,14 +118,14 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem style={{top: "0", left: "0"}} onClick={handleProfileMenuOpen}>
+      <MenuItem style={{ top: "0", left: "0" }} onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
-         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -161,7 +161,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-            <Avatar alt="Remy Sharp" src="asdasdas" className={classes.large} />
+              <Avatar alt="Remy Sharp" src="asdasdas" className={classes.large} />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>

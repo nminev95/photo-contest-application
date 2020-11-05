@@ -5,7 +5,7 @@ export const createUserSchema = {
         }
         
         if (typeof value !== 'string' || value.trim().length < 5 || value.trim().length > 25) {
-            return 'Username should be a string in range [3..25]';
+            return 'Username should be a string in range [5..25]';
         }
 
         return null;
@@ -49,7 +49,7 @@ export const createUserSchema = {
         }
         
         if (typeof value !== 'string' || value.trim().length < 2 || value.trim().length > 40) {
-            return 'Last name should be a string in range [2..100]';
+            return 'Last name should be a string in range [2..40]';
         }
 
         return null;

@@ -37,6 +37,7 @@ const App = () => {
             <GuardedRoute exact path="/users/register" auth={!authValue.isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/login" auth={!authValue.isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
             <GuardedRoute path="/home" auth={authValue.isLoggedIn} component={Homepage} redirectRoute={'/'} />
+            
           </Switch>
         </AuthContext.Provider>
       </Router>
