@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-const SingleContest = () => {
+const SingleContestCard = () => {
     
     const classes = useStyles();
 
@@ -49,4 +49,4 @@ const SingleContest = () => {
 
 };
 
-export default SingleContest;
+export default SingleContestCard;
