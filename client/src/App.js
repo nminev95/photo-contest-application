@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/Homepage/Homepage';
+import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import AuthContext from './context/AuthContext';

@@ -63,11 +63,12 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   
+  //<li> error !!!!!!!! menuitem!
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
-          <MenuItem className={classes.dropdown}><MobileDropdown /></MenuItem>
+          <MenuItem className={classes.dropdown}><MobileDropdown /></MenuItem>               
           <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
           <MenuItem className={classes.navLinks}>All Contests</MenuItem>
           <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
