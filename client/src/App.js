@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import Homepage from './containers/Homepage/Homepage';
+import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import AuthContext from './context/AuthContext';
@@ -38,8 +38,7 @@ const App = () => {
             <GuardedRoute exact path="/users/register" auth={!authValue.isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/login" auth={!authValue.isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/profile" auth={authValue.isLoggedIn} component={ProfilePage} redirectRoute={'/home'} />
-            <GuardedRoute path="/home" auth={authValue.isLoggedIn} component={Homepage} redirectRoute={'/'} />
-            
+            <GuardedRoute path="/home" auth={authValue.isLoggedIn} component={HomePage} redirectRoute={'/'} />
           </Switch>
         </AuthContext.Provider>
       </Router>
