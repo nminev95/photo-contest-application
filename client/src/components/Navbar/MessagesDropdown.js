@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Badge, IconButton, List } from '@material-ui/core';
+import { Badge, IconButton } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import MessagePreview from '../MessagePreview/MessagePreview';
 import Link from '@material-ui/core/Link';
@@ -29,14 +29,18 @@ const StyledMenu = withStyles({
 
 const useStyles = makeStyles((theme) => ({
     menuDropdown: {
+        // [theme.breakpoints.down(430)]: {
+        //     marginLeft: '-10px',
+        // },
         [theme.breakpoints.only('xs')]: {
-            marginLeft: "17px"
+            marginLeft: "15px"
         },
         [theme.breakpoints.only('sm')]: {
             marginLeft: "24px"
         },
         [theme.breakpoints.up('md')]: {
-            marginLeft: "15px"
+            marginLeft: "15px",
+            maxHeight: '600px'
         },
     },
 }))
