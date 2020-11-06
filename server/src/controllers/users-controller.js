@@ -49,11 +49,10 @@ usersController
             }
         },
     )
-    .get('/:id',
+    .get('/:id/profile',
         authMiddleware,
         async (req, res) => {
-            const { id } = req.params;
-
+            const { id } = req.user;
             const { user, error } = await usersService.getUserById(usersData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
