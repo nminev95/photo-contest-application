@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
     },
     middleContent: {
         backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(10, 0, 6),
+        padding: theme.spacing(0, 0, 6),
         borderRadius: 16,
-        borders: 1
+    
     },
     bottomContent: {
         backgroundColor: "#e0e0e0",
-        padding: theme.spacing(8, 0, 6),
+        padding: theme.spacing(1, 0, 6),
     },
     Buttons: {
         marginTop: theme.spacing(4),
@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     Icons: {
         marginTop: theme.spacing(4),
     },
+    Avatar: {
+        // padding: theme.spacing(6, 6, 6),
+    }
 }));
 
 
@@ -60,11 +63,11 @@ const ProfilePage = () => {
                     </Container>
                 </div>
                 <div className={classes.middleContent}>
+                        <Grid container spacing={1} justify="center" style={{ fontSize: 50 }}>
+                            <Avatar className={classes.Avatar} ></Avatar>
+                        </Grid>
                     <Container maxWidth="md">
 
-                        <Grid container spacing={1} justify="center" >
-                            <Avatar className={classes.large}></Avatar>
-                        </Grid>
                         <Typography component="h6" variant="h4" align="center" color="textPrimary" gutterBottom>
                             Maria Velikova
                         </Typography>
@@ -135,7 +138,7 @@ const ProfilePage = () => {
                             <Grid container spacing={2} justify="center" >
                                 <Grid item>
                                     <Button variant="contained" color="primary">
-                                        Update your profile
+                                        Update my profile
                                     </Button>
                                 </Grid>
                             </Grid>
