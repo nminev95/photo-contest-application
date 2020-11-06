@@ -1,5 +1,5 @@
-import ContestBackgroundImageBox from '../../components/SingleContestComponents/ContestBackgroundImageBox';
-import ContestInfo from '../../components/SingleContestComponents/ContestInfo';
+import ContestBackgroundImageBox from '../../components/Contest/ContestBackgroundImageBox';
+import ContestInfo from '../../components/Contest/ContestInfo';
 
 const SingleContestPage = () => {
 

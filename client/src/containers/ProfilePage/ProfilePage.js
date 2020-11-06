@@ -1,8 +1,8 @@
-import UserProfileBackgroundImage from '../../components/UserProfileBackgroundImage/UserProfileBackgroundImage';
-import UserProfilePersonalInfo from '../../components/UserProfilePersonalInfo/UserProfilePersonalInfo';
+import UserProfileBackgroundImage from '../../components/Profile/UserProfileBackgroundImage';
+import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersonalInfo';
+import UserImages from '../../components/Profile/UserImages';
 import React, { useState, useEffect } from 'react';
 import userEndpoints from '../../requests/user-requests';
-import UserImages from '../../components/UserImages/UserImages';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 
