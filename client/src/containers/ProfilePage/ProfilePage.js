@@ -1,6 +1,8 @@
+import UserProfileBackgroundImage from '../../components/UserProfileBackgroundImage/UserProfileBackgroundImage';
+import UserProfilePersonalInfo from '../../components/UserProfilePersonalInfo/UserProfilePersonalInfo';
 import React, { useState, useEffect } from 'react';
 import userEndpoints from '../../requests/user-requests';
-import Profile from './../../components/Profile/Profile';
+import UserImages from '../../components/UserImages/UserImages';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 
@@ -22,14 +24,18 @@ const ProfilePage = () => {
                 }
             })
             .then((response) => { setUserData(response.data) })
-        console.log(userData)
-
     }, []);
 
     return (
-        <div>
-            { userData && <Profile userData={userData} />}
-        </div>
+        <React.Fragment>
+            < main>
+                <div>
+                    {userData && <UserProfileBackgroundImage />}
+                    {userData && <UserProfilePersonalInfo userData={userData} />}
+                    {userData && <UserImages />}
+                </div>
+            </main>
+        </React.Fragment>
     )
 }
 
