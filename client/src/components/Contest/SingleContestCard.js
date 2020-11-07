@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -31,7 +32,7 @@ const SingleContestCard = (props) => {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
+        <Grid item xs={12} sm={3}>
             <Card className={classes.root} >
                 <CardActionArea>
                     <CardMedia
@@ -52,7 +53,7 @@ const SingleContestCard = (props) => {
                 </Button>
                 </CardActions>
             </Card>
-        </React.Fragment>
+        </Grid>
 
     );
 

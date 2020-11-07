@@ -51,8 +51,8 @@ const App = () => {
             <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
             {/* <GuardedRoute exact path="/profile" auth={authValue.isLoggedIn} component={ProfilePage} redirectRoute={'/'} /> */}
             {/* <Route path="/contests" component={SingleContestPage} /> */}
-            <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/contest" auth={authValue.isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
+            {/* <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
+            <GuardedRoute exact path="/contest" auth={!isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
             {/* <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
           </Switch>
         {/* </AuthContext.Provider> */}
