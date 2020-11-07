@@ -11,3 +11,10 @@ export const setContestDetails = (contestInfo) => {
         payload: contestInfo
     };
 }
+
+export const setNextContestPhase = (contestInfo) => {
+    return {
+        type: 'SET_NEXT_PHASE',
+        payload: contestInfo
+    }
+}

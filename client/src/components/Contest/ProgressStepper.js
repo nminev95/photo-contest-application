@@ -10,6 +10,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector from '@material-ui/core/StepConnector';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNextContestPhase } from '../../redux/actions';
 
 const useQontoStepIconStyles = makeStyles({
   root: {
@@ -163,20 +165,12 @@ function getSteps() {
 
 const ProgressStepper = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const contestInfo = useSelector(state => state.singleContestState);
   const steps = getSteps();
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
 
   return (
     <div className={classes.root}>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+      <Stepper alternativeLabel activeStep={contestInfo.phase_id - 1} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

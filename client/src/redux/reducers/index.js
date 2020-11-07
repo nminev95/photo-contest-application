@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
     loginState,
-    singleContestState
+    singleContestState,
 })
 
 export default allReducers;
