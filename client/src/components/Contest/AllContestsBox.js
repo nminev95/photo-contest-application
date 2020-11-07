@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import SingleContestCard from './../Contest/SingleContestCard';
+import SingleContestCard from './SingleContestCard';
 import Grid from '@material-ui/core/Grid';
 
 

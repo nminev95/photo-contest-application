@@ -6,9 +6,8 @@ import swal from '@sweetalert/with-react';
 import { passwordRequired, usernameRequired } from '../../validations/helper-errors';
 import axios from '../../requests/axios';
 import userEndpoints from '../../requests/user-requests';
-import { useAuth } from '../../custom-hooks/useAuth';
 import decode from 'jwt-decode';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions'
 
 const useStyles = makeStyles((theme) => ({
@@ -109,9 +108,6 @@ const LoginPage = () => {
                         timer: 1500
                     }).then(() => {
                         localStorage.setItem("token", response.data.token);
-                        // const user = decode(response.data.token);
-                        // setLoginState({ isLoggedIn: true, user: user });
-
                         dispatch(login(decode(response.data.token)))
                     });
 

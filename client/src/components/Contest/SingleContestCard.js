@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -30,6 +31,8 @@ const SingleContestCard = (props) => {
 
     const { contest } = props;
     const classes = useStyles();
+    const { id } = contest;
+    const history = useHistory();
 
     return (
         <Grid item xs={12} sm={3}>
@@ -37,6 +40,7 @@ const SingleContestCard = (props) => {
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
+                        onClick={() => history.push(`/contests/${id}`)}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">

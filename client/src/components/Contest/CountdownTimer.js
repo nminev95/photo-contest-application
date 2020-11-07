@@ -2,7 +2,7 @@ import React from 'react';
 import Countdown from 'react-countdown';
 
 const CountdownTimer = () => {
-
+    
     const Completionist = () => <span>Loading...</span>;
 
     return (

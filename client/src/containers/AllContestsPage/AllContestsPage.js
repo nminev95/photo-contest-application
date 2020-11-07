@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import AllContestsBox from "./../../components/AllContests/AllContestsBox"
 import contestEndpoints from '../../requests/contest-requests';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
+import AllContestsBox from '../../components/Contest/AllContestsBox';
 
 const AllContestsPage = () => {
    

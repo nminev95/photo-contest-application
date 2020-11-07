@@ -24,7 +24,9 @@ const getContestInfo = async (id) => {
             id = ?
     `;
 
-    return await pool.query(sql, [id]);
+    const res = await pool.query(sql, [id]);
+
+    return res[0];
 };
 
 export default {

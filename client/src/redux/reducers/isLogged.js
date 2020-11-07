@@ -8,10 +8,13 @@ const loginState = (state = initialState, action) => {
         case 'SIGN_IN':
             return {
                 isLogged: true,
-                user: action.payload
+                user: action.payload,
             };
         case 'SING_OUT':
-            return false;
+            return {
+                isLogged: false,
+                user: null,
+            }
         default:
             return state;
     }
