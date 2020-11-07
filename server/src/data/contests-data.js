@@ -1,5 +1,18 @@
 import pool from '../data/pool.js';
 
+
+const getAllContestsInfo = async () => {
+
+    const sql = `
+        SELECT 
+            *
+        FROM
+            contests     
+    `;
+
+    return await pool.query(sql);
+};
+
 const getContestInfo = async (id) => {
 
     const sql = `
@@ -15,5 +28,6 @@ const getContestInfo = async (id) => {
 };
 
 export default {
+    getAllContestsInfo,
     getContestInfo,
 };

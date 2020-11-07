@@ -112,11 +112,13 @@ const getUserMessages = usersData => {
 };
 
 /**
-* Gets user information found by unique user number.
+* Saves a record from a user in the database.
 * @param module users data SQL queries module.
 * @callback 
 * @async
-* @param {number} id - The unique user number.
+* @param {string} message - The message content.
+* @param {number} id - The  recepient unique user number.
+* @param {number} id - The sender unique user number.
 * @return {Promise<object>}
 */
 const sendPrivateMessage = usersData => {
