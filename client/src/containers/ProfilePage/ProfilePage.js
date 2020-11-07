@@ -17,7 +17,7 @@ const ProfilePage = () => {
                 if (error.response.status === 404) {
                     swal({
                         title: "Oops!",
-                        text: "Looks like no information found.",
+                        text: "Looks like no information found!",
                         icon: "error",
                         button: "Okay"
                     })

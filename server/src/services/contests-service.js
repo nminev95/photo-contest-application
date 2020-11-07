@@ -1,11 +1,11 @@
 import * as ERRORS from '../constants/service-errors.js';
 
 /**
-* Gets user information found by unique user number.
+* Gets contest information found by unique contest number.
 * @param module users data SQL queries module.
 * @callback 
 * @async
-* @param {number} id - The unique user number.
+* @param {number} id - The unique contest number.
 * @return {Promise<object>}
 */
 const getContestById = contestsData => {
@@ -22,7 +22,29 @@ const getContestById = contestsData => {
         return { error: null, contest: contest };
     };
 };
+/**
+* Gets all contests information from the database.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getAllContests = contestsData => {
+    return async () => {
+        const contests = await contestsData.getAllContestsInfo();
+
+        if (!contests) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contests: null,
+            };
+        }
+       
+        return { error: null, contests: contests };
+    };
+};
 
 export default {
     getContestById,
+    getAllContests,
 };

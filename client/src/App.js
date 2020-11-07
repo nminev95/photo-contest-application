@@ -9,6 +9,7 @@ import decode from 'jwt-decode';
 import GuardedRoute from './hoc/GuardedRoute';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer'
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
 // import io from 'socket.io-client';
