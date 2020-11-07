@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/HomePage/HomePage';
+import HomePage from './containers/Homepage/Homepage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import AuthContext from './context/AuthContext';
@@ -9,6 +9,7 @@ import decode from 'jwt-decode';
 import GuardedRoute from './hoc/GuardedRoute';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer'
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
 import io from 'socket.io-client';
@@ -47,6 +48,7 @@ const App = () => {
             {/* <Route path="/contests" component={SingleContestPage} /> */}
             <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
           </Switch>
+          <Footer/>
         </AuthContext.Provider>
       </Router>
     </div>
