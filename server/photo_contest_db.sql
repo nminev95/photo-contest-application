@@ -79,8 +79,10 @@ CREATE TABLE `contests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `category` varchar(45) NOT NULL,
+  `description` varchar(545) NOT NULL,
   `firstPhaseLimit` datetime NOT NULL,
   `secondPhaseLimit` datetime NOT NULL,
+  `limit` int(11) NOT NULL,
   `restrictions_id` int(11) NOT NULL,
   `phase_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -88,7 +90,7 @@ CREATE TABLE `contests` (
   KEY `fk_contests_contest_phases1_idx` (`phase_id`),
   CONSTRAINT `fk_contests_contest_phases1` FOREIGN KEY (`phase_id`) REFERENCES `contest_phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_contest_restrictions1` FOREIGN KEY (`restrictions_id`) REFERENCES `contest_restrictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,6 +120,7 @@ DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` varchar(245) NOT NULL,
+  `sendDate` datetime NOT NULL,
   `recepient_id` int(11) NOT NULL,
   `sender_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -125,7 +128,7 @@ CREATE TABLE `messages` (
   KEY `fk_messages_users2_idx` (`sender_id`),
   CONSTRAINT `fk_messages_users1` FOREIGN KEY (`recepient_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_messages_users2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +245,7 @@ CREATE TABLE `users` (
   KEY `fk_users_roles1_idx` (`role_id`),
   CONSTRAINT `fk_users_ranks1` FOREIGN KEY (`rank_id`) REFERENCES `ranks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -254,4 +257,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-05 14:34:31
+-- Dump completed on 2020-11-07 19:46:40

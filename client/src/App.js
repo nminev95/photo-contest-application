@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/Homepage/Homepage';
+import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import AuthContext from './context/AuthContext';
@@ -16,42 +16,46 @@ import AllContestsPage from './containers/AllContestsPage/AllContestsPage';
 // import io from 'socket.io-client';
 // import { BASE_URL } from './constants/constants';
 
+// import io from 'socket.io-client';
+// import { BASE_URL } from './constants/constants';
+import { useSelector } from 'react-redux';
 // const socket = io.connect(BASE_URL);
 
 const App = () => {
+  const isLoggedIn = useSelector(state => state.loginState.isLogged);
+  console.log(isLoggedIn)
+  // const token = localStorage.getItem('token');
+  // const [authValue, setAuthValue] = useState({
+  //   isLoggedIn: token ? true : false,
+  //   user: token ? decode(token) : null
+  // });
 
-  const token = localStorage.getItem('token');
-  const [authValue, setAuthValue] = useState({
-    isLoggedIn: token ? true : false,
-    user: token ? decode(token) : null
-  });
-
-  if (token) {
-    const decoded = decode(token);
-    const expiration = new Date(decoded.exp * 1000); /// setTimout !!
-    if (expiration < new Date()) {
-      localStorage.removeItem('token');
-      setAuthValue(false);
-    }
-  }
+  // if (token) {
+  //   const decoded = decode(token);
+  //   const expiration = new Date(decoded.exp * 1000); /// setTimout !!
+  //   if (expiration < new Date()) {
+  //     localStorage.removeItem('token');
+  //     setAuthValue(false);
+  //   }
+  // }
 
   return (
     <div className="App">
       <Router>
-        <AuthContext.Provider value={{ ...authValue, setLoginState: setAuthValue }}>
+        {/* <AuthContext.Provider value={{ ...authValue, setLoginState: setAuthValue }}> */}
           <Navbar />
           <Switch>
-            <GuardedRoute exact path="/" auth={!authValue.isLoggedIn} component={LandingPage} redirectRoute={'/home'} />
-            <GuardedRoute exact path="/users/register" auth={!authValue.isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
-            <GuardedRoute exact path="/users/login" auth={!authValue.isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
-            <GuardedRoute path="/home" auth={authValue.isLoggedIn} component={HomePage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/profile" auth={authValue.isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
+            {/* <GuardedRoute exact path="/" auth={!authValue.isLoggedIn} component={LandingPage} redirectRoute={'/home'} /> */}
+            {/* <GuardedRoute exact path="/users/register" auth={!authValue.isLoggedIn} component={RegisterPage} redirectRoute={'/home'} /> */}
+            <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
+            <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
+            {/* <GuardedRoute exact path="/profile" auth={authValue.isLoggedIn} component={ProfilePage} redirectRoute={'/'} /> */}
             {/* <Route path="/contests" component={SingleContestPage} /> */}
             <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
             <GuardedRoute exact path="/contest" auth={authValue.isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
+            {/* <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
           </Switch>
-          <Footer/>
-        </AuthContext.Provider>
+        {/* </AuthContext.Provider> */}
       </Router>
     </div>
   );
