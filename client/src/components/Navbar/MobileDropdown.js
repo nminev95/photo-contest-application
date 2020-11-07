@@ -49,6 +49,14 @@ const useStyles = makeStyles((theme) => ({
             marginLeft: "-24px"
         },
     },
+    dropdown: {
+        padding: '0',
+        display: 'none',
+        marginLeft: '20px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex'
+        },
+    }
 }))
 
 const MobileDropdown = () => {
@@ -66,7 +74,7 @@ const MobileDropdown = () => {
 
     return (
         <Fragment>
-            <MenuItem style={{ height: "83px" }} onClick={handleClick}><MenuIcon />
+            <MenuItem className={styles.dropdown} style={{ height: "83px", padding: "0" }} onClick={handleClick}><MenuIcon />
             </MenuItem>
             <StyledMenu
                 className={styles.menuDropdown}

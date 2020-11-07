@@ -67,7 +67,7 @@ const ProfileDropdown = () => {
 
     return (
         <Fragment>
-            <MenuItem style={{ padding: "0" }}>
+            <MenuItem style={{ padding: "0", top: "0", left: "0", paddingRight: "7px"}}>
                 <IconButton
                     style={{ height: "83px" }}
                     aria-label="account of current user"

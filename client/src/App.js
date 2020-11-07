@@ -11,6 +11,7 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Navbar from './components/Navbar/Navbar';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
+import io from 'socket.io-client';
 
 const App = () => {
 
