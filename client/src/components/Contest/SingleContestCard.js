@@ -9,42 +9,51 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 400,
+        display: 'flex',
+        flexDirection: 'column',
+        width: theme.spacing(60),
+        height: theme.spacing(30),
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
     },
     media: {
         height: 150,
     },
-});
+}));
 
-const SingleContestCard = () => {
-    
+const SingleContestCard = (props) => {
+
+    const { contest } = props;
     const classes = useStyles();
 
     return (
-        <Card className={classes.root} >
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image=""
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Category
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Do not miss the chance!
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions style={{ justifyContent: 'center' }}>
-                <Button size="small" color="primary"  >
-                    Join
+        <React.Fragment>
+            <Card className={classes.root} >
+                <CardActionArea>
+                    <CardMedia
+                        className={classes.media}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {contest.category}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {contest.title}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions style={{ justifyContent: 'center' }}>
+                    <Button size="small" color="primary"  >
+                        Join now
                 </Button>
-            </CardActions>
-        </Card>
+                </CardActions>
+            </Card>
+        </React.Fragment>
+
     );
 
 };

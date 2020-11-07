@@ -12,10 +12,11 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer'
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
-import io from 'socket.io-client';
-import { BASE_URL } from './constants/constants';
+import AllContestsPage from './containers/AllContestsPage/AllContestsPage';
+// import io from 'socket.io-client';
+// import { BASE_URL } from './constants/constants';
 
-const socket = io.connect(BASE_URL);
+// const socket = io.connect(BASE_URL);
 
 const App = () => {
 
@@ -47,6 +48,7 @@ const App = () => {
             <GuardedRoute exact path="/profile" auth={authValue.isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
             {/* <Route path="/contests" component={SingleContestPage} /> */}
             <GuardedRoute exact path="/contests" auth={!authValue.isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
+            <GuardedRoute exact path="/contest" auth={authValue.isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
           </Switch>
           <Footer/>
         </AuthContext.Provider>

@@ -33,7 +33,6 @@ const Footer = () => {
     const { isLoggedIn } = useContext(AuthContext);
     const classes = useStyles();
  
-    console.log(isLoggedIn)
     return (
         <>
             { !isLoggedIn ? 

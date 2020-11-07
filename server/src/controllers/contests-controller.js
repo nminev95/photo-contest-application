@@ -10,9 +10,9 @@ contestsController
     .get('/',
         authMiddleware,
         async (req, res) => {
-            
+
             const { contests, error } = await contestsService.getAllContests(contestsData)();
-           console.log(contests);
+
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'Contests not found!' });
             } else {
