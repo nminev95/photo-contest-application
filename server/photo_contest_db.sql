@@ -83,6 +83,7 @@ CREATE TABLE `contests` (
   `firstPhaseLimit` datetime NOT NULL,
   `secondPhaseLimit` datetime NOT NULL,
   `limit` int(11) NOT NULL,
+  `contestCover` varchar(245) NOT NULL,
   `restrictions_id` int(11) NOT NULL,
   `phase_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -257,4 +258,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-07 19:46:40
+-- Dump completed on 2020-11-08  2:22:18

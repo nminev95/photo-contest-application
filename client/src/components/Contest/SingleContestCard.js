@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
 const SingleContestCard = (props) => {
 
     const { contest } = props;
-    const classes = useStyles();
     const { id } = contest;
+    const classes = useStyles();
     const history = useHistory();
 
     return (
@@ -39,6 +39,7 @@ const SingleContestCard = (props) => {
             <Card className={classes.root} >
                 <CardActionArea>
                     <CardMedia
+                        image={contest.contestCover}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}
                     />
