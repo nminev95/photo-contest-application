@@ -18,10 +18,10 @@ const OpenEntryFormButton = () => {
                     Enter competition
                 </Button>
             ) : (
-                <Button disabled variant="contained" color="primary" onClick={handleShow}>
-                    Enter competition
-                </Button>
-            )}
+                    <Button disabled variant="contained" color="primary" onClick={handleShow}>
+                        Enter competition
+                    </Button>
+                )}
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -36,13 +36,13 @@ const OpenEntryFormButton = () => {
                 <Modal.Body>
                     In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
                     When done, simply upload your desired photo and submit your entry.
-                    <UploadPhotoForm/>
-          </Modal.Body>
+                    <UploadPhotoForm />
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="contained" onClick={handleClose}>
                         Close
-            </Button>
-                    <Button variant="contained" color="primary">Understood</Button>
+                    </Button>
+                    <Button variant="contained" color="primary">Submit entry</Button>
                 </Modal.Footer>
             </Modal>
         </>
