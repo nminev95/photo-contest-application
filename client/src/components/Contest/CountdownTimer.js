@@ -29,9 +29,9 @@ const CountdownTimer = () => {
             })
             .then((response) => dispatch(setContestDetails(response.data)))
     }
-    console.log(contestInfo)
 
     const renderCountdown = (phase) => {
+        
         if (phase === 1) {
             return (
                 < Countdown
@@ -39,17 +39,16 @@ const CountdownTimer = () => {
                     onComplete={() => {
                         setNextContestPhase()
                     }}>
-                    <Completionist />
                 </Countdown>
             )
         } else if (phase === 2) {
             return (
                 < Countdown
+                    autoStart={true}
                     date={secondPhaseEndDate}
                     onComplete={() => {
                         setNextContestPhase()
                     }}>
-                    <Completionist />
                 </Countdown>
             )
         } else if (phase === 3) {
