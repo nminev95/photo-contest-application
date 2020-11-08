@@ -8,7 +8,7 @@ const contestsController = express.Router();
 
 contestsController
     .get('/',
-        // authMiddleware,
+        authMiddleware,
         async (req, res) => {
 
             const { contests, error } = await contestsService.getAllContests(contestsData)();
@@ -21,7 +21,7 @@ contestsController
         },
     )
     .get('/:id',
-        // authMiddleware,
+        authMiddleware,
         async (req, res) => {
             const { id } = req.params;
             const { contest, error } = await contestsService.getContestById(contestsData)(+id);
