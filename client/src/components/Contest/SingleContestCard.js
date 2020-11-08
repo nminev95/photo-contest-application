@@ -14,13 +14,13 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 400,
+        maxWidth: 320,
         display: 'flex',
         flexDirection: 'column',
-        width: theme.spacing(60),
+        width: theme.spacing(58),
         height: theme.spacing(39),
         marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
+      
     },
     media: {
         height: 180,
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     text: {
         height: 25,
     },
+    button: {
+        marginTop: theme.spacing(0),
+      },
 }));
 
 const SingleContestCard = (props) => {
@@ -38,7 +41,7 @@ const SingleContestCard = (props) => {
     const history = useHistory();
 
     return (
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={3}   >
             <Card className={classes.root} >
                 <CardActionArea>
                     <CardMedia
@@ -56,7 +59,11 @@ const SingleContestCard = (props) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions style={{ justifyContent: 'center' }}>
-                    <Button  className={classes.text} size="small" color="primary"  >
+                    <Button  
+                    className={classes.button} 
+                    size="small" 
+                    color="primary"  
+                    onClick={() => history.push(`/contests/${id}`)} >
                         Join now
                 </Button>
                 </CardActions>

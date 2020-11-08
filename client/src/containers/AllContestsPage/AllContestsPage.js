@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import AllContestsBox from "./../../components/Contest/AllContestsBox"
+import AllContestsBox from './../../components/Contest/AllContestsBox'
+import ContestCategories from './../../components/Contest/ContestCategories'
 import contestEndpoints from '../../requests/contest-requests';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
@@ -26,11 +27,11 @@ const AllContestsPage = () => {
             .then((response) =>  dispatch(setAllContestsData(response.data)))
     }, [dispatch]);
 
-    console.log(contestsData);
     return (
         <React.Fragment>
             < main>
-                <div>                  
+                <div>                
+                    { contestsData && <ContestCategories contestsData={contestsData} /> } 
                     { contestsData && <AllContestsBox contestsData={contestsData} /> }                   
                 </div>
             </main>
