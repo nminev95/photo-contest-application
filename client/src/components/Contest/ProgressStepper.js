@@ -10,8 +10,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector from '@material-ui/core/StepConnector';
-import { useDispatch, useSelector } from 'react-redux';
-import { setNextContestPhase } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 
 const useQontoStepIconStyles = makeStyles({
   root: {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import AllContestsBox from "./../../components/AllContests/AllContestsBox"
+import AllContestsBox from "./../../components/Contest/AllContestsBox"
 import contestEndpoints from '../../requests/contest-requests';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
