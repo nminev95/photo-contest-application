@@ -23,4 +23,3 @@ INSERT INTO `photo_contest_db`.`contest_restrictions` (`type`) VALUES ('Invitati
 
 
 
-
