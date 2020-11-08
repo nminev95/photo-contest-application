@@ -12,10 +12,10 @@ const SingleContestPage = (props) => {
 
     const { id } = props.match.params;
     const dispatch = useDispatch();
-    const contestImage = useSelector(state => state.singleContestState.contestCover);
-    
+    const contestState = useSelector(state => state.singleContestState);
+
     useEffect(() => {
-        axios.get(`${BASE_URL}${contestEndpoints.getSingleContest}${+id}`)
+        axios.get(`${BASE_URL}${contestEndpoints.singleContest}${+id}`)
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({
@@ -27,11 +27,11 @@ const SingleContestPage = (props) => {
                 }
             })
             .then((data) => dispatch(setContestDetails(data.data)))
-    }, [])
-    
+    }, [dispatch, id])
+
     return (
         <>
-            <ContestBackgroundImageBox image={contestImage} />
+            <ContestBackgroundImageBox image={contestState.contestCover} />
             <ContestInfo />
         </>
     )

@@ -32,6 +32,18 @@ contestsController
                 res.status(200).send(contest);
             }
         },
+    )
+    .put('/:id',
+        async (req, res) => {
+            const { id } = req.params;
+            const { contest, error } = await contestsService.setNextContestPhase(contestsData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Contest not found!' });
+            } else {
+                res.status(200).send(contest);
+            }
+        },
     );
 
 export default contestsController;

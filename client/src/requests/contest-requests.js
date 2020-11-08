@@ -1,6 +1,6 @@
 const contestEndpoints = {
     allContests: '/contests',
-    getSingleContest: '/contests/'
+    singleContest: '/contests/'
 }
 
 export default contestEndpoints;

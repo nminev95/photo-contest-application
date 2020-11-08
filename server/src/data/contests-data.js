@@ -29,7 +29,21 @@ const getContestInfo = async (id) => {
     return res[0];
 };
 
+const setNextPhase = async (id, currentPhase) => {
+
+    const sql = `
+        UPDATE
+            contests
+        SET phase_id = ?
+        WHERE
+            id = ?
+    `;
+
+    return await pool.query(sql, [currentPhase + 1, id]);
+};
+
 export default {
     getAllContestsInfo,
     getContestInfo,
+    setNextPhase,
 };
