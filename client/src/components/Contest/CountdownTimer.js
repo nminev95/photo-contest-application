@@ -9,10 +9,12 @@ import contestEndpoints from '../../requests/contest-requests';
 
 const CountdownTimer = () => {
     const dispatch = useDispatch();
-    const Completionist = () => <span>Loading...</span>;
     const contestInfo = useSelector(state => state.singleContestState);
-    const currentContestPhaseEndDate = new Date(contestInfo.firstPhaseLimit);
- 
+    const firstPhaseEndDate = new Date(contestInfo.firstPhaseLimit);
+    const secondPhaseEndDate = new Date(contestInfo.secondPhaseLimit);
+    const thirdPhaseEndDate = new Date();
+    const Completionist = () => <span>Finished</span>;
+
     const setNextContestPhase = () => {
         axios.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestInfo.id}`)
             .catch((error) => {
@@ -27,15 +29,42 @@ const CountdownTimer = () => {
             })
             .then((response) => dispatch(setContestDetails(response.data)))
     }
+    console.log(contestInfo)
+
+    const renderCountdown = (phase) => {
+        if (phase === 1) {
+            return (
+                < Countdown
+                    date={firstPhaseEndDate}
+                    onComplete={() => {
+                        setNextContestPhase()
+                    }}>
+                    <Completionist />
+                </Countdown>
+            )
+        } else if (phase === 2) {
+            return (
+                < Countdown
+                    date={secondPhaseEndDate}
+                    onComplete={() => {
+                        setNextContestPhase()
+                    }}>
+                    <Completionist />
+                </Countdown>
+            )
+        } else if (phase === 3) {
+            return (
+                < Countdown date={thirdPhaseEndDate} >
+                    <Completionist />
+                </Countdown>
+            )
+        }
+    }
 
     return (
-        <Countdown
-            date={currentContestPhaseEndDate}
-            onComplete={() => {
-                setNextContestPhase()
-            }}>
-            <Completionist />
-        </Countdown>
+        <>
+            {renderCountdown(contestInfo.phase_id)}
+        </>
     )
 }
 
