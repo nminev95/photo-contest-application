@@ -18,3 +18,10 @@ export const setNextContestPhase = (contestInfo) => {
         payload: contestInfo
     }
 }
+
+export const setAllContestsData = (allContestsInfo) => {
+    return {
+        type: 'SET_ALL_CONTESTS_DATA',
+        payload: allContestsInfo
+    };
+}

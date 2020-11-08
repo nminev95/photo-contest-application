@@ -8,8 +8,6 @@ const useStyles = makeStyles((theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(10),
         paddingBottom: theme.spacing(10),
-        // paddingLeft: theme.spacing(10),
-        // paddingRight: theme.spacing(10),
         display: 'flex',
     },
 }));

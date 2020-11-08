@@ -18,12 +18,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: theme.spacing(60),
-        height: theme.spacing(37),
+        height: theme.spacing(39),
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
     },
     media: {
-        height: 150,
+        height: 180,
+    },
+    text: {
+        height: 25,
     },
 }));
 
@@ -44,16 +47,16 @@ const SingleContestCard = (props) => {
                         onClick={() => history.push(`/contests/${id}`)}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography  className={classes.text} gutterBottom variant="h5" component="h2">
                             {contest.category}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography  className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions style={{ justifyContent: 'center' }}>
-                    <Button size="small" color="primary"  >
+                    <Button  className={classes.text} size="small" color="primary"  >
                         Join now
                 </Button>
                 </CardActions>
