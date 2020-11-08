@@ -11,7 +11,8 @@ const CountdownTimer = () => {
     const dispatch = useDispatch();
     const Completionist = () => <span>Loading...</span>;
     const contestInfo = useSelector(state => state.singleContestState);
-
+    const currentContestPhaseEndDate = new Date(contestInfo.firstPhaseLimit);
+ 
     const setNextContestPhase = () => {
         axios.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestInfo.id}`)
             .catch((error) => {
@@ -29,7 +30,7 @@ const CountdownTimer = () => {
 
     return (
         <Countdown
-            date={Date.now() + 5000}
+            date={currentContestPhaseEndDate}
             onComplete={() => {
                 setNextContestPhase()
             }}>
