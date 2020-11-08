@@ -1,15 +1,18 @@
 import UserProfileBackgroundImage from '../../components/Profile/UserProfileBackgroundImage';
 import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersonalInfo';
 import UserImages from '../../components/Profile/UserImages';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import userEndpoints from '../../requests/user-requests';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserData } from '../../redux/actions/index'
 
 
 const ProfilePage = () => {
 
-    const [userData, setUserData] = useState(null);
+    const dispatch = useDispatch();
+    const userData = useSelector(state => state.userState);
 
     useEffect(() => {
         axios.get(userEndpoints.userProfile)
@@ -23,8 +26,8 @@ const ProfilePage = () => {
                     })
                 }
             })
-            .then((response) => { setUserData(response.data) })
-    }, []);
+            .then((response) => dispatch(setUserData(response.data)))
+    }, [dispatch]);
 
     return (
         <React.Fragment>

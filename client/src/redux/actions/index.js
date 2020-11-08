@@ -25,3 +25,10 @@ export const setAllContestsData = (allContestsInfo) => {
         payload: allContestsInfo
     };
 }
+
+export const setUserData = (userInfo) => {
+    return {
+        type: 'SET_USER_DATA',
+        payload: userInfo
+    };
+}
