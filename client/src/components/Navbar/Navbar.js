@@ -9,6 +9,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MobileDropdown from './MobileDropdown';
 import ProfileDropdown from './ProfileDropdown';
 import MessagesDropdown from './MessagesDropdown';
+import { Link } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -54,15 +56,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
 
-  //<li> error !!!!!!!! menuitem!
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
           <MobileDropdown />
           <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
-          <MenuItem className={classes.navLinks}>All Contests</MenuItem>
+          <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
           <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
           <div className={classes.grow} />
           <MessagesDropdown />

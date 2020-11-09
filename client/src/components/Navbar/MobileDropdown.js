@@ -8,6 +8,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useHistory } from 'react-router-dom';
 
 const StyledMenu = withStyles({
     paper: {
@@ -63,6 +64,7 @@ const MobileDropdown = () => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const styles = useStyles();
+    const history = useHistory();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -90,7 +92,10 @@ const MobileDropdown = () => {
                     </ListItemIcon>
                     <ListItemText primary="Dashboard" />
                 </StyledMenuItem>
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => {
+                    handleClose();
+                    history.push('contests');
+                }}>
                     <ListItemIcon>
                         <DraftsIcon fontSize="small" />
                     </ListItemIcon>

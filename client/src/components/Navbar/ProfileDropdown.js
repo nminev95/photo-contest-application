@@ -9,7 +9,7 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import { Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-
+import { useHistory } from 'react-router-dom'
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
@@ -56,6 +56,7 @@ const ProfileDropdown = () => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const styles = useStyles();
+    const history = useHistory();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -87,11 +88,14 @@ const ProfileDropdown = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => {
+                    handleClose();
+                    history.push('/profile')
+                }}>
                     <ListItemIcon>
                         <SendIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="View profile" />
+                    <ListItemText primary="View profile"/>
                 </StyledMenuItem>
                 <StyledMenuItem>
                     <ListItemIcon>
