@@ -64,7 +64,7 @@ const MessagesDropdown = () => {
                 onClick={handleClick}
                 aria-label="show 4 new mails"
                 color="inherit"
-                style={{ height: "83px" }}>
+                style={{ height: "83px", outline: 'none' }}>
                 <Badge badgeContent={4} color="secondary">
                     <MailIcon />
                 </Badge>

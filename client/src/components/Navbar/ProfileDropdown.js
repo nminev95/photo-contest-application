@@ -10,6 +10,7 @@ import SendIcon from '@material-ui/icons/Send';
 import { Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
@@ -57,6 +58,7 @@ const ProfileDropdown = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const styles = useStyles();
     const history = useHistory();
+    const userState = useSelector(state => state.loginState);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -68,9 +70,9 @@ const ProfileDropdown = () => {
 
     return (
         <Fragment>
-            <MenuItem style={{ padding: "0", top: "0", left: "0", paddingRight: "7px"}}>
+            <MenuItem style={{ padding: "0", top: "0", left: "0", paddingRight: "7px" }}>
                 <IconButton
-                    style={{ height: "83px" }}
+                    style={{ height: "83px", outline: 'none' }}
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
@@ -95,14 +97,23 @@ const ProfileDropdown = () => {
                     <ListItemIcon>
                         <SendIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="View profile"/>
+                    <ListItemText primary="View profile" />
                 </StyledMenuItem>
-                <StyledMenuItem>
-                    <ListItemIcon>
-                        <DraftsIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Your entries" />
-                </StyledMenuItem>
+                {userState.user.role === 'Organizer' ? (
+                    <StyledMenuItem>
+                        <ListItemIcon>
+                            <DraftsIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText primary="Your contests" />
+                    </StyledMenuItem>
+                ) : (
+                    <StyledMenuItem>
+                        <ListItemIcon>
+                            <DraftsIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText primary="Your entries" />
+                    </StyledMenuItem>
+                    )}
                 <StyledMenuItem>
                     <ListItemIcon>
                         <InboxIcon fontSize="small" />

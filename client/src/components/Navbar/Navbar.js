@@ -9,7 +9,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MobileDropdown from './MobileDropdown';
 import ProfileDropdown from './ProfileDropdown';
 import MessagesDropdown from './MessagesDropdown';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 
@@ -66,12 +66,8 @@ const Navbar = () => {
         <AppBar position="static">
           <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
             <div className={classes.grow} />
-            <Link to="/users/register">
-            <Button style={{outline: 'none'}} variant="contained">Register</Button>
-            </Link>
-            <Link to="/users/login">
-            <Button style={{outline: 'none'}} variant="contained" color="primary">Sign in</Button>
-            </Link>
+            <Button onClick={() => history.push('/users/register')} style={{ outline: 'none' }} variant="contained">Register</Button>
+            <Button onClick={() => history.push('/users/login')} style={{ outline: 'none' }} variant="contained" color="primary">Sign in</Button>
           </Toolbar>
         </AppBar>
       ) : (
@@ -81,10 +77,13 @@ const Navbar = () => {
               <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
               <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
               <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
+              {userState.user.role === 'Organizer' ? (
+                <MenuItem className={classes.navLinks}>Rankings</MenuItem>
+              ) : (null)}
               <div className={classes.grow} />
               <MessagesDropdown />
               <MenuItem style={{ padding: "0" }}>
-                <IconButton aria-label="show 11 new notifications" color="inherit">
+                <IconButton style={{ outline: 'none' }} aria-label="show 11 new notifications" color="inherit">
                   <Badge badgeContent={11} color="secondary">
                     <NotificationsIcon />
                   </Badge>
@@ -94,7 +93,6 @@ const Navbar = () => {
             </Toolbar>
           </AppBar>
         )}
-
     </div >
   );
 }
