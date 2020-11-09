@@ -14,7 +14,7 @@ const OpenEntryFormButton = () => {
     return (
         <>
             {contestInfo.phase_id === 1 ? (
-                <Button variant="contained" color="primary" onClick={handleShow}>
+                <Button style={{outline: 'none'}} variant="contained" color="primary" onClick={handleShow}>
                     Enter competition
                 </Button>
             ) : (
@@ -39,10 +39,10 @@ const OpenEntryFormButton = () => {
                     <UploadPhotoForm />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="contained" onClick={handleClose}>
-                        Close
+                    <Button style={{outline: 'none'}} v variant="contained" onClick={handleClose}>
+                        Cancel
                     </Button>
-                    <Button variant="contained" color="primary">Submit entry</Button>
+                    <Button style={{outline: 'none'}} v variant="contained" color="primary">Submit entry</Button>
                 </Modal.Footer>
             </Modal>
         </>

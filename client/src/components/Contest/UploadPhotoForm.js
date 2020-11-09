@@ -27,7 +27,7 @@ const UploadPhotoForm = () => {
     const [file, setFile] = useState(null);
     const styles = useStyles();
     const inputRef = useRef();
-    
+
     return (
         <div>
             <TextField
@@ -48,8 +48,9 @@ const UploadPhotoForm = () => {
                 type="text"
                 onChange={(ev) => setDescription(ev.target.value)}
             />
-            <Form style={{marginTop: '30px'}}>
+            <Form style={{ marginTop: '30px' }}>
                 <Form.File
+                    className={styles.inputField}
                     onChange={() => setFile(inputRef.current.files[0])}
                     ref={inputRef}
                     id="custom-file"
