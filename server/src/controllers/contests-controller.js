@@ -3,6 +3,9 @@ import { authMiddleware } from '../auth/auth-middleware.js';
 import * as ERRORS from '../constants/service-errors.js';
 import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
+import multer from 'multer';
+import storage from './../storage.js';
+
 
 const contestsController = express.Router();
 
@@ -44,6 +47,25 @@ contestsController
                 res.status(200).send(contest);
             }
         },
-    );
+    )
+    .post('/:id',
+    authMiddleware,
+    multer({ storage: storage }).single('image'),
+    async (req, res) => {
+        const { id } = req.params;
+        const user_id = req.user;
+        const title = req.body.title;
+        const descripption = req.body.descripption;
+        const fileName = req.file.filename;
+
+        const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, descripption, fileName, id, user_id);
+
+        if (error) {
+            res.status(500).send({ message: 'Internal Server Error' });
+        } else {
+            res.status(200).send({path: fileName});
+        }
+    });
+
 
 export default contestsController;

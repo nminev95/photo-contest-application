@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const UploadPhotoForm = () => {
+    const [title, setTitle] = useState(null)
+    const [description, setDescription] = useState(null)
     const [file, setFile] = useState(null);
     const styles = useStyles();
     const inputRef = useRef();
@@ -34,15 +36,17 @@ const UploadPhotoForm = () => {
                 name="title"
                 variant="outlined"
                 type="text"
+                onChange={(ev) => setTitle(ev.target.value)}
             />
             <TextField
                 className={styles.inputField}
                 label="Story behind photo"
-                name="title"
+                name="description"
                 rows={6}
                 multiline
                 variant="outlined"
                 type="text"
+                onChange={(ev) => setDescription(ev.target.value)}
             />
             <Form style={{marginTop: '30px'}}>
                 <Form.File

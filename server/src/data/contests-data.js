@@ -42,8 +42,22 @@ const setNextPhase = async (id, currentPhase) => {
     return await pool.query(sql, [currentPhase + 1, id]);
 };
 
+
+
+const sendNewPhotoInfo = async (title, description, fileName, id, user_id) => {
+    const sql = `
+        INSERT INTO 
+          photos (title, story, file, user_id, contest_id  )
+        VALUES (?, ?, ?, ?, ?)
+    `;
+
+    return await pool.query(sql, [title, description, fileName, user_id, id]);
+};
+
+
 export default {
     getAllContestsInfo,
     getContestInfo,
     setNextPhase,
+    sendNewPhotoInfo,
 };

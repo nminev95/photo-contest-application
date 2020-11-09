@@ -11,4 +11,6 @@ export default {
     NOT_A_NUMBER: 5,
     /** No match found between the two values */
     NO_MATCH: 6,
+     /** Unspecified error*/
+     UNSPECIIFIED_ERROR: 7,
 };
