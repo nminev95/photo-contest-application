@@ -24,6 +24,20 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `photo_contest_db` /*!40100 DEFAULT CHA
 USE `photo_contest_db`;
 
 --
+-- Table structure for table `contest_categories`
+--
+
+DROP TABLE IF EXISTS `contest_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contest_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `contest_jury_invitations`
 --
 
@@ -78,7 +92,6 @@ DROP TABLE IF EXISTS `contests`;
 CREATE TABLE `contests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
-  `category` varchar(45) NOT NULL,
   `description` varchar(545) NOT NULL,
   `firstPhaseLimit` datetime NOT NULL,
   `secondPhaseLimit` datetime NOT NULL,
@@ -87,28 +100,14 @@ CREATE TABLE `contests` (
   `participants` int(11) NOT NULL,
   `restrictions_id` int(11) NOT NULL,
   `phase_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_contests_contest_restrictions1_idx` (`restrictions_id`),
   KEY `fk_contests_contest_phases1_idx` (`phase_id`),
+  KEY `fk_contests_contest_categories1_idx` (`category_id`),
+  CONSTRAINT `fk_contests_contest_categories1` FOREIGN KEY (`category_id`) REFERENCES `contest_categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_contest_phases1` FOREIGN KEY (`phase_id`) REFERENCES `contest_phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_contest_restrictions1` FOREIGN KEY (`restrictions_id`) REFERENCES `contest_restrictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `contests_has_users`
---
-
-DROP TABLE IF EXISTS `contests_has_users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contests_has_users` (
-  `contest_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  KEY `fk_contests_has_users_users1_idx` (`user_id`),
-  KEY `fk_contests_has_users_contests1_idx` (`contest_id`),
-  CONSTRAINT `fk_contests_has_users_contests1` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_contests_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -130,7 +129,7 @@ CREATE TABLE `messages` (
   KEY `fk_messages_users2_idx` (`sender_id`),
   CONSTRAINT `fk_messages_users1` FOREIGN KEY (`recepient_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_messages_users2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +246,7 @@ CREATE TABLE `users` (
   KEY `fk_users_roles1_idx` (`role_id`),
   CONSTRAINT `fk_users_ranks1` FOREIGN KEY (`rank_id`) REFERENCES `ranks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -259,4 +258,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-08 18:40:34
+-- Dump completed on 2020-11-09 19:21:18
