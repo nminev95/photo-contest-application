@@ -44,14 +44,14 @@ const setNextPhase = async (id, currentPhase) => {
 
 
 
-const sendNewPhotoInfo = async (title, description, fileName, id, user_id) => {
+const sendNewPhotoInfo = async (title, description, fileName, user_id, id, date) => {
     const sql = `
         INSERT INTO 
-          photos (title, story, file, user_id, contest_id  )
-        VALUES (?, ?, ?, ?, ?)
+          photos (title, story, file, user_id, contest_id, date)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
 
-    return await pool.query(sql, [title, description, fileName, user_id, id]);
+    return await pool.query(sql, [title, description, fileName, user_id, id, date]);
 };
 
 

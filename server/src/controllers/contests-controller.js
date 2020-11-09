@@ -53,17 +53,18 @@ contestsController
     multer({ storage: storage }).single('image'),
     async (req, res) => {
         const { id } = req.params;
-        const user_id = req.user;
+        const user_id = req.user.id;
         const title = req.body.title;
-        const descripption = req.body.descripption;
+        const description = req.body.description;
         const fileName = req.file.filename;
-
-        const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, descripption, fileName, id, user_id);
+        const date = new Date();
+       
+        const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, user_id, id,date);
 
         if (error) {
             res.status(500).send({ message: 'Internal Server Error' });
         } else {
-            res.status(200).send({path: fileName});
+            res.status(200).send({path: fileName}); 
         }
     });
 

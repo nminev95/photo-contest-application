@@ -1,5 +1,4 @@
-import serviceErrors, * as ERRORS from '../constants/service-errors.js';
-
+import ERRORS from './../constants/service-errors.js';
 /**
 * Gets contest information found by unique contest number.
 * @param module contests data SQL queries module.
@@ -79,8 +78,8 @@ const setNextContestPhase = contestsData => {
 * @return {Promise<object>}
 */
 const createNewPhotoRecord = contestsData => {
-    return async (title, description, fileName, id, user_id) => { 
-        const result = await contestsData.sendNewPhotoInfo(title, description, fileName, id, user_id);
+    return async (title, description, fileName, user_id, id, date) => { 
+        const result = await contestsData.sendNewPhotoInfo(title, description, fileName, user_id, id, date);
 
         return { error: result.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
@@ -94,3 +93,13 @@ export default {
     setNextContestPhase,
     createNewPhotoRecord,
 };
+
+
+
+
+
+
+
+
+
+
