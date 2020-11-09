@@ -1,4 +1,4 @@
-import { Button, Divider } from "@material-ui/core";
+import { Button} from "@material-ui/core";
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useSelector } from "react-redux";

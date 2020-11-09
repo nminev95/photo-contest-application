@@ -2,6 +2,10 @@ ALTER table users auto_increment = 1;
 ALTER table ranks auto_increment = 1;
 ALTER table roles auto_increment = 1;
 ALTER table contest_phases auto_increment = 1;
+ALTER table contests auto_increment = 1;
+ALTER table photos auto_increment = 1;
+ALTER table messages auto_increment = 1;
+ALTER table reviews auto_increment = 1;
 ALTER table contest_restrictions auto_increment = 1;
 
 
