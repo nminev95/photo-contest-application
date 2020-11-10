@@ -103,33 +103,44 @@ const OpenEntryFormButton = (props) => {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        
+
         if (!photoData.title.valid || !photoData.description.valid || !file) {
             return;
         }
 
-        axios.post(contestEndpoints.addNewPhoto + `${id}`, formData)
-            .catch((error) => {
-                if (error.response) {
-                    swal({
-                        title: "Oops!",
-                        text: "Something went wrong! Please try again.",
-                        icon: "error",
-                        button: "Okay"
+        swal({
+            title: "Are you sure?",
+            text: "Once submitted, your entry cannot be changed by any means.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                axios.post(contestEndpoints.addNewPhoto + `${id}`, formData)
+                    .catch((error) => {
+                        if (error.response) {
+                            swal({
+                                title: "Oops!",
+                                text: "Something went wrong! Please try again.",
+                                icon: "error",
+                                button: "Okay"
+                            })
+                        }
                     })
-                }
-            })
-            .then((response) => {
-                if (response) {
-                    handleClose();
-                    swal({
-                        title: "Success!",
-                        text: "Your photo has been uploaded successfully!",
-                        icon: "success",
-                        button: "Ок"
+                    .then((response) => {
+                        if (response) {
+                            handleClose();
+                            swal({
+                                title: "Success!",
+                                text: "Your photo has been uploaded successfully!",
+                                icon: "success",
+                                buttons: false,
+                                timer: 1500,
+                            })
+                        }
                     })
-                }
-            })
+            }
+        })
     }
 
 
@@ -179,32 +190,32 @@ const OpenEntryFormButton = (props) => {
                                     error
                                     helperText="Photo title must be between 4 and 25 characters long."
                                 />
-                        )}
+                            )}
                         {photoData.description.valid ? (
                             <TextField
-                            className={styles.inputField}
-                            label="Story behind photo"
-                            name="description"
-                            rows={6}
-                            multiline
-                            variant="outlined"
-                            type="text"
-                            onChange={handleChange}
-                        />
+                                className={styles.inputField}
+                                label="Story behind photo"
+                                name="description"
+                                rows={6}
+                                multiline
+                                variant="outlined"
+                                type="text"
+                                onChange={handleChange}
+                            />
                         ) : (
-                            <TextField
-                            className={styles.inputField}
-                            label="Story behind photo"
-                            name="description"
-                            rows={6}
-                            multiline
-                            variant="outlined"
-                            type="text"
-                            onChange={handleChange}
-                            error
-                            helperText="Photo description must be between 40 and 240 characters long."
-                        />
-                        )}
+                                <TextField
+                                    className={styles.inputField}
+                                    label="Story behind photo"
+                                    name="description"
+                                    rows={6}
+                                    multiline
+                                    variant="outlined"
+                                    type="text"
+                                    onChange={handleChange}
+                                    error
+                                    helperText="Photo description must be between 40 and 240 characters long."
+                                />
+                            )}
                         <Form style={{ marginTop: '30px' }}>
                             <Form.File
                                 className={styles.inputField}
@@ -215,12 +226,11 @@ const OpenEntryFormButton = (props) => {
                                 label="Upload your amazing photo here"
                                 custom
                             />
-                            {}
                         </Form>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={{ outline: 'none' }} v variant="contained" onClick={handleClose}>
+                    <Button style={{ outline: 'none' }} variant="contained" onClick={handleClose}>
                         Cancel
                     </Button>
                     <Button variant="contained" color="primary" onClick={handleSubmit}>Submit entry</Button>
