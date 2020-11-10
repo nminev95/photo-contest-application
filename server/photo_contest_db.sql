@@ -34,7 +34,7 @@ CREATE TABLE `contest_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,18 +97,21 @@ CREATE TABLE `contests` (
   `secondPhaseLimit` datetime NOT NULL,
   `limit` int(11) NOT NULL,
   `contestCover` varchar(245) NOT NULL,
-  `participants` int(11) NOT NULL,
+  `participants` int(11) NOT NULL DEFAULT 0,
   `restrictions_id` int(11) NOT NULL,
-  `phase_id` int(11) NOT NULL,
+  `phase_id` int(11) NOT NULL DEFAULT 1,
   `category_id` int(11) NOT NULL,
+  `organizer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_contests_contest_restrictions1_idx` (`restrictions_id`),
   KEY `fk_contests_contest_phases1_idx` (`phase_id`),
   KEY `fk_contests_contest_categories1_idx` (`category_id`),
+  KEY `fk_contests_users1_idx` (`organizer_id`),
   CONSTRAINT `fk_contests_contest_categories1` FOREIGN KEY (`category_id`) REFERENCES `contest_categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_contest_phases1` FOREIGN KEY (`phase_id`) REFERENCES `contest_phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_contests_contest_restrictions1` FOREIGN KEY (`restrictions_id`) REFERENCES `contest_restrictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_contests_contest_restrictions1` FOREIGN KEY (`restrictions_id`) REFERENCES `contest_restrictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_contests_users1` FOREIGN KEY (`organizer_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,13 +243,13 @@ CREATE TABLE `users` (
   `points` int(11) NOT NULL DEFAULT 0,
   `registerDate` varchar(45) NOT NULL,
   `rank_id` int(11) NOT NULL DEFAULT 1,
-  `role_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `fk_users_ranks1_idx` (`rank_id`),
   KEY `fk_users_roles1_idx` (`role_id`),
   CONSTRAINT `fk_users_ranks1` FOREIGN KEY (`rank_id`) REFERENCES `ranks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -258,4 +261,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-09 19:21:18
+-- Dump completed on 2020-11-10 18:16:13
