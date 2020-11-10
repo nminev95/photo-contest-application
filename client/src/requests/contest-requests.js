@@ -1,6 +1,7 @@
 const contestEndpoints = {
     allContests: '/contests',
-    singleContest: '/contests/'
+    singleContest: '/contests/',
+    addNewPhoto: '/contests/'
 }
 
 export default contestEndpoints;
