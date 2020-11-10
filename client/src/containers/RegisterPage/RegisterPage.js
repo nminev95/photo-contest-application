@@ -259,36 +259,36 @@ const RegisterPage = () => {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} onSubmit={handleSubmit} noValidate>
                         <Grid item >
                             {renderView}
                         </Grid>
-                        <Grid container justify="center">
-                            < Grid item >
-                                <Link
-                                    component="button"
-                                    onClick={() => {
-                                        history.push('/users/login');
-                                    }}>
-                                    Already have an account? Sign in
+                    <Grid container justify="center">
+                        < Grid item >
+                            <Link
+                                component="button"
+                                onClick={() => {
+                                    history.push('/users/login');
+                                }}>
+                                Already have an account? Sign in
                                 </Link>
-                            </Grid>
                         </Grid>
-                        <Button
-                            type="submit"                         
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onSubmit={handleSubmit}
-                        >
-                            Register
+                    </Grid>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Register
                         </Button>
-                        <Grid container>
-                        </Grid>
                     </form>
+
+                <Grid container>
+                </Grid>
                 </div>
-            </Grid>
         </Grid>
+        </Grid >
     )
 }
 
