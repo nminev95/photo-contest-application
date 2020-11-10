@@ -275,15 +275,14 @@ const RegisterPage = () => {
                             </Grid>
                         </Grid>
                         <Button
-                            type="submit"
-                            fullWidth
+                            type="submit"                         
                             variant="contained"
                             color="primary"
                             className={classes.submit}
                             onSubmit={handleSubmit}
                         >
                             Register
-                            </Button>
+                        </Button>
                         <Grid container>
                         </Grid>
                     </form>
