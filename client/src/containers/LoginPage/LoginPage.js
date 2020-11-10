@@ -22,7 +22,6 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
-        margin: theme.spacing(3)
     },
     image: {
         backgroundImage: 'url(https://source.unsplash.com/random)',
