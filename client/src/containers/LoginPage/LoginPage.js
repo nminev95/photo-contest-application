@@ -216,7 +216,7 @@ const LoginPage = () => {
                                     onClick={() => {
                                         history.push('/users/register');
                                     }}>
-                                    Already have an account? Sign in
+                                    Do not have an account? Sign up
                             </Link>
                             </Grid>
                         </Grid>
