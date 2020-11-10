@@ -39,21 +39,81 @@ const OpenEntryFormButton = (props) => {
     const contestInfo = useSelector(state => state.singleContestState)
     const styles = useStyles();
     const inputRef = useRef();
-    
+    const [photoData, setPhotoData] = useState({
+        title: {
+            value: '',
+            valid: true,
+            name: 'title',
+            validators: {
+                required: true,
+                minLen: 4,
+                maxLen: 25,
+            }
+        },
+        description: {
+            value: '',
+            valid: true,
+            name: 'description',
+            validators: {
+                required: true,
+                minLen: 40,
+                maxLen: 240,
+            }
+        },
+        file: {
+            value: '',
+            valid: false,
+            name: 'file',
+            validators: {
+                required: true,
+            }
+        }
+    })
+
+    const handleChange = (ev) => {
+        const { name, value } = ev.target;
+
+        const copyControl = { ...photoData[name] };
+        copyControl.value = value;
+        copyControl.valid = true;
+
+        if (copyControl.validators.required) {
+            copyControl.valid = copyControl.valid && copyControl.value.length >= 1;
+        }
+
+        if (copyControl.validators.minLen) {
+            copyControl.valid =
+                copyControl.valid &&
+                copyControl.value.length >= copyControl.validators.minLen;
+        }
+
+        if (copyControl.validators.maxLen) {
+            copyControl.valid =
+                copyControl.valid &&
+                copyControl.value.length <= copyControl.validators.maxLen;
+        }
+
+        setPhotoData({ ...photoData, [name]: copyControl });
+    };
+
     const formData = new FormData();
     formData.set('image', file);
-    formData.set('title', title);
-    formData.set('description', description)
-    
+    formData.set('title', photoData.title.value);
+    formData.set('description', photoData.description.value);
+
     const handleSubmit = (ev) => {
         ev.preventDefault();
+        
+        if (!photoData.title.valid || !photoData.description.valid || !file) {
+            return;
+        }
 
-        axios.post(contestEndpoints.addNewPhoto + `${id}`,formData)
+        axios.post(contestEndpoints.addNewPhoto + `${id}`, formData)
             .catch((error) => {
                 if (error.response) {
                     swal({
                         title: "Oops!",
-                        text: "Something went wrong!",
+                        text: "Something went wrong! Please try again.",
                         icon: "error",
                         button: "Okay"
                     })
@@ -61,6 +121,7 @@ const OpenEntryFormButton = (props) => {
             })
             .then((response) => {
                 if (response) {
+                    handleClose();
                     swal({
                         title: "Success!",
                         text: "Your photo has been uploaded successfully!",
@@ -75,7 +136,7 @@ const OpenEntryFormButton = (props) => {
     return (
         <>
             {contestInfo.phase_id === 1 ? (
-                <Button style={{outline: 'none'}} variant="contained" color="primary" onClick={handleShow}>
+                <Button style={{ outline: 'none' }} variant="contained" color="primary" onClick={handleShow}>
                     Enter competition
                 </Button>
             ) : (
@@ -98,15 +159,29 @@ const OpenEntryFormButton = (props) => {
                     In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
                     When done, simply upload your desired photo and submit your entry.
                     <div>
-                        <TextField
-                            className={styles.inputField}
-                            label="Photo title"
-                            name="title"
-                            variant="outlined"
-                            type="text"
-                            onChange={(ev) => setTitle(ev.target.value)}
-                        />
-                        <TextField
+                        {photoData.title.valid ? (
+                            <TextField
+                                className={styles.inputField}
+                                label="Photo title"
+                                name="title"
+                                variant="outlined"
+                                type="text"
+                                onChange={handleChange}
+                            />
+                        ) : (
+                                <TextField
+                                    className={styles.inputField}
+                                    label="Photo title"
+                                    name="title"
+                                    variant="outlined"
+                                    type="text"
+                                    onChange={handleChange}
+                                    error
+                                    helperText="Photo title must be between 4 and 25 characters long."
+                                />
+                        )}
+                        {photoData.description.valid ? (
+                            <TextField
                             className={styles.inputField}
                             label="Story behind photo"
                             name="description"
@@ -114,21 +189,38 @@ const OpenEntryFormButton = (props) => {
                             multiline
                             variant="outlined"
                             type="text"
-                            onChange={(ev) => setDescription(ev.target.value)}
+                            onChange={handleChange}
                         />
+                        ) : (
+                            <TextField
+                            className={styles.inputField}
+                            label="Story behind photo"
+                            name="description"
+                            rows={6}
+                            multiline
+                            variant="outlined"
+                            type="text"
+                            onChange={handleChange}
+                            error
+                            helperText="Photo description must be between 40 and 240 characters long."
+                        />
+                        )}
                         <Form style={{ marginTop: '30px' }}>
                             <Form.File
+                                className={styles.inputField}
                                 onChange={() => setFile(inputRef.current.files[0])}
                                 ref={inputRef}
+                                name='file'
                                 id="custom-file"
                                 label="Upload your amazing photo here"
                                 custom
                             />
+                            {}
                         </Form>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={{outline: 'none'}} v variant="contained" onClick={handleClose}>
+                    <Button style={{ outline: 'none' }} v variant="contained" onClick={handleClose}>
                         Cancel
                     </Button>
                     <Button variant="contained" color="primary" onClick={handleSubmit}>Submit entry</Button>
