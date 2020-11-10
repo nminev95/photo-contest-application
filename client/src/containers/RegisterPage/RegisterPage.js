@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(1),
     },
 }));
@@ -250,8 +250,8 @@ const RegisterPage = () => {
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} className={classes.image} />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Grid item xs={false} sm={5} md={8} className={classes.image} />
+            <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />
@@ -279,9 +279,8 @@ const RegisterPage = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onSubmit={handleSubmit}
-                        >
-                            Register
+                            onClick={handleSubmit}
+                        >   Register
                         </Button>
                         <Grid container>
                         </Grid>

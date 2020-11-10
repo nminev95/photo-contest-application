@@ -9,20 +9,56 @@ import userEndpoints from '../../requests/user-requests';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions'
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import { useHistory } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: 400,
-        },
+        height: '100vh',
+        margin: theme.spacing(3)
+    },
+    image: {
+        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor:
+            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+    },
+    paper: {
+        margin: theme.spacing(8, 8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(3),
+        backgroundColor: theme.palette.secondary.main,
+    },
+
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
     },
 }));
 
 const LoginPage = () => {
 
+    const history = useHistory();
+
     const dispatch = useDispatch()
     const classes = useStyles();
+
     const [form, setForm] = useState({
         username: {
             name: 'username',
@@ -126,6 +162,10 @@ const LoginPage = () => {
                         value={input.value}
                         onChange={handleChange}
                         variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        autoFocus
                     />
                     <br></br>
                 </Fragment>
@@ -142,6 +182,10 @@ const LoginPage = () => {
                         variant="outlined"
                         helperText={input.error}
                         error
+                        margin="normal"
+                        required
+                        fullWidth
+                        autoFocus
                     />
                     <br></br>
                 </Fragment>
@@ -150,12 +194,46 @@ const LoginPage = () => {
     })
 
     return (
-        <div>
-            <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-                {renderView}
-                <Button type="submit" variant="contained" color="primary">Login</Button>
-            </form>
-        </div>
+        <Grid container component="main" className={classes.root}>
+            <CssBaseline />
+            <Grid item xs={false} sm={5} md={8} className={classes.image} />
+            <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+                </Typography>
+                    <form className={classes.form} noValidate>
+                        <Grid item >
+                            {renderView}
+                        </Grid>
+                        <Grid container justify="center">
+                            < Grid item >
+                                <Link
+                                    component="button"
+                                    onClick={() => {
+                                        history.push('/users/register');
+                                    }}>
+                                    Already have an account? Sign in
+                            </Link>
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={handleSubmit}
+                        > Sign in
+                        </Button>
+                        <Grid container>
+                        </Grid>
+                    </form>
+                </div>
+            </Grid>
+        </Grid>
     )
 }
 
