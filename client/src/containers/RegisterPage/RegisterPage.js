@@ -7,8 +7,8 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import swal from '@sweetalert/with-react';
 import { useHistory } from 'react-router-dom';
 import { emailError, firstNameError, lastNameError, passwordError, usernameError } from '../../validations/helper-errors';
@@ -16,29 +16,36 @@ import { VALIDATE_EMAIL_REGEX, VALIDATE_PASSWORD_REGEX } from '../../constants/c
 import axios from '../../requests/axios';
 import userEndpoints from '../../requests/user-requests';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: 400,
-        },
+        height: '100vh',
+    },
+    image: {
+        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor:
+            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
     },
     paper: {
-        marginTop: theme.spacing(8),
+        margin: theme.spacing(8, 8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
     avatar: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(3),
         backgroundColor: theme.palette.secondary.main,
+    },
+
+    submit: {
+        margin: theme.spacing(3, 0, 2),
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-    },
-    submit: {
-        margin: theme.spacing(3, 20, 8),
+        marginTop: theme.spacing(1),
     },
 }));
 
@@ -204,6 +211,10 @@ const RegisterPage = () => {
             return (
                 <Fragment key={input.name}>
                     <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        autoFocus
                         label={input.label}
                         name={input.name}
                         type={input.type}
@@ -219,6 +230,9 @@ const RegisterPage = () => {
                 <Fragment key={input.name}>
                     <TextField
                         label={input.label}
+                        fullWidth
+                        autoFocus
+                        required
                         name={input.name}
                         type={input.type}
                         value={input.value}
@@ -234,19 +248,19 @@ const RegisterPage = () => {
     })
 
     return (
-
-        <Container component="main" maxWidth="xs">
+        <Grid container component="main" className={classes.root}>
             <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
-                <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
+            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+                    </Typography>
+                    <form className={classes.form} noValidate>
+                        <Grid item >
                             {renderView}
                         </Grid>
                         <Grid container justify="center">
@@ -255,15 +269,27 @@ const RegisterPage = () => {
                                     component="button"
                                     onClick={() => {
                                         history.push('/users/login');
-                                    }}> Already have an account? Sign in
+                                    }}>
+                                    Already have an account? Sign in
                                 </Link>
                             </Grid>
                         </Grid>
-                        <Button className={classes.submit} type="submit" variant="contained" color="primary">Register</Button>
-                    </Grid>
-                </form>
-            </div>
-        </Container>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onSubmit={handleSubmit}
+                        >
+                            Register
+                            </Button>
+                        <Grid container>
+                        </Grid>
+                    </form>
+                </div>
+            </Grid>
+        </Grid>
     )
 }
 

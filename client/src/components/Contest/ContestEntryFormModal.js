@@ -45,13 +45,6 @@ const OpenEntryFormButton = (props) => {
     formData.set('title', title);
     formData.set('description', description)
     
-    //   const photoData = {
-    //         title: title,
-    //         description: description,
-    //         file: formData.get('image')
-    //   } 
-        
-    
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
