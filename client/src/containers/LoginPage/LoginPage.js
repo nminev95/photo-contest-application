@@ -155,7 +155,6 @@ const LoginPage = () => {
                 {renderView}
                 <Button type="submit" variant="contained" color="primary">Login</Button>
             </form>
-            <button onClick={() => dispatch(login())}>haha</button>
         </div>
     )
 }

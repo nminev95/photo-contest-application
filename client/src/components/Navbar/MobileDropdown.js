@@ -9,6 +9,7 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const StyledMenu = withStyles({
     paper: {
@@ -65,6 +66,7 @@ const MobileDropdown = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const styles = useStyles();
     const history = useHistory();
+    const userState = useSelector(state => state.loginState);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -107,6 +109,14 @@ const MobileDropdown = () => {
                     </ListItemIcon>
                     <ListItemText primary="Explore photos" />
                 </StyledMenuItem>
+                {userState.user.role === 'Organizer' ? (
+                    <StyledMenuItem>
+                        <ListItemIcon>
+                            <InboxIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText primary="Rankings" />
+                    </StyledMenuItem>
+                ) : (null)}
             </StyledMenu>
         </Fragment>
     );

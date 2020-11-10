@@ -9,8 +9,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MobileDropdown from './MobileDropdown';
 import ProfileDropdown from './ProfileDropdown';
 import MessagesDropdown from './MessagesDropdown';
-import { Link } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -57,27 +58,41 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const history = useHistory();
+  const userState = useSelector(state => state.loginState);
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
-          <MobileDropdown />
-          <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
-          <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
-          <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
-          <div className={classes.grow} />
-          <MessagesDropdown />
-          <MenuItem style={{ padding: "0" }}>
-            <IconButton aria-label="show 11 new notifications" color="inherit">
-              <Badge badgeContent={11} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </MenuItem>
-          <ProfileDropdown />
-        </Toolbar>
-      </AppBar>
+      {!userState.isLogged ? (
+        <AppBar position="static">
+          <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
+            <div className={classes.grow} />
+            <Button onClick={() => history.push('/users/register')} style={{ outline: 'none' }} variant="contained">Register</Button>
+            <Button onClick={() => history.push('/users/login')} style={{ outline: 'none' }} variant="contained" color="primary">Sign in</Button>
+          </Toolbar>
+        </AppBar>
+      ) : (
+          <AppBar position="static">
+            <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
+              <MobileDropdown />
+              <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
+              <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
+              <MenuItem className={classes.navLinks}>Explore photos</MenuItem>
+              {userState.user.role === 'Organizer' ? (
+                <MenuItem className={classes.navLinks}>Rankings</MenuItem>
+              ) : (null)}
+              <div className={classes.grow} />
+              <MessagesDropdown />
+              <MenuItem style={{ padding: "0" }}>
+                <IconButton style={{ outline: 'none' }} aria-label="show 11 new notifications" color="inherit">
+                  <Badge badgeContent={11} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              </MenuItem>
+              <ProfileDropdown />
+            </Toolbar>
+          </AppBar>
+        )}
     </div >
   );
 }
