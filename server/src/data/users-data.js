@@ -126,10 +126,27 @@ const sendMessage = async (message, recepientId, senderId) => {
     return result[0];
 };
 
+const getAllHighLevelUsers = async () => {
+
+    const sql = `
+        SELECT 
+            avatarUrl AS avatar,
+            username,
+            rank_id AS rank
+        FROM
+            users
+        WHERE 
+            rank_id > 2
+    `;
+
+    return await pool.query(sql);
+};
+
 export default {
     createAccount,
     getUserInfo,
     getById,
     getMessagesById,
     sendMessage,
+    getAllHighLevelUsers,
 };

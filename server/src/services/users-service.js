@@ -1,6 +1,7 @@
 import * as ERRORS from '../constants/service-errors.js';
 import bcrypt from 'bcrypt';
 import { DEFAULT_USER_ROLE } from '../constants/config.js';
+import usersData from '../data/users-data.js';
 
 /**
 * Creates a new user record into the system. 
@@ -138,11 +139,26 @@ const sendPrivateMessage = usersData => {
     };
 };
 
+const getHighLevelUsers = usersData => {
+    return async () => {
 
-export default {
-    createUser,
-    signInUser,
-    getUserById,
-    getUserMessages,
-    sendPrivateMessage,
+        const users = await usersData.getAllHighLevelUsers();
+
+        if (!users) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                users: null,
+            };
+        }
+
+        return { error: null, users: users };
+    };
 };
+    export default {
+        createUser,
+        signInUser,
+        getUserById,
+        getUserMessages,
+        sendPrivateMessage,
+        getHighLevelUsers,
+    };
