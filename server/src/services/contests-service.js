@@ -43,6 +43,21 @@ const getAllContests = contestsData => {
     };
 };
 
+const getAllContestCategories = contestsData => {
+    return async () => {
+        const categories = await contestsData.getAllCategories();
+
+        if (!categories) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                categories: null,
+            };
+        }
+
+        return { error: null, categories: categories };
+    };
+};
+
 const setNextContestPhase = contestsData => {
     return async (id) => {
         const contest = await contestsData.getContestInfo(id);
@@ -78,20 +93,19 @@ const setNextContestPhase = contestsData => {
 * @return {Promise<object>}
 */
 const createNewPhotoRecord = contestsData => {
-    return async (title, description, fileName, user_id, id, date) => { 
+    return async (title, description, fileName, user_id, id, date) => {
         const result = await contestsData.sendNewPhotoInfo(title, description, fileName, user_id, id, date);
 
         return { error: result.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
 };
 
-
-
 export default {
     getContestById,
     getAllContests,
     setNextContestPhase,
     createNewPhotoRecord,
+    getAllContestCategories,
 };
 
 

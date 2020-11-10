@@ -23,6 +23,19 @@ contestsController
             }
         },
     )
+    .get('/categories',
+        // authMiddleware,
+        async (req, res) => {
+
+            const { categories, error } = await contestsService.getAllContestCategories(contestsData)();
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Categories not found!' });
+            } else {
+                res.status(200).send(categories);
+            }
+        },
+    )
     .get('/:id',
         authMiddleware,
         async (req, res) => {
