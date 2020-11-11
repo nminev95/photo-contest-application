@@ -1,7 +1,6 @@
 import * as ERRORS from '../constants/service-errors.js';
 import bcrypt from 'bcrypt';
 import { DEFAULT_USER_ROLE } from '../constants/config.js';
-import usersData from '../data/users-data.js';
 
 /**
 * Creates a new user record into the system. 

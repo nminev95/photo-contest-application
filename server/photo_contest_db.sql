@@ -155,7 +155,7 @@ CREATE TABLE `photos` (
   KEY `fk_photos_contests1_idx` (`contest_id`),
   CONSTRAINT `fk_photos_contests1` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_photos_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,6 +240,7 @@ CREATE TABLE `users` (
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `info` varchar(245) DEFAULT NULL,
+  `avatarUrl` varchar(245) DEFAULT NULL,
   `points` int(11) NOT NULL DEFAULT 0,
   `registerDate` varchar(45) NOT NULL,
   `rank_id` int(11) NOT NULL DEFAULT 1,
@@ -249,7 +250,7 @@ CREATE TABLE `users` (
   KEY `fk_users_roles1_idx` (`role_id`),
   CONSTRAINT `fk_users_ranks1` FOREIGN KEY (`rank_id`) REFERENCES `ranks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -261,4 +262,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-10 18:16:13
+-- Dump completed on 2020-11-11  1:24:18
