@@ -17,7 +17,7 @@ const getContestById = contestsData => {
                 contest: null,
             };
         }
-
+        
         return { error: null, contest: contest };
     };
 };
@@ -40,6 +40,21 @@ const getAllContests = contestsData => {
         }
 
         return { error: null, contests: contests };
+    };
+};
+
+const getContestEntries = contestsData => {
+    return async (id) => {
+        const entries = await contestsData.getAllContestEntries(id);
+
+        if (!entries) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contests: null,
+            };
+        }
+
+        return { error: null, entries: entries };
     };
 };
 
@@ -106,6 +121,7 @@ export default {
     setNextContestPhase,
     createNewPhotoRecord,
     getAllContestCategories,
+    getContestEntries,
 };
 
 
