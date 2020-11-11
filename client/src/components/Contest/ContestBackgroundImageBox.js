@@ -2,7 +2,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
 const ContestBackgroundImageBox = ({ image }) => {
-    
+
     const useStyles = makeStyles((theme) => ({
         image: {
             [theme.breakpoints.up('md')]: {

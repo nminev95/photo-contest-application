@@ -31,7 +31,7 @@ const CountdownTimer = () => {
     }
 
     const renderCountdown = (phase) => {
-        
+        //switch
         if (phase === 1) {
             return (
                 < Countdown
@@ -48,7 +48,7 @@ const CountdownTimer = () => {
                     date={secondPhaseEndDate}
                     onComplete={() => {
                         setNextContestPhase()
-                    }}>
+                    }}>                                
                 </Countdown>
             )
         } else if (phase === 3) {

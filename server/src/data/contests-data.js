@@ -54,10 +54,20 @@ const sendNewPhotoInfo = async (title, description, fileName, user_id, id, date)
     return await pool.query(sql, [title, description, fileName, user_id, id, date]);
 };
 
+const getAllCategories = async () => {
+    const sql = `
+    SELECT
+        type
+    FROM
+        contest_categories`;
+
+    return await pool.query(sql);
+};
 
 export default {
     getAllContestsInfo,
     getContestInfo,
     setNextPhase,
     sendNewPhotoInfo,
+    getAllCategories,
 };

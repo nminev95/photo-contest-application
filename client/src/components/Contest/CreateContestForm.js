@@ -1,8 +1,12 @@
-import { FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
+import { Avatar, FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useRef, useState } from "react";
 import Form from 'react-bootstrap/Form'
 import axios from "../../requests/axios";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import contestEndpoints from "../../requests/contest-requests";
+import userEndpoints from "../../requests/user-requests";
+import swal from "sweetalert";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -18,16 +22,53 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('md')]: {
             width: '40vw',
         }
-    }
+    },
+    small: {
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+    },
 }))
 
 const CreateContestForm = () => {
     const [title, setTitle] = useState(null)
     const [description, setDescription] = useState(null)
     const [file, setFile] = useState(null);
+    const [categories, setCategories] = useState([]);
+    const [highLevelUsers, setHighLevelUsers] = useState([]);
     const styles = useStyles();
     const inputRef = useRef();
 
+    useEffect(() => {
+        axios.get(contestEndpoints.getAllCategories)
+            .catch((error) => {
+                if (error.response.status > 300) {
+                    swal({
+                        title: "Oops!",
+                        text: "Something went wrong.",
+                        icon: "error",
+                        button: "Go back"
+                    })
+                }
+            })
+            .then((response) => setCategories(response.data))
+    }, [])
+
+    useEffect(() => {
+        axios.get(userEndpoints.getHighLevelUsers)
+            .catch((error) => {
+                if (error.response.status > 300) {
+                    swal({
+                        title: "Oops!",
+                        text: "Something went wrong.",
+                        icon: "error",
+                        button: "Go back"
+                    })
+                }
+            })
+            .then((response) => setHighLevelUsers(response.data))
+    }, [])
+
+    console.log(highLevelUsers)
     const firstPhaseSliderMarks = [
         {
             value: 1,
@@ -70,7 +111,7 @@ const CreateContestForm = () => {
                 type="text"
                 onChange={(ev) => setDescription(ev.target.value)}
             />
-            <Typography id="discrete-slider-always" gutterBottom style={{marginTop: "25px"}}>
+            <Typography id="discrete-slider-always" gutterBottom style={{ marginTop: "25px" }}>
                 Select how long your will contest accept photo entries:
             </Typography>
             <Slider
@@ -96,7 +137,7 @@ const CreateContestForm = () => {
                 marks={secondPhaseSliderMarks}
                 valueLabelDisplay="on"
             />
-            <Typography id="discrete-slider-always" gutterBottom>
+            <Typography style={{ marginTop: '20px' }} id="discrete-slider-always" gutterBottom>
                 Select entry restrictions:
             </Typography>
             <RadioGroup style={{ justifyContent: "center" }} row aria-label="position" name="position" defaultValue="open" >
@@ -113,21 +154,37 @@ const CreateContestForm = () => {
                     labelPlacement="start"
                 />
             </RadioGroup>
-            <Form.Label>Participants limit</Form.Label>
-            <Form.Control as="select" size="sm" custom>
-                <option>25</option>
-                <option>50</option>
-                <option>75</option>
-                <option>100</option>
-            </Form.Control>
-            <Form.Label>Select contest category</Form.Label>
-            <Form.Control as="select" size="sm" custom>
-                <option>category1</option>
-                <option>category2</option>
-                <option>category3</option>
-                <option>category4</option>
-            </Form.Control>
-            
+            <Grid container spacing={3} style={{ justifyContent: "center", marginTop: "10px" }}>
+                <Grid item xs={3}>
+                    <Form.Label>Participants limit</Form.Label>
+                    <Form.Control as="select" size="sm" custom>
+                        <option>25</option>
+                        <option>50</option>
+                        <option>75</option>
+                        <option>100</option>
+                    </Form.Control>
+                </Grid>
+                <Grid item xs={3}>
+                    <Form.Label>Select contest category</Form.Label>
+                    <Form.Control as="select" size="sm" custom>
+                        {categories && categories.map((category) => <option key={category.type}>{category.type}</option>)}
+                    </Form.Control>
+                </Grid>
+            </Grid>
+            <Typography style={{ marginTop: '35px' }} id="discrete-slider-always" gutterBottom>
+                By default, all organizers are judges. You can send out additional jury invitations to high-ranked photographers:
+            </Typography>
+            <Autocomplete
+                multiple
+                limitTags={3}
+                id="multiple-limit-tags"
+                options={highLevelUsers}
+                getOptionLabel={(user) => <Avatar alt={user.username} src={'images/test.jpg'} className={styles.small} /> + user.username}
+                renderInput={(params) => (
+                    <TextField {...params} variant="outlined" label="Contest jury" placeholder="Send jury invitations" className={styles.inputField} />
+                )}
+            />
+
             <Form style={{ marginTop: '30px' }}>
                 <Form.File
                     className={styles.inputField}
@@ -138,7 +195,6 @@ const CreateContestForm = () => {
                     custom
                 />
             </Form>
-
         </div>
     )
 }

@@ -138,11 +138,26 @@ const sendPrivateMessage = usersData => {
     };
 };
 
+const getHighLevelUsers = usersData => {
+    return async () => {
 
-export default {
-    createUser,
-    signInUser,
-    getUserById,
-    getUserMessages,
-    sendPrivateMessage,
+        const users = await usersData.getAllHighLevelUsers();
+
+        if (!users) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                users: null,
+            };
+        }
+
+        return { error: null, users: users };
+    };
 };
+    export default {
+        createUser,
+        signInUser,
+        getUserById,
+        getUserMessages,
+        sendPrivateMessage,
+        getHighLevelUsers,
+    };

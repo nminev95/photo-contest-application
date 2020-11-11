@@ -62,6 +62,18 @@ usersController
             }
         },
     )
+    .get('/experts',
+        authMiddleware,
+        async (req, res) => {
+            const { users, error } = await usersService.getHighLevelUsers(usersData)();
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'No high level users found!' });
+            } else {
+                res.status(200).send(users);
+            }
+        },
+    )
     .get('/:id/messages',
         authMiddleware,
         async (req, res) => {
