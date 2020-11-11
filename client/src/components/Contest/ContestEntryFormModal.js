@@ -30,13 +30,14 @@ const useStyles = makeStyles((theme) => ({
 const OpenEntryFormButton = (props) => {
 
     const { id } = props.match.params;
+    const [hasEntered, setHasEntered] = useState(false);
     const [show, setShow] = useState(false);
-    const [title, setTitle] = useState(null)
-    const [description, setDescription] = useState(null)
     const [file, setFile] = useState(null);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const contestInfo = useSelector(state => state.singleContestState)
+    const userInfo = useSelector(state => state.loginState)
+    const entries = contestInfo.entries;
     const styles = useStyles();
     const inputRef = useRef();
     const [photoData, setPhotoData] = useState({
@@ -143,34 +144,59 @@ const OpenEntryFormButton = (props) => {
         })
     }
 
-
-    return (
-        <>
-            {contestInfo.phase_id === 1 ? (
-                <Button style={{ outline: 'none' }} variant="contained" color="primary" onClick={handleShow}>
-                    Enter competition
-                </Button>
-            ) : (
-                    <Button disabled variant="contained" color="primary" onClick={handleShow}>
+    const renderEnterContestButton = () => {
+        switch (true) {
+            case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)):
+                return (
+                    <Button variant="contained" disabled color="primary">
+                        You have already entered
+                    </Button>
+                )
+            case (userInfo.user.role === 'Organizer'):
+                return;
+            case (contestInfo.phase_id === 1):
+                return (
+                    <Button style={{ outline: 'none' }} variant="contained" color="primary" onClick={handleShow}>
                         Enter competition
                     </Button>
-                )}
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-                centered
-                size='lg'
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Upload your entry</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
-                    When done, simply upload your desired photo and submit your entry.
+                )
+            default:
+                return (
+                    <Button disabled variant="contained" color="primary">
+                        Enter competition
+                    </Button>
+                )
+        }
+    }
+
+return (
+    <>
+        {renderEnterContestButton()}
+        <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+            centered
+            size='lg'
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>Upload your entry</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
+                When done, simply upload your desired photo and submit your entry.
                     <div>
-                        {photoData.title.valid ? (
+                    {photoData.title.valid ? (
+                        <TextField
+                            className={styles.inputField}
+                            label="Photo title"
+                            name="title"
+                            variant="outlined"
+                            type="text"
+                            onChange={handleChange}
+                        />
+                    ) : (
                             <TextField
                                 className={styles.inputField}
                                 label="Photo title"
@@ -178,20 +204,22 @@ const OpenEntryFormButton = (props) => {
                                 variant="outlined"
                                 type="text"
                                 onChange={handleChange}
+                                error
+                                helperText="Photo title must be between 4 and 25 characters long."
                             />
-                        ) : (
-                                <TextField
-                                    className={styles.inputField}
-                                    label="Photo title"
-                                    name="title"
-                                    variant="outlined"
-                                    type="text"
-                                    onChange={handleChange}
-                                    error
-                                    helperText="Photo title must be between 4 and 25 characters long."
-                                />
-                            )}
-                        {photoData.description.valid ? (
+                        )}
+                    {photoData.description.valid ? (
+                        <TextField
+                            className={styles.inputField}
+                            label="Story behind photo"
+                            name="description"
+                            rows={6}
+                            multiline
+                            variant="outlined"
+                            type="text"
+                            onChange={handleChange}
+                        />
+                    ) : (
                             <TextField
                                 className={styles.inputField}
                                 label="Story behind photo"
@@ -201,43 +229,32 @@ const OpenEntryFormButton = (props) => {
                                 variant="outlined"
                                 type="text"
                                 onChange={handleChange}
+                                error
+                                helperText="Photo description must be between 40 and 240 characters long."
                             />
-                        ) : (
-                                <TextField
-                                    className={styles.inputField}
-                                    label="Story behind photo"
-                                    name="description"
-                                    rows={6}
-                                    multiline
-                                    variant="outlined"
-                                    type="text"
-                                    onChange={handleChange}
-                                    error
-                                    helperText="Photo description must be between 40 and 240 characters long."
-                                />
-                            )}
-                        <Form style={{ marginTop: '30px' }}>
-                            <Form.File
-                                className={styles.inputField}
-                                onChange={() => setFile(inputRef.current.files[0])}
-                                ref={inputRef}
-                                name='file'
-                                id="custom-file"
-                                label="Upload your amazing photo here"
-                                custom
-                            />
-                        </Form>
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button style={{ outline: 'none' }} variant="contained" onClick={handleClose}>
-                        Cancel
+                        )}
+                    <Form style={{ marginTop: '30px' }}>
+                        <Form.File
+                            className={styles.inputField}
+                            onChange={() => setFile(inputRef.current.files[0])}
+                            ref={inputRef}
+                            name='file'
+                            id="custom-file"
+                            label="Upload your amazing photo here"
+                            custom
+                        />
+                    </Form>
+                </div>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button style={{ outline: 'none' }} variant="contained" onClick={handleClose}>
+                    Cancel
                     </Button>
-                    <Button variant="contained" color="primary" onClick={handleSubmit}>Submit entry</Button>
-                </Modal.Footer>
-            </Modal>
-        </>
-    );
+                <Button variant="contained" color="primary" onClick={handleSubmit}>Submit entry</Button>
+            </Modal.Footer>
+        </Modal>
+    </>
+);
 }
 
 export default withRouter(OpenEntryFormButton);

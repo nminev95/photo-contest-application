@@ -49,19 +49,6 @@ contestsController
             }
         },
     )
-    .get('/:id/entries',
-        // authMiddleware,
-        async (req, res) => {
-            const { id } = req.params;
-            const { entries, error } = await contestsService.getContestEntries(contestsData)(+id);
-
-            if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'No entries yet!' });
-            } else {
-                res.status(200).send(entries);
-            }
-        },
-    )
     .put('/:id',
         async (req, res) => {
             const { id } = req.params;

@@ -43,21 +43,6 @@ const getAllContests = contestsData => {
     };
 };
 
-const getContestEntries = contestsData => {
-    return async (id) => {
-        const entries = await contestsData.getAllContestEntries(id);
-
-        if (!entries) {
-            return {
-                error: ERRORS.RECORD_NOT_FOUND,
-                contests: null,
-            };
-        }
-
-        return { error: null, entries: entries };
-    };
-};
-
 const getAllContestCategories = contestsData => {
     return async () => {
         const categories = await contestsData.getAllCategories();
@@ -121,7 +106,6 @@ export default {
     setNextContestPhase,
     createNewPhotoRecord,
     getAllContestCategories,
-    getContestEntries,
 };
 
 
