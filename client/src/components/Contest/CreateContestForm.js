@@ -1,4 +1,4 @@
-import { Avatar, FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
+import { Avatar, FormControlLabel, Grid, Paper, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useRef, useState } from "react";
 import Form from 'react-bootstrap/Form'
@@ -7,6 +7,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import contestEndpoints from "../../requests/contest-requests";
 import userEndpoints from "../../requests/user-requests";
 import swal from "sweetalert";
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     small: {
         width: theme.spacing(3),
         height: theme.spacing(3),
+        marginRight: '15px'
     },
 }))
 
@@ -179,9 +182,24 @@ const CreateContestForm = () => {
                 limitTags={3}
                 id="multiple-limit-tags"
                 options={highLevelUsers}
-                getOptionLabel={(user) => <Avatar alt={user.username} src={'images/test.jpg'} className={styles.small} /> + user.username}
+                getOptionLabel={(user) => user.username}
+                renderOption={(user) => (
+                    <>
+                    <Avatar alt={user.username} src={`http://localhost:4000/public/${user.avatar}`} className={styles.small} />
+                    <span>{user.username}</span>
+                    <span style={{float:"inline-end"}}>{user.rank === 3 ? 
+                    (<><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}} /><StarIcon style={{color:"#ffb300"}}/><StarBorderIcon style={{color:"#ffb300"}}/></>
+                    ) : (
+                    <><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}}/></>
+                    )}</span>
+                    </>
+                )}
                 renderInput={(params) => (
-                    <TextField {...params} variant="outlined" label="Contest jury" placeholder="Send jury invitations" className={styles.inputField} />
+                    <TextField {...params} 
+                    variant="outlined" 
+                    label="Contest jury" 
+                    placeholder="Send jury invitations" 
+                    className={styles.inputField} />
                 )}
             />
 

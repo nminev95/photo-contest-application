@@ -13,6 +13,19 @@ const getAllContestsInfo = async () => {
     return await pool.query(sql);
 };
 
+const getAllContestEntries = async (id) => {
+    const sql = `
+        SELECT 
+            user_id, (SELECT username FROM users WHERE id = user_id) as username 
+        FROM 
+            photos 
+        WHERE 
+            contest_id = ?;
+    `;
+
+    return await pool.query(sql, [id]);
+};
+
 const getContestInfo = async (id) => {
 
     const sql = `
@@ -24,7 +37,7 @@ const getContestInfo = async (id) => {
             id = ?
     `;
 
-    const res = await pool.query(sql, [id]);
+    const res = await pool.query(sql, [id, id]);
 
     return res[0];
 };
@@ -70,4 +83,5 @@ export default {
     setNextPhase,
     sendNewPhotoInfo,
     getAllCategories,
+    getAllContestEntries,
 };
