@@ -138,6 +138,13 @@ const sendPrivateMessage = usersData => {
     };
 };
 
+/**
+* Gets all users at the highest level found in the database.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const getHighLevelUsers = usersData => {
     return async () => {
 
@@ -153,11 +160,37 @@ const getHighLevelUsers = usersData => {
         return { error: null, users: users };
     };
 };
-    export default {
-        createUser,
-        signInUser,
-        getUserById,
-        getUserMessages,
-        sendPrivateMessage,
-        getHighLevelUsers,
+
+/**
+* Gets user current contests found by unique user number.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
+const getUserCurrentContests = usersData => {
+    return async (id) => {
+        
+        const contests = await usersData.getCurrentContestsByUserId(id);
+
+        if (!contests) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contests: null,
+            };
+        }
+        
+        return { error: null, contests: contests };
     };
+};
+
+export default {
+    createUser,
+    signInUser,
+    getUserById,
+    getUserMessages,
+    sendPrivateMessage,
+    getHighLevelUsers,
+    getUserCurrentContests,
+};

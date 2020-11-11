@@ -82,7 +82,7 @@ usersController
             const { messages, error } = await usersService.getUserMessages(usersData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(204).send({ message: 'You dont have new messages!' });
+                res.status(204).send({ message: 'You dont have new messages!' });  // maybe error 404?
             } else {
                 res.status(200).send(messages);
             }
@@ -103,9 +103,21 @@ usersController
                 res.status(200).send(sentMessage);
             }
         },
+    )
+    .get('/:id/contests',
+        authMiddleware,
+        async (req, res) => {
+            const { id } = req.params;
+
+            const { contests, error } = await usersService.getUserCurrentContests(usersData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'You are not participating in any contests! Hurry up and join in!' });
+            } else {
+                res.status(200).send(contests);
+            }
+        },
     );
-
-
 
 
 export default usersController;

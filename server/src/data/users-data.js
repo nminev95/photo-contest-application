@@ -142,6 +142,37 @@ const getAllHighLevelUsers = async () => {
     return await pool.query(sql);
 };
 
+const getCurrentContestsByUserId = async (id) => {
+
+    const sql = `
+        SELECT 
+            u.id AS user, 
+            u.points,
+            c.title, 
+            c.description,
+            c.limit, 
+            c.contestCover,
+            c.participants,
+            c.phase_id
+        FROM
+            users u
+        LEFT JOIN 
+            photos ph
+        ON       
+            u.id = ph.user_id
+        LEFT JOIN 
+            contests c
+        ON
+            ph.contest_id = c.id       
+         WHERE 
+            u.id = ? 
+        AND NOT 
+            phase_id=3;
+    `;
+
+    return await pool.query(sql, [id]);
+};
+
 export default {
     createAccount,
     getUserInfo,
@@ -149,4 +180,5 @@ export default {
     getMessagesById,
     sendMessage,
     getAllHighLevelUsers,
+    getCurrentContestsByUserId,
 };
