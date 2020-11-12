@@ -45,7 +45,7 @@ const SingleContestCard = (props) => {
             <Card className={classes.root} >
                 <CardActionArea>
                     <CardMedia
-                        image={contest.contestCover}
+                        image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}
                     />

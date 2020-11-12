@@ -185,7 +185,7 @@ const CreateContestForm = () => {
                 getOptionLabel={(user) => user.username}
                 renderOption={(user) => (
                     <>
-                    <Avatar alt={user.username} src={`http://localhost:4000/public/${user.avatar}`} className={styles.small} />
+                    <Avatar alt={user.username} src={`http://localhost:4000/public/avatars/${user.avatar}`} className={styles.small} />
                     <span>{user.username}</span>
                     <span style={{float:"inline-end"}}>{user.rank === 3 ? 
                     (<><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}} /><StarIcon style={{color:"#ffb300"}}/><StarBorderIcon style={{color:"#ffb300"}}/></>
@@ -202,7 +202,6 @@ const CreateContestForm = () => {
                     className={styles.inputField} />
                 )}
             />
-
             <Form style={{ marginTop: '30px' }}>
                 <Form.File
                     className={styles.inputField}

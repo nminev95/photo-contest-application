@@ -1,14 +1,16 @@
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 
 const ContestBackgroundImageBox = ({ image }) => {
 
+    const contestInfo = useSelector(state => state.singleContestState);
     const useStyles = makeStyles((theme) => ({
         image: {
             [theme.breakpoints.up('md')]: {
                 height: '400px',
                 width: '100%',
-                backgroundImage: `url(${image})`,
+                backgroundImage: `url(http://localhost:4000/public/contest-covers/${contestInfo.contestCover})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -17,7 +19,7 @@ const ContestBackgroundImageBox = ({ image }) => {
             [theme.breakpoints.down('sm')]: {
                 height: '350px',
                 width: '100%',
-                backgroundImage: `url(${image})`,
+                backgroundImage: `url(http://localhost:4000/public/contest-covers/${contestInfo.contestCover})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",

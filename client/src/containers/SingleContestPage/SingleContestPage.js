@@ -6,6 +6,8 @@ import contestEndpoints from '../../requests/contest-requests';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContestDetails } from '../../redux/actions/index'
+import Demo0 from '../../components/Contest/ContestPhotosGrid';
+import Demo4 from '../../components/Contest/ContestPhotosGrid';
 
 const SingleContestPage = (props) => {
 
@@ -32,6 +34,7 @@ const SingleContestPage = (props) => {
         <>
             <ContestBackgroundImageBox image={contestState.contestCover} />
             <ContestInfo />
+            <Demo4/>
         </>
     )
 }

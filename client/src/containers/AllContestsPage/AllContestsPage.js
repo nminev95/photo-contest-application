@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AllContestsBox from './../../components/Contest/AllContestsBox'
 import contestEndpoints from '../../requests/contest-requests';
 import axios from '../../requests/axios';
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAllContestsData } from '../../redux/actions/index'
 
 const AllContestsPage = () => {
-   
+
     const dispatch = useDispatch();
     const contestsData = useSelector(state => state.allContestState);
 
@@ -23,18 +23,19 @@ const AllContestsPage = () => {
                     })
                 }
             })
-            .then((response) =>  dispatch(setAllContestsData(response.data)))
+            .then((response) => dispatch(setAllContestsData(response.data)))
     }, [dispatch]);
 
-    return (
-        <React.Fragment>
-            < main>
-                <div>                 
-                    { contestsData && <AllContestsBox contestsData={contestsData} /> }                   
-                </div>
-            </main>
-        </React.Fragment>
-    )
+
+return (
+    <React.Fragment>
+        < main>
+            <div>
+                {contestsData && <AllContestsBox contestsData={contestsData} />}
+            </div>
+        </main>
+    </React.Fragment>
+)
 }
 
 export default AllContestsPage;
