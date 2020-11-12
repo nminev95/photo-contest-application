@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
 import AllContestsPage from './containers/AllContestsPage/AllContestsPage';
+import AllUserCurrentContestsPage from './containers/AllUsserCurrentContestsPage/AllUserCurrentContestsPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
 // const socket = io.connect(BASE_URL);
@@ -43,6 +44,7 @@ const App = () => {
             <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
             <GuardedRoute exact path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
             <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
+            <GuardedRoute exact path="/users/:id/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
           </Switch>
       </Router>
     </div>

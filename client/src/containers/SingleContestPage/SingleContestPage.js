@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ContestBackgroundImageBox from '../../components/Contest/ContestBackgroundImageBox';
 import ContestInfo from '../../components/Contest/ContestInfo';
 import axios from '../../requests/axios';
@@ -6,7 +6,6 @@ import contestEndpoints from '../../requests/contest-requests';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContestDetails } from '../../redux/actions/index'
-import Demo0 from '../../components/Contest/ContestPhotosGrid';
 import Demo4 from '../../components/Contest/ContestPhotosGrid';
 
 const SingleContestPage = (props) => {

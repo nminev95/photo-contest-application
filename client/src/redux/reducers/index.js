@@ -1,3 +1,4 @@
+import userCurrentContestState from './allUserCurrentContests'
 import singleContestState from './singleContest';
 import allContestState from './allContests'
 import loginState from './isLogged';
@@ -8,8 +9,8 @@ const allReducers = combineReducers({
     loginState,
     singleContestState,
     allContestState,
-    userState
-
+    userState,
+    userCurrentContestState,
 })
 
 export default allReducers;

@@ -7,11 +7,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import OpenCreateContestFormButton from '../Contest/CreateContestModal';
+
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
@@ -60,6 +61,7 @@ const ProfileDropdown = () => {
     const styles = useStyles();
     const history = useHistory();
     const userState = useSelector(state => state.loginState);
+    const id = userState.user.sub;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -115,7 +117,7 @@ const ProfileDropdown = () => {
                             <ListItemIcon>
                                 <DraftsIcon fontSize="small" />
                             </ListItemIcon>
-                            <ListItemText primary="Your entries" />
+                            <ListItemText primary="Your entries" onClick={() => history.push(`/users/${id}/contests`)} />
                         </StyledMenuItem>
                     )}
                 <StyledMenuItem>

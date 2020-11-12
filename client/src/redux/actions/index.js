@@ -32,3 +32,9 @@ export const setUserData = (userInfo) => {
         payload: userInfo
     };
 }
+export const setUserCurrentContestsData = (userCurrentContestInfo) => {
+    return {
+        type: 'SET_USER_CURRENT_CONTESTS_DATA',
+        payload: userCurrentContestInfo
+    };
+}

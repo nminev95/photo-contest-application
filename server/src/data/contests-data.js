@@ -1,6 +1,5 @@
 import pool from '../data/pool.js';
 
-
 const getAllContestsInfo = async () => {
 
     const sql = `
@@ -57,8 +56,9 @@ const setNextPhase = async (id, currentPhase) => {
 const sendNewPhotoInfo = async (title, description, fileName, user_id, id, date) => {
     const sql = `
         INSERT INTO 
-          photos (title, story, file, user_id, contest_id, date)
-        VALUES (?, ?, ?, ?, ?, ?)
+           photos (title, story, file, user_id, contest_id, date)
+        VALUES 
+            (?, ?, ?, ?, ?, ?)
     `;
 
     return await pool.query(sql, [title, description, fileName, user_id, id, date]);

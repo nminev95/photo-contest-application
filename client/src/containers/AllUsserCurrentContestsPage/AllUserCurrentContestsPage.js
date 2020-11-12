@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
-import AllContestsBox from './../../components/Contest/AllContestsBox'
-import contestEndpoints from '../../requests/contest-requests';
+import userEndpoints from '../../requests/user-requests';
 import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllContestsData } from '../../redux/actions/index'
+import { setUserCurrentContestsData } from '../../redux/actions/index'
+import AllContestsBox from './../../components/Contest/AllContestsBox'
 
-const AllContestsPage = () => {
+const AllContestsPage = (props) => {
 
+    const { id } = props.match.params;
     const dispatch = useDispatch();
-    const contestsData = useSelector(state => state.allContestState);
+    const userCurrentContestsData = useSelector(state => state.userCurrentContestState);
 
     useEffect(() => {
-        axios.get(contestEndpoints.allContests)
+        axios.get(userEndpoints.userCurrentContests + `${id}/contests` )
             .catch((error) => {
                 if (error.response.status === 404) {
                     swal({
@@ -23,15 +24,15 @@ const AllContestsPage = () => {
                     })
                 }
             })
-            .then((response) => dispatch(setAllContestsData(response.data)))
-    }, [dispatch]);
+            .then((response) => dispatch(setUserCurrentContestsData(response.data)))
+    }, [id, dispatch]);
 
-
+console.log(userCurrentContestsData)
 return (
     <React.Fragment>
         < main>
             <div>
-                {contestsData && <AllContestsBox contestsData={contestsData} />}
+                {userCurrentContestsData && <AllContestsBox contestsData={userCurrentContestsData} />}
             </div>
         </main>
     </React.Fragment>
