@@ -4,6 +4,10 @@ import { BASE_URL } from '../constants/constants';
 export default axios.create({
     baseURL: BASE_URL,
     headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        Authorization: {
+            toString() {
+                return `Bearer ${localStorage.getItem('token')}`;
+            }
+        }
     }
 })

@@ -1,5 +1,5 @@
 import express from 'express';
-import { authMiddleware } from '../auth/auth-middleware.js';
+import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
 import * as ERRORS from '../constants/service-errors.js';
 import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
@@ -12,6 +12,7 @@ const contestsController = express.Router();
 contestsController
     .get('/',
         authMiddleware,
+        roleMiddleware(['Photo Junkie', 'Organizer']),
         async (req, res) => {
 
             const { contests, error } = await contestsService.getAllContests(contestsData)();
