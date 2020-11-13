@@ -113,11 +113,11 @@ const ProfileDropdown = () => {
                         <ListItemText primary="Your contests" />
                     </StyledMenuItem>
                 ) : (
-                        <StyledMenuItem>
+                        <StyledMenuItem onClick={() => history.push(`/users/${id}/contests`)}>
                             <ListItemIcon>
                                 <DraftsIcon fontSize="small" />
                             </ListItemIcon>
-                            <ListItemText primary="Your entries" onClick={() => history.push(`/users/${id}/contests`)} />
+                            <ListItemText primary="Your entries"/>
                         </StyledMenuItem>
                     )}
                 <StyledMenuItem>

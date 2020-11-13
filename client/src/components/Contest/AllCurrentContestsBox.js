@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import SingleCurrentContestView from './SingleCurrentContestView';
-import SingleContestCard from './SingleContestCard';
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {

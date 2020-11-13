@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 const OpenEntryFormButton = (props) => {
 
     const { id } = props.match.params;
-    const [hasEntered, setHasEntered] = useState(false);
     const [show, setShow] = useState(false);
     const [file, setFile] = useState(null);
     const handleClose = () => setShow(false);

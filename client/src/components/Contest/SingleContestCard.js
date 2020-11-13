@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 320,
         display: 'flex',
         flexDirection: 'column',
-        width: theme.spacing(58),
-        height: theme.spacing(39),
+        width: theme.spacing(56),
+        height: theme.spacing(37),
         marginLeft: theme.spacing(2),
       
     },
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         height: 180,
     },
     text: {
-        height: 25,
+        height: 13,
     },
     button: {
         marginTop: theme.spacing(0),
@@ -60,9 +60,10 @@ const SingleContestCard = (props) => {
                 </CardActionArea>
                 <CardActions style={{ justifyContent: 'center' }}>
                     <Button  
+                    variant="contained"
                     className={classes.button} 
                     size="small" 
-                    color="primary"  
+                    color="secondary"  
                     onClick={() => history.push(`/contests/${id}`)} >
                         Join now
                 </Button>

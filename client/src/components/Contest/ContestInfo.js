@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CountdownTimer from './CountdownTimer';
 import ProgressStepper from './ProgressStepper';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import OpenEntryFormButton from './ContestEntryFormModal';
 
@@ -44,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ContestInfo = () => {
     const contestInfo = useSelector(state => state.singleContestState);
-    const history = useHistory();
     const styles = useStyles();
 
     return (

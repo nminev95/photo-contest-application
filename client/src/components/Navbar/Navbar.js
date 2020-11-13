@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -63,7 +64,7 @@ const Navbar = () => {
   return (
     <div className={classes.grow}>
       {!userState.isLogged ? (
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBar} style={{ backgroundColor: "black" }} >
           <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
             <div className={classes.grow} />
             <Button onClick={() => history.push('/users/register')} style={{ outline: 'none' }} variant="contained">Register</Button>
@@ -71,7 +72,7 @@ const Navbar = () => {
           </Toolbar>
         </AppBar>
       ) : (
-          <AppBar position="static">
+          <AppBar position="static" style={{ backgroundColor: "black" }}>
             <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
               <MobileDropdown />
               <MenuItem className={classes.navLinks}>Dashboard</MenuItem>

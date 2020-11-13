@@ -5,7 +5,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import CountdownTimer from './CountdownTimer';
 import { useHistory } from 'react-router-dom';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 
 
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: theme.spacing(58),
-        height: theme.spacing(25),
+        height: theme.spacing(36),
         marginLeft: theme.spacing(2),
 
     },
@@ -23,11 +25,16 @@ const useStyles = makeStyles((theme) => ({
         height: 180,
     },
     text: {
-        height: 25,
+        height: 50,
     },
-    button: {
-        marginTop: theme.spacing(0),
+    counterBar: {
+        height: theme.spacing(8),
+        background:
+            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
+    timer: {
+        height: theme.spacing(8),
+    }
 }));
 
 const SingleCurrentContestView = (props) => {
@@ -46,15 +53,18 @@ const SingleCurrentContestView = (props) => {
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}
                     />
-                    <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
+                    {/* <GridListTileBar className={classes.counterBar}> */}
+                    {/* </GridListTileBar> */}
+                    {/* <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                         {contest.title}
-                    </Typography>
+                    </Typography> */}
+                   
+                        <CountdownTimer />
+                    
                 </CardActionArea>
             </Card>
         </Grid>
-
     );
-
 };
 
 export default SingleCurrentContestView;
