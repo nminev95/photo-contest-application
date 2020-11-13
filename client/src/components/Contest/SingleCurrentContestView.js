@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: theme.spacing(58),
-        height: theme.spacing(36),
+        height: theme.spacing(28),
         marginLeft: theme.spacing(2),
 
     },
@@ -25,15 +25,15 @@ const useStyles = makeStyles((theme) => ({
         height: 180,
     },
     text: {
-        height: 50,
+        height: 20,
     },
     counterBar: {
-        height: theme.spacing(8),
+        height: theme.spacing(12),
         background:
             'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
     timer: {
-        height: theme.spacing(8),
+        height: theme.spacing(20),
     }
 }));
 
@@ -53,14 +53,12 @@ const SingleCurrentContestView = (props) => {
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}
                     />
-                    {/* <GridListTileBar className={classes.counterBar}> */}
-                    {/* </GridListTileBar> */}
-                    {/* <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
+                    <GridListTileBar className={classes.counterBar}>
+                    </GridListTileBar>
+                    <CountdownTimer />
+                    <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                         {contest.title}
-                    </Typography> */}
-                   
-                        <CountdownTimer />
-                    
+                    </Typography>
                 </CardActionArea>
             </Card>
         </Grid>
