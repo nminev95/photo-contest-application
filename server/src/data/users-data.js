@@ -148,11 +148,11 @@ const getCurrentContestsByUserId = async (id) => {
         SELECT 
             u.id AS user, 
             u.points,
+            c.id,
             c.title, 
             c.description,
             c.limit, 
             c.contestCover,
-            c.participants,
             c.phase_id
         FROM
             users u

@@ -1,4 +1,4 @@
-const userCurrentContestState = (state = null, action) => {
+const userCurrentContestState = (state = '', action) => {
     switch (action.type) {
         case 'SET_USER_CURRENT_CONTESTS_DATA':
             return action.payload;

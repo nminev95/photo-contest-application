@@ -4,9 +4,9 @@ import axios from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserCurrentContestsData } from '../../redux/actions/index'
-import AllContestsBox from './../../components/Contest/AllContestsBox'
+import AllCurrentContestsBox from '../../components/Contest/AllCurrentContestsBox'
 
-const AllContestsPage = (props) => {
+const AllCurrentContestsPage = (props) => {
 
     const { id } = props.match.params;
     const dispatch = useDispatch();
@@ -27,16 +27,16 @@ const AllContestsPage = (props) => {
             .then((response) => dispatch(setUserCurrentContestsData(response.data)))
     }, [id, dispatch]);
 
-console.log(userCurrentContestsData)
+    
 return (
     <React.Fragment>
         < main>
             <div>
-                {userCurrentContestsData && <AllContestsBox contestsData={userCurrentContestsData} />}
+                {userCurrentContestsData && <AllCurrentContestsBox currentContestsData={userCurrentContestsData} />}
             </div>
         </main>
     </React.Fragment>
 )
 }
 
-export default AllContestsPage;
+export default AllCurrentContestsPage;
