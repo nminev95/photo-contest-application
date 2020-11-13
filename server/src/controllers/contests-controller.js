@@ -5,7 +5,7 @@ import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
 import multer from 'multer';
 import storage from './../storage.js';
-
+import sharp from 'sharp';
 
 const contestsController = express.Router();
 
@@ -63,24 +63,32 @@ contestsController
         },
     )
     .post('/:id',
-    authMiddleware,
-    multer({ storage: storage }).single('image'),
-    async (req, res) => {
-        const { id } = req.params;
-        const user_id = req.user.id;
-        const title = req.body.title;
-        const description = req.body.description;
-        const fileName = req.file.filename;
-        const date = new Date();
-       
-        const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, user_id, id,date);
+        authMiddleware,
+        multer({ storage: storage }).single('image'),
+        async (req, res) => {
+            const { id } = req.params;
+            const user_id = req.user.id;
+            const title = req.body.title;
+            const description = req.body.description;
+            const fileName = req.file.filename;
+            const date = new Date();
+          
+            await sharp(req.file.path)
+                .resize(500, 400, {
+                    fit: 'contain',
+                })
+                .toFormat('jpeg')
+                .jpeg({ quality: 90 })
+                .toFile(`images/entries/thumbnails/${req.file.filename}`);
 
-        if (error) {
-            res.status(500).send({ message: 'Internal Server Error' });
-        } else {
-            res.status(200).send({path: fileName}); 
-        }
-    });
+            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, user_id, id, date);
+
+            if (error) {
+                res.status(500).send({ message: 'Internal Server Error' });
+            } else {
+                res.status(200).send({ path: fileName });
+            }
+        });
 
 
 export default contestsController;
