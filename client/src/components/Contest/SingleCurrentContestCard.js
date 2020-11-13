@@ -38,12 +38,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SingleCurrentContestView = (props) => {
-
     const { contest } = props;
     const { id } = contest;
     const classes = useStyles();
     const history = useHistory();
-
+    
     return (
         <Grid item xs={12} sm={3}   >
             <Card className={classes.root} >
@@ -55,7 +54,7 @@ const SingleCurrentContestView = (props) => {
                     />
                     <GridListTileBar className={classes.counterBar}>
                     </GridListTileBar>
-                    <CountdownTimer />
+                    <CountdownTimer contestData={contest} />
                     <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                         {contest.title}
                     </Typography>

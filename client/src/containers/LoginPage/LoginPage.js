@@ -18,7 +18,6 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
@@ -143,7 +142,7 @@ const LoginPage = () => {
                         timer: 1500
                     }).then(() => {
                         localStorage.setItem("token", response.data.token);
-                        dispatch(login(decode(response.data.token)))
+                        dispatch(login(decode(response.data.token)));
                     });
 
                 }

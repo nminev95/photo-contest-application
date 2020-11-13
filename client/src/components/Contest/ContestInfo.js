@@ -66,7 +66,7 @@ const ContestInfo = () => {
                                 {contestInfo.entries && +contestInfo.limit - contestInfo.entries.length} free places left
                             </div>
                             <div style={{ margin: '20px' }}>
-                                <CountdownTimer />
+                                <CountdownTimer contestData={contestInfo}/>
                             </div>
                             <div style={{ paddingBottom: '20px' }}>
                                 <OpenEntryFormButton />
