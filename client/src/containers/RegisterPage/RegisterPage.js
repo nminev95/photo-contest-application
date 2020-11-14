@@ -263,7 +263,15 @@ const RegisterPage = () => {
                         <Grid item >
                             {renderView}
                         </Grid>
-                    <Grid container justify="center">
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >   Register
+                        </Button>
+                    </form>
+                    <Grid container  justify="flex-end" >
                         < Grid item >
                             <Link
                                 component="button"
@@ -274,14 +282,6 @@ const RegisterPage = () => {
                                 </Link>
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >   Register
-                        </Button>
-                    </form>
                 <Grid container>
                 </Grid>
                 </div>

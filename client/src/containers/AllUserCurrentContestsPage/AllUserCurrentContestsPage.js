@@ -27,21 +27,19 @@ const AllCurrentContestsPage = (props) => {
             })
             .then((response) => dispatch(setUserCurrentContestsData(response.data)))
     }, [id, dispatch]);
-    console.log(userCurrentContestsData)
 
     return (
-        userCurrentContestsData.length > 0 ?
-            <React.Fragment>
-                < main>
-                    <div>
-                        {userCurrentContestsData && <AllCurrentContestsBox currentContestsData={userCurrentContestsData} />}
-                    </div>
-                </main>
-            </React.Fragment>
-            :
-            <React.Fragment>
-                <EmptyPageComponent />
-            </React.Fragment>
+        <>
+            { userCurrentContestsData.length > 0 ?
+                (<React.Fragment>
+                    {userCurrentContestsData && <AllCurrentContestsBox currentContestsData={userCurrentContestsData} />}
+                </React.Fragment>)
+                :
+                (<React.Fragment>
+                    <EmptyPageComponent />
+                </React.Fragment>
+                )}
+        </>
     )
 }
 
