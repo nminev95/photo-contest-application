@@ -16,7 +16,7 @@ const getContestInfo = async (id) => {
 
     const sql1 = `
         SELECT 
-            user_id, (SELECT username FROM users WHERE id = user_id) as username 
+            user_id, (SELECT username FROM users WHERE id = user_id) as username, title, story, date, originalSize, thumbnailSize
         FROM 
             photos 
         WHERE 
@@ -53,15 +53,15 @@ const setNextPhase = async (id, currentPhase) => {
     return await pool.query(sql, [currentPhase + 1, id]);
 };
 
-const sendNewPhotoInfo = async (title, description, fileName, user_id, id, date) => {
+const sendNewPhotoInfo = async (title, description, fileName, thumbnailName, user_id, id, date) => {
     const sql = `
         INSERT INTO 
-           photos (title, story, file, user_id, contest_id, date)
+           photos (title, story, originalSize, thumbnailSize, user_id, contest_id, date)
         VALUES 
-            (?, ?, ?, ?, ?, ?)
+            (?, ?, ?, ?, ?, ?, ?)
     `;
 
-    return await pool.query(sql, [title, description, fileName, user_id, id, date]);
+    return await pool.query(sql, [title, description, fileName, thumbnailName, user_id, id, date]);
 };
 
 const getAllCategories = async () => {

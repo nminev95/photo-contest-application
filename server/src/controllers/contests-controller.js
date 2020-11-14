@@ -71,6 +71,7 @@ contestsController
             const title = req.body.title;
             const description = req.body.description;
             const fileName = req.file.filename;
+            const thumbnailName = `thumbnail-${req.file.filename}`;
             const date = new Date();
           
             await sharp(req.file.path)
@@ -79,9 +80,9 @@ contestsController
                 })
                 .toFormat('jpeg')
                 .jpeg({ quality: 90 })
-                .toFile(`images/entries/thumbnails/${req.file.filename}`);
+                .toFile(`images/entries/thumbnails/${thumbnailName}`);
 
-            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, user_id, id, date);
+            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, thumbnailName, user_id, id, date);
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error' });
