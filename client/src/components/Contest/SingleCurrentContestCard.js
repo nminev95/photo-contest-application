@@ -24,29 +24,28 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         height: 25,
-        display:"flex",
+        display: "flex",
         position: "relative",
         textAlign: "left",
         color: "white",
-        marginTop:"35px",
+        marginTop: "35px",
     },
     timer: {
         height: 25,
-        display:"flex",
-        textAlign:"bottom",
-        marginRight:"15px",
-        marginTop:"35px",
+        display: "flex",
+        textAlign: "bottom",
+        marginRight: "15px",
+        marginTop: "35px",
         color: "white",
     },
     counterBar: {
         height: theme.spacing(12),
         background:
-        'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%)',
+            'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%)',
     },
 }));
 
 const SingleCurrentContestView = (props) => {
-
     const { contest } = props;
     const { id } = contest;
     const classes = useStyles();
@@ -61,13 +60,12 @@ const SingleCurrentContestView = (props) => {
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}
                     >
-                     <GridListTileBar  actionIcon={<CountdownTimer />} title={contest.title} classes={{
-                         root: classes.counterBar,
-                         title: classes.text,
-                         actionIcon: classes.timer,
+                        <GridListTileBar actionIcon={<CountdownTimer contestData={contest} />} title={contest.title} classes={{
+                            root: classes.counterBar,
+                            title: classes.text,
+                            actionIcon: classes.timer,
                         }}>
-                        
-                    </GridListTileBar>
+                        </GridListTileBar>
                     </CardMedia>
                 </CardActionArea>
             </Card>

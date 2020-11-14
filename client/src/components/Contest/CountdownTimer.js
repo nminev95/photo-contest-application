@@ -7,16 +7,15 @@ import { setContestDetails } from '../../redux/actions';
 import axios from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 
-const CountdownTimer = () => {
+const CountdownTimer = ({ contestData }) => {
     const dispatch = useDispatch();
-    const contestInfo = useSelector(state => state.singleContestState);
-    const firstPhaseEndDate = new Date(contestInfo.firstPhaseLimit);
-    const secondPhaseEndDate = new Date(contestInfo.secondPhaseLimit);
+    const firstPhaseEndDate = new Date(contestData.firstPhaseLimit);
+    const secondPhaseEndDate = new Date(contestData.secondPhaseLimit);
     const thirdPhaseEndDate = new Date();
     const Completionist = () => <span>Finished</span>;
 
     const setNextContestPhase = () => {
-        axios.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestInfo.id}`)
+        axios.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestData.id}`)
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({
@@ -48,7 +47,7 @@ const CountdownTimer = () => {
                     date={secondPhaseEndDate}
                     onComplete={() => {
                         setNextContestPhase()
-                    }}>                                
+                    }}>
                 </Countdown>
             )
         } else if (phase === 3) {
@@ -62,7 +61,7 @@ const CountdownTimer = () => {
 
     return (
         <>
-            {renderCountdown(contestInfo.phase_id)}
+            {renderCountdown(contestData.phase_id)}
         </>
     )
 }

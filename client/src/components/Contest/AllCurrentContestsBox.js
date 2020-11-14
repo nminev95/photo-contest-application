@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import SingleCurrentContestView from './SingleCurrentContestView';
+import SingleCurrentContestView from './SingleCurrentContestCard';
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -11,9 +11,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AllCurrentContestsBox = (props) => {
+const AllCurrentContestsBox = ({ currentContestsData }) => {
 
-    const { currentContestsData } = props;
     const classes = useStyles();
 
     return (

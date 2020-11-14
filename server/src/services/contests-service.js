@@ -93,8 +93,8 @@ const setNextContestPhase = contestsData => {
 * @return {Promise<object>}
 */
 const createNewPhotoRecord = contestsData => {
-    return async (title, description, fileName, user_id, id, date) => {
-        const result = await contestsData.sendNewPhotoInfo(title, description, fileName, user_id, id, date);
+    return async (title, description, fileName, thumbnailName, user_id, id, date) => {
+        const result = await contestsData.sendNewPhotoInfo(title, description, fileName, thumbnailName, user_id, id, date);
 
         return { error: result.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
