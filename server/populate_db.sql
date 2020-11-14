@@ -69,6 +69,54 @@ VALUES
 ('Pastel colours', 'Welcome to our Abstract Pastel Colours competition. When a fully saturated colour is diluted by white, it becomes a pastel colour. These shades are generally more delicate, so it’s better to photograph them in a softer, diffused light, to avoid making them look washed out. A carefully composed photo that uses pastel colours can have a gentle and unique quality to it. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
 (SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '80', 'pastel-colours-cover.jpg', '1', '1', '1', '1')
 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Surreal Urban Abstract Composition', 'Surreal pastel coloured photography featuring soft colour palettes, and strange activities in everyday situations. Inspired by creativeness, this photo symbolises a combination of art, beauty and colours.', '1605372579742_502018988.jpg', 'thumbnail-1605372579742_502018988.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Ethereal Photography Experiment', 'When photographers and creatives do things on their own time, the results are usually amazing and unforgettable. This photoshoot called “Ethereal” uses textures with pastel colors as fabric over floating beings. The goal is to respresent the objects beautifully surreal and perfectly pastel.', '1605388300201_496211660.jpg', 'thumbnail-1605388300201_496211660.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '1')
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Tennis Flavoured Ice Cream', 'An interesting composition, combining pastel colours, creativeness and trends. A different approach, which doesnt always have to be seen - sometimes it has to be felt.', '1605388474045_017587312.jpg', 'thumbnail-1605388474045_017587312.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '1')
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Blue Staircase', 'Anything can be build, to provoke a feeling, spreading warmth and joy. This colorful composition is not your ordinary gray wall/staircase.', '1605388500787_881754092.jpg', 'thumbnail-1605388500787_881754092.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('To Be Free', 'This photo aims to take you out of the busy life of the city, in the mountains or field...can you feel the fresh air and smell of flowers?', '1605388756836_176722665.jpg', 'thumbnail-1605388756836_176722665.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '5', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Urban World', 'An everyday urban setting with a mix of pastel colours and shadows.', '1605388803732_132115838.jpg', 'thumbnail-1605388803732_132115838.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '6', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('N I C E', 'A composition of colours, presented by everybodys favourite snack.', '1605388838220_797742017.jpg', 'thumbnail-1605388838220_797742017.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '7', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Keeper', 'I stumbled upon this view on my trip in India, the guy was happy to pose for the shot, so I decided to name it in his honour.', '1605388873716_260566083.jpg', 'thumbnail-1605388873716_260566083.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '8', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Colourful Kingdom', 'A shot I took a few blocks away from my home in the United Kingdom.', '1605388889452_402252761.jpg', 'thumbnail-1605388889452_402252761.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '9', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Other Side', 'A bit of surrealism, architecture and pastel colours are the things that inspired the idea behind this shot.', '1605388902828_285542765.jpg', 'thumbnail-1605388902828_285542765.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '1');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Other Side', 'A bit of surrealism, architecture and pastel colours are the things that inspired the idea behind this shot.', '1605388902828_285542765.jpg', 'thumbnail-1605388902828_285542765.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '1');
+
+
+
+
 
 
 

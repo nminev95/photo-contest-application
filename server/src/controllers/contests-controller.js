@@ -75,7 +75,7 @@ contestsController
             const date = new Date();
 
             await sharp(req.file.path)
-                .resize(500, 400, { fit: 'contain' })
+                .resize(400, 300)
                 .toFormat('jpeg')
                 .jpeg({ quality: 90 })
                 .toFile(`images/entries/thumbnails/${thumbnailName}`);

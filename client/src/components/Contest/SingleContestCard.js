@@ -55,7 +55,6 @@ const SingleContestCard = (props) => {
                     />
                     <CardContent>
                         <Typography  className={classes.category} gutterBottom variant="h5" component="h2">
-                            {contest.category_id}
                         </Typography>
                         <Typography  className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
