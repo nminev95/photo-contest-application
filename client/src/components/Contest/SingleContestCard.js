@@ -26,7 +26,11 @@ const useStyles = makeStyles((theme) => ({
         height: 180,
     },
     text: {
+        height: 8,
+    },
+    category: {
         height: 13,
+
     },
     button: {
         marginTop: theme.spacing(0),
@@ -50,8 +54,8 @@ const SingleContestCard = (props) => {
                         onClick={() => history.push(`/contests/${id}`)}
                     />
                     <CardContent>
-                        <Typography  className={classes.text} gutterBottom variant="h5" component="h2">
-                            {contest.category}
+                        <Typography  className={classes.category} gutterBottom variant="h5" component="h2">
+                            {contest.category_id}
                         </Typography>
                         <Typography  className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
