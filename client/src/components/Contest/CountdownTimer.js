@@ -1,6 +1,6 @@
 import React from 'react';
 import Countdown from 'react-countdown';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 import { BASE_URL } from '../../constants/constants';
 import { setContestDetails } from '../../redux/actions';
@@ -53,7 +53,7 @@ const CountdownTimer = ({ contestData }) => {
         } else if (phase === 3) {
             return (
                 < Countdown date={thirdPhaseEndDate} >
-                    <Completionist />
+                    <Completionist/>
                 </Countdown>
             )
         }

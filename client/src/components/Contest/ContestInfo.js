@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ContestInfo = () => {
+
     const contestInfo = useSelector(state => state.singleContestState);
     const styles = useStyles();
 
@@ -66,7 +67,7 @@ const ContestInfo = () => {
                                 {contestInfo.entries && +contestInfo.limit - contestInfo.entries.length} free places left
                             </div>
                             <div style={{ margin: '20px' }}>
-                                <CountdownTimer contestData={contestInfo}/>
+                                <CountdownTimer contestData={contestInfo} />
                             </div>
                             <div style={{ paddingBottom: '20px' }}>
                                 <OpenEntryFormButton />

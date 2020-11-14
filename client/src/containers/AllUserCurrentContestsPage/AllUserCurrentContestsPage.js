@@ -30,12 +30,12 @@ const AllCurrentContestsPage = (props) => {
 
     return (
         <>
-            { userCurrentContestsData.length > 0 ?
-                (<React.Fragment>
+            { userCurrentContestsData.length > 0 ? (
+                <React.Fragment>
                     {userCurrentContestsData && <AllCurrentContestsBox currentContestsData={userCurrentContestsData} />}
-                </React.Fragment>)
-                :
-                (<React.Fragment>
+                </React.Fragment>
+                ) : (
+                <React.Fragment>
                     <EmptyPageComponent />
                 </React.Fragment>
                 )}

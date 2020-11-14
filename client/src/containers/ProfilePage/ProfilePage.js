@@ -31,13 +31,9 @@ const ProfilePage = () => {
 
     return (
         <React.Fragment>
-            < main>
-                <div>
-                    {userData && <UserProfileBackgroundImage />}
-                    {userData && <UserProfilePersonalInfo userData={userData} />}
-                    {userData && <UserImages userData={userData} />}
-                </div>
-            </main>
+            {userData && <UserProfileBackgroundImage />}
+            {userData && <UserProfilePersonalInfo userData={userData} />}
+            {userData && <UserImages userData={userData} />}
         </React.Fragment>
     )
 }

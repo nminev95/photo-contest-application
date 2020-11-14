@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import ERRORS from './../constants/service-errors.js';
+
 /**
 * Gets contest information found by unique contest number.
 * @param module contests data SQL queries module.
@@ -21,8 +23,9 @@ const getContestById = contestsData => {
         return { error: null, contest: contest };
     };
 };
+
 /**
-* Gets all contests information from the database.
+* Gets all contests information.
 * @param module contests data SQL queries module.
 * @callback 
 * @async
@@ -43,6 +46,13 @@ const getAllContests = contestsData => {
     };
 };
 
+/**
+* Gets all contest categories information.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const getAllContestCategories = contestsData => {
     return async () => {
         const categories = await contestsData.getAllCategories();
@@ -58,6 +68,14 @@ const getAllContestCategories = contestsData => {
     };
 };
 
+/**
+* Sets the next contest phase.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const setNextContestPhase = contestsData => {
     return async (id) => {
         const contest = await contestsData.getContestInfo(id);
@@ -83,13 +101,17 @@ const setNextContestPhase = contestsData => {
 };
 
 /**
-* Saves a record for a photo in the database.
+* Saves a photo record.
 * @param module contest data SQL queries module.
 * @callback 
 * @async
-* @param {string} id - The title of the photo.
-* @param {string} id - The description of the new photo.
-* @param {string} id - The file name of the new photo.
+* @param {string} title - The title of the uploaded photo.
+* @param {string} description - A short description of the uploaded photo.
+* @param {string} filename - The name of the uploaded photo file.
+* @param {number} size - The size of the photo.
+* @param {number} id - The unique user  number.
+* @param {number} id - The unique contest number.
+* @param {number} date - Current date.
 * @return {Promise<object>}
 */
 const createNewPhotoRecord = contestsData => {

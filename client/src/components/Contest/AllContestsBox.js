@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import SingleContestCard from './SingleContestCard';
 import Grid from '@material-ui/core/Grid';
 
-
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(10),

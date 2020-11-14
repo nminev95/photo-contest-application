@@ -52,7 +52,10 @@ const EmptyPageComponent = () => {
                         className={styles.mainGrid}
                         style={{ margin: '10px' }}>
                         <p style={{ margin: '10px', paddingTop: "15px", paddingBottom: "15px", fontSize: "30px" }}>
-                            Ooops... It seems like you are not taking part in any contests!
+                            Ooops... 
+                        </p>
+                        <p style={{ margin: '10px', paddingTop: "5 px", paddingBottom: "15px", fontSize: "30px" }}>
+                            It seems like you are not taking part in any contests!
                         </p>
                     </Typography>
                     <Grid container spacing={2} justify="center" >

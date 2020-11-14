@@ -72,7 +72,7 @@ const images = [
 
 const ContestPhotosGrid = () => {
 
-    const [entries, setEntries] = useState(images)
+    const [entries] = useState(images)
 
     const setCustomTags = (i) => {
         return (
@@ -95,7 +95,6 @@ const ContestPhotosGrid = () => {
             </div>);
         return i;
     });
-
 
     return (
         <div style={{

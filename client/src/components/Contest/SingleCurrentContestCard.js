@@ -58,8 +58,7 @@ const SingleCurrentContestView = (props) => {
                     <CardMedia
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
-                        onClick={() => history.push(`/contests/${id}`)}
-                    >
+                        onClick={() => history.push(`/contests/${id}`)}>
                         <GridListTileBar actionIcon={<CountdownTimer contestData={contest} />} title={contest.title} classes={{
                             root: classes.counterBar,
                             title: classes.text,

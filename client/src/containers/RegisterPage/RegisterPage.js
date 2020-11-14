@@ -263,29 +263,27 @@ const RegisterPage = () => {
                         <Grid item >
                             {renderView}
                         </Grid>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >   Register
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >   Register
                         </Button>
                     </form>
-                    <Grid container  justify="flex-end" >
-                        < Grid item >
+                    <Grid container justify="flex-end" >
+                        <Grid item >
                             <Link
                                 component="button"
                                 onClick={() => {
                                     history.push('/users/login');
                                 }}>
                                 Already have an account? Sign in
-                                </Link>
+                            </Link>
                         </Grid>
                     </Grid>
-                <Grid container>
-                </Grid>
                 </div>
-        </Grid>
+            </Grid>
         </Grid >
     )
 }

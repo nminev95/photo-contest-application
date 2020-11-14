@@ -26,16 +26,15 @@ const AllContestsPage = () => {
             .then((response) => dispatch(setAllContestsData(response.data)))
     }, [dispatch]);
 
-
-return (
-    <React.Fragment>
-        < main>
-            <div>
-                {contestsData && <AllContestsBox contestsData={contestsData} />}
-            </div>
-        </main>
-    </React.Fragment>
-)
+    return (
+        <React.Fragment>
+            < main>
+                <div>
+                    {contestsData && <AllContestsBox contestsData={contestsData} />}
+                </div>
+            </main>
+        </React.Fragment>
+    )
 }
 
 export default AllContestsPage;

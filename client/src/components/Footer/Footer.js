@@ -10,7 +10,7 @@ const Copyright = () => {
         <React.Fragment>
             <Typography variant="body2" color="textSecondary" align="center">
                 Telerik Academy - Team 5
-        </Typography>
+            </Typography>
             <Typography variant="body2" color="textSecondary" align="center">
                 {'Copyright © '}
                 {new Date().getFullYear()}

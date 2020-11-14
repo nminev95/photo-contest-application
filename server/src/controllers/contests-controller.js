@@ -73,11 +73,9 @@ contestsController
             const fileName = req.file.filename;
             const thumbnailName = `thumbnail-${req.file.filename}`;
             const date = new Date();
-          
+
             await sharp(req.file.path)
-                .resize(500, 400, {
-                    fit: 'contain',
-                })
+                .resize(500, 400, { fit: 'contain' })
                 .toFormat('jpeg')
                 .jpeg({ quality: 90 })
                 .toFile(`images/entries/thumbnails/${thumbnailName}`);

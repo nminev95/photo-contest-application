@@ -1,4 +1,4 @@
- 
+
 import multer from 'multer';
 
 const extensionsMap = new Map([
@@ -18,11 +18,11 @@ const storage = multer.diskStorage({
         cb(null, 'images');
     },
     filename: function (req, file, cb) {
-        
+
         if (extensionsMap.has(file.mimetype)) {
             const extension = extensionsMap.get(file.mimetype);
-            
-            cb(null, generateFileName(extension)); 
+
+            cb(null, generateFileName(extension));
         } else {
             cb(new Error(`Unsupported mime type: ${file.mimetype}`));
         }

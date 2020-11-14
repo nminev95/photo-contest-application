@@ -1,5 +1,10 @@
 import pool from '../data/pool.js';
 
+/**
+* Gets all contests information from the database.
+* @async
+* @return {Promise<object>}
+*/
 const getAllContestsInfo = async () => {
 
     const sql = `
@@ -12,6 +17,12 @@ const getAllContestsInfo = async () => {
     return await pool.query(sql);
 };
 
+/**
+* Gets contests information found by unique contest number.
+* @async
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const getContestInfo = async (id) => {
 
     const sql1 = `
@@ -40,6 +51,13 @@ const getContestInfo = async (id) => {
     return contest[0];
 };
 
+/**
+* Updates the contest phase.
+* @async
+* @param {number} id - The unique contest number.
+* @param {number} id - The unique phase number.
+* @return {Promise<object>}
+*/
 const setNextPhase = async (id, currentPhase) => {
 
     const sql = `
@@ -53,6 +71,18 @@ const setNextPhase = async (id, currentPhase) => {
     return await pool.query(sql, [currentPhase + 1, id]);
 };
 
+/**
+* Saves a new photo record in the database. 
+* @async
+* @param {string} title - The title of the uploaded photo.
+* @param {string} description - A short description of the uploaded photo.
+* @param {string} filename - The name of the uploaded photo file.
+* @param {number} size - The size of the photo.
+* @param {number} id - The unique user  number.
+* @param {number} id - The unique contest number.
+* @param {number} date - Current date.
+* @return {Promise<object>}
+*/
 const sendNewPhotoInfo = async (title, description, fileName, thumbnailName, user_id, id, date) => {
     const sql = `
         INSERT INTO 
@@ -64,6 +94,11 @@ const sendNewPhotoInfo = async (title, description, fileName, thumbnailName, use
     return await pool.query(sql, [title, description, fileName, thumbnailName, user_id, id, date]);
 };
 
+/**
+* Gets all contest categories from the database.
+* @async
+* @return {Promise<object>}
+*/
 const getAllCategories = async () => {
     const sql = `
     SELECT

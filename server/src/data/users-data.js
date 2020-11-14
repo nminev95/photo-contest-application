@@ -56,11 +56,8 @@ const getUserInfo = async (username) => {
     return result[0];
 };
 
-
 /**
 * Gets user information found by unique user number.
-* @param module users data SQL queries module.
-* @callback 
 * @async
 * @param {number} id - The unique user number.
 * @return {Promise<object>}
@@ -93,6 +90,12 @@ const getById = async (id) => {
     return result[0];
 };
 
+/**
+* Gets all user inbox messages found by unique user number.
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
 const getMessagesById = async (id) => {
 
     const sql = `
@@ -112,6 +115,14 @@ const getMessagesById = async (id) => {
     return result[0];
 };
 
+/**
+* Saves a new message record in the database. 
+* @async
+* @param {string} message - The message content.
+* @param {number} id - The unique user recepient number.
+* @param {number} id - The unique user sender number.
+* @return {Promise<object>}
+*/
 const sendMessage = async (message, recepientId, senderId) => {
 
     const sql = `
@@ -126,6 +137,11 @@ const sendMessage = async (message, recepientId, senderId) => {
     return result[0];
 };
 
+/**
+* Gets all high level users from the database.
+* @async
+* @return {Promise<object>}
+*/
 const getAllHighLevelUsers = async () => {
 
     const sql = `
@@ -142,6 +158,12 @@ const getAllHighLevelUsers = async () => {
     return await pool.query(sql);
 };
 
+/**
+* Gets all user current contests found by unique user number.
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
 const getCurrentContestsByUserId = async (id) => {
 
     const sql = `
