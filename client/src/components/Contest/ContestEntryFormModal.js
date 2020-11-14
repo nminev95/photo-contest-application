@@ -9,7 +9,6 @@ import { withRouter } from 'react-router-dom';
 import swal from '@sweetalert/with-react';
 import axios from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
-import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     inputField: {

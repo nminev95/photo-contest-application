@@ -1,17 +1,20 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import ViewPhotoFullsizeModal from "./ViewPhotoFullsizeModal";
 
 const useStyles = makeStyles((theme) => ({
     container: {
         lineHeight: 0,
-        width: '80%',
+        width: '75%',
         margin: 'auto',
-        WebkitColumnCount: 5,
-        WebkitColumnGap: '4px',
-        MozColumnCount: 5,
-        MozColumnGap: '4px',
-        columnCount: 5,
-        columnGap: '4px',
-        [theme.breakpoints.only('lg')]: {
+        WebkitColumnCount: 4,
+        WebkitColumnGap: '25px',
+        MozColumnCount: 4,
+        MozColumnGap: '10px',
+        columnCount: 4,
+        columnGap: '10px',
+        [theme.breakpoints.up('lg')]: {
             MozColumnCount: 4,
             WebkitColumnCount: 4,
             columnCount: 4,
@@ -32,36 +35,46 @@ const useStyles = makeStyles((theme) => ({
             columnCount: 1,
         },
     },
+    imageDiv: {
+        position: 'relative',
+        width: '100%',
+        transition: '0.5s all ease-in-out',
+    },
     image: {
         width: '100% !important',
         height: 'auto !important',
-        margin: '2px 0 2px 2px'
-    }
+        marginTop: '25px',
+        transition: '0.5s all ease-in-out',
+        '&:hover': {
+            opacity: '0.8',
+            transform: 'scale(1.1)',
+            cursor: 'pointer'
+        }
+    },
 }))
 
 const ContestPhotosGrid = () => {
 
+    const contestInfo = useSelector(state => state.singleContestState);
     const styles = useStyles();
-    return (
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
+    return (
         <div className={styles.container}>
-            <img src="https://c7.staticflickr.com/9/8106/28941228886_86d1450016_n.jpg" className={styles.image}></img>
-            <img src="https://c7.staticflickr.com/9/8106/28941228886_86d1450016_n.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/rocks.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/underwater.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/underwater.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/rocks.jpg" className={styles.image}></img>
-            <img src="https://c7.staticflickr.com/9/8106/28941228886_86d1450016_n.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/rocks.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/underwater.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/underwater.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/rocks.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/mountainskies.jpg" className={styles.image}></img>
-            <img src="https://c7.staticflickr.com/9/8106/28941228886_86d1450016_n.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/rocks.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/underwater.jpg" className={styles.image}></img>
-            <img src="https://www.w3schools.com/w3images/underwater.jpg" className={styles.image}></img>
-            <img src="https://c1.staticflickr.com/9/8785/28687743710_870813dfde_h.jpg" className={styles.image}></img>
+            {contestInfo.entries && contestInfo.entries.map(entry => {
+                return (
+                    <div key={entry.title} className={styles.imageDiv}>
+                        <img
+                            className={styles.image}
+                            alt={entry.title}
+                            src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
+                            onClick={handleShow} />
+                    </div>
+                )
+            }
+            )}
         </div>
     )
 }
