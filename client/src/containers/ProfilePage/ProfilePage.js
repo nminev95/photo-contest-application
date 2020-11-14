@@ -35,7 +35,7 @@ const ProfilePage = () => {
                 <div>
                     {userData && <UserProfileBackgroundImage />}
                     {userData && <UserProfilePersonalInfo userData={userData} />}
-                    {userData && <UserImages />}
+                    {userData && <UserImages userData={userData} />}
                 </div>
             </main>
         </React.Fragment>

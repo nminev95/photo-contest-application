@@ -23,16 +23,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const UserImages = () => {
+const UserImages = (props) => {
 
-
+    const { userData } = props;
+    console.log(userData)
     const classes = useStyles();
 
     return (
         <div className={classes.bottomContent}>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                Joined: Nov 5 2020
-                            </Typography>
+                Joined on: {userData.registered}
+            </Typography>
             <Container maxWidth="md">
                 <div>
                     <Grid container spacing={2} justify="center" >
@@ -49,7 +50,7 @@ const UserImages = () => {
                 </div>
                 <Typography variant="h6" align="center" color="textSecondary" paragraph>
                     Your profile is a bit empty!
-                        </Typography>
+                </Typography>
                 <Typography variant="h7" align="center" color="textSecondary" paragraph>
                     This is the place to show your bestwork. Take part in many contests, win a lot of prizes and be proud of Yourself!
                         </Typography>
@@ -58,7 +59,7 @@ const UserImages = () => {
                         <Grid item>
                             <Button variant="contained" color="primary">
                                 Update my profile
-                                    </Button>
+                            </Button>
                         </Grid>
                     </Grid>
                 </div>

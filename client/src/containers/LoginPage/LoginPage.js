@@ -207,8 +207,16 @@ const LoginPage = () => {
                         <Grid item >
                             {renderView}
                         </Grid>
-                        <Grid container justify="center">
-                            < Grid item >
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={handleSubmit}
+                        > Sign in
+                        </Button>
+                        <Grid container justify="flex-end" >
+                            < Grid item  >
                                 <Link
                                     component="button"
                                     onClick={() => {
@@ -218,14 +226,6 @@ const LoginPage = () => {
                             </Link>
                             </Grid>
                         </Grid>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onClick={handleSubmit}
-                        > Sign in
-                        </Button>
                         <Grid container>
                         </Grid>
                     </form>
