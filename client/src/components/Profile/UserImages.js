@@ -23,16 +23,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const UserImages = () => {
+const UserImages = (props) => {
 
-
+    const { userData } = props;
+    console.log(userData)
     const classes = useStyles();
 
     return (
         <div className={classes.bottomContent}>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                Joined: Nov 5 2020
-                            </Typography>
+                Joined on: {userData.registered}
+            </Typography>
             <Container maxWidth="md">
                 <div>
                     <Grid container spacing={2} justify="center" >

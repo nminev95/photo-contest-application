@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CountdownTimer from './CountdownTimer';
 import { useHistory } from 'react-router-dom';
@@ -19,22 +18,31 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(58),
         height: theme.spacing(28),
         marginLeft: theme.spacing(2),
-
     },
     media: {
-        height: 180,
+        height: 230,
     },
     text: {
-        height: 20,
+        height: 25,
+        display:"flex",
+        position: "relative",
+        textAlign: "left",
+        color: "white",
+        marginTop:"35px",
+    },
+    timer: {
+        height: 25,
+        display:"flex",
+        textAlign:"bottom",
+        marginRight:"15px",
+        marginTop:"35px",
+        color: "white",
     },
     counterBar: {
         height: theme.spacing(12),
         background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+        'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%)',
     },
-    timer: {
-        height: theme.spacing(20),
-    }
 }));
 
 const SingleCurrentContestView = (props) => {
@@ -52,13 +60,15 @@ const SingleCurrentContestView = (props) => {
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}
-                    />
-                    <GridListTileBar className={classes.counterBar}>
+                    >
+                     <GridListTileBar  actionIcon={<CountdownTimer />} title={contest.title} classes={{
+                         root: classes.counterBar,
+                         title: classes.text,
+                         actionIcon: classes.timer,
+                        }}>
+                        
                     </GridListTileBar>
-                    <CountdownTimer />
-                    <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
-                        {contest.title}
-                    </Typography>
+                    </CardMedia>
                 </CardActionArea>
             </Card>
         </Grid>
