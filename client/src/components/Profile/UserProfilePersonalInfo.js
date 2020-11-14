@@ -76,17 +76,17 @@ const UserProfilePersonalInfo = (props) => {
                         <Grid item>
                             <Button variant="outlined" color="primary">
                                 Photos
-                                    </Button>
+                            </Button>
                         </Grid>
                         <Grid item>
                             <Button variant="outlined" color="primary">
                                 Awards
-                                    </Button>
+                            </Button>
                         </Grid>
                         <Grid item>
                             <Button variant="outlined" color="primary">
                                 Contest history
-                                    </Button>
+                            </Button>
                         </Grid>
                     </Grid>
                 </div>

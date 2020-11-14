@@ -50,7 +50,7 @@ const UserImages = (props) => {
                 </div>
                 <Typography variant="h6" align="center" color="textSecondary" paragraph>
                     Your profile is a bit empty!
-                        </Typography>
+                </Typography>
                 <Typography variant="h7" align="center" color="textSecondary" paragraph>
                     This is the place to show your bestwork. Take part in many contests, win a lot of prizes and be proud of Yourself!
                         </Typography>
@@ -59,7 +59,7 @@ const UserImages = (props) => {
                         <Grid item>
                             <Button variant="contained" color="primary">
                                 Update my profile
-                                    </Button>
+                            </Button>
                         </Grid>
                     </Grid>
                 </div>

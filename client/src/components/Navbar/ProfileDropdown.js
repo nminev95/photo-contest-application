@@ -9,7 +9,7 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import { Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import OpenCreateContestFormButton from '../Contest/CreateContestModal';
 
