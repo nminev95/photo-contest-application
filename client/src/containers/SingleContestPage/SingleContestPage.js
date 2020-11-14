@@ -31,9 +31,9 @@ const SingleContestPage = (props) => {
 
     return (
         <>
-            <ContestBackgroundImageBox image={contestState.contestCover} />
+            <ContestBackgroundImageBox />
             <ContestInfo />
-            <ContestPhotosGrid/>
+            <ContestPhotosGrid entries={contestState.entries}/>
         </>
     )
 }

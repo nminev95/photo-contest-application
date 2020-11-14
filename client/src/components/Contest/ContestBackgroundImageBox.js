@@ -2,7 +2,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 
-const ContestBackgroundImageBox = ({ image }) => {
+const ContestBackgroundImageBox = () => {
 
     const contestInfo = useSelector(state => state.singleContestState);
     const useStyles = makeStyles((theme) => ({
