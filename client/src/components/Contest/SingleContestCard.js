@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 320,
@@ -20,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(56),
         height: theme.spacing(37),
         marginLeft: theme.spacing(2),
-      
+        '&:hover': {
+            opacity: '1',
+            transform: 'scale(1.1)',
+            cursor: 'pointer'
+        }
     },
     media: {
         height: 180,
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         marginTop: theme.spacing(0),
-      },
+    },
 }));
 
 const SingleContestCard = (props) => {
@@ -51,24 +53,23 @@ const SingleContestCard = (props) => {
                     <CardMedia
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
-                        onClick={() => history.push(`/contests/${id}`)}
-                    />
+                        onClick={() => history.push(`/contests/${id}`)}/>
                     <CardContent>
-                        <Typography  className={classes.category} gutterBottom variant="h5" component="h2">
+                        <Typography className={classes.category} gutterBottom variant="h5" component="h2">
                         </Typography>
-                        <Typography  className={classes.text} variant="body2" color="textSecondary" component="p">
+                        <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions style={{ justifyContent: 'center' }}>
-                    <Button  
-                    variant="contained"
-                    className={classes.button} 
-                    size="small" 
-                    color="secondary"  
-                    onClick={() => history.push(`/contests/${id}`)} >
-                        Join now
+                    <Button
+                        variant="contained"
+                        className={classes.button}
+                        size="small"
+                        color="secondary"
+                        onClick={() => history.push(`/contests/${id}`)} >
+                        See more
                 </Button>
                 </CardActions>
             </Card>

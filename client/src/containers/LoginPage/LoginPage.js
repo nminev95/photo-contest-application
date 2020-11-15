@@ -202,7 +202,7 @@ const LoginPage = () => {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
-                </Typography>
+                    </Typography>
                     <form className={classes.form} noValidate>
                         <Grid item >
                             {renderView}
