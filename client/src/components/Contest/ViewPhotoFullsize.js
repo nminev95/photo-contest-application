@@ -12,32 +12,41 @@ const ViewPhotoFullsize = (props) => {
   const history = useHistory();
   const [currentPhoto, setCurrentPhoto] = useState(null);
   const entries = useSelector(state => state.singleContestState.entries);
+  const contestInfo = useSelector(state => state.singleContestState);
 
   useEffect(() => {
     entries && setCurrentPhoto(entries.find((entry) => +(entry.id) === +(id)));
   }, [id])
 
+  const renderNextPhoto = (id) => {
+    if ((+id + 1) > entries.length) {
+      history.push(`/contests/${contestInfo.id}/entries/1`)
+    } else {
+      history.push(`/contests/${contestInfo.id}/entries/${+id + 1}`)
+    }
+  }
+
+  const renderPreviousPhoto = (id) => {
+    if ((+id - 1) <= 0) {
+      history.push(`/contests/${contestInfo.id}/entries/${entries.length}`)
+    } else {
+      history.push(`/contests/${contestInfo.id}/entries/${+id - 1}`)
+    }
+  }
+
   return (
     <div>
       {currentPhoto ? (
         <Lightbox
-          enableZoom={false}
           animationDuration={0}
           mainSrc={`http://localhost:4000/public/${currentPhoto.originalSize}`}
           toolbarButtons={[<Button variant="contained" color="primary" style={{ outline: 'none' }}>Rate photo</Button>]}
-          // nextSrc={images[(photoIndex + 1) % images.length]}
-          // prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-          onCloseRequest={() => history.goBack()}
-        // onMovePrevRequest={() =>
-        //   this.setState({
-        //     photoIndex: (photoIndex + images.length - 1) % images.length,
-        //   })
-        // }
-        // onMoveNextRequest={() =>
-        //   this.setState({
-        //     photoIndex: (photoIndex + 1) % images.length,
-        //   })
-        // }
+          nextSrc={() => { }}
+          prevSrc={() => { }}
+          onCloseRequest={() => history.push(`/contests/${contestInfo.id}`)}
+          onMovePrevRequest={() => renderPreviousPhoto(id)}
+          onMoveNextRequest={() => renderNextPhoto(id)}
+
         />
       ) : (null)}
     </div>
