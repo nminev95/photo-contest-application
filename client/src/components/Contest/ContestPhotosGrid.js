@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import ViewPhotoFullsizeModal from "./ViewPhotoFullsizeModal";
+import ViewPhotoFullsize from "./ViewPhotoFullsize";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -56,10 +56,18 @@ const useStyles = makeStyles((theme) => ({
 const ContestPhotosGrid = () => {
 
     const contestInfo = useSelector(state => state.singleContestState);
+    const [isFullsizeOpen, setIsFullsizeOpen] = useState(false);
+    const [clickedPhotoFullsizeUrl, setClickedPhotoFullsizeUrl] = useState(null);
     const styles = useStyles();
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    const handleOpen = (url) => {
+        setClickedPhotoFullsizeUrl(url)
+        setIsFullsizeOpen(prevState => !prevState);
+    }
+
+    const handleClose = () => {
+        setIsFullsizeOpen(prevState => !prevState);
+    }
 
     return (
         <div className={styles.container}>
@@ -70,11 +78,13 @@ const ContestPhotosGrid = () => {
                             className={styles.image}
                             alt={entry.title}
                             src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
-                            onClick={handleShow} />
+                            onClick={() => handleOpen(entry.originalSize)}
+                        />
                     </div>
                 )
             }
             )}
+            <ViewPhotoFullsize isOpen={isFullsizeOpen} handleClose={handleClose} currentPhoto={clickedPhotoFullsizeUrl} />
         </div>
     )
 }
