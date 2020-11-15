@@ -192,19 +192,19 @@ const getUserCurrentContests = usersData => {
 * @param {number} id - The unique user number.
 * @return {Promise<object>}
 */
-const getUserPhotos = usersData => {
+const getUserPastContests = usersData => {
     return async (id) => {
         
-        const photos = await usersData.getUserPhotosByUserId(id);
+        const pastContests = await usersData.getPastContestsByUserId(id);
 
-        if (!photos) {
+        if (!pastContests) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
-                photos: null,
+                contests: null,
             };
         }
         
-        return { error: null, photos: photos };
+        return { error: null, contests: pastContests };
     };
 };
 
@@ -216,5 +216,5 @@ export default {
     sendPrivateMessage,
     getHighLevelUsers,
     getUserCurrentContests,
-    getUserPhotos,
+    getUserPastContests,
 };

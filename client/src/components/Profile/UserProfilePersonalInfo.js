@@ -76,11 +76,6 @@ const UserProfilePersonalInfo = (props) => {
                     <Grid container spacing={2} justify="center" >
                         <Grid item>
                             <Button variant="outlined" color="primary">
-                                Photos
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button variant="outlined" color="primary">
                                 Awards
                             </Button>
                         </Grid>

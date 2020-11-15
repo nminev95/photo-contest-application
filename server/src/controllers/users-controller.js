@@ -118,21 +118,19 @@ usersController
             }
         },
     )
-    .get('/:id/photos',
+    .get('/:id/past-contests',
         authMiddleware,
         async (req, res) => {
             const { id } = req.params;
 
-            const { photos, error } = await usersService.getUserPhotos(usersData)(+id);
+            const { pastContests, error } = await usersService.getUserPastContests(usersData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'You have no photos!' });
+                res.status(404).send({ message: 'You have no past contests!' });
             } else {
-                res.status(200).send(photos);
+                res.status(200).send(pastContests);
             }
         },
     );
-
-
 
 export default usersController;

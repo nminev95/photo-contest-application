@@ -10,6 +10,6 @@ export const PORT = 4000;
 
 export const PRIVATE_KEY = 'kYp3s6v9y$B&E(H+MbQeThWmZq4t7w!z%C*F-J@NcRfUjXn2r5u8x/A?D(G+KbPdSgVkYp3s6v9y$B&E)H@McQfThWmZq4t7w!z%C*F-JaNdRgUkXn2r5u8x/A?D(G+K';
 
-export const TOKEN_LIFETIME = 60 * 60; 
+export const TOKEN_LIFETIME = 60 * 60 * 24; 
 
 export const DEFAULT_USER_ROLE = 'Photo Junkie';

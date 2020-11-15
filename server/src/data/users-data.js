@@ -198,26 +198,35 @@ const getCurrentContestsByUserId = async (id) => {
 };
 
 /**
-* Gets all uploaded photos information by an user from the database.
+* Gets all user current contests found by unique user number.
 * @async
+* @param {number} id - The unique user number.
 * @return {Promise<object>}
 */
-const getUserPhotosByUserId = async (id) => {
+const getPastContestsByUserId = async (id) => {
 
     const sql = `
         SELECT 
-            u.id AS user_id, 
-            ph.id,
-            ph.originalSize,
-            ph.thumbnailSize
+            u.id AS user, 
+            u.points,
+            c.id,
+            c.title, 
+            c.limit, 
+            c.contestCover
         FROM
             users u
         LEFT JOIN 
             photos ph
         ON       
             u.id = ph.user_id
+        LEFT JOIN 
+            contests c
+        ON
+            ph.contest_id = c.id       
         WHERE 
-            u.id = ?   
+            u.id = ? 
+        AND  
+            phase_id=3;
     `;
 
     return await pool.query(sql, [id]);
@@ -230,5 +239,5 @@ export default {
     sendMessage,
     getAllHighLevelUsers,
     getCurrentContestsByUserId,
-    getUserPhotosByUserId,
+    getPastContestsByUserId,
 };
