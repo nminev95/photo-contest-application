@@ -27,7 +27,7 @@ const getContestInfo = async (id) => {
 
     const sql1 = `
         SELECT 
-            user_id, (SELECT username FROM users WHERE id = user_id) as username, title, story, date, originalSize, thumbnailSize
+            id, user_id, (SELECT username FROM users WHERE id = user_id) as username, title, story, date, originalSize, thumbnailSize
         FROM 
             photos 
         WHERE 
