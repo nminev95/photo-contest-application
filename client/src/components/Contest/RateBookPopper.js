@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Box, Checkbox, FormControlLabel, Popper, TextField, Typography } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
@@ -6,6 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import ErrorIcon from '@material-ui/icons/Error';
+import { useState } from 'react';
+import swal from 'sweetalert';
+import axios from '../../requests/axios';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.only('xs')]: {
             width: '101vw',
         }
-        
+
     },
     text: {
         color: "black",
@@ -42,14 +44,90 @@ const useStyles = makeStyles((theme) => ({
 const RateBookPopper = () => {
 
     const styles = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [rating, setRating] = useState(0)
+    const [comment, setComment] = useState('');
+    const [isEntryInappropriate, setIsEntryInappropriate] = useState(false);
+    const open = Boolean(anchorEl);
+    const id = open ? 'transitions-popper' : undefined;
     const handleClick = (event) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     };
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'transitions-popper' : undefined;
+    const handleSubmit = () => {
+        if (isEntryInappropriate) {
+            swal({
+                title: "Are you sure?",
+                text: "Marking this photo as inappropriate for this contest will automatically give the entry a score of zero.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.post()
+                            .catch((error) => {
+                                if (error.response) {
+                                    swal({
+                                        title: "Oops!",
+                                        text: "Something went wrong! Please try again.",
+                                        icon: "error",
+                                        button: "Okay"
+                                    })
+                                }
+                            })
+                            .then((response) => {
+                                if (response) {
+                                    handleClick();
+                                    swal({
+                                        title: "Success!",
+                                        text: "Your review has been successfully submitted.",
+                                        icon: "success",
+                                        buttons: false,
+                                        timer: 1500,
+                                    })
+                                }
+                            })
+                    }
+                })
+        } else {
+            swal({
+                title: "Are you sure?",
+                text: "Once submitted, your review for this entry cannot be changed anymore. ",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.post()
+                            .catch((error) => {
+                                if (error.response) {
+                                    swal({
+                                        title: "Oops!",
+                                        text: "Something went wrong! Please try again.",
+                                        icon: "error",
+                                        button: "Okay"
+                                    })
+                                }
+                            })
+                            .then((response) => {
+                                if (response) {
+                                    handleClick();
+                                    swal({
+                                        title: "Success!",
+                                        text: "Your review has been successfully submitted.",
+                                        icon: "success",
+                                        buttons: false,
+                                        timer: 1500,
+                                    })
+                                }
+                            })
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -68,7 +146,14 @@ const RateBookPopper = () => {
                         <Box boxShadow={2} className={styles.paper}>
                             <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Please provide a rating you find suitable for this photo's story/quality/creativeness. Available rating values are from 1 (lowest) to 10 (highest).
                                 </Typography>
-                            <Rating name="customized-10" defaultValue={0} max={10} size="large" /><br></br>
+                            <Rating
+                                name="customized-10"
+                                defaultValue={0}
+                                max={10}
+                                size="large"
+                                value={rating}
+                                onChange={(ev) => setRating(ev.target.value)}
+                            /><br></br>
                             <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Leave a comment for the author what you loved about the photo or what he can improve.
                                 </Typography>
                             <TextField
@@ -79,13 +164,16 @@ const RateBookPopper = () => {
                                 multiline
                                 variant="outlined"
                                 type="text"
+                                value={comment}
+                                onChange={(ev) => setComment(ev.target.value)}
                             /><br></br>
                             <FormControlLabel className={styles.text}
                                 control={
                                     <Checkbox
-                                        icon={<ErrorOutlineIcon fontSize="medium" />}
-                                        checkedIcon={<ErrorIcon fontSize="medium" />}
-                                        // onChange={handleChange}
+                                        icon={<ErrorOutlineIcon size="medium" />}
+                                        checkedIcon={<ErrorIcon size="medium" />}
+                                        onChange={(ev) => setIsEntryInappropriate(ev.target.checked)}
+                                        value={isEntryInappropriate}
                                         name="checkedB"
                                         color="secondary"
                                     />
@@ -96,18 +184,14 @@ const RateBookPopper = () => {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                // onClick={handleSubmit}
-                            >
-                                Rate photo
-                    </Button>
+                                onClick={handleSubmit}
+                            >Rate photo</Button>
                             <Button
                                 style={{ outline: 'none', marginLeft: "15px" }}
                                 variant="contained"
                                 color="secondary"
                                 onClick={handleClick}
-                            >
-                                Cancel
-                    </Button>
+                            >Cancel</Button>
                         </Box>
                     </Fade>
                 )}
