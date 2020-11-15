@@ -12,7 +12,7 @@ const ModalSwitch = () => {
   return (
     <>
       <Switch location={background || location}>
-        <GuardedRoute path={["/contests/:id", "/entries/:id"]} children={<SingleContestPage />} auth={isLoggedIn} redirectRoute={'/home'} />
+        <GuardedRoute path={"/contests/:id"} component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/home'} />
       </Switch>
       <GuardedRoute exact path="/contests/:id/entries/:id" component={ViewPhotoFullsize} auth={isLoggedIn} redirectRoute={'/home'} />
     </>

@@ -41,12 +41,13 @@ const ViewPhotoFullsize = (props) => {
           animationDuration={0}
           mainSrc={`http://localhost:4000/public/${currentPhoto.originalSize}`}
           toolbarButtons={[<Button variant="contained" color="primary" style={{ outline: 'none' }}>Rate photo</Button>]}
-          nextSrc={() => { }}
-          prevSrc={() => { }}
+          nextSrc={'true'}
+          prevSrc={'true'}
           onCloseRequest={() => history.push(`/contests/${contestInfo.id}`)}
           onMovePrevRequest={() => renderPreviousPhoto(id)}
           onMoveNextRequest={() => renderNextPhoto(id)}
-
+          imageTitle={`${currentPhoto.title} by ${currentPhoto.username}`}
+          imageCaption={`"${currentPhoto.story}" - @${currentPhoto.username} on ${(currentPhoto.date.split('T'))[0]}`}
         />
       ) : (null)}
     </div>
