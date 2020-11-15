@@ -184,6 +184,29 @@ const getUserCurrentContests = usersData => {
         return { error: null, contests: contests };
     };
 };
+/**
+* Gets user uploaded photos.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
+const getUserPhotos = usersData => {
+    return async (id) => {
+        
+        const photos = await usersData.getUserPhotosByUserId(id);
+
+        if (!photos) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                photos: null,
+            };
+        }
+        
+        return { error: null, photos: photos };
+    };
+};
 
 export default {
     createUser,
@@ -193,4 +216,5 @@ export default {
     sendPrivateMessage,
     getHighLevelUsers,
     getUserCurrentContests,
+    getUserPhotos,
 };

@@ -117,7 +117,22 @@ usersController
                 res.status(200).send(contests);
             }
         },
+    )
+    .get('/:id/photos',
+        authMiddleware,
+        async (req, res) => {
+            const { id } = req.params;
+
+            const { photos, error } = await usersService.getUserPhotos(usersData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'You have no photos!' });
+            } else {
+                res.status(200).send(photos);
+            }
+        },
     );
+
 
 
 export default usersController;

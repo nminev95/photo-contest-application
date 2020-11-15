@@ -197,6 +197,31 @@ const getCurrentContestsByUserId = async (id) => {
     return await pool.query(sql, [id]);
 };
 
+/**
+* Gets all uploaded photos information by an user from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getUserPhotosByUserId = async (id) => {
+
+    const sql = `
+        SELECT 
+            u.id AS user_id, 
+            ph.id,
+            ph.originalSize,
+            ph.thumbnailSize
+        FROM
+            users u
+        LEFT JOIN 
+            photos ph
+        ON       
+            u.id = ph.user_id
+        WHERE 
+            u.id = ?   
+    `;
+
+    return await pool.query(sql, [id]);
+};
 export default {
     createAccount,
     getUserInfo,
@@ -205,4 +230,5 @@ export default {
     sendMessage,
     getAllHighLevelUsers,
     getCurrentContestsByUserId,
+    getUserPhotosByUserId,
 };
