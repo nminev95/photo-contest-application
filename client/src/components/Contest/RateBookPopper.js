@@ -12,8 +12,21 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid',
         padding: theme.spacing(4),
         backgroundColor: theme.palette.background.paper,
-        width: '500px',
         borderRadius: '5px',
+        width: '24vw',
+        [theme.breakpoints.only('lg')]: {
+            width: '28vw',
+        },
+        [theme.breakpoints.only('md')]: {
+            width: '40vw',
+        },
+        [theme.breakpoints.only('sm')]: {
+            width: '70vw',
+        },
+        [theme.breakpoints.only('xs')]: {
+            width: '101vw',
+        }
+        
     },
     text: {
         color: "black",
@@ -91,7 +104,7 @@ const RateBookPopper = () => {
                                 style={{ outline: 'none', marginLeft: "15px" }}
                                 variant="contained"
                                 color="secondary"
-                                // onClick={handleClose}
+                                onClick={handleClick}
                             >
                                 Cancel
                     </Button>
