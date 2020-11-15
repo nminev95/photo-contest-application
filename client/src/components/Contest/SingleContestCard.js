@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: theme.spacing(56),
-        height: theme.spacing(37),
+        height: theme.spacing(34),
         marginLeft: theme.spacing(2),
         '&:hover': {
             opacity: '1',
@@ -55,8 +55,6 @@ const SingleContestCard = (props) => {
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}/>
                     <CardContent>
-                        <Typography className={classes.category} gutterBottom variant="h5" component="h2">
-                        </Typography>
                         <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
                         </Typography>
