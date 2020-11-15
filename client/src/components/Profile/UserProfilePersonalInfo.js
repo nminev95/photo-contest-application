@@ -62,15 +62,18 @@ const UserProfilePersonalInfo = (props) => {
                             </Typography>
                         </Grid>
                     </Grid>
+                        <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                            Joined on: {userData.registered}
+                        </Typography>
                 </div>
                 {(userData.info) ? (
                     <Typography variant="h6" align="center" color="textSecondary" paragraph>
                         {userData.info}
                     </Typography>
                 ) : (
-                    <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                        Let other people know more about you...
-                    </Typography>
+                        <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                            Let other people know more about you...
+                        </Typography>
                     )}
                 <div className={classes.Buttons}>
                     <Grid container spacing={2} justify="center" >
