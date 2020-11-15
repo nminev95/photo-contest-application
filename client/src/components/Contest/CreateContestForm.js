@@ -71,7 +71,6 @@ const CreateContestForm = () => {
             .then((response) => setHighLevelUsers(response.data))
     }, [])
 
-    console.log(highLevelUsers)
     const firstPhaseSliderMarks = [
         {
             value: 1,

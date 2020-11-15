@@ -4,8 +4,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import RateBookDropdownForm from './RateBookDropdownForm';
-
+import RateBookPopper from './RateBookPopper';
 
 const ViewPhotoFullsize = (props) => {
 
@@ -42,7 +41,7 @@ const ViewPhotoFullsize = (props) => {
         <Lightbox
           animationDuration={0}
           mainSrc={`http://localhost:4000/public/${currentPhoto.originalSize}`}
-          toolbarButtons={[<RateBookDropdownForm/>]}
+          toolbarButtons={[<RateBookPopper/>]}
           nextSrc={'true'}
           prevSrc={'true'}
           imagePadding={30}
