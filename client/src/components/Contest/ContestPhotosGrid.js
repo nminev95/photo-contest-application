@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import ViewPhotoFullsize from "./ViewPhotoFullsize";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,35 +57,24 @@ const useStyles = makeStyles((theme) => ({
 const ContestPhotosGrid = () => {
 
     const contestInfo = useSelector(state => state.singleContestState);
-    const [isFullsizeOpen, setIsFullsizeOpen] = useState(false);
-    const [clickedPhotoFullsizeUrl, setClickedPhotoFullsizeUrl] = useState(null);
     const styles = useStyles();
-
-    const handleOpen = (url) => {
-        setClickedPhotoFullsizeUrl(url)
-        setIsFullsizeOpen(prevState => !prevState);
-    }
-
-    const handleClose = () => {
-        setIsFullsizeOpen(prevState => !prevState);
-    }
 
     return (
         <div className={styles.container}>
             {contestInfo.entries && contestInfo.entries.map(entry => {
                 return (
-                    <div key={entry.title} className={styles.imageDiv}>
-                        <img
-                            className={styles.image}
-                            alt={entry.title}
-                            src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
-                            onClick={() => handleOpen(entry.originalSize)}
-                        />
+                    <div key={entry.id} className={styles.imageDiv}>
+                        <Link to={`${contestInfo.id}/entries/${entry.id}`}>
+                            <img
+                                className={styles.image}
+                                alt={entry.title}
+                                src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
+                            />
+                        </Link>
                     </div>
                 )
             }
             )}
-            <ViewPhotoFullsize isOpen={isFullsizeOpen} handleClose={handleClose} currentPhoto={clickedPhotoFullsizeUrl} />
         </div>
     )
 }
