@@ -229,7 +229,7 @@ const OpenEntryFormButton = (props) => {
                                     type="text"
                                     onChange={handleChange}
                                     error
-                                    helperText="Photo description must be between 40 and 240 characters long."
+                                    helperText="Photo description must be between 20 and 240 characters long."
                                 />
                             )}
                         <Form style={{ marginTop: '30px' }}>

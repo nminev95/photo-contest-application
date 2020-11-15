@@ -92,6 +92,11 @@ VALUES
 ('Portraits', "Welcome to our Portraits competition. Portrait photography is all about the face. A photographer's goal is to take a carefully crafted photograph of a person's distinguishing facial features while capturing the person's attitude, identity, and personality. The photo may include a blurred background and the person's body, but those factors are not emphasized in the image. . During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
 (SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '150', 'portraits-cover.jpg', '1', '1', '8', '1')
 
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+VALUES
+('Food', 'Welcome to our Food competition. How many times have you heard: "You eat with your eyes first"? Food contains all of the elements of design that can make a striking image. Color, texture, pattern, line, shape, and form are all there, yet the key ingredient is to capture the image in a way that makes the viewer want. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', 'food-cover.jpg', '1', '1', '5', '1')
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`
@@ -160,6 +165,7 @@ VALUES
 ('Colourful World', 'I think it is amazing what a pinch of pastel colours and nice light can do to an, otherwise ordinary photo...what about you?', '1605389063931_517203878.jpg', 'thumbnail-1605389063931_517203878.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '1');
 
 
+-- Portrait photos
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
@@ -228,7 +234,7 @@ VALUES
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
-('Autumn mood', 'I love all these colors..', '1605444607192_596898510.jpg', 'thumbnail-1605444607192_596898510.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '2');
+('Autumn mood', 'I love all these colors..', '1605446529406_636736705.jpg', 'thumbnail-1605446529406_636736705.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '2');
 
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
@@ -262,6 +268,86 @@ VALUES
 
 
 
+-- Food photos
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Breakfast', 'Took this shot in USA last summer.', '1605451476415_943894209.jpg', 'thumbnail-1605451476415_943894209.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Fresh Vegetables', 'I love fresh natural vegies.', '1605451522479_600427238.jpg', 'thumbnail-1605451522479_600427238.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Grilled Meat', 'Took this shot at a famous German restaurant last winter..', '1605451607975_618706497.jpg', 'thumbnail-1605451607975_618706497.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Cheeseburger', 'My favourite food..', '1605451644551_472055423.jpg', 'thumbnail-1605451644551_472055423.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Fresh Citrus', 'I love fresh natural citrus.', '1605451699027_183014022.jpg', 'thumbnail-1605451699027_183014022.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '5', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pumpkin Soup', 'Took this shot at a famous French restaurant last spring. The most delicious soup I have ever tried.', '1605451729492_315068992.jpg', 'thumbnail-1605451729492_315068992.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '6', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Appetisers', 'Took this shot at a wedding party.', '1605451758725_534989278.jpg', 'thumbnail-1605451758725_534989278.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '7', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Appetisers', 'Took this shot at a wedding party.', '1605451791454_519524777.jpg', 'thumbnail-1605451791454_519524777.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '8', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pancakes', 'My favourite ones.', '1605451844480_346639321.jpg', 'thumbnail-1605451844480_346639321.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '9', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Italian Pizza', 'Took this shot in Milan last summer.', '1605451879972_842960241.jpg', 'thumbnail-1605451879972_842960241.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pancakes', 'Do you like Maple syrop?.', '1605451903861_019501628.jpg', 'thumbnail-1605451903861_019501628.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '11', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Brownie', 'My chocolate passion.', '1605451940406_606020630.jpg', 'thumbnail-1605451940406_606020630.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Red passion', 'Took this shot in Russia last week.', '1605451988776_138946242.jpg', 'thumbnail-1605451988776_138946242.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '13', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Italian Pasta', 'Took this shot in Rome in 2019.', '1605452013380_446034942.jpg', 'thumbnail-1605452013380_446034942.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Chocolate Passion', 'I love chocolate.', '1605452076436_394360193.jpg', 'thumbnail-1605452076436_394360193.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '15', '3');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Fresh Plums', 'Look at these colors..', '1605452156278_004707585.jpg', 'thumbnail-1605452156278_004707585.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '3');
 
 
 
