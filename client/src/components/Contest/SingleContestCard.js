@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 320,
@@ -20,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(56),
         height: theme.spacing(37),
         marginLeft: theme.spacing(2),
+        '&:hover': {
+            opacity: '1',
+            transform: 'scale(1.1)',
+            cursor: 'pointer'
+        }
       
     },
     media: {
@@ -35,6 +38,12 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginTop: theme.spacing(0),
       },
+      image: {
+        width: '100% !important',
+        height: 'auto !important',
+        marginTop: '25px',
+        transition: '0.5s all ease-in-out',
+    },
 }));
 
 const SingleContestCard = (props) => {
