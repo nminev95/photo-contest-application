@@ -228,7 +228,7 @@ VALUES
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
-('Autumn mood', 'I love all these colors..', '1605444607192_596898510.jpg', 'thumbnail-1605444607192_596898510.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '2');
+('Autumn mood', 'I love all these colors..', '1605446529406_636736705.jpg', 'thumbnail-1605446529406_636736705.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '2');
 
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
