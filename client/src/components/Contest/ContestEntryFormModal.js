@@ -56,7 +56,7 @@ const OpenEntryFormButton = (props) => {
             name: 'description',
             validators: {
                 required: true,
-                minLen: 40,
+                minLen: 20,
                 maxLen: 240,
             }
         },
