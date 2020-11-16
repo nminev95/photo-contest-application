@@ -173,7 +173,7 @@ const getUserCurrentContests = usersData => {
     return async (id) => {
         
         const contests = await usersData.getCurrentContestsByUserId(id);
-
+        
         if (!contests) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
@@ -196,7 +196,7 @@ const getUserPastContests = usersData => {
     return async (id) => {
         
         const pastContests = await usersData.getPastContestsByUserId(id);
-
+       
         if (!pastContests) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,

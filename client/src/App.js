@@ -11,6 +11,7 @@ import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
 import AllContestsPage from './containers/AllContestsPage/AllContestsPage';
 import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/AllUserCurrentContestsPage';
+import AllUserPastContests from './containers/AllUserPastContests/AllUserPastContests';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
 import ViewPhotoFullsize from './components/Contest/ViewPhotoFullsize';
@@ -47,7 +48,8 @@ const App = () => {
             <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
             <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
             <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/users/:id/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
+            <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
+            <GuardedRoute exact path="/users/past-contests" auth={isLoggedIn} component={AllUserPastContests} redirectRoute={'/'} />
             <ModalSwitch/>
             {/* <GuardedRoute exact path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
 

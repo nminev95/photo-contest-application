@@ -14,20 +14,20 @@ const AllCurrentContestsPage = (props) => {
     const userCurrentContestsData = useSelector(state => state.userCurrentContestState);
 
     useEffect(() => {
-        axios.get(userEndpoints.userCurrentContests + `${id}/contests`)
-            .catch((error) => {
-                if (error.response.status === 404) {
-                    swal({
-                        title: "Oops!",
-                        text: "Looks like no information found!",
-                        icon: "error",
-                        button: "Okay"
-                    })
-                }
-            })
-            .then((response) => dispatch(setUserCurrentContestsData(response.data)))
+        axios.get(userEndpoints.userCurrentContests)
+        .then((response) => dispatch(setUserCurrentContestsData(response.data)))
+        .catch((error) => {
+            if (error.response.status === 404) {
+                swal({
+                    title: "Oops!",
+                    text: "Looks like no information found!",
+                    icon: "error",
+                    button: "Okay"
+                })
+            }
+        })
     }, [id, dispatch]);
-
+    
     return (
         <>
             { userCurrentContestsData.length > 0 ? (

@@ -63,7 +63,6 @@ const RatePhotoPopper = ({ photoId }) => {
         setIsInappropriate(false);
     }, [photoId])
     
-    console.log(isInappropriate)
     const handleSubmit = () => {
 
         const review = {

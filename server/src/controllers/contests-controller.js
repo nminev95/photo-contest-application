@@ -96,7 +96,7 @@ contestsController
             const score = req.body.score || 0;
             const comment = req.body.comment || 'The photo does not really fit this category.';
             const isInappropriate = req.body.isInappropriate;
-            console.log(isInappropriate);
+
             const { error, review } = await contestsService.createPhotoReview(contestsData)(score, comment, isInappropriate, +userId, +photoId);
 
             if (error) {

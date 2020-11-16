@@ -8,14 +8,12 @@ import Box from '@material-ui/core/Box';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAward } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     background: {
-        backgroundColor: "#eeeeee" ,
+        backgroundColor: "#eeeeee",
         height: "1080px",
-        // backgroundPosition: "center",
-        // backgroundRepeat: "no-repeat",
-        // backgroundSize: "cover"
     },
     root: {
         zIndex: -1,
@@ -69,66 +67,62 @@ const useStyles = makeStyles((theme) => ({
 
 
 const UserProfilePersonalInfo = (props) => {
-
     const { userData } = props;
     const classes = useStyles();
+    const history = useHistory();
 
     return (
-        <div  className={classes.background}>
-        <div  style={{ display:"flex", justifyContent: 'center'}}>
-        <Box className={classes.container} justify="center" >
-            <Grid container spacing={2} justify="center" >               
-                    {/* <Grid container spacing={1} justify="center" style={{ fontSize: 50, paddinTop: "20px" }}>
-                        <Avatar className={classes.Large} style={{ position: "relative" }} ></Avatar>
-                    </Grid> */}
-                    <Container maxWidth="md">
-                        <Typography className={classes.Name} component="h6" variant="h4" align="center" color="textPrimary" gutterBottom style={{ marginTop: "75px" }}>
-                            {userData.firstName} {userData.lastName}
-                        </Typography>
-                        <div>
-                            <Grid container spacing={2} justify="center" >
-                                <Grid item style={{paddingRight:"0px"}}>
-                                    <  EmojiEventsIcon style={{ fontSize: 40 }}> </ EmojiEventsIcon>
-                                </Grid>
-                                <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }}paragraph>
-                                {userData.rank}
+        <div className={classes.background}>
+            <div style={{ display: "flex", justifyContent: 'center' }}>
+                <Box className={classes.container} justify="center" >
+                    <Grid container spacing={2} justify="center" >
+                        <Container maxWidth="md">
+                            <Typography className={classes.Name} component="h6" variant="h4" align="center" color="textPrimary" gutterBottom style={{ marginTop: "75px" }}>
+                                {userData.firstName} {userData.lastName}
+                            </Typography>
+                            <div>
+                                <Grid container spacing={2} justify="center" >
+                                    <Grid item style={{ paddingRight: "0px" }}>
+                                        <  EmojiEventsIcon style={{ fontSize: 40 }}> </ EmojiEventsIcon>
+                                    </Grid>
+                                    <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
+                                        {userData.rank}
                                     </Typography>
                                     <Grid item>
-                                    <FontAwesomeIcon icon={faAward} size="2x" style={{marginTop:"4px" , marginLeft: "25px"}} /> 
-                                </Grid>
-                                <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }}paragraph>
-                                {userData.points}
+                                        <FontAwesomeIcon icon={faAward} size="2x" style={{ marginTop: "4px", marginLeft: "25px" }} />
+                                    </Grid>
+                                    <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
+                                        {userData.points}
                                     </Typography>
-                                    
-                            </Grid>
+                                </Grid>
+                                <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                                    Joined on: {userData.registered}
+                                </Typography>
+                            </div>
+                            <div className={classes.Buttons}>
+                                <Grid container spacing={2} justify="center" >
+                                    <Grid item>
+                                        <Button
+                                            variant="contained"
+                                            style={{ backgroundColor: "green" }} >
+                                            Awards
+                                    </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button
+                                            variant="contained"
+                                            style={{ backgroundColor: "green" }}
+                                            onClick={() => history.push(`/users/past-contests`)}>
+                                            Contest history
+                                    </Button>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                        </Container>
 
-                            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                                Joined on: {userData.registered}
-                            </Typography>
-                        </div>
-                        <div className={classes.Buttons}>
-                            <Grid container spacing={2} justify="center" >
-                                <Grid item>
-                                    <Button
-                                        variant="contained"
-                                        style={{ backgroundColor: "green" }} >
-                                        Awards
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button
-                                        variant="contained"
-                                        style={{ backgroundColor: "green" }} >
-                                        Contest history
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </Container>
-                
-            </Grid>
-        </Box>
-        </div>
+                    </Grid>
+                </Box>
+            </div>
         </div>
     )
 

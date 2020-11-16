@@ -61,7 +61,6 @@ const ProfileDropdown = () => {
     const styles = useStyles();
     const history = useHistory();
     const userState = useSelector(state => state.loginState);
-    const id = userState.user.sub;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -113,7 +112,7 @@ const ProfileDropdown = () => {
                         <ListItemText primary="Your contests" />
                     </StyledMenuItem>
                 ) : (
-                        <StyledMenuItem onClick={() => history.push(`/users/${id}/contests`)}>
+                        <StyledMenuItem onClick={() => history.push(`/users/contests`)}>
                             <ListItemIcon>
                                 <DraftsIcon fontSize="small" />
                             </ListItemIcon>

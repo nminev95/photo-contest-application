@@ -13,8 +13,8 @@ usersController
     .post('/register',
         createValidator(createUserSchema),
         async (req, res) => {
-            const userData = req.body;
 
+            const userData = req.body;
             const { error, user } = await usersService.createUser(usersData)(userData);
 
             if (error === ERRORS.DUPLICATE_RECORD) {
@@ -28,6 +28,7 @@ usersController
     )
     .post('/login',
         async (req, res) => {
+
             const { username, password } = req.body;
             const { error, user } = await usersService.signInUser(usersData)(username, password);
 
@@ -52,6 +53,7 @@ usersController
     .get('/:id/profile',
         authMiddleware,
         async (req, res) => {
+
             const { id } = req.user;
             const { user, error } = await usersService.getUserById(usersData)(+id);
 
@@ -65,6 +67,7 @@ usersController
     .get('/experts',
         authMiddleware,
         async (req, res) => {
+
             const { users, error } = await usersService.getHighLevelUsers(usersData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -77,8 +80,8 @@ usersController
     .get('/:id/messages',
         authMiddleware,
         async (req, res) => {
-            const { id } = req.params;
 
+            const { id } = req.params;
             const { messages, error } = await usersService.getUserMessages(usersData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -91,6 +94,7 @@ usersController
     .post('/:id/messages',
         authMiddleware,
         async (req, res) => {
+
             const { id } = req.params;
             const { message } = req.body;
             const senderId = req.user.sub;
@@ -104,11 +108,11 @@ usersController
             }
         },
     )
-    .get('/:id/contests',
+    .get('/contests',
         authMiddleware,
         async (req, res) => {
-            const { id } = req.params;
 
+            const { id } = req.user;
             const { contests, error } = await usersService.getUserCurrentContests(usersData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -118,13 +122,13 @@ usersController
             }
         },
     )
-    .get('/:id/past-contests',
+    .get('/past-contests',
         authMiddleware,
         async (req, res) => {
-            const { id } = req.params;
 
+            const { id } = req.user;
             const { pastContests, error } = await usersService.getUserPastContests(usersData)(+id);
-
+            
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'You have no past contests!' });
             } else {
