@@ -91,53 +91,6 @@ const getById = async (id) => {
 };
 
 /**
-* Gets all user inbox messages found by unique user number.
-* @async
-* @param {number} id - The unique user number.
-* @return {Promise<object>}
-*/
-const getMessagesById = async (id) => {
-
-    const sql = `
-        SELECT 
-            id AS messageId,
-            message AS message,
-            sendDate AS date,
-            username AS username
-        FROM
-            messages
-        WHERE 
-            recepient_id = ?
-    `;
-
-    const result = await pool.query(sql, [id]);
-
-    return result[0];
-};
-
-/**
-* Saves a new message record in the database. 
-* @async
-* @param {string} message - The message content.
-* @param {number} id - The unique user recepient number.
-* @param {number} id - The unique user sender number.
-* @return {Promise<object>}
-*/
-const sendMessage = async (message, recepientId, senderId) => {
-
-    const sql = `
-        INSERT INTO 
-            messages (message, sendDate, recepient_id, sender_id)
-        VALUES 
-            (?, (SELECT NOW()), ?, ?)
-    `;
-
-    const result = await pool.query(sql, [message, recepientId, senderId]);
-
-    return result[0];
-};
-
-/**
 * Gets all high level users from the database.
 * @async
 * @return {Promise<object>}

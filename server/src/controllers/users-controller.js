@@ -74,36 +74,6 @@ usersController
             }
         },
     )
-    .get('/:id/messages',
-        authMiddleware,
-        async (req, res) => {
-            const { id } = req.params;
-
-            const { messages, error } = await usersService.getUserMessages(usersData)(+id);
-
-            if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(204).send({ message: 'You dont have new messages!' });  // maybe error 404?
-            } else {
-                res.status(200).send(messages);
-            }
-        },
-    )
-    .post('/:id/messages',
-        authMiddleware,
-        async (req, res) => {
-            const { id } = req.params;
-            const { message } = req.body;
-            const senderId = req.user.sub;
-
-            const { sentMessage, error } = await usersService.sendPrivateMessage(usersData)(message, +id, +senderId);
-
-            if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'User not found!' });
-            } else {
-                res.status(200).send(sentMessage);
-            }
-        },
-    )
     .get('/:id/contests',
         authMiddleware,
         async (req, res) => {

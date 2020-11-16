@@ -89,56 +89,6 @@ const getUserById = usersData => {
 };
 
 /**
-* Gets user messages found by unique user number.
-* @param module users data SQL queries module.
-* @callback 
-* @async
-* @param {number} id - The unique user number.
-* @return {Promise<object>}
-*/
-const getUserMessages = usersData => {
-    return async (id) => {
-        const messages = await usersData.getMessagesById(id);
-
-        if (!messages) {
-            return {
-                error: ERRORS.RECORD_NOT_FOUND,
-                user: null,
-            };
-        }
-
-        return { error: null, messages: messages };
-    };
-};
-
-/**
-* Saves a record from a user in the database.
-* @param module users data SQL queries module.
-* @callback 
-* @async
-* @param {string} message - The message content.
-* @param {number} id - The  recepient unique user number.
-* @param {number} id - The sender unique user number.
-* @return {Promise<object>}
-*/
-const sendPrivateMessage = usersData => {
-    return async (message, recepientId, senderId) => {
-        const user = await usersData.getById(recepientId);
-
-        if (!user) {
-            return {
-                error: ERRORS.RECORD_NOT_FOUND,
-                message: null,
-            };
-        }
-
-        const sentMessage = await usersData.sendMessage(message, recepientId, senderId);
-
-        return { error: null, message: sentMessage };
-    };
-};
-
-/**
 * Gets all users at the highest level found in the database.
 * @param module users data SQL queries module.
 * @callback 
@@ -212,8 +162,6 @@ export default {
     createUser,
     signInUser,
     getUserById,
-    getUserMessages,
-    sendPrivateMessage,
     getHighLevelUsers,
     getUserCurrentContests,
     getUserPastContests,
