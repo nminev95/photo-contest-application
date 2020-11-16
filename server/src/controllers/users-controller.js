@@ -77,11 +77,11 @@ usersController
             }
         },
     )
-    .get('/:id/contests',
+    .get('/contests',
         authMiddleware,
         async (req, res) => {
 
-            const { id } = req.user;
+            const id = req.user.id;
             const { contests, error } = await usersService.getUserCurrentContests(usersData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -97,7 +97,7 @@ usersController
 
             const { id } = req.user;
             const { pastContests, error } = await usersService.getUserPastContests(usersData)(+id);
-            
+
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'You have no past contests!' });
             } else {
