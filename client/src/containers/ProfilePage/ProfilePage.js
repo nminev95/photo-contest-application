@@ -1,4 +1,3 @@
-import UserProfileBackgroundImage from '../../components/Profile/UserProfileBackgroundImage';
 import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersonalInfo';
 import UserImages from '../../components/Profile/UserImages';
 import React, { useEffect } from 'react';
@@ -31,9 +30,8 @@ const ProfilePage = () => {
 
     return (
         <React.Fragment>
-            {userData && <UserProfileBackgroundImage />}
             {userData && <UserProfilePersonalInfo userData={userData} />}
-            {userData && <UserImages userData={userData} />}
+            {/* {userData && <UserImages userData={userData} />} */}
         </React.Fragment>
     )
 }
