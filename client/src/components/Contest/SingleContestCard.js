@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SingleContestCard = (props) => {
-
     const { contest } = props;
     const { id } = contest;
     const classes = useStyles();

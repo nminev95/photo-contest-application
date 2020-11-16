@@ -1,6 +1,5 @@
-import UserProfileBackgroundImage from '../../components/Profile/UserProfileBackgroundImage';
 import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersonalInfo';
-import UserImages from '../../components/Profile/UserImages';
+
 import React, { useEffect } from 'react';
 import userEndpoints from '../../requests/user-requests';
 import axios from '../../requests/axios';
@@ -16,6 +15,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         axios.get(userEndpoints.userProfile)
+            .then((response) => dispatch(setUserData(response.data)))
             .catch((error) => {
                 if (error.response.status === 404) {
                     swal({
@@ -26,14 +26,11 @@ const ProfilePage = () => {
                     })
                 }
             })
-            .then((response) => dispatch(setUserData(response.data)))
     }, [dispatch]);
 
     return (
         <React.Fragment>
-            {userData && <UserProfileBackgroundImage />}
             {userData && <UserProfilePersonalInfo userData={userData} />}
-            {userData && <UserImages userData={userData} />}
         </React.Fragment>
     )
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,17 +22,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const UserImages = (props) => {
+const EmptyContent = (props) => {
 
-    const { userData } = props;
-    console.log(userData)
     const classes = useStyles();
 
     return (
         <div className={classes.bottomContent}>
-            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                Joined on: {userData.registered}
-            </Typography>
             <Container maxWidth="md">
                 <div>
                     <Grid container spacing={2} justify="center" >
@@ -54,18 +48,9 @@ const UserImages = (props) => {
                 <Typography variant="h7" align="center" color="textSecondary" paragraph>
                     This is the place to show your bestwork. Take part in many contests, win a lot of prizes and be proud of Yourself!
                         </Typography>
-                <div className={classes.Buttons}>
-                    <Grid container spacing={2} justify="center" >
-                        <Grid item>
-                            <Button variant="contained" color="primary">
-                                Update my profile
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </div>
             </Container>
         </div>
     );
 }
 
-export default UserImages;
+export default EmptyContent;

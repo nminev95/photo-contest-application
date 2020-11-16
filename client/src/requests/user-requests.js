@@ -1,8 +1,8 @@
 const userEndpoints = {
     registerUser: '/users/register',
     loginUser: '/users/login',
-    userCurrentContests: '/users/',
-    userPastContest: '/users/',
+    userCurrentContests: '/users/contests',
+    userPastContest: '/users/past-contests',
     userProfile: '/users/:id/profile',
     getHighLevelUsers: '/users/experts',
 }
