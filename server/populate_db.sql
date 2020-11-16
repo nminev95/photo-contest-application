@@ -84,25 +84,32 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Pastel colours', 'Welcome to our Abstract Pastel Colours competition. When a fully saturated colour is diluted by white, it becomes a pastel colour. These shades are generally more delicate, so it’s better to photograph them in a softer, diffused light, to avoid making them look washed out. A carefully composed photo that uses pastel colours can have a gentle and unique quality to it. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
-(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '80', 'pastel-colours-cover.jpg', '1', '1', '1', '1')
+(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '80', 'pastel-colours-cover.jpg', '1', '1', '1', '1');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Portraits', "Welcome to our Portraits competition. Portrait photography is all about the face. A photographer's goal is to take a carefully crafted photograph of a person's distinguishing facial features while capturing the person's attitude, identity, and personality. The photo may include a blurred background and the person's body, but those factors are not emphasized in the image. . During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
-(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '150', 'portraits-cover.jpg', '1', '1', '8', '1')
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '150', 'portraits-cover.jpg', '1', '1', '8', '1');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Food', 'Welcome to our Food competition. How many times have you heard: "You eat with your eyes first"? Food contains all of the elements of design that can make a striking image. Color, texture, pattern, line, shape, and form are all there, yet the key ingredient is to capture the image in a way that makes the viewer want. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', 'food-cover.jpg', '1', '1', '5', '1')
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', 'food-cover.jpg', '1', '1', '5', '1');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Animals', 'Welcome to our Animals competition. If you are out in the wild, photographing animals, then you are shooting wildlife photography. It involves documenting the creatures, in and out of their habitats. One of the most importain features is the backlighting. It refers to the positioning of light behind your subject, such that your subject is located between you and the source of light. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.',
-(SELECT NOW() + INTERVAL 16 DAY), (SELECT NOW() + INTERVAL 21 HOUR), '150', 'animals-cover.jpg', '1', '1', '2', '1')
+(SELECT NOW() + INTERVAL 16 DAY), (SELECT NOW() + INTERVAL 21 HOUR), '150', 'animals-cover.jpg', '1', '1', '2', '1');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+VALUES
+('Landscapes', 'Landscape photography is the art of capturing pictures of nature and the outdoors in a way that brings your viewer into the scene. From grand landscapes to intimate details, the best photos demonstrate the photographer’s own connection to nature and capture the essence of the world around them. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 15 HOUR), '120', 'landscapes-cover.jpg', '1', '1', '6', '1');
+
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`
@@ -425,4 +432,82 @@ VALUES
 ('Rabbits', "Took this shot at my uncle's farm.", '1605513950324_259169069.jpg', 'thumbnail-1605513950324_259169069.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '4');
 
 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Snow Peak', 'Taking winter photos is my passion', '1605562604131_825551367.jpg', 'thumbnail-1605562604131_825551367.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '5');
 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Green River', 'I am in love with all these colours', '1605562699110_161782880.jpg', 'thumbnail-1605562699110_161782880.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Rila Mountain', 'Rila Mountains is simply gorgeous!', '1605562760547_020157854.jpg', 'thumbnail-1605562760547_020157854.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Autumn View', 'Yellow is my favorite colour', '1605562959145_996615750.jpg', 'thumbnail-1605562959145_996615750.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Rila Mountain', 'The sky looks amazing..', '1605563055702_198847153.jpg', 'thumbnail-1605563055702_198847153.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '5', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('The Alps', 'Took this shot the last day, before coming home from my trip.', '1605563106666_149206206.jpg', 'thumbnail-1605563106666_149206206.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '6', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Golden Nature', 'Gorgeous nature. Took this shot on my way home after work.', '1605563141860_464937846.jpg', 'thumbnail-1605563141860_464937846.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '7', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Caucasus Mountains', 'The best shot I have ever taken.', '1605563183423_553319920.jpg', 'thumbnail-1605563183423_553319920.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '8', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pirin Mountain', 'One of the best places I have ever seen.', '1605563296737_782393160.jpg', 'thumbnail-1605563296737_782393160.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '9', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Golden Dobrudzha', 'Took this shot the last day, before coming home from my trip to Varna.', '1605563336849_123526140.jpg', 'thumbnail-1605563336849_123526140.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Caucasus Mountains', 'Gorgeous mountains.', '1605563385637_109215853.jpg', 'thumbnail-1605563385637_109215853.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '11', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Blue and Yellow', 'Amazing natute.', '1605563462268_529332721.jpg', 'thumbnail-1605563462268_529332721.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Spring is Coming', 'In love with this green color.', '1605563525761_788805172.jpg', 'thumbnail-1605563525761_788805172.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '13', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('New Beginning', 'Took this shot in April and it is my favorite one.', '1605563629555_249003210.jpg', 'thumbnail-1605563629555_249003210.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Purple Touch', 'Look at this beauty...incredible purple touch.', '1605563671772_756980693.jpg', 'thumbnail-1605563671772_756980693.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '15', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Winter Landscape', 'Amazing nature...', '1605563740266_777096302.jpg', 'thumbnail-1605563740266_777096302.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '5');
