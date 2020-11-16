@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import userEndpoints from '../../requests/user-requests';
 import axios from '../../requests/axios';
 import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersonalInfo';
-import EmptyContent from '../../components/Contest/EmptyContent'
+import EmptyContent from '../../components/Contest/EmptyContent';
+import PastContestsGrid from '../../components/Contest/PastContestsGrid';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserPastContestsData } from '../../redux/actions/index';
 
@@ -25,11 +26,12 @@ const AllUserPastContests = (props) => {
         <>
             {   !error ? (
                 <React.Fragment>
-                    {userData && <UserProfilePersonalInfo userData={userData} />}              
+                    { userData && <UserProfilePersonalInfo userData={userData} />}
+                    { userPastContestsData && <PastContestsGrid contestsData={userPastContestsData} />}
                 </React.Fragment>
             ) : (
                     <React.Fragment>
-                        {userData && <UserProfilePersonalInfo userData={userData} />}
+                        { userData && <UserProfilePersonalInfo userData={userData} />}
                         <EmptyContent />
                     </React.Fragment>
                 )}

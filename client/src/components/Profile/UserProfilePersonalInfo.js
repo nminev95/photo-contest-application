@@ -11,9 +11,6 @@ import { faAward } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-    background: {
-        backgroundColor: "#eeeeee",
-    },
     root: {
         zIndex: -1,
         height: '100%',
@@ -71,7 +68,6 @@ const UserProfilePersonalInfo = (props) => {
     const history = useHistory();
 
     return (
-        <div className={classes.background}>
             <div style={{ display: "flex", justifyContent: 'center' }}>
                 <Box className={classes.container} justify="center" >
                     <Grid container spacing={2} justify="center" >
@@ -122,9 +118,7 @@ const UserProfilePersonalInfo = (props) => {
                     </Grid>
                 </Box>
             </div>
-        </div>
     )
-
 }
 
 export default UserProfilePersonalInfo;

@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SingleCurrentContestView = (props) => {
+    
     const { contest } = props;
     const { id } = contest;
     const classes = useStyles();
