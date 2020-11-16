@@ -1,10 +1,9 @@
-import { Button } from '@material-ui/core';
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+import 'react-image-lightbox/style.css';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import RatePhotoPopper from './RatePhotoPopper';
 
 const ViewPhotoFullsize = (props) => {
 
@@ -37,18 +36,21 @@ const ViewPhotoFullsize = (props) => {
   return (
     <div>
       {currentPhoto ? (
+        <>
         <Lightbox
           animationDuration={0}
           mainSrc={`http://localhost:4000/public/${currentPhoto.originalSize}`}
-          toolbarButtons={[<Button variant="contained" color="primary" style={{ outline: 'none' }}>Rate photo</Button>]}
+          toolbarButtons={[<RatePhotoPopper photoId={id}/>]}
           nextSrc={'true'}
           prevSrc={'true'}
+          imagePadding={30}
           onCloseRequest={() => history.push(`/contests/${contestInfo.id}`)}
           onMovePrevRequest={() => renderPreviousPhoto(id)}
           onMoveNextRequest={() => renderNextPhoto(id)}
           imageTitle={`${currentPhoto.title} by ${currentPhoto.username}`}
           imageCaption={`"${currentPhoto.story}" - @${currentPhoto.username} on ${(currentPhoto.date.split('T'))[0]}`}
-        />
+        /><h1>hello</h1>
+        </>
       ) : (null)}
     </div>
   );
