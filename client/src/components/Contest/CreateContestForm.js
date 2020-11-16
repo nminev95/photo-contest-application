@@ -9,6 +9,7 @@ import userEndpoints from "../../requests/user-requests";
 import swal from "sweetalert";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { contestDescriptionError, contestTitleError } from "../../validations/helper-errors";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -33,13 +34,62 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const CreateContestForm = () => {
-    const [title, setTitle] = useState(null)
-    const [description, setDescription] = useState(null)
-    const [file, setFile] = useState(null);
     const [categories, setCategories] = useState([]);
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const styles = useStyles();
     const inputRef = useRef();
+    const [contestForm, setContestForm] = useState({
+        title: {
+            name: 'title',
+            value: '',
+            valid: true,
+            error: contestTitleError,
+            validators: {
+                required: true,
+                minLen: 4,
+                maxLen: 30
+            }
+        },
+        description: {
+            name: 'description',
+            value: '',
+            valid: true,
+            error: contestDescriptionError,
+            validators: {
+                required: true,
+                minLen: 50,
+                maxLen: 250
+            }
+        },
+        firstPhaseLimit: {
+            name: 'firstPhaseSlider',
+            value: 1,
+            valid: true,
+        },
+        secondPhaseLimit: {
+            name: 'secondPhaseSlider',
+            value: 1,
+            valid: true,
+        },
+        restrictions: {
+            name: 'restrictions',
+            value: 'Open',
+            valid: true,
+            validators: {}
+        },
+        limit: {
+            name: 'limit',
+            value: 25,
+            valid: true,
+            validators: {}
+        },
+        category: {
+            name: 'category',
+            value: '',
+            valud: true,
+            validators: {}
+        }
+    })
 
     useEffect(() => {
         axios.get(contestEndpoints.getAllCategories)
@@ -93,26 +143,103 @@ const CreateContestForm = () => {
         },
     ];
 
+    const handleFirstSliderChange = (ev, newValue) => {
+        const copyControl = { ...contestForm.firstPhaseLimit };
+        copyControl.value = newValue;
+        setContestForm({ ...contestForm, firstPhaseLimit: copyControl });
+    }
+
+    const handleSecondSliderChange = (ev, newValue) => {
+        const copyControl = { ...contestForm.secondPhaseLimit };
+        copyControl.value = newValue;
+        setContestForm({ ...contestForm, secondPhaseLimit: copyControl });
+    }
+
+    const handleChange = (ev) => {
+
+        console.log(ev)
+        const { name, value } = ev.target;
+        const copyControl = { ...contestForm[name] };
+        copyControl.value = value;
+        copyControl.valid = true;
+
+        if (copyControl.validators.required) {
+            copyControl.valid = copyControl.valid && copyControl.value.length >= 1;
+        }
+
+        if (copyControl.validators.minLen) {
+            copyControl.valid =
+                copyControl.valid &&
+                copyControl.value.length >= copyControl.validators.minLen;
+        }
+
+        if (copyControl.validators.maxLen) {
+            copyControl.valid =
+                copyControl.valid &&
+                copyControl.value.length <= copyControl.validators.maxLen;
+        }
+
+        if (copyControl.validators.regex) {
+            copyControl.valid =
+                copyControl.valid &&
+                copyControl.validators.regex.test(copyControl.value)
+        }
+
+        setContestForm({ ...contestForm, [name]: copyControl });
+    };
+    console.log(contestForm)
     return (
         <div>
-            <TextField
-                className={styles.inputField}
-                label="Contest title"
-                name="title"
-                variant="outlined"
-                type="text"
-                onChange={(ev) => setTitle(ev.target.value)}
-            />
-            <TextField
-                className={styles.inputField}
-                label="Description"
-                name="description"
-                rows={8}
-                multiline
-                variant="outlined"
-                type="text"
-                onChange={(ev) => setDescription(ev.target.value)}
-            />
+            {contestForm.title.valid ? (
+                <TextField
+                    className={styles.inputField}
+                    label="Contest title"
+                    name="title"
+                    variant="outlined"
+                    type="text"
+                    value={contestForm.title.value}
+                    onChange={handleChange}
+                />
+            ) : (
+                    <TextField
+                        className={styles.inputField}
+                        label="Contest title"
+                        name="title"
+                        variant="outlined"
+                        type="text"
+                        value={contestForm.title.value}
+                        onChange={handleChange}
+                        error
+                        helperText={contestForm.title.error}
+                    />
+                )}
+            {contestForm.description.valid ? (
+                <TextField
+                    className={styles.inputField}
+                    label="Description"
+                    name="description"
+                    rows={8}
+                    multiline
+                    variant="outlined"
+                    type="text"
+                    value={contestForm.description.value}
+                    onChange={handleChange}
+                />
+            ) : (
+                    <TextField
+                        className={styles.inputField}
+                        label="Description"
+                        name="description"
+                        rows={8}
+                        multiline
+                        variant="outlined"
+                        type="text"
+                        value={contestForm.description.value}
+                        onChange={handleChange}
+                        error
+                        helperText={contestForm.description.error}
+                    />
+                )}
             <Typography id="discrete-slider-always" gutterBottom style={{ marginTop: "25px" }}>
                 Select how long your will contest accept photo entries:
             </Typography>
@@ -121,6 +248,9 @@ const CreateContestForm = () => {
                 defaultValue={1}
                 min={1}
                 max={30}
+                value={contestForm.firstPhaseLimit.value}
+                onChange={handleFirstSliderChange}
+                name="firstPhaseSlider"
                 aria-labelledby="discrete-slider-always"
                 step={1}
                 marks={firstPhaseSliderMarks}
@@ -134,6 +264,9 @@ const CreateContestForm = () => {
                 defaultValue={1}
                 min={1}
                 max={24}
+                value={contestForm.secondPhaseLimit.value}
+                onChange={handleSecondSliderChange}
+                name="secondPhaseSlider"
                 aria-labelledby="discrete-slider-always"
                 step={1}
                 marks={secondPhaseSliderMarks}
@@ -142,9 +275,13 @@ const CreateContestForm = () => {
             <Typography style={{ marginTop: '20px' }} id="discrete-slider-always" gutterBottom>
                 Select entry restrictions:
             </Typography>
-            <RadioGroup style={{ justifyContent: "center" }} row aria-label="position" name="position" defaultValue="open" >
+            <RadioGroup style={{ justifyContent: "center" }}
+                row aria-label="position"
+                name="restrictions"
+                value={contestForm.restrictions.value}
+                onChange={handleChange}>
                 <FormControlLabel
-                    value="open"
+                    value="Open"
                     control={<Radio color="primary" />}
                     label="Open"
                     labelPlacement="start"
@@ -159,7 +296,13 @@ const CreateContestForm = () => {
             <Grid container spacing={3} style={{ justifyContent: "center", marginTop: "10px" }}>
                 <Grid item xs={3}>
                     <Form.Label>Participants limit</Form.Label>
-                    <Form.Control as="select" size="sm" custom>
+                    <Form.Control
+                        as="select"
+                        size="sm"
+                        custom
+                        name="limit"
+                        value={contestForm.limit.value}
+                        onChange={handleChange}>
                         <option>25</option>
                         <option>50</option>
                         <option>75</option>
@@ -168,7 +311,13 @@ const CreateContestForm = () => {
                 </Grid>
                 <Grid item xs={3}>
                     <Form.Label>Select contest category</Form.Label>
-                    <Form.Control as="select" size="sm" custom>
+                    <Form.Control
+                        as="select"
+                        size="sm"
+                        custom
+                        name="category"
+                        value={contestForm.category.value}
+                        onChange={handleChange}>
                         {categories && categories.map((category) => <option key={category.type}>{category.type}</option>)}
                     </Form.Control>
                 </Grid>
@@ -184,27 +333,27 @@ const CreateContestForm = () => {
                 getOptionLabel={(user) => user.username}
                 renderOption={(user) => (
                     <>
-                    <Avatar alt={user.username} src={`http://localhost:4000/public/avatars/${user.avatar}`} className={styles.small} />
-                    <span>{user.username}</span>
-                    <span style={{float:"inline-end"}}>{user.rank === 3 ? 
-                    (<><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}} /><StarIcon style={{color:"#ffb300"}}/><StarBorderIcon style={{color:"#ffb300"}}/></>
-                    ) : (
-                    <><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}}/><StarIcon style={{color:"#ffb300"}}/></>
-                    )}</span>
+                        <Avatar alt={user.username} src={`http://localhost:4000/public/avatars/${user.avatar}`} className={styles.small} />
+                        <span>{user.username}</span>
+                        <span style={{ float: "inline-end" }}>{user.rank === 3 ?
+                            (<><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarBorderIcon style={{ color: "#ffb300" }} /></>
+                            ) : (
+                                <><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /></>
+                            )}</span>
                     </>
                 )}
                 renderInput={(params) => (
-                    <TextField {...params} 
-                    variant="outlined" 
-                    label="Contest jury" 
-                    placeholder="Send jury invitations" 
-                    className={styles.inputField} />
+                    <TextField {...params}
+                        variant="outlined"
+                        label="Contest jury"
+                        placeholder="Send jury invitations"
+                        className={styles.inputField} />
                 )}
             />
             <Form style={{ marginTop: '30px' }}>
                 <Form.File
                     className={styles.inputField}
-                    onChange={() => setFile(inputRef.current.files[0])}
+                    // onChange={() => setFile(inputRef.current.files[0])}
                     ref={inputRef}
                     id="custom-file"
                     label="Upload a cover image for your contest"
