@@ -12,7 +12,7 @@ const AllUserPastContests = (props) => {
     // const id = userState.user.sub;
     const userPastContestsData = useSelector(state => state.userPastContestsState);
     const userData = useSelector(state => state.userState);
-    const [error, setError] = useState();
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const AllUserPastContests = (props) => {
         <>
             {   !error ? (
                 <React.Fragment>
-                    {userData && <UserProfilePersonalInfo userData={userData} />}
+                    {userData && <UserProfilePersonalInfo userData={userData} />}              
                 </React.Fragment>
             ) : (
                     <React.Fragment>

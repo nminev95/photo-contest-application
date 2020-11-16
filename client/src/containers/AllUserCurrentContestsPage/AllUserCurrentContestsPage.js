@@ -9,7 +9,7 @@ import { setUserCurrentContestsData } from '../../redux/actions/index';
 const AllCurrentContestsPage = () => {
 
     const userCurrentContestsData = useSelector(state => state.userCurrentContestState);
-    const [error, setError] = useState();
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {

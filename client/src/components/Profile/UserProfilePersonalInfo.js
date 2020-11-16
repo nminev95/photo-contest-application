@@ -13,7 +13,6 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     background: {
         backgroundColor: "#eeeeee",
-        height: "1080px",
     },
     root: {
         zIndex: -1,
@@ -39,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         [theme.breakpoints.up('sm')]: {
-            width: '50%',
+            width: '38%',
             height: '350px',
             backgroundColor: "white",
             borderRadius: "10px",
-            marginTop: '10em',
+            marginTop: '4em',
             boxShadow: '0 1px 3px rgba(0,0,0,0.20), 0 1px 2px rgba(0,0,0,0.24)',
             zIndex: 1,
         },
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "white",
             borderRadius: "10px",
             boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-            marginTop: '10em',
+            marginTop: '4em',
             zIndex: 1,
         },
     },
