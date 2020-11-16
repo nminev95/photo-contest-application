@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import contestsData from '../data/contests-data.js';
 import ERRORS from './../constants/service-errors.js';
 
 /**
@@ -19,7 +20,7 @@ const getContestById = contestsData => {
                 contest: null,
             };
         }
-        
+
         return { error: null, contest: contest };
     };
 };
@@ -122,12 +123,33 @@ const createNewPhotoRecord = contestsData => {
     };
 };
 
+const createPhotoReview = contestsData => {
+    return async (score, comment, isInappropriate, userId, photoId) => {
+        if (isInappropriate === 'true') {
+            score = 0;
+            comment = 'The photo does not really fit this category.';
+            
+            await contestsData.sendPhotoReview(score, comment, 1, userId, photoId);
+        } else {
+            await contestsData.sendPhotoReview(score, comment, 0, userId, photoId);
+        }
+
+        return {
+            review: {
+                score: score || 0,
+                comment: comment,
+            },
+        };
+    };
+};
+
 export default {
     getContestById,
     getAllContests,
     setNextContestPhase,
     createNewPhotoRecord,
     getAllContestCategories,
+    createPhotoReview,
 };
 
 

@@ -87,6 +87,23 @@ contestsController
             } else {
                 res.status(200).send({ path: fileName });
             }
+        })
+    .post('/:id/entries/:id/rate',
+        authMiddleware,
+        async (req, res) => {
+            const photoId = req.params.id;
+            const userId = req.user.id;
+            const score = req.body.score;
+            const comment = req.body.comment;
+            const isInappropriate = req.body.isInappropriate;
+      
+            const { error, review } = await contestsService.createPhotoReview(contestsData)(score, comment, isInappropriate, +userId, +photoId);
+
+            if (error) {
+                res.status(500).send({ message: 'Internal Server Error' });
+            } else {
+                res.status(200).send({ review: review });
+            }
         });
 
 

@@ -101,12 +101,24 @@ const sendNewPhotoInfo = async (title, description, fileName, thumbnailName, use
 */
 const getAllCategories = async () => {
     const sql = `
-    SELECT
-        type
-    FROM
-        contest_categories`;
+        SELECT
+            type
+        FROM
+            contest_categories
+    `;
 
     return await pool.query(sql);
+};
+
+const sendPhotoReview = async (score, comment, isInappropriate, userId, photoId) => {
+    const sql = `
+        INSERT INTO
+            reviews (score, comment, isInappropriate, user_id, photo_id)
+        VALUES 
+            (?, ?, ?, ?, ?)
+    `;
+
+    return await pool.query(sql, [score, comment, isInappropriate, userId, photoId]);
 };
 
 export default {
@@ -115,4 +127,5 @@ export default {
     setNextPhase,
     sendNewPhotoInfo,
     getAllCategories,
+    sendPhotoReview,
 };
