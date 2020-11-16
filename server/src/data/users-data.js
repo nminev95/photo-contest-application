@@ -165,7 +165,8 @@ const getPastContestsByUserId = async (id) => {
             c.id,
             c.title, 
             c.limit, 
-            c.contestCover
+            c.contestCover,
+            c.phase_id
         FROM
             users u
         LEFT JOIN 
