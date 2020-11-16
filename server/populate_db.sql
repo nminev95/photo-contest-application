@@ -422,8 +422,7 @@ VALUES
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
-('Rabbits', "Took this shot at my uncle's farm.", '1605510679462_318933342.jpg', 'thumbnail-1605510679462_318933342.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '4');
-
+('Rabbits', "Took this shot at my uncle's farm.", '1605513950324_259169069.jpg', 'thumbnail-1605513950324_259169069.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '4');
 
 
 
