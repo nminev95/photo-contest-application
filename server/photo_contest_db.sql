@@ -155,7 +155,7 @@ CREATE TABLE `photos` (
   KEY `fk_photos_contests1_idx` (`contest_id`),
   CONSTRAINT `fk_photos_contests1` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_photos_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +200,7 @@ CREATE TABLE `reviews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `score` int(11) NOT NULL,
   `comment` varchar(245) NOT NULL,
-  `isAppropriate` tinyint(4) NOT NULL DEFAULT 1,
+  `isInappropriate` tinyint(4) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL,
   `photo_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -208,7 +208,7 @@ CREATE TABLE `reviews` (
   KEY `fk_reviews_photos1_idx` (`photo_id`),
   CONSTRAINT `fk_reviews_photos1` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,4 +262,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-15  0:28:58
+-- Dump completed on 2020-11-16  2:46:36

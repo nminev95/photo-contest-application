@@ -93,10 +93,10 @@ contestsController
         async (req, res) => {
             const photoId = req.params.id;
             const userId = req.user.id;
-            const score = req.body.score;
-            const comment = req.body.comment;
+            const score = req.body.score || 0;
+            const comment = req.body.comment || 'The photo does not really fit this category.';
             const isInappropriate = req.body.isInappropriate;
-      
+            console.log(isInappropriate);
             const { error, review } = await contestsService.createPhotoReview(contestsData)(score, comment, isInappropriate, +userId, +photoId);
 
             if (error) {

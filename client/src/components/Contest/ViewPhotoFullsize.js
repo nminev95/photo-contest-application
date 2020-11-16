@@ -1,10 +1,9 @@
-import { Button } from '@material-ui/core';
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+import 'react-image-lightbox/style.css';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import RateBookPopper from './RateBookPopper';
+import RatePhotoPopper from './RatePhotoPopper';
 
 const ViewPhotoFullsize = (props) => {
 
@@ -41,7 +40,7 @@ const ViewPhotoFullsize = (props) => {
         <Lightbox
           animationDuration={0}
           mainSrc={`http://localhost:4000/public/${currentPhoto.originalSize}`}
-          toolbarButtons={[<RateBookPopper/>]}
+          toolbarButtons={[<RatePhotoPopper photoId={id}/>]}
           nextSrc={'true'}
           prevSrc={'true'}
           imagePadding={30}

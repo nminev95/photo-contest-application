@@ -2,12 +2,14 @@ import Button from '@material-ui/core/Button';
 import { Box, Checkbox, FormControlLabel, Popper, TextField, Typography } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
-import Rating from '@material-ui/lab/Rating';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import ErrorIcon from '@material-ui/icons/Error';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import axios from '../../requests/axios';
+import { useSelector } from 'react-redux';
+import contestEndpoints from '../../requests/contest-requests';
+import Rating from '@material-ui/lab/rating';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -41,21 +43,36 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RateBookPopper = () => {
+const RatePhotoPopper = ({ photoId }) => {
 
     const styles = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [rating, setRating] = useState(0)
+    const [score, setScore] = useState(0)
     const [comment, setComment] = useState('');
-    const [isEntryInappropriate, setIsEntryInappropriate] = useState(false);
+    const [isInappropriate, setIsInappropriate] = useState(false);
+    const contesInfo = useSelector(state => state.singleContestState);
     const open = Boolean(anchorEl);
     const id = open ? 'transitions-popper' : undefined;
     const handleClick = (event) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     };
 
+    useEffect(() => {
+        setScore(0);
+        setComment('');
+        setIsInappropriate(false);
+    }, [photoId])
+    
+    console.log(isInappropriate)
     const handleSubmit = () => {
-        if (isEntryInappropriate) {
+
+        const review = {
+            score,
+            comment,
+            isInappropriate
+        }
+
+        if (isInappropriate) {
             swal({
                 title: "Are you sure?",
                 text: "Marking this photo as inappropriate for this contest will automatically give the entry a score of zero.",
@@ -65,7 +82,7 @@ const RateBookPopper = () => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axios.post()
+                        axios.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
                             .catch((error) => {
                                 if (error.response) {
                                     swal({
@@ -101,7 +118,7 @@ const RateBookPopper = () => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axios.post()
+                        axios.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
                             .catch((error) => {
                                 if (error.response) {
                                     swal({
@@ -144,15 +161,15 @@ const RateBookPopper = () => {
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
                         <Box boxShadow={2} className={styles.paper}>
-                            <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Please provide a rating you find suitable for this photo's story/quality/creativeness. Available rating values are from 1 (lowest) to 10 (highest).
+                            <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Please provide a score you find suitable for this photo's story/quality/creativeness. Available score values are from 1 (lowest) to 10 (highest).
                                 </Typography>
                             <Rating
                                 name="customized-10"
                                 defaultValue={0}
                                 max={10}
                                 size="large"
-                                value={rating}
-                                onChange={(ev) => setRating(ev.target.value)}
+                                value={score}
+                                onChange={(ev) => setScore(ev.target.value)}
                             /><br></br>
                             <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Leave a comment for the author what you loved about the photo or what he can improve.
                                 </Typography>
@@ -172,8 +189,8 @@ const RateBookPopper = () => {
                                     <Checkbox
                                         icon={<ErrorOutlineIcon size="medium" />}
                                         checkedIcon={<ErrorIcon size="medium" />}
-                                        onChange={(ev) => setIsEntryInappropriate(ev.target.checked)}
-                                        value={isEntryInappropriate}
+                                        onChange={(ev) => setIsInappropriate(ev.target.checked)}
+                                        value={isInappropriate}
                                         name="checkedB"
                                         color="secondary"
                                     />
@@ -200,4 +217,4 @@ const RateBookPopper = () => {
     );
 }
 
-export default RateBookPopper;
+export default RatePhotoPopper;
