@@ -188,8 +188,6 @@ export default {
     createAccount,
     getUserInfo,
     getById,
-    getMessagesById,
-    sendMessage,
     getAllHighLevelUsers,
     getCurrentContestsByUserId,
     getPastContestsByUserId,

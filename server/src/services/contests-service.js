@@ -140,6 +140,14 @@ const createPhotoReview = contestsData => {
     };
 };
 
+const createContest = contestsData => {
+    return async (title, description, firstPhaseLimit, secondPhaseLimit, limit, contestCover, restrictions, category, organizer) => {
+        
+        const newContest = await contestsData.createNewContes(title, description, firstPhaseLimit, secondPhaseLimit, limit, contestCover, restrictions, category, organizer);
+        
+        return { error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
+    };
+};
 export default {
     getContestById,
     getAllContests,

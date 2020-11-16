@@ -24,6 +24,31 @@ contestsController
             }
         },
     )
+    .post('/create',
+        authMiddleware,
+        roleMiddleware(['Organizer']),
+        multer({ storage: storage }).single('image'),
+        async (req, res) => {
+            const organizer = req.user.id;
+            const contestCover = req.file.filename;
+            const { title,
+                    description,
+                    firstPhaseLimit,
+                    secondPhaseLimit,
+                    limit,
+                    restrictions,
+                    category,
+                } = req.body;
+
+            const { error, contest } = await contestsService.createContest(title, description, firstPhaseLimit, secondPhaseLimit, limit, contestCover, restrictions, category, +organizer);
+
+            if (error) {
+                res.status(500).send({ message: 'Internal Server Error' });
+            } else {
+                res.status(200).send(contest);
+            }
+        },
+    )
     .get('/categories',
         // authMiddleware,
         async (req, res) => {
