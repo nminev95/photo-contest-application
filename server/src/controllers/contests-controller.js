@@ -29,18 +29,19 @@ contestsController
         roleMiddleware(['Organizer']),
         multer({ storage: storage }).single('image'),
         async (req, res) => {
+ 
             const organizer = req.user.id;
             const contestCover = req.file.filename;
             const { title,
                     description,
                     firstPhaseLimit,
                     secondPhaseLimit,
-                    limit,
+                    spots,
                     restrictions,
                     category,
                 } = req.body;
-
-            const { error, contest } = await contestsService.createContest(title, description, firstPhaseLimit, secondPhaseLimit, limit, contestCover, restrictions, category, +organizer);
+                
+            const { error, contest } = await contestsService.createContest(contestsData)(title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer);
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error' });

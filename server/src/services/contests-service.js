@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import contestsData from '../data/contests-data.js';
 import ERRORS from './../constants/service-errors.js';
 
 /**
@@ -141,9 +140,9 @@ const createPhotoReview = contestsData => {
 };
 
 const createContest = contestsData => {
-    return async (title, description, firstPhaseLimit, secondPhaseLimit, limit, contestCover, restrictions, category, organizer) => {
+    return async (title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer) => {
         
-        const newContest = await contestsData.createNewContes(title, description, firstPhaseLimit, secondPhaseLimit, limit, contestCover, restrictions, category, organizer);
+        const newContest = await contestsData.createNewContest(title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
         
         return { error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
@@ -155,6 +154,7 @@ export default {
     createNewPhotoRecord,
     getAllContestCategories,
     createPhotoReview,
+    createContest,
 };
 
 

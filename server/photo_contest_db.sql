@@ -95,7 +95,7 @@ CREATE TABLE `contests` (
   `description` varchar(5545) NOT NULL,
   `firstPhaseLimit` datetime NOT NULL,
   `secondPhaseLimit` datetime NOT NULL,
-  `limit` int(11) NOT NULL,
+  `spots` int(11) NOT NULL,
   `contestCover` varchar(245) NOT NULL,
   `restrictions_id` int(11) NOT NULL,
   `phase_id` int(11) NOT NULL DEFAULT 1,
@@ -110,7 +110,7 @@ CREATE TABLE `contests` (
   CONSTRAINT `fk_contests_contest_phases1` FOREIGN KEY (`phase_id`) REFERENCES `contest_phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_contest_restrictions1` FOREIGN KEY (`restrictions_id`) REFERENCES `contest_restrictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_users1` FOREIGN KEY (`organizer_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,4 +262,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-16  2:46:36
+-- Dump completed on 2020-11-17  1:43:25

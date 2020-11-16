@@ -28,14 +28,8 @@ const OpenCreateContestFormButton = () => {
                 <Modal.Body>
                     You have almost organized your contest! You just need to specify the title, the category it belongs to, a description for the contest
                     and set up the contest limitations and restrictions.
-                    <CreateContestForm />
+                    <CreateContestForm handleClose={handleClose}/>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="contained" onClick={handleClose}>
-                        Cancel
-                    </Button>
-                    <Button variant="contained" color="primary">Create contest</Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

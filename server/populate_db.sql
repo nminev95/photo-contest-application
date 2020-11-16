@@ -39,7 +39,7 @@ INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Macro');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
 VALUES ('john_wick33', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'JohnWick@gmail.com', 'John', 'Wick', 'john.jpg', '73', (SELECT NOW()), '2');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
-VALUES ('magic_johnson11', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'MagicJohnson59@gmail.com', 'Earvin', 'Johnson', 'earvin.jpg', '181', (SELECT NOW()), '3');
+VALUES ('magic_johnson11', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'MagicJohnson59@gmail.com', 'Earvin', 'Johnson', 'ervin.jpg', '181', (SELECT NOW()), '3');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
 VALUES ('leeroy_jenkins99', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'LeeroyJenkins@gmail.com', 'Leeroy', 'Jenkins', 'leeroy.jpg', '1033', (SELECT NOW()), '4');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
@@ -81,25 +81,25 @@ VALUES ('igracio_s', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0Q
 
 -- Contests
 INSERT INTO `photo_contest_db`.`contests` 
-(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Pastel colours', 'Welcome to our Abstract Pastel Colours competition. When a fully saturated colour is diluted by white, it becomes a pastel colour. These shades are generally more delicate, so it’s better to photograph them in a softer, diffused light, to avoid making them look washed out. A carefully composed photo that uses pastel colours can have a gentle and unique quality to it. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
 (SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '80', 'pastel-colours-cover.jpg', '1', '1', '1', '1')
 
 INSERT INTO `photo_contest_db`.`contests` 
-(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Portraits', "Welcome to our Portraits competition. Portrait photography is all about the face. A photographer's goal is to take a carefully crafted photograph of a person's distinguishing facial features while capturing the person's attitude, identity, and personality. The photo may include a blurred background and the person's body, but those factors are not emphasized in the image. . During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
 (SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '150', 'portraits-cover.jpg', '1', '1', '8', '1')
 
 INSERT INTO `photo_contest_db`.`contests` 
-(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Food', 'Welcome to our Food competition. How many times have you heard: "You eat with your eyes first"? Food contains all of the elements of design that can make a striking image. Color, texture, pattern, line, shape, and form are all there, yet the key ingredient is to capture the image in a way that makes the viewer want. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
 (SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', 'food-cover.jpg', '1', '1', '5', '1')
 
 INSERT INTO `photo_contest_db`.`contests` 
-(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Animals', 'Welcome to our Animals competition. If you are out in the wild, photographing animals, then you are shooting wildlife photography. It involves documenting the creatures, in and out of their habitats. One of the most importain features is the backlighting. It refers to the positioning of light behind your subject, such that your subject is located between you and the source of light. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.',
 (SELECT NOW() + INTERVAL 16 DAY), (SELECT NOW() + INTERVAL 21 HOUR), '150', 'animals-cover.jpg', '1', '1', '2', '1')

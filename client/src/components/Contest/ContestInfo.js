@@ -64,7 +64,7 @@ const ContestInfo = () => {
                                 <br></br>
                                 {contestInfo.entries && contestInfo.entries.length} photographers entered
                                 <br></br>
-                                {contestInfo.entries && +contestInfo.limit - contestInfo.entries.length} free places left
+                                {contestInfo.entries && +contestInfo.spots - contestInfo.entries.length} free places left
                             </div>
                             <div style={{ margin: '20px' }}>
                                 <CountdownTimer contestData={contestInfo} />

@@ -1,6 +1,6 @@
-import { Avatar, FormControlLabel, Grid, Paper, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
+import { Avatar, Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Form from 'react-bootstrap/Form'
 import axios from "../../requests/axios";
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -10,6 +10,7 @@ import swal from "sweetalert";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { contestDescriptionError, contestTitleError } from "../../validations/helper-errors";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -33,11 +34,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const CreateContestForm = () => {
+const CreateContestForm = ({ handleClose }) => {
     const [categories, setCategories] = useState([]);
     const [highLevelUsers, setHighLevelUsers] = useState([]);
+    const [contestCover, setContestCover] = useState('');
     const styles = useStyles();
     const inputRef = useRef();
+    const history = useHistory();
     const [contestForm, setContestForm] = useState({
         title: {
             name: 'title',
@@ -62,12 +65,12 @@ const CreateContestForm = () => {
             }
         },
         firstPhaseLimit: {
-            name: 'firstPhaseSlider',
+            name: 'firstPhaseLimit',
             value: 1,
             valid: true,
         },
         secondPhaseLimit: {
-            name: 'secondPhaseSlider',
+            name: 'secondPhaseLimit',
             value: 1,
             valid: true,
         },
@@ -77,18 +80,18 @@ const CreateContestForm = () => {
             valid: true,
             validators: {}
         },
-        limit: {
-            name: 'limit',
+        spots: {
+            name: 'spots',
             value: 25,
             valid: true,
             validators: {}
         },
         category: {
             name: 'category',
-            value: '',
-            valud: true,
+            value: 'Abstract',
+            valid: true,
             validators: {}
-        }
+        },
     })
 
     useEffect(() => {
@@ -121,7 +124,8 @@ const CreateContestForm = () => {
             .then((response) => setHighLevelUsers(response.data))
     }, [])
 
-    const firstPhaseSliderMarks = [
+
+    const firstPhaseLimitMarks = [
         {
             value: 1,
             label: '1 day',
@@ -132,7 +136,7 @@ const CreateContestForm = () => {
         },
     ];
 
-    const secondPhaseSliderMarks = [
+    const secondPhaseLimitMarks = [
         {
             value: 1,
             label: '1 hour',
@@ -187,7 +191,65 @@ const CreateContestForm = () => {
 
         setContestForm({ ...contestForm, [name]: copyControl });
     };
-    console.log(contestForm)
+
+    const handleSubmit = (ev) => {
+
+        if (!contestForm.title.valid || !contestForm.description.valid || !contestCover) {
+            return;
+        }
+
+        // const formData = new FormData();
+        // formData.set('image', file);
+        // formData.set('title', photoData.title.value);
+        // formData.set('description', photoData.description.value);
+        // const formData = new FormData();
+        // contestForm.map((entry) => formData.set(entry.name, entry.value))
+        // console.log(formData)
+        const contestData = Object.values(contestForm).reduce((data, input) => {
+            data.set(input.name, input.value);
+            return data
+            // { ...data, [input.name]: input.value };
+        }, new FormData());
+        contestData.set('image', contestCover);
+          
+        swal({
+            title: "Are you sure?",
+            text: "Once created, your contest cannot be changed anymore. ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.post(contestEndpoints.createContest, contestData)
+                        .catch((error) => {
+                            if (error.response) {
+                                swal({
+                                    title: "Oops!",
+                                    text: "Something went wrong! Please try again.",
+                                    icon: "error",
+                                    button: "Okay"
+                                })
+                            }
+                        })
+                        .then((response) => {
+                            if (response) {
+                                swal({
+                                    title: "Success!",
+                                    text: "Your contest was successfully created.",
+                                    icon: "success",
+                                    button: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+                        .then(() => {
+                            handleClose()
+                        })
+                }
+            })
+    }
+
     return (
         <div>
             {contestForm.title.valid ? (
@@ -250,10 +312,10 @@ const CreateContestForm = () => {
                 max={30}
                 value={contestForm.firstPhaseLimit.value}
                 onChange={handleFirstSliderChange}
-                name="firstPhaseSlider"
+                name="firstPhaseLimit"
                 aria-labelledby="discrete-slider-always"
                 step={1}
-                marks={firstPhaseSliderMarks}
+                marks={firstPhaseLimitMarks}
                 valueLabelDisplay="on"
             />
             <Typography id="discrete-slider-always" gutterBottom>
@@ -266,10 +328,10 @@ const CreateContestForm = () => {
                 max={24}
                 value={contestForm.secondPhaseLimit.value}
                 onChange={handleSecondSliderChange}
-                name="secondPhaseSlider"
+                name="secondPhaseLimit"
                 aria-labelledby="discrete-slider-always"
                 step={1}
-                marks={secondPhaseSliderMarks}
+                marks={secondPhaseLimitMarks}
                 valueLabelDisplay="on"
             />
             <Typography style={{ marginTop: '20px' }} id="discrete-slider-always" gutterBottom>
@@ -300,8 +362,8 @@ const CreateContestForm = () => {
                         as="select"
                         size="sm"
                         custom
-                        name="limit"
-                        value={contestForm.limit.value}
+                        name="spots"
+                        value={contestForm.spots.value}
                         onChange={handleChange}>
                         <option>25</option>
                         <option>50</option>
@@ -350,16 +412,22 @@ const CreateContestForm = () => {
                         className={styles.inputField} />
                 )}
             />
-            <Form style={{ marginTop: '30px' }}>
+            <Form style={{ marginTop: '30px', marginBottom: "30px" }}>
                 <Form.File
                     className={styles.inputField}
-                    // onChange={() => setFile(inputRef.current.files[0])}
+                    onChange={() => setContestCover(inputRef.current.files[0])}
                     ref={inputRef}
                     id="custom-file"
                     label="Upload a cover image for your contest"
                     custom
                 />
             </Form>
+            <div style={{ float: 'right' }}>
+                <Button variant="contained" color="primary" style={{ outline: 'none' }} onClick={handleSubmit}>Create contest</Button>
+                <Button variant="contained" onClick={handleClose} style={{ outline: 'none', marginLeft: "15px" }}>
+                    Cancel
+            </Button>
+            </div>
         </div>
     )
 }

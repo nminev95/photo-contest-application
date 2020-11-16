@@ -128,7 +128,7 @@ const getCurrentContestsByUserId = async (id) => {
             c.firstPhaseLimit,
             c.secondPhaseLimit,
             c.description,
-            c.limit, 
+            c.spots, 
             c.contestCover,
             c.phase_id
         FROM
@@ -164,7 +164,7 @@ const getPastContestsByUserId = async (id) => {
             u.points,
             c.id,
             c.title, 
-            c.limit, 
+            c.spots, 
             c.contestCover,
             c.phase_id
         FROM
