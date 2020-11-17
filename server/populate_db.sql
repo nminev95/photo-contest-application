@@ -110,6 +110,12 @@ VALUES
 ('Landscapes', 'Landscape photography is the art of capturing pictures of nature and the outdoors in a way that brings your viewer into the scene. From grand landscapes to intimate details, the best photos demonstrate the photographer’s own connection to nature and capture the essence of the world around them. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
 (SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 15 HOUR), '120', 'landscapes-cover.jpg', '1', '1', '6', '1');
 
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+VALUES
+('Pastel colours', 'Welcome to our Flowers competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '120', 'pastel-colours-cover.jpg', '1', '1', '7', '1');
+
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`
@@ -511,3 +517,64 @@ INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
 ('Winter Landscape', 'Amazing nature...', '1605563740266_777096302.jpg', 'thumbnail-1605563740266_777096302.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '16', '5');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pink Carnation Flowers', '', '1605624459509_737047039.jpg', 'thumbnail-1605624459509_737047039.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Chrysanthemum', '', '1605624533895_577123297.jpg', 'thumbnail-1605624533895_577123297.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pink Tulip Flowers Plantation', '', '1605624595314_962483094.jpg', 'thumbnail-1605624595314_962483094.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pink Magnolia Branch', '', '1605624802818_812724439.jpg', 'thumbnail-1605624802818_812724439.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('A Red Rose', '', '1605629812760_228727386.jpg', 'thumbnail-1605629812760_228727386.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '5', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Yellow Chinese Rose', '', '1605629890805_233402349.jpg', 'thumbnail-1605629890805_233402349.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '6', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Cherry Blossom', '', '1605630004004_916693318.jpg', 'thumbnail-1605630004004_916693318.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '7', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Chamomile', '', '1605630142867_170715162.jpg', 'thumbnail-1605630142867_170715162.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '8', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('White Calla', '', '1605630275000_340609423.jpg', 'thumbnail-1605630275000_340609423.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '9', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Lily', '', '1605630449738_953895625.jpg', 'thumbnail-1605630449738_953895625.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '6');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Water Lily', '', '1605630519515_393267677.jpg', 'thumbnail-1605630519515_393267677.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '11', '6');
+
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Purple Tulips', '', '1605631148870_864587810.jpg', 'thumbnail-1605631148870_864587810.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '6');
