@@ -114,7 +114,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Pastel colours', 'Welcome to our Flowers competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '120', 'pastel-colours-cover.jpg', '1', '1', '7', '1');
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '120', 'flowers-cover.jpg', '1', '1', '7', '1');
 
 
 -- Photos
