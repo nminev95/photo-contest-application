@@ -118,7 +118,7 @@ const OpenEntryFormButton = (props) => {
             if (willDelete) {
                 axios.post(contestEndpoints.addNewPhoto + `${id}`, formData)
                     .catch((error) => {
-                        if (error.response) {
+                        if (error.response.error) {
                             swal({
                                 title: "Oops!",
                                 text: "Something went wrong! Please try again.",

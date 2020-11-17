@@ -49,7 +49,7 @@ const EmptyContent = () => {
     const classes = useStyles();
 
     return (
-        <div  style={{ display: "flex", justifyContent: 'center', position: "relative", backgroundColor: "#eeeeee" }}>
+        <div  style={{ display: "flex", justifyContent: 'center', position: "relative" }}>
             <Box className={classes.container} justify="center" >
                 <Container maxWidth="md">
                     <div style={{ display: "flex", justifyContent: 'center', marginTop: "70px"}}>

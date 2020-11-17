@@ -11,13 +11,15 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: 320,
+    card: {
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        width: theme.spacing(58),
-        height: theme.spacing(28),
-        marginLeft: theme.spacing(2),
+        '&:hover': {
+            opacity: '1',
+            transform: 'scale(1.1)',
+            cursor: 'pointer'
+        }
     },
     media: {
         height: 230,
@@ -54,7 +56,7 @@ const SingleCurrentContestView = (props) => {
 
     return (
         <Grid item xs={12} sm={3}   >
-            <Card className={classes.root} >
+            <Card className={classes.card} >
                 <CardActionArea>
                     <CardMedia
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}

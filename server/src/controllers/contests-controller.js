@@ -106,7 +106,7 @@ contestsController
                 .jpeg({ quality: 90 })
                 .toFile(`images/entries/thumbnails/${thumbnailName}`);
 
-            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, thumbnailName, user_id, id, date);
+            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, thumbnailName, +user_id, +id, date);
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error' });
