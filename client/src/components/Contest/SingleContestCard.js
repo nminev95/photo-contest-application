@@ -26,6 +26,15 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         marginTop: theme.spacing(0),
+        fontFamily: '"Segoe UI"',
+        fontSize: '12px',
+        fontWeight: '1px',
+    },
+    text: {
+        color: 'black',
+        fontSize: '20px',
+        fontFamily: '"Segoe UI"',
+        fontWeight: '500',
     },
 }));
 

@@ -8,7 +8,6 @@ const AllContestsBox = (props) => {
 
     const { contestsData } = props;
    
-
     return (      
         <Container style={{marginTop:'70px'}}>
             <Grid container  spacing={4} >
