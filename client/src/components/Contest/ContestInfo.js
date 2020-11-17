@@ -5,7 +5,7 @@ import CountdownTimer from './CountdownTimer';
 import ProgressStepper from './ProgressStepper';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import OpenEntryFormButton from './ContestEntryFormModal';
+import UploadPhoto from '../../containers/UploadPhoto/UploadPhoto';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -70,7 +70,7 @@ const ContestInfo = () => {
                                 <CountdownTimer contestData={contestInfo} />
                             </div>
                             <div style={{ paddingBottom: '20px' }}>
-                                <OpenEntryFormButton />
+                                <UploadPhoto />
                             </div>
                         </Paper>
                     </Grid>
