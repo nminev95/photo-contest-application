@@ -105,7 +105,7 @@ VALUES
 (SELECT NOW() + INTERVAL 16 DAY), (SELECT NOW() + INTERVAL 21 HOUR), '150', 'animals-cover.jpg', '1', '1', '2', '1');
 
 INSERT INTO `photo_contest_db`.`contests` 
-(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `limit`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
 VALUES
 ('Landscapes', 'Landscape photography is the art of capturing pictures of nature and the outdoors in a way that brings your viewer into the scene. From grand landscapes to intimate details, the best photos demonstrate the photographer’s own connection to nature and capture the essence of the world around them. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
 (SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 15 HOUR), '120', 'landscapes-cover.jpg', '1', '1', '6', '1');
