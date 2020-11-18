@@ -59,6 +59,8 @@ const ContestPhotosGrid = () => {
 
     return (
         <div className={styles.container}>
+            <div style={{paddingBottom: "100px"}}>
+
             {contestInfo.entries && contestInfo.entries.map(entry => {
                 return (
                     <div key={entry.id} className={styles.imageDiv}>
@@ -67,12 +69,13 @@ const ContestPhotosGrid = () => {
                                 className={styles.image}
                                 alt={entry.title}
                                 src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
-                            />
+                                />
                         </Link>
                     </div>
                 )
             }
             )}
+            </div>
         </div>
     )
 }

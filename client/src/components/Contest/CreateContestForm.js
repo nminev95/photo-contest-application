@@ -1,6 +1,6 @@
-import { Avatar, Button, FormControlLabel, Grid, Paper, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
+import { Avatar, Button, FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Form from 'react-bootstrap/Form'
 import axios from "../../requests/axios";
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -10,7 +10,6 @@ import swal from "sweetalert";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { contestDescriptionError, contestTitleError } from "../../validations/helper-errors";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -40,7 +39,6 @@ const CreateContestForm = ({ handleClose }) => {
     const [contestCover, setContestCover] = useState('');
     const styles = useStyles();
     const inputRef = useRef();
-    const history = useHistory();
     const [contestForm, setContestForm] = useState({
         title: {
             name: 'title',
@@ -198,17 +196,9 @@ const CreateContestForm = ({ handleClose }) => {
             return;
         }
 
-        // const formData = new FormData();
-        // formData.set('image', file);
-        // formData.set('title', photoData.title.value);
-        // formData.set('description', photoData.description.value);
-        // const formData = new FormData();
-        // contestForm.map((entry) => formData.set(entry.name, entry.value))
-        // console.log(formData)
         const contestData = Object.values(contestForm).reduce((data, input) => {
             data.set(input.name, input.value);
             return data
-            // { ...data, [input.name]: input.value };
         }, new FormData());
         contestData.set('image', contestCover);
           
