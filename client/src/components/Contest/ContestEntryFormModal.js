@@ -7,8 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Form from 'react-bootstrap/Form';
 import { withRouter } from 'react-router-dom';
 import swal from '@sweetalert/with-react';
-import axios from '../../requests/axios';
-import contestEndpoints from '../../requests/contest-requests';
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -29,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OpenEntryFormButton = (props) => {
 
+    const { upload } = props;
     const { id } = props.match.params;
     const [show, setShow] = useState(false);
     const [file, setFile] = useState(null);
@@ -114,34 +113,13 @@ const OpenEntryFormButton = (props) => {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                axios.post(contestEndpoints.addNewPhoto + `${id}`, formData)
-                    .catch((error) => {
-                        if (error.response) {
-                            swal({
-                                title: "Oops!",
-                                text: "Something went wrong! Please try again.",
-                                icon: "error",
-                                button: "Okay"
-                            })
-                        }
-                    })
-                    .then((response) => {
-                        if (response) {
-                            handleClose();
-                            swal({
-                                title: "Success!",
-                                text: "Your photo has been uploaded successfully!",
-                                icon: "success",
-                                buttons: false,
-                                timer: 1500,
-                            })
-                        }
-                    })
+        }).then((isTrue) => {
+            if (isTrue) {
+                upload(formData, id);
+                handleClose();
             }
         })
-    }
+    };
 
     const renderEnterContestButton = () => {
         switch (true) {
@@ -254,7 +232,7 @@ const OpenEntryFormButton = (props) => {
                         Submit entry
                     </Button>
                     <Button
-                        style={{ outline: 'none', marginLeft:"15px" }}
+                        style={{ outline: 'none', marginLeft: "15px" }}
                         variant="contained"
                         color="secondary"
                         onClick={handleClose}
@@ -265,6 +243,6 @@ const OpenEntryFormButton = (props) => {
             </Modal>
         </>
     );
-}
+};
 
 export default withRouter(OpenEntryFormButton);

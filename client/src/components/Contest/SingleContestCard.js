@@ -11,13 +11,10 @@ import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: 320,
+    card: {
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        width: theme.spacing(56),
-        height: theme.spacing(34),
-        marginLeft: theme.spacing(2),
         '&:hover': {
             opacity: '1',
             transform: 'scale(1.1)',
@@ -27,15 +24,17 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: 180,
     },
-    text: {
-        height: 8,
-    },
-    category: {
-        height: 13,
-
-    },
     button: {
         marginTop: theme.spacing(0),
+        fontFamily: '"Segoe UI"',
+        fontSize: '12px',
+        fontWeight: '1px',
+    },
+    text: {
+        color: 'black',
+        fontSize: '20px',
+        fontFamily: '"Segoe UI"',
+        fontWeight: '500',
     },
 }));
 
@@ -46,13 +45,13 @@ const SingleContestCard = (props) => {
     const history = useHistory();
 
     return (
-        <Grid item xs={12} sm={3}   >
-            <Card className={classes.root} >
+        <Grid item xs={12} sm={6} md={4} >
+            <Card className={classes.card} >
                 <CardActionArea>
                     <CardMedia
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
-                        onClick={() => history.push(`/contests/${id}`)}/>
+                        onClick={() => history.push(`/contests/${id}`)} />
                     <CardContent>
                         <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
@@ -71,9 +70,7 @@ const SingleContestCard = (props) => {
                 </CardActions>
             </Card>
         </Grid>
-
     );
-
 };
 
 export default SingleContestCard;

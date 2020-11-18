@@ -1,7 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import SingleContestCard from './SingleContestCard';
 import Grid from '@material-ui/core/Grid';
+import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -12,16 +14,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AllContestsBox = (props) => {
-
-    const { contestsData } = props;
+    
     const classes = useStyles();
-
-    return (
-        <React.Fragment>
-            <Grid container spacing={4} className={classes.cardGrid} maxWidth="xlg">          
+    const { contestsData } = props;
+   
+    return (      
+        <Container style={{marginTop:'70px'}}>
+            <Grid container  spacing={4} className={classes.cardGrid} maxWidth="md" >
                 {contestsData.map((contest) => <SingleContestCard contest={contest} key={contest.id} />)}
             </Grid>
-        </React.Fragment>
+        </Container>
     )
 }
 
