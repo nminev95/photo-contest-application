@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        transition: '0.5s all ease-in-out',
         '&:hover': {
             opacity: '1',
             transform: 'scale(1.1)',
