@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import CountdownTimer from './CountdownTimer';
+import CountdownTimerComponent from './CountdownTimerComponent';
 import { useHistory } from 'react-router-dom';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 
@@ -63,7 +63,7 @@ const SingleCurrentContestView = (props) => {
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}>
-                        <GridListTileBar actionIcon={<CountdownTimer contestData={contest} />} title={contest.title} classes={{
+                        <GridListTileBar actionIcon={<CountdownTimerComponent contestData={contest} />} title={contest.title} classes={{
                             root: classes.counterBar,
                             title: classes.text,
                             actionIcon: classes.timer,

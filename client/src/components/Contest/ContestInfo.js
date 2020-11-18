@@ -1,7 +1,7 @@
 import { Divider, Grid, Paper } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import CountdownTimer from './CountdownTimer';
+import CountdownTimerComponent from './CountdownTimerComponent';
 import ProgressStepper from './ProgressStepper';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -67,7 +67,7 @@ const ContestInfo = () => {
                                 {contestInfo.entries && +contestInfo.spots - contestInfo.entries.length} free places left
                             </div>
                             <div style={{ margin: '20px' }}>
-                                <CountdownTimer contestData={contestInfo} />
+                                <CountdownTimerComponent contestData={contestInfo} />
                             </div>
                             <div style={{ paddingBottom: '20px' }}>
                                 <UploadPhoto />
