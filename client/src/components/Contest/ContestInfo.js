@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         },
     }
 }))
-
+//entries === spots
 const ContestInfo = () => {
 
     const contestInfo = useSelector(state => state.singleContestState);

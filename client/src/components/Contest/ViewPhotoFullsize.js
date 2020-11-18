@@ -16,7 +16,7 @@ const ViewPhotoFullsize = (props) => {
   useEffect(() => {
     entries && setCurrentPhoto(entries.find((entry) => +(entry.id) === +(id)));
   }, [id])
-
+  
   const renderNextPhoto = (id) => {
     if ((+id + 1) > entries.length) {
       history.push(`/contests/${contestInfo.id}/entries/1`)
