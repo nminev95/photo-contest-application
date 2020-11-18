@@ -116,6 +116,12 @@ VALUES
 ('Flowers', 'Welcome to our Flowers competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
 (SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '120', 'flowers-cover.jpg', '1', '1', '7', '1');
 
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `description`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `category_id`, `organizer_id`)
+VALUES
+('Black & White', "Welcome to Black & White Contest. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
+(SELECT NOW() + INTERVAL 15 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '120', 'black-and-white-cover.jpg', '1', '1', '3', '1');
+
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`
@@ -604,3 +610,68 @@ INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
 ('Purple Tulips', 'Took this shot in The Netherlands', '1605631148870_864587810.jpg', 'thumbnail-1605631148870_864587810.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '6');
+
+-- Black and White photos
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pure Love', 'My lovely grandparents.', '1605713279531_760738472.jpg', 'thumbnail-1605713279531_760738472.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('New York', 'Took this shot last year in New York.', '1605713332312_003489156.jpg', 'thumbnail-1605713332312_003489156.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Art Building', 'Took this shot last year in Manhattan.', '1605713362198_559871055.jpg', 'thumbnail-1605713362198_559871055.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Camera', "My grandfather's first camera.", '1605716744236_881389546.jpg', 'thumbnail-1605716744236_881389546.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+("Daddy's Love", 'My best friend and his newborn baby.', '1605716786793_908865992.jpg', 'thumbnail-1605716786793_908865992.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '5', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Girl Power', 'My strong sister. I like taking photos of her.', '1605716827720_657665208.jpg', 'thumbnail-1605716827720_657665208.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '6', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('True Love', "Took this photo when my best friend's boyfriend proposed to her.", '1605716859127_445626983.jpg', 'thumbnail-1605716859127_445626983.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '7', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('To The Top', 'In love with this photo.', '1605716907125_774324923.jpg', 'thumbnail-1605716907125_774324923.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '8', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Brooklyn Bridge', 'Took this photo the last day before my coming home from USA.', '1605716974032_072757204.jpg', 'thumbnail-1605716974032_072757204.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '9', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Time Flies', 'Took this photo the last day before my coming home from Switzerland.', '1605717007359_567196051.jpg', 'thumbnail-1605717007359_567196051.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('NYC Bird Eye View', 'Took this photo from Rockefeller Center rooftop.', '1605717085295_358623731.jpg', 'thumbnail-1605717085295_358623731.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '11', '7');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Endless', 'Took this photo the last day before my coming home from Varna.', '1605717132918_296702201.jpg', 'thumbnail-1605717132918_296702201.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '7');
+
+
+
+
