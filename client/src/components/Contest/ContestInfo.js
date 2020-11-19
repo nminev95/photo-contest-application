@@ -55,7 +55,7 @@ const ContestInfo = () => {
                     <Grid item xs={8}>
                         <Paper elevation={3}
                             className={styles.mainGrid}
-                            style={{ margin: '10px' }}><p style={{ margin: '10px', paddingTop: "15px", paddingBottom: "15px" }}>{contestInfo.description}</p></Paper>
+                            style={{ margin: '10px' }}><p style={{ margin: '10px', paddingTop: "15px", paddingBottom: "15px" }}>{contestInfo.category}</p></Paper>
                     </Grid>
                     <Grid item className={styles.extraGrid} xs={4}>
                         <Paper style={{ textAlign: "-webkit-center", maxWidth: "100%", paddingTop: "20px" }}>

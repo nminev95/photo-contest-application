@@ -105,7 +105,7 @@ const sendPhotoReview = async (score, comment, isInappropriate, userId, photoId)
     return await pool.query(sql, [score, comment, isInappropriate, userId, photoId]);
 };
 
-const createNewContest = async (title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id) => {
+const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id) => {
     const sql = `
         INSERT INTO 
             contests (title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id)
@@ -113,7 +113,7 @@ const createNewContest = async (title, description, firstPhaseLimit, secondPhase
             (? ,? , (SELECT NOW() + INTERVAL ? DAY), (SELECT NOW() + INTERVAL ? HOUR), ?, ?, (SELECT id from contest_restrictions WHERE type = ?), ?, ?)
     `;
 
-    return await pool.query(sql, [title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id]);
+    return await pool.query(sql, [title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id]);
 };
 
 export default {
