@@ -1,5 +1,5 @@
 import express from 'express';
-import createToken from '../auth/create-token.js';
+import { createAccessToken, createRefreshToken } from '../auth/create-token.js';
 import * as ERRORS from '../constants/service-errors.js';
 import usersData from '../data/users-data.js';
 import usersService from '../services/users-service.js';
@@ -42,10 +42,12 @@ usersController
                     username: user.username,
                     role: user.role,
                 };
-                const token = createToken(payload);
-
+                const accessToken = createAccessToken(payload);
+                const refreshToken = createRefreshToken(payload);
+                
                 res.status(200).send({
-                    token: token,
+                    accessToken: accessToken,
+                    refreshToken: refreshToken,
                 });
             }
         },

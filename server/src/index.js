@@ -7,6 +7,7 @@ import jwtStrategy from './auth/strategy.js';
 import usersController from './controllers/users-controller.js';
 import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
+import authController from './controllers/auth-controller.js';
 
 const require = createRequire(import.meta.url);
 const app = express();
@@ -20,7 +21,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/users', usersController);
 app.use('/contests', contestsController);
-
+app.use('/auth', authController);
 app.use('/public', express.static('images'));
 
 app.all('*', (req, res) =>

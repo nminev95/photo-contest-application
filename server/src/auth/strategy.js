@@ -1,8 +1,8 @@
 import passportJwt from 'passport-jwt';
-import { PRIVATE_KEY } from '../constants/config.js';
+import { ACCESS_TOKEN_SECRET_KEY } from '../constants/config.js';
 
 const options = {
-    secretOrKey: PRIVATE_KEY,
+    secretOrKey: ACCESS_TOKEN_SECRET_KEY,
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
