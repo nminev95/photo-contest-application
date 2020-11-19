@@ -82,7 +82,6 @@ contestsController
             const { id } = req.params;
             const user_id = req.user.id;
             const title = req.body.title;
-            const description = req.body.description;
             const fileName = req.file.filename;
             const thumbnailName = `thumbnail-${req.file.filename}`;
             const date = new Date();
@@ -93,7 +92,7 @@ contestsController
                 .jpeg({ quality: 90 })
                 .toFile(`images/entries/thumbnails/${thumbnailName}`);
 
-            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, thumbnailName, +user_id, +id, date);
+            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title,fileName, thumbnailName, +user_id, +id, date);
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error' });

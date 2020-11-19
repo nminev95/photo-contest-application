@@ -102,7 +102,7 @@ const createNewPhotoRecord = contestsData => {
 
 const createPhotoReview = contestsData => {
     return async (score, comment, isInappropriate, userId, photoId) => {
-        if (isInappropriate === 'true' || isInappropriate === true) {           
+        if (isInappropriate === 'true' || isInappropriate === true) {
             await contestsData.sendPhotoReview(0, 'The photo does not really fit this category.', 1, userId, photoId);
         } else {
             await contestsData.sendPhotoReview(score, comment, 0, userId, photoId);
@@ -118,10 +118,10 @@ const createPhotoReview = contestsData => {
 };
 
 const createContest = contestsData => {
-    return async (title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer) => {
-        
-        const newContest = await contestsData.createNewContest(title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
-        
+    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer) => {
+
+        const newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
+
         return { error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
 };
