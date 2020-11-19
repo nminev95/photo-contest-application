@@ -1,9 +1,8 @@
 
-import React, { useContext } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { AuthContext } from '../../context/AuthContext';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useSelector } from 'react-redux';
 
 const Copyright = () => {
     return (
@@ -22,24 +21,30 @@ const Copyright = () => {
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        backgroundColor: "grey",
-        color: "white",
+        backgroundColor: "black",
         padding: theme.spacing(6),
     },
+    text: {
+        color: 'white',
+    }
 }));
 
 const Footer = () => {
 
-    const { isLoggedIn } = useContext(AuthContext);
+    const userState = useSelector(state => state.loginState);
     const classes = useStyles();
- 
+
     return (
         <>
-            { !isLoggedIn ? 
-                (<footer className={classes.footer}>
+            { !userState.isLogged ? (
+                <footer className={classes.footer}>
+                    <div className={classes.text}>
                     <Copyright />
-                </footer> ) :            
-            null
+                    </div>
+                </footer>
+            ) : (
+                null
+                )
             }
         </>
     )

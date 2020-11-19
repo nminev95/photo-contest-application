@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
 import ViewPhotoFullsize from './components/Contest/ViewPhotoFullsize';
 import ModalSwitch from './components/Contest/ModalSwitch';
+import Footer from './components/Footer/Footer'
 // const socket = io.connect(BASE_URL);
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
   if (token) {
     dispatch(login(decode(token)));
   }
-  
+
   // const location = useLocation();
   // const background = location.state && location.state.background;
   // if (token) {
@@ -50,7 +51,7 @@ const App = () => {
             <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
             <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
             <GuardedRoute exact path="/users/past-contests" auth={isLoggedIn} component={AllUserPastContests} redirectRoute={'/'} />
-            <GuardedRoute path={"/contests/:id"} component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />           
+            <GuardedRoute path="/contests/:id" component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />           
           </Switch>
         </Router>
     </div>
