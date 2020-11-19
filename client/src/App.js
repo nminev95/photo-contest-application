@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
 import ViewPhotoFullsize from './components/Contest/ViewPhotoFullsize';
 import ModalSwitch from './components/Contest/ModalSwitch';
+import Footer from './components/Footer/Footer'
 // const socket = io.connect(BASE_URL);
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
   if (token) {
     dispatch(login(decode(token)));
   }
-  
+
   // const location = useLocation();
   // const background = location.state && location.state.background;
   // if (token) {
@@ -40,22 +41,22 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-          <Navbar />
-          <Switch >
-            <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} /> 
-            <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
-            <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
-            <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/users/past-contests" auth={isLoggedIn} component={AllUserPastContests} redirectRoute={'/'} />
-            <ModalSwitch/>
-            {/* <GuardedRoute exact path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
+        <Navbar />
+        <Switch >
+          <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} />
+          <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
+          <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
+          <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/users/past-contests" auth={isLoggedIn} component={AllUserPastContests} redirectRoute={'/'} />
+          <ModalSwitch />
+          {/* <GuardedRoute exact path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
 
-          </Switch>
-            {/* <GuardedRoute exact path="/contests/:id/entries/:id" auth={isLoggedIn} component={ViewPhotoFullsize} redirectRoute={'/'} /> */}
-
+        </Switch>
+        {/* <GuardedRoute exact path="/contests/:id/entries/:id" auth={isLoggedIn} component={ViewPhotoFullsize} redirectRoute={'/'} /> */}
+        <Footer />
       </Router>
     </div>
   );

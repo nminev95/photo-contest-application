@@ -1,6 +1,16 @@
+import React from 'react';
+import ImageBox from '../../components/LandingPageComponents/ImageBox';
+import TopRatedImagesGrid from '../../components/LandingPageComponents/TopRatedImagesGrid';
+import LandingPageTextBox from '../../components/LandingPageComponents/LandingPageTextBox';
+
+
 const LandingPage = () => {
     return (
-        <h1> You are not logged in.</h1>
+        <>
+            <ImageBox />
+            <TopRatedImagesGrid />
+            <LandingPageTextBox />
+        </>
     )
 }
 
