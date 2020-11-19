@@ -123,7 +123,6 @@ const getUserCurrentContests = usersData => {
     return async (id) => {
         
         const contests = await usersData.getCurrentContestsByUserId(id);
-        
         if (!contests.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
