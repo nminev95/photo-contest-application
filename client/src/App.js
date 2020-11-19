@@ -50,13 +50,9 @@ const App = () => {
             <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
             <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
             <GuardedRoute exact path="/users/past-contests" auth={isLoggedIn} component={AllUserPastContests} redirectRoute={'/'} />
-            <ModalSwitch/>
-            {/* <GuardedRoute exact path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} /> */}
-
+            <GuardedRoute path={"/contests/:id"} component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />           
           </Switch>
-            {/* <GuardedRoute exact path="/contests/:id/entries/:id" auth={isLoggedIn} component={ViewPhotoFullsize} redirectRoute={'/'} /> */}
-
-      </Router>
+        </Router>
     </div>
   );
 }

@@ -47,7 +47,7 @@ const CountdownTimerComponent = ({ contestData }) => {
             })
             .then((response) => dispatch(setContestDetails(response.data)))
     }
-    console.log(location)
+
     const renderCountdown = (phase) => {
         switch (true) {
             case phase === 1 && location.pathname.includes('users'):

@@ -4,7 +4,7 @@ import ContestInfo from '../../components/Contest/ContestInfo';
 import axios from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 import swal from 'sweetalert';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setContestDetails } from '../../redux/actions/index'
 import ContestPhotosGrid from '../../components/Contest/ContestPhotosGrid';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,6 @@ const SingleContestPage = () => {
     
     const { id } = useParams()
     const dispatch = useDispatch();
-    const contestState = useSelector(state => state.singleContestState);
 
     useEffect(() => {
         axios.get(`${contestEndpoints.singleContest}${id}`)
@@ -34,7 +33,7 @@ const SingleContestPage = () => {
         <>
             <ContestBackgroundImageBox />
             <ContestInfo />
-            <ContestPhotosGrid entries={contestState.entries}/>
+            <ContestPhotosGrid />
         </>
     )
 }

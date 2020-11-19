@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ViewPhotoFullsize from "./ViewPhotoFullsize";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -56,25 +58,37 @@ const ContestPhotosGrid = () => {
 
     const contestInfo = useSelector(state => state.singleContestState);
     const styles = useStyles();
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentPhoto, setCurrentPhoto] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handleOpen = (entry, index) => {
+        setCurrentPhoto(entry);
+        setCurrentIndex(index);
+        setIsOpen(prevState => !prevState);
+    }
+
+    const handleClose = () => {
+        setIsOpen(prevState => !prevState);
+    }
 
     return (
         <div className={styles.container}>
-            <div style={{paddingBottom: "100px"}}>
-
-            {contestInfo.entries && contestInfo.entries.map(entry => {
-                return (
-                    <div key={entry.id} className={styles.imageDiv}>
-                        <Link to={`${contestInfo.id}/entries/${entry.id}`}>
+            <div style={{ paddingBottom: "100px" }}>
+                {contestInfo.entries && contestInfo.entries.map((entry, index) => {
+                    return (
+                        <div key={entry.id} className={styles.imageDiv}>
                             <img
                                 className={styles.image}
                                 alt={entry.title}
                                 src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
-                                />
-                        </Link>
-                    </div>
-                )
-            }
-            )}
+                                onClick={() => handleOpen(entry, index)}
+                            />
+                        </div>
+                    )
+                }
+                )}
+                <ViewPhotoFullsize setCurrentIndex={setCurrentIndex} setCurrentPhoto={setCurrentPhoto} isOpen={isOpen} handleClose={handleClose} currentPhoto={currentPhoto} currentIndex={currentIndex}/>
             </div>
         </div>
     )
