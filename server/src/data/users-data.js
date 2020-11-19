@@ -127,7 +127,6 @@ const getCurrentContestsByUserId = async (id) => {
             c.title, 
             c.firstPhaseLimit,
             c.secondPhaseLimit,
-            c.description,
             c.spots, 
             c.contestCover,
             c.phase_id
