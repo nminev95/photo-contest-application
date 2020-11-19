@@ -9,7 +9,7 @@ import userEndpoints from "../../requests/user-requests";
 import swal from "sweetalert";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { contestDescriptionError, contestTitleError } from "../../validations/helper-errors";
+import { contestCategoryError, contestTitleError } from "../../validations/helper-errors";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const CreateContestForm = ({ handleClose }) => {
-    const [categories, setCategories] = useState([]);
+
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState('');
     const styles = useStyles();
@@ -51,15 +51,15 @@ const CreateContestForm = ({ handleClose }) => {
                 maxLen: 30
             }
         },
-        description: {
-            name: 'description',
+        category: {
+            name: 'category',
             value: '',
             valid: true,
-            error: contestDescriptionError,
+            error: contestCategoryError,
             validators: {
                 required: true,
-                minLen: 50,
-                maxLen: 250
+                minLen: 6,
+                maxLen: 100
             }
         },
         firstPhaseLimit: {
@@ -84,28 +84,7 @@ const CreateContestForm = ({ handleClose }) => {
             valid: true,
             validators: {}
         },
-        category: {
-            name: 'category',
-            value: 'Abstract',
-            valid: true,
-            validators: {}
-        },
     })
-
-    useEffect(() => {
-        axios.get(contestEndpoints.getAllCategories)
-            .catch((error) => {
-                if (error.response.status > 300) {
-                    swal({
-                        title: "Oops!",
-                        text: "Something went wrong.",
-                        icon: "error",
-                        button: "Go back"
-                    })
-                }
-            })
-            .then((response) => setCategories(response.data))
-    }, [])
 
     useEffect(() => {
         axios.get(userEndpoints.getHighLevelUsers)
@@ -159,7 +138,6 @@ const CreateContestForm = ({ handleClose }) => {
 
     const handleChange = (ev) => {
 
-        console.log(ev)
         const { name, value } = ev.target;
         const copyControl = { ...contestForm[name] };
         copyControl.value = value;
@@ -265,31 +243,31 @@ const CreateContestForm = ({ handleClose }) => {
                         helperText={contestForm.title.error}
                     />
                 )}
-            {contestForm.description.valid ? (
+            {contestForm.category.valid ? (
                 <TextField
                     className={styles.inputField}
-                    label="Description"
-                    name="description"
-                    rows={8}
+                    label="Category"
+                    name="category"
+                    rows={2}
                     multiline
                     variant="outlined"
                     type="text"
-                    value={contestForm.description.value}
+                    value={contestForm.category.value}
                     onChange={handleChange}
                 />
             ) : (
                     <TextField
                         className={styles.inputField}
-                        label="Description"
-                        name="description"
-                        rows={8}
+                        label="Category"
+                        name="category"
+                        rows={2}
                         multiline
                         variant="outlined"
                         type="text"
-                        value={contestForm.description.value}
+                        value={contestForm.category.value}
                         onChange={handleChange}
                         error
-                        helperText={contestForm.description.error}
+                        helperText={contestForm.category.error}
                     />
                 )}
             <Typography id="discrete-slider-always" gutterBottom style={{ marginTop: "25px" }}>
@@ -359,18 +337,6 @@ const CreateContestForm = ({ handleClose }) => {
                         <option>50</option>
                         <option>75</option>
                         <option>100</option>
-                    </Form.Control>
-                </Grid>
-                <Grid item xs={3}>
-                    <Form.Label>Select contest category</Form.Label>
-                    <Form.Control
-                        as="select"
-                        size="sm"
-                        custom
-                        name="category"
-                        value={contestForm.category.value}
-                        onChange={handleChange}>
-                        {categories && categories.map((category) => <option key={category.type}>{category.type}</option>)}
                     </Form.Control>
                 </Grid>
             </Grid>

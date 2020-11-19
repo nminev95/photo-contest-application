@@ -47,28 +47,6 @@ const getAllContests = contestsData => {
 };
 
 /**
-* Gets all contest categories information.
-* @param module contests data SQL queries module.
-* @callback 
-* @async
-* @return {Promise<object>}
-*/
-const getAllContestCategories = contestsData => {
-    return async () => {
-        const categories = await contestsData.getAllCategories();
-
-        if (!categories) {
-            return {
-                error: ERRORS.RECORD_NOT_FOUND,
-                categories: null,
-            };
-        }
-
-        return { error: null, categories: categories };
-    };
-};
-
-/**
 * Sets the next contest phase.
 * @param module contests data SQL queries module.
 * @callback 
@@ -152,7 +130,6 @@ export default {
     getAllContests,
     setNextContestPhase,
     createNewPhotoRecord,
-    getAllContestCategories,
     createPhotoReview,
     createContest,
 };
