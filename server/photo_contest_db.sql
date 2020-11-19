@@ -18,18 +18,6 @@ CREATE SCHEMA IF NOT EXISTS `photo_contest_db` DEFAULT CHARACTER SET latin1 ;
 USE `photo_contest_db` ;
 
 -- -----------------------------------------------------
--- Table `photo_contest_db`.`contest_categories`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `photo_contest_db`.`contest_categories` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 11
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `photo_contest_db`.`contest_phases`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `photo_contest_db`.`contest_phases` (
@@ -121,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `photo_contest_db`.`contests` (
   `secondPhaseLimit` DATETIME NOT NULL,
   `spots` INT(11) NOT NULL,
   `contestCover` VARCHAR(245) NOT NULL,
-  `category` VARCHAR(345) NOT NULL,
+  `category` VARCHAR(700) NOT NULL,
   `restrictions_id` INT(11) NOT NULL,
   `phase_id` INT(11) NOT NULL DEFAULT 1,
   `organizer_id` INT(11) NOT NULL,

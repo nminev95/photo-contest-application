@@ -3,7 +3,6 @@ ALTER table ranks auto_increment = 1;
 ALTER table roles auto_increment = 1;
 ALTER table contest_phases auto_increment = 1;
 ALTER table contests auto_increment = 1;
-ALTER table contest_categories auto_increment = 1;
 ALTER table photos auto_increment = 1;
 ALTER table messages auto_increment = 1;
 ALTER table reviews auto_increment = 1;
@@ -23,17 +22,6 @@ INSERT INTO `photo_contest_db`.`contest_phases` (`type`) VALUES ('Finished');
 
 INSERT INTO `photo_contest_db`.`contest_restrictions` (`type`) VALUES ('Open');
 INSERT INTO `photo_contest_db`.`contest_restrictions` (`type`) VALUES ('Invitational');
-
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Abstract');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Animals');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Black and White');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Fashion');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Food');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Landscapes');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Nature');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Portraits');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Products/Commercial');
-INSERT INTO `photo_contest_db`.`contest_categories` (`type`) VALUES ('Macro');
 
 -- Users
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
@@ -83,7 +71,7 @@ VALUES ('igracio_s', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0Q
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
-('Pastel colours', 'Welcome to our Abstract Pastel Colours competition. When a fully saturated colour is diluted by white, it becomes a pastel colour. These shades are generally more delicate, so it’s better to photograph them in a softer, diffused light, to avoid making them look washed out. A carefully composed photo that uses pastel colours can have a gentle and unique quality to it. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
+('Pastel colours', 'Welcome to our Abstract Pastel Colours competition. When a fully saturated colour is diluted by white, it becomes a pastel colour. These shades are generally more delicate, so it’s better to photograph them in a softer, diffused light, to avoid making them look washed out. A carefully composed photo that uses pastel colours can have a gentle and unique quality to it. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
 (SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '80', 'pastel-colours-cover.jpg', '1', '1', '1');
 
 INSERT INTO `photo_contest_db`.`contests` 
@@ -125,8 +113,8 @@ VALUES
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
-('Black & White', "Welcome to Black & White Contest. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
-(SELECT NOW() + INTERVAL 15 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '120', 'black-and-white-cover.jpg', '1', '1', '1');
+('Arhitecture',"Welcome to Arhitecture Contest. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
+(SELECT NOW() + INTERVAL 15 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '120', 'arhitecture-cover.jpg', '1', '1', '1');
 
 
 -- Photos
