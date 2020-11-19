@@ -13,7 +13,7 @@ import SmallTimer from './SmallTimer';
 const useStyles = makeStyles((theme) => ({
     timer: {
         borderRadius: '10px',
-        background: '#f50057',
+        // background: '#f50057',
         color: 'white'
     },
     integers: {

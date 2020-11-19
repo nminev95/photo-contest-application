@@ -9,11 +9,11 @@ const useStyles = makeStyles((theme) => ({
         color: 'white'
     },
     integers: {
-        fontSize: '30px',
-        lineHeight: 'normal'
+        fontSize: '22px',
+        lineHeight: 'normal',
     },
     text: {
-        fontSize: '12px'
+        fontSize: '12px',
     }
 }))
 
@@ -22,6 +22,7 @@ const FullsizeTimer = ({ endDate, setNextPhase }) => {
     const styles = useStyles();
 
     return (
+        <div className={styles.timer}>
         < Countdown
             date={endDate}
             renderer={props => (
@@ -56,6 +57,7 @@ const FullsizeTimer = ({ endDate, setNextPhase }) => {
                 setNextPhase()
             }}>
         </Countdown>
+        </div>
     )
 }
 
