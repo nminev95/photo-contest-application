@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch} from 'react-router-dom';
 import './App.css';
 import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
@@ -40,7 +40,7 @@ const App = () => {
       <Router>
           <Navbar />
           <Switch >
-            <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} /> 
+            <GuardedRoute exact path="/ " auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} /> 
             <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
             <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />

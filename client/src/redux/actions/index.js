@@ -32,15 +32,24 @@ export const setUserData = (userInfo) => {
         payload: userInfo
     };
 }
+
 export const setUserCurrentContestsData = (userCurrentContestInfo) => {
     return {
         type: 'SET_USER_CURRENT_CONTESTS_DATA',
         payload: userCurrentContestInfo
     };
 }
+
 export const setUserPastContestsData = (userPastContestsInfo) => {
     return {
         type: 'SET_USER_PAST_CONTESTS_DATA',
         payload: userPastContestsInfo
+    };
+}
+
+export const setTopRatedPhotosData = (allTopRatedPhotosInfo) => {
+    return {
+        type: 'SET_ALL_TOP_RATED_PHOTOS_DATA',
+        payload: allTopRatedPhotosInfo
     };
 }

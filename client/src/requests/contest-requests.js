@@ -4,7 +4,8 @@ const contestEndpoints = {
     addNewPhoto: '/contests/',
     getAllCategories: '/contests/categories',
     contestEntry: '/entries/',
-    createContest: '/contests/create'
+    createContest: '/contests/create',
+    topRatedPhotos: '/contests/photos',
 }
 
 export default contestEndpoints;

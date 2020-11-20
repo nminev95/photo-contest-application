@@ -727,6 +727,51 @@ VALUES
 ('Empire State Building', 'We couldn’t put together a list of world-famous buildings without including this grand Art Deco skyscraper. ', '1605811463026_838669045.jpg', 'thumbnail-1605811463026_838669045.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '8');
 
 
+-- Reviews
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('5', 'Amazing photo!', '1', '1');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('9', 'Amazing photo!', '2', '1');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('5', 'Very nice photo!', '3', '1');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('6', 'Very nice photo!', '2', '17');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('7', 'Very nice photo!', '3', '17');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('6', 'Very nice photo!', '1', '37');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('8', 'Amazing!', '2', '37');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('8', 'Amazing!', '3', '56');
+
+INSERT INTO `photo_contest_db`.`reviews`
+(`score`, `comment`, `user_id`, `photo_id`)
+VALUES
+('7', 'Amazing!', '3', '90');
 
 
 
