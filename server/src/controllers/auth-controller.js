@@ -7,6 +7,8 @@ import usersService from '../services/users-service.js';
 import { createUserSchema } from '../validations/schemas/create-user-schema.js';
 import { createValidator } from '../validations/validator-middleware.js';
 import * as ERRORS from '../constants/service-errors.js';
+import { client } from '../index.js';
+import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
 
 const authController = express.Router();
 
@@ -45,7 +47,7 @@ authController
                 };
                 const accessToken = createAccessToken(payload);
                 const refreshToken = createRefreshToken(payload);
-
+                client.setex(user.id, 604800, refreshToken);   //expires in 7 days
                 res.status(200).send({
                     accessToken: accessToken,
                     refreshToken: refreshToken,
@@ -54,19 +56,24 @@ authController
         },
     )
     .post('/token',
+        authMiddleware,
+        roleMiddleware(['Organizer', 'Photo Junkie']),
         async (req, res) => {
-            const refreshToken = req.body.refreshToken;
+            const user = req.user.id;
+            client.get(user, (err, refreshToken) => {
 
-            if (!refreshToken) {
-                res.status(401).json({ message: 'No token found!' });
-            }
-            jwt.verify(refreshToken, REFRESH_TOKEN_SECRET_KEY, (err, user) => {
-
-                if (err) {
-                    res.status(403).json({ message: 'Invalid token!' });
+                if (!refreshToken) {
+                    res.status(401).json({ message: 'No token found!' });
                 }
-                const accessToken = createAccessToken({ sub: user.sub, username: user.username, role: user.role });
-                res.status(200).json(accessToken);
+                
+                jwt.verify(refreshToken, REFRESH_TOKEN_SECRET_KEY, (err, user) => {
+
+                    if (err) {
+                        res.status(403).json({ message: 'Invalid token!' });
+                    }
+                    const accessToken = createAccessToken({ sub: user.sub, username: user.username, role: user.role });
+                    res.status(200).json(accessToken);
+                });
             });
         },
     );
