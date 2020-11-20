@@ -21,6 +21,8 @@ const LandingPage = () => {
     }, [dispatch]);
   
     const photosData = allPhotosData.slice(0,3);
+    console.log(error)
+    console.log(photosData)
 
     return (      
         <>

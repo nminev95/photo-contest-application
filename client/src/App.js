@@ -40,7 +40,7 @@ const App = () => {
       <Router>
           <Navbar />
           <Switch >
-            <GuardedRoute exact path="/ " auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} /> 
+            <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage}  redirectRoute={'/home'} /> 
             <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
             <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
             <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
