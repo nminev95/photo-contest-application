@@ -31,7 +31,6 @@ const CountdownTimerComponent = ({ contestData }) => {
     const firstPhaseEndDate = new Date(contestData.firstPhaseLimit);
     const secondPhaseEndDate = new Date(contestData.secondPhaseLimit);
     const thirdPhaseEndDate = new Date();
-    const Completionist = () => <span>Finished</span>;
     const styles = useStyles();
     const setNextContestPhase = () => {
         axios.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestData.id}`)

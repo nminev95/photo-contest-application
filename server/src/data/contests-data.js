@@ -116,6 +116,45 @@ const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots,
     return await pool.query(sql, [title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id]);
 };
 
+const getTopRatedPhotos = async () => {
+    const sql = `
+        SELECT  
+            contest_id,
+            title,
+            photo_id,
+            thumbnailSize,
+            MAX(score) AS scores
+        FROM     
+            (SELECT contest_id,
+                title,
+                photo_id,
+                thumbnailSize,
+                SUM(score) AS score
+            FROM            
+                (SELECT 
+                    c.id AS contest_id,
+                    c.title,
+                    ph.id AS photo_id,
+                    ph.thumbnailSize,    
+                    r.score
+                FROM 
+                    contests c
+                JOIN
+                    photos ph
+                ON
+                    c.id = ph.contest_id
+                LEFT JOIN   
+                    reviews r
+                ON 
+                    ph.id = r.photo_id) AS info
+                GROUP BY info.photo_id ) AS i
+            GROUP BY i.contest_id
+        ORDER BY scores DESC
+    `;
+
+    return await pool.query(sql);
+};
+
 export default {
     getAllContestsInfo,
     getContestInfo,
@@ -123,4 +162,5 @@ export default {
     sendNewPhotoInfo,
     sendPhotoReview,
     createNewContest,
+    getTopRatedPhotos,
 };

@@ -6,7 +6,7 @@ import RatePhotoPopper from './RatePhotoPopper';
 const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, currentPhoto, isOpen, currentIndex }) => {
 
   const contestEntries = useSelector(state => state.singleContestState.entries);
-  
+
   const renderNextPhoto = (contestEntries, index) => {
     if (index === contestEntries.length - 1) {
       setCurrentPhoto(contestEntries[0]);
@@ -26,7 +26,7 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
       setCurrentIndex(index - 1);
     }
   }
- 
+
   return (
     <div>
       <>
@@ -44,7 +44,9 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
             imageTitle={`${currentPhoto.title} by ${currentPhoto.username}`}
             imageCaption={`"${currentPhoto.story}" - @${currentPhoto.username} on ${(currentPhoto.date.split('T'))[0]}`}
           />
-        ) : (null)}
+        ) : (
+            null
+          )}
       </>
     </div>
   );

@@ -52,12 +52,12 @@ const TopRtaedImagesGrid = () => {
     return (
         <div>
             <Container style={{ marginTop: '50px' }} >
-                <Box borderTop={4} borderBottom={4}>
+                <Box borderTop={3} borderBottom={3}>
                     <Typography className={classes.text} >
                         WINNING PHOTOS
                 </Typography>
-                    <Grid container spacing={5} className={classes.cardGrid} maxWidth="sm">
-                        <Grid item xs={12} sm={3}   >
+                    <Grid container spacing={5} className={classes.cardGrid} maxWidth="md" >
+                        <Grid item xs={12} sm={6} md={4} lg={3}  >
                             <img
                                 className={classes.image}
                                 alt={"hello"}

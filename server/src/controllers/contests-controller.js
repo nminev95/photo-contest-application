@@ -24,6 +24,18 @@ contestsController
             }
         },
     )
+    .get('/photos',
+    async (req, res) => {
+
+        const { photos, error } = await contestsService.getAllContestsTopRatedPhotos(contestsData)();
+
+        if (error === ERRORS.RECORD_NOT_FOUND) {
+            res.status(404).send({ message: 'No photos found!' });
+        } else {
+            res.status(200).send(photos);
+        }
+    },
+)
     .post('/create',
         authMiddleware,
         roleMiddleware(['Organizer']),
@@ -51,7 +63,7 @@ contestsController
         },
     )
     .get('/:id',
-        // authMiddleware,
+        authMiddleware,
         async (req, res) => {
             const { id } = req.params;
             const { contest, error } = await contestsService.getContestById(contestsData)(+id);

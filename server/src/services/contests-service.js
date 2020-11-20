@@ -125,6 +125,29 @@ const createContest = contestsData => {
         return { error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
 };
+
+/**
+* Gets all contests information.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getAllContestsTopRatedPhotos = contestsData => {
+    return async () => {
+        const photos = await contestsData.getTopRatedPhotos();
+
+        if (!photos) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                photos: null,
+            };
+        }
+
+        return { error: null, photos: photos };
+    };
+};
+
 export default {
     getContestById,
     getAllContests,
@@ -132,6 +155,7 @@ export default {
     createNewPhotoRecord,
     createPhotoReview,
     createContest,
+    getAllContestsTopRatedPhotos,
 };
 
 
