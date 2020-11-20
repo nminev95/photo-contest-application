@@ -9,11 +9,14 @@ import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
 import authController from './controllers/auth-controller.js';
 
+
 const require = createRequire(import.meta.url);
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+const redis = require('redis');
 
+export const client = redis.createClient(6379);
 io.on('connection', () => console.log('socket!!'));
 
 passport.use(jwtStrategy);
