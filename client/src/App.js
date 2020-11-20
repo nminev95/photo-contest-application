@@ -14,17 +14,14 @@ import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/
 import AllUserPastContests from './containers/AllUserPastContests/AllUserPastContests';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
-import ViewPhotoFullsize from './components/Contest/ViewPhotoFullsize';
-import ModalSwitch from './components/Contest/ModalSwitch';
-import Footer from './components/Footer/Footer'
 // const socket = io.connect(BASE_URL);
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginState.isLogged);
-  const token = localStorage.getItem('token');
-  if (token) {
-    dispatch(login(decode(token)));
+  const accessToken = localStorage.getItem('accessToken');
+  if (accessToken) {
+    dispatch(login(decode(accessToken)));
   }
 
   // const location = useLocation();

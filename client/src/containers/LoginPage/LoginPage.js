@@ -141,8 +141,9 @@ const LoginPage = () => {
                         button: false,
                         timer: 1500
                     }).then(() => {
-                        localStorage.setItem("token", response.data.token);
-                        dispatch(login(decode(response.data.token)));
+                        localStorage.setItem("accessToken", response.data.accessToken);
+                        localStorage.setItem("refreshToken", response.data.refreshToken);
+                        dispatch(login(decode(response.data.accessToken)));
                     });
 
                 }
