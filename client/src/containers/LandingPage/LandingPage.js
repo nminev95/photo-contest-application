@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import contestEndpoints from '../../requests/contest-requests';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTopRatedPhotosData } from '../../redux/actions/index'
 import ImageBox from '../../components/LandingPageComponents/ImageBox';
@@ -15,7 +15,7 @@ const LandingPage = () => {
     const allPhotosData = useSelector(state => state.allTopRatedPhotosState);
 
     useEffect(() => {
-        axios.get(contestEndpoints.topRatedPhotos)
+        axiosInstance.get(contestEndpoints.topRatedPhotos)
             .then((response) => dispatch(setTopRatedPhotosData(response.data)))
             .catch((error) => { setError(error) })
     }, [dispatch]);

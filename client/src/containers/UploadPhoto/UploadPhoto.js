@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "../../requests/axios"
+import axiosInstance from "../../requests/axios"
 import contestEndpoints from "../../requests/contest-requests"
 import swal from '@sweetalert/with-react';
 import ContestEntryFormModal from "../../components/Contest/ContestEntryFormModal";
@@ -9,7 +9,7 @@ import ContestEntryFormModal from "../../components/Contest/ContestEntryFormModa
 const UploadPhoto = () => {
 
     const Upload = (formData, id) => {
-        axios.post(contestEndpoints.addNewPhoto + `${id}`, formData)
+        axiosInstance.post(contestEndpoints.addNewPhoto + `${id}`, formData)
             .catch((error) => {
                 if (error.response.error) {
                     swal({

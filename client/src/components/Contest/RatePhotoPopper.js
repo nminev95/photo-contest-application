@@ -6,7 +6,7 @@ import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import ErrorIcon from '@material-ui/icons/Error';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import { useSelector } from 'react-redux';
 import contestEndpoints from '../../requests/contest-requests';
 import Rating from '@material-ui/lab/rating';
@@ -81,7 +81,7 @@ const RatePhotoPopper = ({ photoId }) => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axios.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
+                        axiosInstance.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
                             .catch((error) => {
                                 if (error.response) {
                                     swal({
@@ -117,7 +117,7 @@ const RatePhotoPopper = ({ photoId }) => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axios.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
+                        axiosInstance.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
                             .catch((error) => {
                                 if (error.response) {
                                     swal({

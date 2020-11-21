@@ -2,7 +2,7 @@ import { Avatar, Button, FormControlLabel, Grid, Radio, RadioGroup, Slider, Text
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useRef, useState } from "react";
 import Form from 'react-bootstrap/Form'
-import axios from "../../requests/axios";
+import axiosInstance from "../../requests/axios";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import contestEndpoints from "../../requests/contest-requests";
 import userEndpoints from "../../requests/user-requests";
@@ -87,7 +87,7 @@ const CreateContestForm = ({ handleClose }) => {
     })
 
     useEffect(() => {
-        axios.get(userEndpoints.getHighLevelUsers)
+        axiosInstance.get(userEndpoints.getHighLevelUsers)
             .catch((error) => {
                 if (error.response.status > 300) {
                     swal({
@@ -189,7 +189,7 @@ const CreateContestForm = ({ handleClose }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.post(contestEndpoints.createContest, contestData)
+                    axiosInstance.post(contestEndpoints.createContest, contestData)
                         .catch((error) => {
                             if (error.response) {
                                 swal({

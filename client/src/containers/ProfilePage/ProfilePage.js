@@ -2,7 +2,7 @@ import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersona
 
 import React, { useEffect } from 'react';
 import userEndpoints from '../../requests/user-requests';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../redux/actions/index'
@@ -14,7 +14,7 @@ const ProfilePage = () => {
     const userData = useSelector(state => state.userState);
 
     useEffect(() => {
-        axios.get(userEndpoints.userProfile)
+        axiosInstance.get(userEndpoints.userProfile)
             .then((response) => dispatch(setUserData(response.data)))
             .catch((error) => {
                 if (error.response.status === 404) {

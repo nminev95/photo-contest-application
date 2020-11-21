@@ -13,7 +13,7 @@ import swal from '@sweetalert/with-react';
 import { useHistory } from 'react-router-dom';
 import { emailError, firstNameError, lastNameError, passwordError, usernameError } from '../../validations/helper-errors';
 import { VALIDATE_EMAIL_REGEX, VALIDATE_PASSWORD_REGEX } from '../../constants/constants';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import userEndpoints from '../../requests/user-requests';
 
 
@@ -180,7 +180,7 @@ const RegisterPage = () => {
             return;
         }
 
-        axios.post(userEndpoints.registerUser, userData)
+        axiosInstance.post(userEndpoints.registerUser, userData)
             .catch((error) => {
                 if (error.response.status === 409) {
                     swal({

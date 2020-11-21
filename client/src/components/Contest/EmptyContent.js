@@ -51,7 +51,7 @@ const EmptyContent = () => {
     return (
         <div  style={{ display: "flex", justifyContent: 'center', position: "relative" }}>
             <Box className={classes.container} justify="center" >
-                <Container maxWidth="md">
+                <Container maxwidth="md">
                     <div style={{ display: "flex", justifyContent: 'center', marginTop: "70px"}}>
                         <Grid container spacing={2} justify="center" >
                             <Grid item>
