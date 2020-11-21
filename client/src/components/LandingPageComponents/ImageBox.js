@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             zIndex: 0,
-            opacity: '0.9',
+            opacity: '1',
             transition: '0.5s all ease-in-out',
         },
         [theme.breakpoints.down('sm')]: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             zIndex: 0,
-            opacity: '0.9',
+            opacity: '1',
             transition: '0.5s all ease-in-out',
         }
     },
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const images = [
     { src: 'http://localhost:4000/public/carousel/photo_camera.jpg' },
-    { src: 'http://localhost:4000/public/carousel/flower.jpg' },
+    { src: 'http://localhost:4000/public/carousel/camera_v2.jpg' },
     { src: 'http://localhost:4000/public/carousel/camera.jpg' },
 
 ]
