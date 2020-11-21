@@ -8,7 +8,7 @@ const ContestBackgroundImageBox = () => {
     const useStyles = makeStyles((theme) => ({
         image: {
             [theme.breakpoints.up('md')]: {
-                height: '400px',
+                height: '500px',
                 width: '100%',
                 backgroundImage: `url(http://localhost:4000/public/contest-covers/${contestInfo.contestCover})`,
                 backgroundSize: "cover",
@@ -17,7 +17,7 @@ const ContestBackgroundImageBox = () => {
                 zIndex: 0
             },
             [theme.breakpoints.down('sm')]: {
-                height: '350px',
+                height: '450px',
                 width: '100%',
                 backgroundImage: `url(http://localhost:4000/public/contest-covers/${contestInfo.contestCover})`,
                 backgroundSize: "cover",

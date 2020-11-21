@@ -11,17 +11,17 @@ const useStyles = makeStyles((theme) => ({
     container: {
         [theme.breakpoints.up('md')]: {
             width: '65%',
-            height: '500px',
+            height: '450px',
             backgroundColor: "white",
             borderRadius: "7px",
-            marginTop: '-3em',
+            marginTop: '-8em',
             boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
             margin: 'auto',
             zIndex: 1,
         },
         [theme.breakpoints.only('xs')]: {
             width: '100%',
-            height: '700px',
+            height: '650px',
             backgroundColor: "white",
             borderRadius: "7px",
             boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',

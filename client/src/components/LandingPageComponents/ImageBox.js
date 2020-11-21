@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const images = [
-    { src: 'http://localhost:4000/public/contest-covers/black-and-white-cover.jpg' },
-    { src: 'http://localhost:4000/public/contest-covers/flowers-cover.jpg' },
-    { src: 'http://localhost:4000/public/contest-covers/arhitecture-cover.jpg' },
+    { src: 'http://localhost:4000/public/carousel/photo_camera.jpg' },
+    { src: 'http://localhost:4000/public/carousel/flower.jpg' },
+    { src: 'http://localhost:4000/public/carousel/camera.jpg' },
 
 ]
 
