@@ -50,23 +50,19 @@ authController
                 client.setex(user.id, 604800, refreshToken);   //expires in 7 days
                 res.status(200).send({
                     accessToken: accessToken,
-                    refreshToken: refreshToken,
                 });
             }
         },
     )
     .post('/token',
-        // authMiddleware,
-        // roleMiddleware(['Organizer', 'Photo Junkie']),
         async (req, res) => {
-            // const user = req.user.id;
             const id = req.body.id;
             client.get(id, (err, refreshToken) => {
 
                 if (!refreshToken) {
                     res.status(401).json({ message: 'No token found!' });
                 }
-                
+
                 jwt.verify(refreshToken, REFRESH_TOKEN_SECRET_KEY, (err, user) => {
 
                     if (err) {
@@ -77,6 +73,18 @@ authController
                 });
             });
         },
-    );
+    )
+    .delete('/logout',
+        authMiddleware,
+        async (req, res) => {
+            const { id } = req.user;
+            client.del(id, (err, response) => {
+                if (+response === 1) {
+                    res.status(200).json({ message: 'Token removed successfuly!' });
+                } else {
+                    res.status(500).json({ message: 'Internal server error!' });
+                }
+            });
+        });
 
 export default authController;

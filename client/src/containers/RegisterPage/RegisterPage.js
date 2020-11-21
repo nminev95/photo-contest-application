@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 import { emailError, firstNameError, lastNameError, passwordError, usernameError } from '../../validations/helper-errors';
 import { VALIDATE_EMAIL_REGEX, VALIDATE_PASSWORD_REGEX } from '../../constants/constants';
 import axiosInstance from '../../requests/axios';
-import userEndpoints from '../../requests/user-requests';
+import authEndpoints from '../../requests/auth-requests';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -180,7 +180,7 @@ const RegisterPage = () => {
             return;
         }
 
-        axiosInstance.post(userEndpoints.registerUser, userData)
+        axiosInstance.post(authEndpoints.registerUser, userData)
             .catch((error) => {
                 if (error.response.status === 409) {
                     swal({

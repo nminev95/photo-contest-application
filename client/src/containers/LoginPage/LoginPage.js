@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import swal from '@sweetalert/with-react';
 import { passwordRequired, usernameRequired } from '../../validations/helper-errors';
 import axiosInstance from '../../requests/axios';
-import userEndpoints from '../../requests/user-requests';
+import authEndpoints from '../../requests/auth-requests';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions'
@@ -121,7 +121,7 @@ const LoginPage = () => {
             return { ...data, [input.name]: input.value };
         }, {});
 
-        axiosInstance.post(userEndpoints.loginUser, userData)
+        axiosInstance.post(authEndpoints.loginUser, userData)
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({
@@ -142,7 +142,6 @@ const LoginPage = () => {
                         timer: 1500
                     }).then(() => {
                         localStorage.setItem("accessToken", response.data.accessToken);
-                        localStorage.setItem("refreshToken", response.data.refreshToken);
                         dispatch(login(decode(response.data.accessToken)));
                     });
 
