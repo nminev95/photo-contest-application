@@ -116,6 +116,12 @@ VALUES
 ('Arhitecture',"Welcome to Arhitecture Contest. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
 (SELECT NOW() + INTERVAL 15 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '120', 'arhitecture-cover.jpg', '1', '1', '1');
 
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Cars', "Welcome to our Cars competition. Taking photos of cars is many people's passion. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. This competition has a limit of 150 participants.",
+(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '150', 'cars-cover.jpg', '1', '1', '1');
+
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`
@@ -605,6 +611,7 @@ INSERT INTO `photo_contest_db`.`photos`
 VALUES
 ('Purple Tulips', 'Took this shot in The Netherlands', '1605631148870_864587810.jpg', 'thumbnail-1605631148870_864587810.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '14', '6');
 
+
 -- Black and White photos
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
@@ -666,6 +673,8 @@ INSERT INTO `photo_contest_db`.`photos`
 VALUES
 ('Endless', 'Took this photo the last day before my coming home from Varna.', '1605717132918_296702201.jpg', 'thumbnail-1605717132918_296702201.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '7');
 
+
+-- Arhitecture
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
@@ -725,6 +734,69 @@ INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
 ('Empire State Building', 'We couldn’t put together a list of world-famous buildings without including this grand Art Deco skyscraper. ', '1605811463026_838669045.jpg', 'thumbnail-1605811463026_838669045.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '8');
+
+
+-- Cars
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Lamborghini', 'Took this shot in USA last summer.', '1605971924957_985714027.jpg', 'thumbnail-1605971924957_985714027.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('BMW', 'My favorite car.', '1605972366694_573872307.jpg', 'thumbnail-1605972366694_573872307.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Audi', "My best friend's new car.", '1605972403655_997854836.jpg', 'thumbnail-1605972403655_997854836.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Audi', 'My favorite car.', '1605972462057_334665980.jpg', 'thumbnail-1605972462057_334665980.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('BMW', 'Took this shot in Sofia last week.', '1605972729863_320418523.jpg', 'thumbnail-1605972729863_320418523.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '5', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Mercedes', "My sister's car", '1605972786656_141648078.jpg', 'thumbnail-1605972786656_141648078.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '6', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Ford Raptor',  'Took this shot in Nantucket last summer.', '1605972864379_968672572.jpg', 'thumbnail-1605972864379_968672572.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '7', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Honda', 'Amazing colors.', '1605972925696_934426767.jpg', 'thumbnail-1605972925696_934426767.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '8', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Ferrari', 'Just an amazing sport car.', '1605973046760_416103736.jpg', 'thumbnail-1605973046760_416103736.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '9', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Jaguar',  'Amazing car!', '1605973081490_061133216.jpg', 'thumbnail-1605973081490_061133216.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '10', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('BMW', "Took this shot last year.", '1605973125903_690657351.jpg', 'thumbnail-1605973125903_690657351.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '11', '9');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Mercedes', 'Amazing car!', '1605973163643_021843391.jpg', 'thumbnail-1605973163643_021843391.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '9');
+
 
 
 -- Reviews
