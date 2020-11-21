@@ -20,7 +20,25 @@ const getContestById = contestsData => {
             };
         }
 
-        return { error: null, contest: contest };
+        let currentPhase = 1;
+
+        if (contest.firstPhaseLimit < new Date() && contest.secondPhaseLimit > new Date()) {
+            await contestsData.setNextPhase(id, 1);
+            currentPhase = 2;
+        }
+
+        if (contest.secondPhaseLimit < new Date()) {
+            await contestsData.setNextPhase(id, 2);
+            currentPhase = 3;
+        }
+
+        return {
+            error: null, contest:
+            {
+                ...contest,
+                phase_id: currentPhase,
+            },
+        };
     };
 };
 
@@ -65,7 +83,7 @@ const setNextContestPhase = contestsData => {
             };
         }
         const currentPhase = contest.phase_id;
-        const nextPhase = await contestsData.setNextPhase(id, +currentPhase);
+        await contestsData.setNextPhase(id, +currentPhase);
 
         return {
             error: null,

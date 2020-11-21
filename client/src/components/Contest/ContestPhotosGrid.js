@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import ViewPhotoFullsize from "./ViewPhotoFullsize";
+import ViewPhotoFullsize from "../Photos/ViewPhotoFullsize";
 
 const useStyles = makeStyles((theme) => ({
     container: {

@@ -8,7 +8,7 @@ import { createUserSchema } from '../validations/schemas/create-user-schema.js';
 import { createValidator } from '../validations/validator-middleware.js';
 import * as ERRORS from '../constants/service-errors.js';
 import { client } from '../index.js';
-import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
+import { authMiddleware } from '../auth/auth-middleware.js';
 
 const authController = express.Router();
 
