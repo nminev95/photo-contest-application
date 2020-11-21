@@ -99,14 +99,7 @@ const UserProfilePersonalInfo = (props) => {
                                     <Grid item>
                                         <Button
                                             variant="contained"
-                                            style={{ backgroundColor: "green" }} >
-                                            Awards
-                                    </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button
-                                            variant="contained"
-                                            style={{ backgroundColor: "green" }}
+                                            color="secondary"
                                             onClick={() => history.push(`/users/past-contests`)}>
                                             Contest history
                                     </Button>

@@ -13,22 +13,29 @@ const LandingPage = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
     const allPhotosData = useSelector(state => state.allTopRatedPhotosState);
-    
+
     useEffect(() => {
         axios.get(contestEndpoints.topRatedPhotos)
-        .catch((error) => { setError(error)})
-        .then((response) => dispatch (setTopRatedPhotosData(response.data)))
+            .then((response) => dispatch(setTopRatedPhotosData(response.data)))
+            .catch((error) => { setError(error) })
     }, [dispatch]);
-  
-    const photosData = allPhotosData.slice(0,3);
-    console.log(error)
-    console.log(photosData)
 
-    return (      
+    const photosData = allPhotosData.slice(0, 4);
+
+    return (
         <>
-            <ImageBox />
-            <TopRatedImagesGrid photosData={photosData}/>
-            <LandingPageTextBox />
+            {!error ? (
+                <>
+                    <ImageBox />
+                    <TopRatedImagesGrid photosData={photosData} />
+                    <LandingPageTextBox />
+                </>
+            ) : (
+                    <>
+                        <ImageBox />
+                        <LandingPageTextBox />
+                    </>
+                )}
         </>
     )
 }
