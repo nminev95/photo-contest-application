@@ -71,7 +71,7 @@ const UserProfilePersonalInfo = (props) => {
             <div style={{ display: "flex", justifyContent: 'center' }}>
                 <Box className={classes.container} justify="center" >
                     <Grid container spacing={2} justify="center" >
-                        <Container maxWidth="md">
+                        <Container maxwidth="md">
                             <Typography className={classes.Name} component="h6" variant="h4" align="center" color="textPrimary" gutterBottom style={{ marginTop: "75px" }}>
                                 {userData.firstName} {userData.lastName}
                             </Typography>

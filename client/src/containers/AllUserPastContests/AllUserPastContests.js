@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import userEndpoints from '../../requests/user-requests';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import UserProfilePersonalInfo from '../../components/Profile/UserProfilePersonalInfo';
 import EmptyContent from '../../components/Contest/EmptyContent';
 import PastContestsGrid from '../../components/Contest/PastContestsGrid';
@@ -17,7 +17,7 @@ const AllUserPastContests = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(userEndpoints.userPastContests)
+        axiosInstance.get(userEndpoints.userPastContests)
             .then((response) => dispatch(setUserPastContestsData(response.data)))
             .catch((error) => setError(error))
     }, [dispatch]);

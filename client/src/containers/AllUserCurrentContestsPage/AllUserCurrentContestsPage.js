@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import userEndpoints from '../../requests/user-requests';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import AllCurrentContestsBox from '../../components/Contest/AllCurrentContestsBox';
 import EmptyPageComponent from '../../components/Contest/EmptyPageComponent';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ const AllCurrentContestsPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(userEndpoints.userCurrentContests)
+        axiosInstance.get(userEndpoints.userCurrentContests)
             .then((response) => dispatch(setUserCurrentContestsData(response.data)))
             .catch((error) => setError(error))
     }, [dispatch]);

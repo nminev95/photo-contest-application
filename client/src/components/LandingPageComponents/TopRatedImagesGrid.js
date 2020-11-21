@@ -48,7 +48,7 @@ const TopRtaedImagesGrid = (props) => {
                     <Typography className={classes.text} >
                         WINNING PHOTOS
                 </Typography>
-                    <Grid container spacing={5} className={classes.cardGrid} maxWidth="md" >
+                    <Grid container spacing={5} className={classes.cardGrid} maxwidth="md" >
                         {photosData.map((photo) => <SinglePhoto photo={photo} key={photo.contest_id} />)}
                     </Grid>
                 </Box>

@@ -56,11 +56,12 @@ authController
         },
     )
     .post('/token',
-        authMiddleware,
-        roleMiddleware(['Organizer', 'Photo Junkie']),
+        // authMiddleware,
+        // roleMiddleware(['Organizer', 'Photo Junkie']),
         async (req, res) => {
-            const user = req.user.id;
-            client.get(user, (err, refreshToken) => {
+            // const user = req.user.id;
+            const id = req.body.id;
+            client.get(id, (err, refreshToken) => {
 
                 if (!refreshToken) {
                     res.status(401).json({ message: 'No token found!' });

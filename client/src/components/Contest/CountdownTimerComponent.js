@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 import { BASE_URL } from '../../constants/constants';
 import { setContestDetails } from '../../redux/actions';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
@@ -33,7 +33,7 @@ const CountdownTimerComponent = ({ contestData }) => {
     const thirdPhaseEndDate = new Date();
     const styles = useStyles();
     const setNextContestPhase = () => {
-        axios.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestData.id}`)
+        axiosInstance.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestData.id}`)
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({

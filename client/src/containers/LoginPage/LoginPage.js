@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import swal from '@sweetalert/with-react';
 import { passwordRequired, usernameRequired } from '../../validations/helper-errors';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import userEndpoints from '../../requests/user-requests';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
@@ -121,7 +121,7 @@ const LoginPage = () => {
             return { ...data, [input.name]: input.value };
         }, {});
 
-        axios.post(userEndpoints.loginUser, userData)
+        axiosInstance.post(userEndpoints.loginUser, userData)
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({

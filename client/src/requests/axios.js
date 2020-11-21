@@ -1,38 +1,18 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants/constants';
 
-// axios.interceptors.request.use(
-//     config => {
-//         const token = localStorageService.getAccessToken();
-//         if (token) {
-//             config.headers['Authorization'] = 'Bearer ' + token;
-//         }
-//         // config.headers['Content-Type'] = 'application/json';
-//         return config;
-//     },
-//     error => {
-//         Promise.reject(error)
-//     });
-
-
-
-// //Add a response interceptor
-
 // axios.interceptors.response.use((response) => {
 //     return response
-// }, function (error) {
+// }, async function (error) {
 //     const originalRequest = error.config;
 
-//     if (error.response.status === 401 && originalRequest.url ===
-//         'http://13.232.130.60:8081/v1/auth/token) {
-//         router.push('/login');
+//     if (error.response.status === 403) {
+    
 //     return Promise.reject(error);
 // }
- 
+
 //     if (error.response.status === 401 && !originalRequest._retry) {
 
-//     originalRequest._retry = true;
-//     const refreshToken = localStorageService.getRefreshToken();
 //     return axios.post('/auth/token',
 //         {
 //             "refresh_token": refreshToken
@@ -48,7 +28,7 @@ import { BASE_URL } from '../constants/constants';
 // return Promise.reject(error);
 //  });
 
-export default axios.create({
+const axiosInstance = axios.create({
     baseURL: BASE_URL,
     headers: {
         Authorization: {
@@ -59,3 +39,19 @@ export default axios.create({
     }
 })
 
+axiosInstance.interceptors.request.use(
+    config => {
+        const token = localStorage.getItem('accessToken');
+        console.log(token)
+        if (token) {
+            config.headers['Authorization'] = 'Bearer ' + token;
+        }
+        // config.headers['Content-Type'] = 'application/json';
+        return config;
+    },
+    error => {
+        Promise.reject(error)
+    });
+
+
+export default axiosInstance;

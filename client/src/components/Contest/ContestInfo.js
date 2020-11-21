@@ -58,7 +58,7 @@ const ContestInfo = () => {
                             style={{ margin: '10px' }}><p style={{ margin: '10px', paddingTop: "15px", paddingBottom: "15px" }}>{contestInfo.category}</p></Paper>
                     </Grid>
                     <Grid item className={styles.extraGrid} xs={4}>
-                        <Paper style={{ textAlign: "-webkit-center", maxWidth: "100%", paddingTop: "20px" }}>
+                        <Paper style={{ textAlign: "-webkit-center", maxwidth: "100%", paddingTop: "20px" }}>
                             <div>
                                 Contest theme is {contestInfo.title}
                                 <br></br>

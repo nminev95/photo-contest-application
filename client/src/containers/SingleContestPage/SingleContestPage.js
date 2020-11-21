@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ContestBackgroundImageBox from '../../components/Contest/ContestBackgroundImageBox';
 import ContestInfo from '../../components/Contest/ContestInfo';
-import axios from '../../requests/axios';
+import axiosInstance from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 import swal from 'sweetalert';
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,7 @@ const SingleContestPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(`${contestEndpoints.singleContest}${id}`)
+        axiosInstance.get(`${contestEndpoints.singleContest}${id}`)
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({
