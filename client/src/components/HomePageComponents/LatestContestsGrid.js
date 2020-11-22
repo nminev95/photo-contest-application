@@ -46,9 +46,9 @@ const LatestContestsGrid = (props) => {
         <Container style={{ marginTop: '50px' }} >
             <Box borderTop={3} borderBottom={3}>
                 <Typography className={classes.text} >
-                   Last contests
+                   Latest contests
             </Typography>
-                <Grid container spacing={9} className={classes.cardGrid} maxwidth="lg" >
+                <Grid container spacing={4} className={classes.cardGrid}  >
                     { lastSixContests.map((contest, i) => <SingleCurrentContestCard key={i} contest={contest} />)}
                 </Grid>
             </Box>

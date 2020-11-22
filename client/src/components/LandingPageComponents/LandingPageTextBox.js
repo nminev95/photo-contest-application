@@ -78,9 +78,9 @@ const LandingPageTextBox = () => {
                     <div style={{ padding: '15px' }}>
                         <Typography className={styles.textBold} >
                             If Photography is your passion and you like capturing many wonderful moments, this is YOUR place. 
-                            <br></br>
-                            You can take part in as many contests as you want. 
-                            <br></br>
+                            <br/>
+                            Unique photography competitions and a renowned platform for discovering and exhibiting contemporary photography.
+                            <br/>
                             Have fun!
                         </Typography>
 

@@ -1,5 +1,6 @@
-import React, {useEffect}from 'react';
-import LatestContestsGrid from '../../components/HomePageComponents/LatestContestsGrid'
+import React, { useEffect } from 'react';
+import LatestContestsGrid from '../../components/HomePageComponents/LatestContestsGrid';
+import TextBox from '../../components/HomePageComponents/TextBox';
 import contestEndpoints from '../../requests/contest-requests';
 import axiosInstance from '../../requests/axios';
 import swal from '@sweetalert/with-react';
@@ -27,15 +28,10 @@ const HomePage = () => {
     }, [dispatch]);
 
     return (
-        
-  <>
-       
-                <LatestContestsGrid contestsData={contestsData}/>
-                 </>
-
-            
-           
-        
+        <>
+            <LatestContestsGrid contestsData={contestsData} />
+            <TextBox />
+        </>
     )
 }
 
