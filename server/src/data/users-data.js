@@ -99,6 +99,7 @@ const getAllHighLevelUsers = async () => {
 
     const sql = `
         SELECT 
+            id,
             avatarUrl AS avatar,
             username,
             rank_id AS rank

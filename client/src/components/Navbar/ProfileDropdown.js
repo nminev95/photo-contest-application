@@ -10,8 +10,12 @@ import SendIcon from '@material-ui/icons/Send';
 import { Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OpenCreateContestFormButton from '../Contest/CreateContestModal';
+import axiosInstance from '../../requests/axios';
+import authEndpoints from '../../requests/auth-requests';
+import swal from 'sweetalert';
+import { logout } from '../../redux/actions'
 
 const StyledMenu = withStyles({
     paper: {
@@ -61,6 +65,25 @@ const ProfileDropdown = () => {
     const styles = useStyles();
     const history = useHistory();
     const userState = useSelector(state => state.loginState);
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        axiosInstance.delete(authEndpoints.logoutUser)
+            .catch((err) => {
+                if (err.response.status === 500) {
+                    swal({
+                        title: "Oops!",
+                        text: "An unexpected error occured. Please try again.",
+                        icon: "error",
+                        button: "Okay"
+                    })
+                }
+            }).then(() => {
+                localStorage.clear()
+                dispatch(logout())
+                history.push('/');
+            })
+    }
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -116,7 +139,7 @@ const ProfileDropdown = () => {
                             <ListItemIcon>
                                 <DraftsIcon fontSize="small" />
                             </ListItemIcon>
-                            <ListItemText primary="Your entries"/>
+                            <ListItemText primary="Your entries" />
                         </StyledMenuItem>
                     )}
                 <StyledMenuItem>
@@ -125,7 +148,7 @@ const ProfileDropdown = () => {
                     </ListItemIcon>
                     <ListItemText primary="Settings" />
                 </StyledMenuItem>
-                <StyledMenuItem>
+                <StyledMenuItem onClick={() => handleLogout()}>
                     <ListItemIcon>
                         <InboxIcon fontSize="small" />
                     </ListItemIcon>

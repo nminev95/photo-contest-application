@@ -20,7 +20,25 @@ const getContestById = contestsData => {
             };
         }
 
-        return { error: null, contest: contest };
+        let currentPhase = 1;
+
+        if (contest.firstPhaseLimit < new Date() && contest.secondPhaseLimit > new Date()) {
+            await contestsData.setNextPhase(id, 1);
+            currentPhase = 2;
+        }
+
+        if (contest.secondPhaseLimit < new Date()) {
+            await contestsData.setNextPhase(id, 2);
+            currentPhase = 3;
+        }
+
+        return {
+            error: null, contest:
+            {
+                ...contest,
+                phase_id: currentPhase,
+            },
+        };
     };
 };
 
@@ -65,7 +83,7 @@ const setNextContestPhase = contestsData => {
             };
         }
         const currentPhase = contest.phase_id;
-        const nextPhase = await contestsData.setNextPhase(id, +currentPhase);
+        await contestsData.setNextPhase(id, +currentPhase);
 
         return {
             error: null,
@@ -118,14 +136,24 @@ const createPhotoReview = contestsData => {
 };
 
 const createContest = contestsData => {
-    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer) => {
+    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury) => {
 
         const newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
 
-        return { error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
+        if (jury.length !== 0) {
+            await jury.map((user => {
+                contestsData.sendJuryInvitations(newContest.id, user.id);
+            }));
+        }
+
+        return {
+            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, contest: {
+                ...newContest,
+                jury: [...jury],
+            },
+        };
     };
 };
-
 /**
 * Gets all contests information.
 * @param module contests data SQL queries module.

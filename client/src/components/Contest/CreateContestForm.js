@@ -65,12 +65,12 @@ const CreateContestForm = ({ handleClose }) => {
         firstPhaseLimit: {
             name: 'firstPhaseLimit',
             value: 1,
-            valid: true,
+            valid: true
         },
         secondPhaseLimit: {
             name: 'secondPhaseLimit',
             value: 1,
-            valid: true,
+            valid: true
         },
         restrictions: {
             name: 'restrictions',
@@ -84,6 +84,12 @@ const CreateContestForm = ({ handleClose }) => {
             valid: true,
             validators: {}
         },
+        jury: {
+            name: 'jury',
+            value: [],
+            valid: true,
+            validators: {}
+        }
     })
 
     useEffect(() => {
@@ -136,6 +142,12 @@ const CreateContestForm = ({ handleClose }) => {
         setContestForm({ ...contestForm, secondPhaseLimit: copyControl });
     }
 
+    const handleJurySelect = (ev, newValue) => {
+        const copyControl = { ...contestForm.jury };
+        copyControl.value = newValue;
+        setContestForm({ ...contestForm, jury: copyControl});
+    }
+
     const handleChange = (ev) => {
 
         const { name, value } = ev.target;
@@ -167,15 +179,20 @@ const CreateContestForm = ({ handleClose }) => {
 
         setContestForm({ ...contestForm, [name]: copyControl });
     };
-
+        console.log(contestForm)
     const handleSubmit = (ev) => {
 
-        if (!contestForm.title.valid || !contestForm.description.valid || !contestCover) {
+        if (!contestForm.title.valid || !contestForm.category.valid || !contestCover) {
             return;
         }
 
         const contestData = Object.values(contestForm).reduce((data, input) => {
-            data.set(input.name, input.value);
+            if (Array.isArray(input.value)) {
+                const jsonArray = JSON.stringify(input.value);
+                data.set(input.name, jsonArray);
+            } else {
+                data.set(input.name, input.value);
+            }
             return data
         }, new FormData());
         contestData.set('image', contestCover);
@@ -346,9 +363,14 @@ const CreateContestForm = ({ handleClose }) => {
             <Autocomplete
                 multiple
                 limitTags={3}
+                name="jury"
                 id="multiple-limit-tags"
+                disableCloseOnSelect
+                filterSelectedOptions={true}
                 options={highLevelUsers}
                 getOptionLabel={(user) => user.username}
+                value={contestForm.jury.value}
+                onChange={handleJurySelect}
                 renderOption={(user) => (
                     <>
                         <Avatar alt={user.username} src={`http://localhost:4000/public/avatars/${user.avatar}`} className={styles.small} />

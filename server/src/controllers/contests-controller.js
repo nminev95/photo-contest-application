@@ -45,15 +45,15 @@ contestsController
             const organizer = req.user.id;
             const contestCover = req.file.filename;
             const { title,
-                    description,
                     firstPhaseLimit,
                     secondPhaseLimit,
                     spots,
                     restrictions,
                     category,
+                    jury,
                 } = req.body;
-                
-            const { error, contest } = await contestsService.createContest(contestsData)(title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer);
+            
+            const { error, contest } = await contestsService.createContest(contestsData)(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer, JSON.parse(jury));
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error' });
@@ -63,7 +63,7 @@ contestsController
         },
     )
     .get('/:id',
-        authMiddleware,
+        // authMiddleware,
         async (req, res) => {
             const { id } = req.params;
             const { contest, error } = await contestsService.getContestById(contestsData)(+id);

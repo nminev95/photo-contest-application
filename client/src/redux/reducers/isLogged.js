@@ -10,7 +10,7 @@ const loginState = (state = initialState, action) => {
                 isLogged: true,
                 user: action.payload,
             };
-        case 'SING_OUT':
+        case 'SIGN_OUT':
             return {
                 isLogged: false,
                 user: null,

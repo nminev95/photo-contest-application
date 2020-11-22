@@ -1,45 +1,11 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants/constants';
-import userEndpoints from './user-requests';
+import authEndpoints from './auth-requests';
 import decode from 'jwt-decode';
 import swal from 'sweetalert';
 
-// axios.interceptors.response.use((response) => {
-//     return response
-// }, async function (error) {
-//     const originalRequest = error.config;
-
-//     if (error.response.status === 403) {
-
-//     return Promise.reject(error);
-// }
-
-//     if (error.response.status === 401 && !originalRequest._retry) {
-
-//     return axios.post('/auth/token',
-//         {
-//             "refresh_token": refreshToken
-//         })
-//         .then(res => {
-//             if (res.status === 201) {
-//                 localStorageService.setToken(res.data);
-//                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorageService.getAccessToken();
-//                 return axios(originalRequest);
-//             }
-//         })
-// }
-// return Promise.reject(error);
-//  });
-
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
-    headers: {
-        Authorization: {
-            toString() {
-                return `Bearer ${localStorage.getItem('accessToken')}`;
-            }
-        }
-    }
 })
 
 axiosInstance.interceptors.request.use(
@@ -64,14 +30,12 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use((response) => {
     return response
 }, async function (error) {
-    
     const originalRequest = error.config;
-    
     if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         const oldToken = localStorage.getItem('accessToken');
         const user = decode(oldToken);
-        return axiosInstance.post(userEndpoints.createNewToken, { id: user.sub })
+        return axiosInstance.post(authEndpoints.createNewToken, { id: user.sub })
             .catch((error) => {
                 if (error.response.status > 400) {
                     swal({

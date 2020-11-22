@@ -90,7 +90,7 @@ const sendNewPhotoInfo = async (title, description, fileName, thumbnailName, use
         VALUES 
             (?, ?, ?, ?, ?, ?, ?)
     `;
-    
+
     return await pool.query(sql, [title, description, fileName, thumbnailName, user_id, id, date]);
 };
 
@@ -108,12 +108,37 @@ const sendPhotoReview = async (score, comment, isInappropriate, userId, photoId)
 const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id) => {
     const sql = `
         INSERT INTO 
-            contests (title, description, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id)
+            contests (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id)
         VALUES
-            (? ,? , (SELECT NOW() + INTERVAL ? DAY), (SELECT NOW() + INTERVAL ? HOUR), ?, ?, (SELECT id from contest_restrictions WHERE type = ?), ?, ?)
+            (?, (SELECT NOW() + INTERVAL ? DAY), (SELECT NOW() + INTERVAL ? HOUR), ?, ?, (SELECT id from contest_restrictions WHERE type = ?), ?, ?)
     `;
 
-    return await pool.query(sql, [title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id]);
+    const sql2 = `
+        SELECT 
+            id 
+        FROM 
+            contests 
+        ORDER BY
+            id 
+        DESC 
+        LIMIT 1
+    `;
+
+    await pool.query(sql, [title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id]);
+    const res = await pool.query(sql2);
+
+    const newContest = {
+        id: res[0].id,
+        title,
+        firstPhaseLimit,
+        secondPhaseLimit,
+        spots,
+        contestCover,
+        restrictions_id,
+        category,
+        organizer_id,
+    };
+    return newContest;
 };
 
 const getTopRatedPhotos = async () => {
@@ -155,6 +180,17 @@ const getTopRatedPhotos = async () => {
     return await pool.query(sql);
 };
 
+const sendJuryInvitations = async (contestId, userId) => {
+    const sql = `
+        INSERT INTO 
+            contest_jury_invitations (contest_id, user_id)
+        VALUES
+            (?, ?)
+    `;
+
+    return await pool.query(sql, [contestId, userId]);
+};
+
 export default {
     getAllContestsInfo,
     getContestInfo,
@@ -163,4 +199,5 @@ export default {
     sendPhotoReview,
     createNewContest,
     getTopRatedPhotos,
+    sendJuryInvitations,
 };
