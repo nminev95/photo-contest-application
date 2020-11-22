@@ -136,14 +136,24 @@ const createPhotoReview = contestsData => {
 };
 
 const createContest = contestsData => {
-    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer) => {
+    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury) => {
 
         const newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
 
-        return { error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
+        if (jury.length !== 0) {
+            await jury.map((user => {
+                contestsData.sendJuryInvitations(newContest.id, user.id);
+            }));
+        }
+
+        return {
+            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, contest: {
+                ...newContest,
+                jury: [...jury],
+            },
+        };
     };
 };
-
 /**
 * Gets all contests information.
 * @param module contests data SQL queries module.
