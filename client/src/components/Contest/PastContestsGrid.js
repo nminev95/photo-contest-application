@@ -66,7 +66,7 @@ const PastContestsGrid = (props) => {
 
     const { contestsData } = props;
     const styles = useStyles();
-    console.log(contestsData);
+    
     return (
 
         <div className={styles.container}>

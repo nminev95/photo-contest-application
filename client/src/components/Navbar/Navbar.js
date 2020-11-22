@@ -67,8 +67,8 @@ const Navbar = () => {
         <AppBar position="static" className={classes.appBar} style={{ backgroundColor: "black" }} >
           <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
             <div className={classes.grow} />
-            <Button onClick={() => history.push('/users/register')} style={{ outline: 'none',  marginLeft:"5px", marginRight:"10px"}} color="secondary" variant="contained">Register</Button>
-            <Button onClick={() => history.push('/users/login')} style={{ outline: 'none', marginLeft:"5px", marginRight:"10px"}} color="secondary"  variant="contained" >Sign in</Button>
+            <Button onClick={() => history.push('/users/register')} style={{  marginLeft:"5px", marginRight:"10px", color:"white" }}  variant="outlined">Register</Button>
+            <Button onClick={() => history.push('/users/login')} style={{ marginLeft:"5px", marginRight:"10px", color:"white" }}  variant="outlined" >Sign in</Button>
           </Toolbar>
         </AppBar>
       ) : (

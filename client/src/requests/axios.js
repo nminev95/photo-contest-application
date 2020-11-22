@@ -64,9 +64,9 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use((response) => {
     return response
 }, async function (error) {
-    console.log(error)
+    
     const originalRequest = error.config;
-    console.log(originalRequest)
+    
     if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         const oldToken = localStorage.getItem('accessToken');
@@ -83,10 +83,10 @@ axiosInstance.interceptors.response.use((response) => {
                 }
             }).then((response) => {
                 const newToken = response.data
-                console.log(newToken);
                 localStorage.setItem('accessToken', newToken);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`.toString();
                 originalRequest.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`.toString();
+
                 return axiosInstance(originalRequest);
             })
     }

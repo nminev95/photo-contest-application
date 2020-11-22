@@ -1,4 +1,4 @@
-const allContestState = (state = null, action) => {
+const allContestState = (state = [], action) => {
     switch (action.type) {
         case 'SET_ALL_CONTESTS_DATA':
             return action.payload;

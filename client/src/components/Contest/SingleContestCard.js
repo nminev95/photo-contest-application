@@ -52,6 +52,7 @@ const SingleContestCard = (props) => {
                     <CardMedia
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
+                        outline="none"
                         onClick={() => history.push(`/contests/${id}`)} />
                     <CardContent>
                         <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
@@ -65,6 +66,7 @@ const SingleContestCard = (props) => {
                         className={classes.button}
                         size="small"
                         color="secondary"
+                        outline="none"
                         onClick={() => history.push(`/contests/${id}`)} >
                         See more
                 </Button>

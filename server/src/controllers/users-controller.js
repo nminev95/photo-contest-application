@@ -40,7 +40,7 @@ usersController
 
             const id = req.user.id;
             const { contests, error } = await usersService.getUserCurrentContests(usersData)(+id);
-console.log(contests);
+
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'You are not participating in any contests! Hurry up and join in!' });
             } else {
