@@ -20,7 +20,7 @@ const SingleContestPage = () => {
     const contestInfo = useSelector(state => state.singleContestState);
     const contestJury = contestInfo.jury;
     const [tabValue, setTabValue] = useState('entries');
-    
+
     useEffect(() => {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}`)
             .catch((error) => {
@@ -38,16 +38,18 @@ const SingleContestPage = () => {
 
     const renderContestPhotosGrid = () => {
         switch (true) {
-            case (contestInfo.phase_id === 3):
+            case (contestInfo && contestInfo.phase_id === 3):
                 return (
                     <ContestPhotosGrid />
                 )
-            case (contestJury.some(jury => jury.id === userInfo.sub)):
+            case (contestJury && contestJury.some(jury => jury.id === userInfo.sub)):
                 return (
                     <ContestPhotosGrid />
                 )
             default:
-                return null;
+                return (
+                    <ContestPhotosGrid isBlurred={true} />
+                )
         }
     }
 
@@ -60,8 +62,12 @@ const SingleContestPage = () => {
         <>
             <ContestBackgroundImageBox />
             <ContestInfo />
-            <ContestEntriesAndScoresTabs handleTabChange={handleTabChange} tabValue={tabValue}/>
-            {renderContestPhotosGrid}
+            <ContestEntriesAndScoresTabs handleTabChange={handleTabChange} tabValue={tabValue} />
+            {tabValue === 'entries' ? (
+                renderContestPhotosGrid()
+            ) : (null
+                    //render results
+                )}
         </>
     )
 }

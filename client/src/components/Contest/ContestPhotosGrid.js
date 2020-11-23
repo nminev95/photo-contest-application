@@ -35,6 +35,43 @@ const useStyles = makeStyles((theme) => ({
             columnCount: 1,
         },
     },
+    containerBlurred: {
+        lineHeight: 0,
+        width: '75%',
+        margin: 'auto',
+        WebkitColumnCount: 4,
+        WebkitColumnGap: '25px',
+        MozColumnCount: 4,
+        MozColumnGap: '10px',
+        columnCount: 4,
+        columnGap: '10px',
+        filter: 'blur(8px)',
+        WebKitFilter: 'blur(5px)',
+        MozFilter: 'blur(5px)',
+        OFilter: 'blur(5px)',
+        MSFilter: 'blur(5px)',
+        pointerEvents: 'none',
+        [theme.breakpoints.up('lg')]: {
+            MozColumnCount: 4,
+            WebkitColumnCount: 4,
+            columnCount: 4,
+        },
+        [theme.breakpoints.only('md')]: {
+            MozColumnCount: 3,
+            WebkitColumnCount: 3,
+            columnCount: 3,
+        },
+        [theme.breakpoints.only('sm')]: {
+            MozColumnCount: 2,
+            WebkitColumnCount: 2,
+            columnCount: 2,
+        },
+        [theme.breakpoints.only('xs')]: {
+            MozColumnCount: 1,
+            WebkitColumnCount: 1,
+            columnCount: 1,
+        },
+    },
     imageDiv: {
         position: 'relative',
         width: '100%',
@@ -53,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const ContestPhotosGrid = () => {
+const ContestPhotosGrid = ({ isBlurred }) => {
 
     const contestInfo = useSelector(state => state.singleContestState);
     const styles = useStyles();
@@ -72,24 +109,51 @@ const ContestPhotosGrid = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <div style={{ paddingBottom: "100px" }}>
-                {contestInfo.entries && contestInfo.entries.map((entry, index) => {
-                    return (
-                        <div key={entry.id} className={styles.imageDiv}>
-                            <img
-                                className={styles.image}
-                                alt={entry.title}
-                                src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
-                                onClick={() => handleOpen(entry, index)}
-                            />
+        <>
+            {isBlurred ? (
+                <>
+                    <p style={{ fontSize: '20px', marginTop: '20px' }}>All user entries will be available for view once the contest finishes.</p>
+                    <div className={styles.containerBlurred}>
+                        <div style={{ paddingBottom: "100px" }}>
+                            {contestInfo.entries && contestInfo.entries.map((entry, index) => {
+                                return (
+                                    <div key={entry.id} className={styles.imageDiv}>
+                                        <img
+                                            className={styles.image}
+                                            alt={entry.title}
+                                            src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
+                                            onClick={() => handleOpen(entry, index)}
+                                        />
+                                    </div>
+                                )
+                            }
+                            )}
+                            <ViewPhotoFullsize setCurrentIndex={setCurrentIndex} setCurrentPhoto={setCurrentPhoto} isOpen={isOpen} handleClose={handleClose} currentPhoto={currentPhoto} currentIndex={currentIndex} />
                         </div>
-                    )
-                }
+                    </div>
+                </>
+            ) : (
+
+                    <div className={styles.container}>
+                        <div style={{ paddingBottom: "100px" }}>
+                            {contestInfo.entries && contestInfo.entries.map((entry, index) => {
+                                return (
+                                    <div key={entry.id} className={styles.imageDiv}>
+                                        <img
+                                            className={styles.image}
+                                            alt={entry.title}
+                                            src={`http://localhost:4000/public/entries/thumbnails/${entry.thumbnailSize}`}
+                                            onClick={() => handleOpen(entry, index)}
+                                        />
+                                    </div>
+                                )
+                            }
+                            )}
+                            <ViewPhotoFullsize setCurrentIndex={setCurrentIndex} setCurrentPhoto={setCurrentPhoto} isOpen={isOpen} handleClose={handleClose} currentPhoto={currentPhoto} currentIndex={currentIndex} />
+                        </div>
+                    </div>
                 )}
-                <ViewPhotoFullsize setCurrentIndex={setCurrentIndex} setCurrentPhoto={setCurrentPhoto} isOpen={isOpen} handleClose={handleClose} currentPhoto={currentPhoto} currentIndex={currentIndex}/>
-            </div>
-        </div>
+        </>
     )
 }
 
