@@ -191,6 +191,19 @@ const sendJuryInvitations = async (contestId, userId) => {
     return await pool.query(sql, [contestId, userId]);
 };
 
+const getAllOrganizersForJury = async () => {
+    const sql = `
+        SELECT 
+            id, username
+        FROM
+            users
+        WHERE
+            role_id = (SELECT id FROM roles WHERE type = 'Organizer');
+    `;
+
+    return await pool.query(sql);
+};
+
 export default {
     getAllContestsInfo,
     getContestInfo,
@@ -200,4 +213,5 @@ export default {
     createNewContest,
     getTopRatedPhotos,
     sendJuryInvitations,
+    getAllOrganizersForJury,
 };

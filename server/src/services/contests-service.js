@@ -139,6 +139,7 @@ const createContest = contestsData => {
     return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury) => {
 
         const newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
+        const allOrganizers = await contestsData.getAllOrganizersForJury();
 
         if (jury.length !== 0) {
             await jury.map((user => {
@@ -146,10 +147,14 @@ const createContest = contestsData => {
             }));
         }
 
+        await allOrganizers.map((user) => {
+            contestsData.sendJuryInvitations(newContest.id, user.id);
+        });
+
         return {
             error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, contest: {
                 ...newContest,
-                jury: [...jury],
+                jury: [...jury, ...allOrganizers],
             },
         };
     };
@@ -176,6 +181,14 @@ const getAllContestsTopRatedPhotos = contestsData => {
     };
 };
 
+const addDaysAndHours = (days, hours) => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    date.setMonth(date.getMonth() - 1);
+    date.setHours(date.getHours() + (hours + 2));
+    return date;
+};
+
 export default {
     getContestById,
     getAllContests,
@@ -184,6 +197,7 @@ export default {
     createPhotoReview,
     createContest,
     getAllContestsTopRatedPhotos,
+    addDaysAndHours,
 };
 
 

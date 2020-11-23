@@ -123,6 +123,12 @@ const OpenEntryFormButton = (props) => {
 
     const renderEnterContestButton = () => {
         switch (true) {
+            case (contestInfo.phase_id === 3):
+                return (
+                    <Button style={{ outline: 'none' }} variant="contained" disabled color="primary">
+                        Contest finished
+                    </Button>
+                )
             case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)):
                 return (
                     <Button variant="contained" disabled color="primary">
