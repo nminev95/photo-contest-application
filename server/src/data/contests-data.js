@@ -11,7 +11,9 @@ const getAllContestsInfo = async () => {
         SELECT 
             *
         FROM
-            contests     
+            contests c
+        WHERE NOT 
+            c.phase_id=3 
     `;
 
     return await pool.query(sql);
