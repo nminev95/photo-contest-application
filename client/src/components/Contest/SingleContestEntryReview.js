@@ -13,20 +13,20 @@ const SingleContestEntryReview = () => {
                     <Avatar
                         src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
                         alt="Han Solo"
+                        
                     />
                 }
                 content={
-                    <>
-                        <p style={{ float: 'left' }}>
+                    <div style={{display:"inline-flex"}}>
+                        <div style={{ float: 'left', paddingRight: '25px', textAlign: "left" }}>
                             We supply a series of design principles, practical patterns and high quality design
                             resources (Sketch and Axure), to help people create their product prototypes beautifully
                             and efficiently.
-                    </p>
+                        </div>
                         <div style={{ float: 'right' }}>
-
                             <StarIcon style={{ color: "#ffb300" }} fontSize='medium' /><p>7/10</p>
                         </div>
-                    </>
+                    </div>
                 } />
             <Divider />
         </>
