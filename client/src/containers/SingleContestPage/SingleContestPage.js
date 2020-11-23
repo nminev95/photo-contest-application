@@ -9,6 +9,7 @@ import { setContestDetails } from '../../redux/actions/index'
 import ContestPhotosGrid from '../../components/Contest/ContestPhotosGrid';
 import { useParams } from 'react-router-dom';
 import ContestEntriesAndScoresTabs from '../../components/Contest/ContestEntriesAndScoresTabs';
+import ContestResults from '../../components/Contest/ContestResults';
 
 const SingleContestPage = () => {
 
@@ -65,8 +66,8 @@ const SingleContestPage = () => {
             <ContestEntriesAndScoresTabs handleTabChange={handleTabChange} tabValue={tabValue} />
             {tabValue === 'entries' ? (
                 renderContestPhotosGrid()
-            ) : (null
-                    //render results
+            ) : (
+                <ContestResults/>
                 )}
         </>
     )

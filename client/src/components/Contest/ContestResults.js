@@ -1,6 +1,20 @@
+import { useSelector } from "react-redux";
+import SingleContestResultCard from "./SingleContestResultCard";
+
 const ContestResults = () => {
+
+    const contestInfo = useSelector(state => state.singleContestState);
+    const contestEntries = contestInfo.entries;
+
     return (
-        <h1>nice nice</h1>
+        contestEntries ? (
+            <div style={{textAlign: '-webkit-center'}}>
+            <SingleContestResultCard entries={contestEntries} />
+            <SingleContestResultCard entries={contestEntries} />
+            <SingleContestResultCard entries={contestEntries} />
+
+            </div>
+        ) : (null)
     )
 }
 
