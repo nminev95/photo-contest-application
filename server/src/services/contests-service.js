@@ -117,7 +117,18 @@ const createNewPhotoRecord = contestsData => {
         return { error: result.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
 };
-
+/**
+* Saves a new photo review record in the database. 
+* @param module contest data SQL queries module.
+* @callback 
+* @async
+* @param {string} comment - A short comment of the uploaded photo.
+* @param {boolean} confirmation - Confirms if the upploaded photo is inappropriate.
+* @param {number} score - The amount of given scores by the jury member.
+* @param {number} userId - The unique user  number.
+* @param {number} photoId - The unique photo number.
+* @return {Promise<object>}
+*/
 const createPhotoReview = contestsData => {
     return async (score, comment, isInappropriate, userId, photoId) => {
         if (isInappropriate === 'true' || isInappropriate === true) {
@@ -135,6 +146,21 @@ const createPhotoReview = contestsData => {
     };
 };
 
+/**
+* Saves a contest record.
+* @param module contest data SQL queries module.
+* @callback 
+* @async
+* @param {string} title - The title of the uploaded contest.
+* @param {number} date - First phase time limit.
+* @param {number} date - Second phase time limit.
+* @param {number} spots - The number of participants allowed to take part in the contest.
+* @param {string} filename - The name of the contest cover file.
+* @param {number} restriction_id - The unique restriction number.
+* @param {string} category - The contest category.
+* @param {number} organizer_id - The unique organizator number.
+* @param {object} jury - Optional jury members.
+*/
 const createContest = contestsData => {
     return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury) => {
 
@@ -147,7 +173,8 @@ const createContest = contestsData => {
         }
 
         return {
-            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, contest: {
+            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, 
+            contest: {
                 ...newContest,
                 jury: [...jury],
             },
@@ -198,8 +225,6 @@ const getRecentlyExpContests = contestsData => {
         return { error: null, recExpContests: recExpContests };
     };
 };
-
-
 
 export default {
     getContestById,
