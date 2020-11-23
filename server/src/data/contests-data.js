@@ -191,6 +191,29 @@ const sendJuryInvitations = async (contestId, userId) => {
     return await pool.query(sql, [contestId, userId]);
 };
 
+/**
+* Gets recently expire 4 contests information from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getRecentlyExpireContestsInfo = async () => {
+
+    const sql = `
+        SELECT * 
+        FROM 
+            contests 
+        WHERE 
+            firstPhaseLimit > NOW() 
+        ORDER BY 
+            firstPhaseLimit ASC
+        LIMIT 
+            4   
+    `;
+
+    return await pool.query(sql);
+};
+
+
 export default {
     getAllContestsInfo,
     getContestInfo,
@@ -200,4 +223,5 @@ export default {
     createNewContest,
     getTopRatedPhotos,
     sendJuryInvitations,
+    getRecentlyExpireContestsInfo,
 };

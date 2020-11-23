@@ -24,35 +24,48 @@ contestsController
             }
         },
     )
+    .get('/first-phase-exp',
+        authMiddleware,
+        async (req, res) => {
+
+            const { recExpContests, error } = await contestsService.getRecentlyExpContests(contestsData)();
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Contest not found!' });
+            } else {
+                res.status(200).send(recExpContests);
+            }
+        },
+    )
     .get('/photos',
-    async (req, res) => {
+        async (req, res) => {
 
-        const { photos, error } = await contestsService.getAllContestsTopRatedPhotos(contestsData)();
+            const { photos, error } = await contestsService.getAllContestsTopRatedPhotos(contestsData)();
 
-        if (error === ERRORS.RECORD_NOT_FOUND) {
-            res.status(404).send({ message: 'No photos found!' });
-        } else {
-            res.status(200).send(photos);
-        }
-    },
-)
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'No photos found!' });
+            } else {
+                res.status(200).send(photos);
+            }
+        },
+    )
     .post('/create',
         authMiddleware,
         roleMiddleware(['Organizer']),
         multer({ storage: storage }).single('image'),
         async (req, res) => {
- 
+
             const organizer = req.user.id;
             const contestCover = req.file.filename;
             const { title,
-                    firstPhaseLimit,
-                    secondPhaseLimit,
-                    spots,
-                    restrictions,
-                    category,
-                    jury,
-                } = req.body;
-            
+                firstPhaseLimit,
+                secondPhaseLimit,
+                spots,
+                restrictions,
+                category,
+                jury,
+            } = req.body;
+
             const { error, contest } = await contestsService.createContest(contestsData)(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer, JSON.parse(jury));
 
             if (error) {
@@ -63,7 +76,7 @@ contestsController
         },
     )
     .get('/:id',
-        // authMiddleware,
+        authMiddleware,
         async (req, res) => {
             const { id } = req.params;
             const { contest, error } = await contestsService.getContestById(contestsData)(+id);
@@ -105,7 +118,7 @@ contestsController
                 .jpeg({ quality: 90 })
                 .toFile(`images/entries/thumbnails/${thumbnailName}`);
 
-            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title,description,fileName, thumbnailName, +user_id, +id, date);
+            const { error } = await contestsService.createNewPhotoRecord(contestsData)(title, description, fileName, thumbnailName, +user_id, +id, date);
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error' });
@@ -130,6 +143,5 @@ contestsController
                 res.status(200).send({ review: review });
             }
         });
-
 
 export default contestsController;

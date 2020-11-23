@@ -74,7 +74,7 @@ const getAllContests = contestsData => {
 */
 const setNextContestPhase = contestsData => {
     return async (id) => {
-        const contest = await contestsData.getContestInfo(id);
+        const contest = await contestsData.getContestInfo(+id);
 
         if (!contest) {
             return {
@@ -83,7 +83,7 @@ const setNextContestPhase = contestsData => {
             };
         }
         const currentPhase = contest.phase_id;
-        await contestsData.setNextPhase(id, +currentPhase);
+        await contestsData.setNextPhase(+id, +currentPhase);
 
         return {
             error: null,
@@ -154,8 +154,9 @@ const createContest = contestsData => {
         };
     };
 };
+
 /**
-* Gets all contests information.
+* Gets top rated photos information from the database.
 * @param module contests data SQL queries module.
 * @callback 
 * @async
@@ -176,6 +177,30 @@ const getAllContestsTopRatedPhotos = contestsData => {
     };
 };
 
+/**
+* Gets recently expire contests information from the database.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getRecentlyExpContests = contestsData => {
+    return async () => {
+        const recExpContests = await contestsData.getRecentlyExpireContestsInfo();
+
+        if (!recExpContests) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                recExpContests: null,
+            };
+        }
+
+        return { error: null, recExpContests: recExpContests };
+    };
+};
+
+
+
 export default {
     getContestById,
     getAllContests,
@@ -184,6 +209,7 @@ export default {
     createPhotoReview,
     createContest,
     getAllContestsTopRatedPhotos,
+    getRecentlyExpContests,
 };
 
 
