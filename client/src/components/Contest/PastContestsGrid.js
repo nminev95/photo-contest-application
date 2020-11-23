@@ -9,7 +9,7 @@ const PastContestsGrid = (props) => {
    
     return (
 
-        <Container style={{ marginTop: '15px' }}>
+        <Container style={{ marginTop: '30px' }}>
             <Grid container spacing={4}  maxWidth="md">
                 {contestsData.map((contest) => <SingleCurrentContestView contest={contest} key={contest.id} />)}
             </Grid>

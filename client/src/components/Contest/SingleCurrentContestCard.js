@@ -64,7 +64,7 @@ const SingleCurrentContestView = (props) => {
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}>
                         <GridListTileBar 
-                        actionIcon={<CountdownTimerComponent contestData={contest} />} 
+                        actionIcon={ contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />} 
                         title={contest.title} 
                         classes={{
                             root: classes.counterBar,
