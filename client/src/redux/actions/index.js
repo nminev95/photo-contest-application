@@ -59,3 +59,10 @@ export const setTopRatedPhotosData = (allTopRatedPhotosInfo) => {
         payload: allTopRatedPhotosInfo
     };
 };
+
+export const setRecentlyExpContestsData = (recentlyExpContestsInfo) => {
+    return {
+        type: 'SET_RECENTLY_EXP_CONTESTS_DATA',
+        payload: recentlyExpContestsInfo
+    };
+};

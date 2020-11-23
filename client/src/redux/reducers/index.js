@@ -1,5 +1,6 @@
 import allTopRatedPhotosState from './allTopRatedPhotosByContest';
 import userCurrentContestState from './allUserCurrentContests';
+import recentlyExpContestState from './recentlyExpContests';
 import userPastContestsState from './allUserPastContests';
 import singleContestState from './singleContest';
 import allContestState from './allContests';
@@ -9,6 +10,7 @@ import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
     userCurrentContestState,
+    recentlyExpContestState,
     userPastContestsState,
     allTopRatedPhotosState,
     singleContestState,
