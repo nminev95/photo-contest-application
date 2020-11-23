@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarIcon from '@material-ui/icons/Star';
+import SingleContestEntryReview from './SingleContestEntryReview';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleContestResultCard = ({ entries }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -68,24 +70,25 @@ const SingleContestResultCard = ({ entries }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-       
-          <StarIcon style={{ color: "#ffb300" }} fontSize='large'/>Average rating here
-      
-        <IconButton
+
+        <StarIcon style={{ color: "#ffb300" }} fontSize='large' />Average rating here
+
+          <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
-          style={{outline: "none"}}
+          style={{ outline: "none" }}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+
         >
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-            Review will go here
+          <SingleContestEntryReview/>
         </CardContent>
       </Collapse>
     </Card>
