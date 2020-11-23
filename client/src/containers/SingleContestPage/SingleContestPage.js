@@ -1,19 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ContestBackgroundImageBox from '../../components/Contest/ContestBackgroundImageBox';
 import ContestInfo from '../../components/Contest/ContestInfo';
 import axiosInstance from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 import swal from 'sweetalert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setContestDetails } from '../../redux/actions/index'
 import ContestPhotosGrid from '../../components/Contest/ContestPhotosGrid';
 import { useParams } from 'react-router-dom';
+import ContestEntriesAndScoresTabs from '../../components/Contest/ContestEntriesAndScoresTabs';
 
 const SingleContestPage = () => {
-    
-    const { id } = useParams()
+
+    const { id } = useParams();
+
     const dispatch = useDispatch();
 
+    const userInfo = useSelector(state => state.loginState.user);
+    const contestInfo = useSelector(state => state.singleContestState);
+    const contestJury = contestInfo.jury;
+    const [tabValue, setTabValue] = useState('entries');
+    
     useEffect(() => {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}`)
             .catch((error) => {
@@ -29,13 +36,35 @@ const SingleContestPage = () => {
             .then((data) => dispatch(setContestDetails(data.data)))
     }, [dispatch, id])
 
+    const renderContestPhotosGrid = () => {
+        switch (true) {
+            case (contestInfo.phase_id === 3):
+                return (
+                    <ContestPhotosGrid />
+                )
+            case (contestJury.some(jury => jury.id === userInfo.sub)):
+                return (
+                    <ContestPhotosGrid />
+                )
+            default:
+                return null;
+        }
+    }
+
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+    };
+
+    console.log(tabValue)
     return (
         <>
             <ContestBackgroundImageBox />
             <ContestInfo />
-            <ContestPhotosGrid />
+            <ContestEntriesAndScoresTabs handleTabChange={handleTabChange} tabValue={tabValue}/>
+            {renderContestPhotosGrid}
         </>
     )
 }
 
 export default SingleContestPage;
+

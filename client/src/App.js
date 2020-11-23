@@ -24,17 +24,6 @@ const App = () => {
     dispatch(login(decode(accessToken)));
   }
 
-  // const location = useLocation();
-  // const background = location.state && location.state.background;
-  // if (token) {
-  //   const decoded = decode(token);
-  //   const expiration = new Date(decoded.exp * 1000); /// setTimout !!
-  //   if (expiration < new Date()) {
-  //     localStorage.removeItem('token');
-  //     setAuthValue(false);
-  //   }
-  // }
-
   return (
     <div className="App">
       <Router>

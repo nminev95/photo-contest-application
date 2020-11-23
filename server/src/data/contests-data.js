@@ -45,10 +45,20 @@ const getContestInfo = async (id) => {
             id = ?
     `;
 
+    const sql3 = `
+        SELECT 
+            user_id AS id, (SELECT username FROM users WHERE id = user_id) AS username
+        FROM 
+            contest_jury_invitations
+        WHERE 
+            contest_id = ?`;
+
     const entries = await pool.query(sql1, [id]);
     const contest = await pool.query(sql2, [id]);
+    const jury = await pool.query(sql3, [id]);
 
     contest[0].entries = entries;
+    contest[0].jury = jury;
 
     return contest[0];
 };
@@ -230,6 +240,20 @@ const sendJuryInvitations = async (contestId, userId) => {
     return await pool.query(sql, [contestId, userId]);
 };
 
+const getAllOrganizersForJury = async () => {
+    const sql = `
+        SELECT 
+            id, username
+        FROM
+            users
+        WHERE
+            role_id = (SELECT id FROM roles WHERE type = 'Organizer');
+
+            `;
+
+    return await pool.query(sql);
+};
+
 /**
 * Gets 4 recently expire contests information from the database.
 * @async
@@ -262,5 +286,6 @@ export default {
     createNewContest,
     getTopRatedPhotos,
     sendJuryInvitations,
+    getAllOrganizersForJury,
     getRecentlyExpireContestsInfo,
 };
