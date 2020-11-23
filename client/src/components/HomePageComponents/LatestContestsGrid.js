@@ -37,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
 const LatestContestsGrid = (props) => {
 
     const { contestsData } = props;
-    const latestContests = contestsData.slice().reverse();
-    const lastSixContests = latestContests.slice(0, 4);
     const classes = useStyles();
 
     return (
@@ -46,10 +44,10 @@ const LatestContestsGrid = (props) => {
         <Container style={{ marginTop: '50px' }} >
             <Box borderTop={3} borderBottom={3}>
                 <Typography className={classes.text} >
-                   Latest contests
+                   Last chance to take part in ...
             </Typography>
                 <Grid container spacing={4} className={classes.cardGrid}  >
-                    { lastSixContests.map((contest, i) => <SingleCurrentContestCard key={i} contest={contest} />)}
+                    { contestsData.map((contest, i) => <SingleCurrentContestCard key={i} contest={contest} />)}
                 </Grid>
             </Box>
         </Container>     

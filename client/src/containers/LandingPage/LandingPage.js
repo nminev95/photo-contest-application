@@ -12,15 +12,13 @@ const LandingPage = () => {
 
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
-    const allPhotosData = useSelector(state => state.allTopRatedPhotosState);
+    const photosData = useSelector(state => state.allTopRatedPhotosState);
 
     useEffect(() => {
         axiosInstance.get(contestEndpoints.topRatedPhotos)
             .then((response) => dispatch(setTopRatedPhotosData(response.data)))
             .catch((error) => { setError(error) })
     }, [dispatch]);
-
-    const photosData = allPhotosData.slice(0, 4);
 
     return (
         <>

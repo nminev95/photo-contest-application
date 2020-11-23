@@ -141,7 +141,7 @@ const getCurrentContestsByUserId = async (id) => {
             contests c
         ON
             ph.contest_id = c.id       
-         WHERE 
+        WHERE 
             u.id = ? 
         AND NOT 
             phase_id=3;

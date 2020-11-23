@@ -5,15 +5,15 @@ import contestEndpoints from '../../requests/contest-requests';
 import axiosInstance from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllContestsData } from '../../redux/actions/index';
+import { setRecentlyExpContestsData } from '../../redux/actions/index';
 
 const HomePage = () => {
 
     const dispatch = useDispatch();
-    const contestsData = useSelector(state => state.allContestState);
+    const contestsData = useSelector(state => state.recentlyExpContestState);
 
     useEffect(() => {
-        axiosInstance.get(contestEndpoints.allContests)
+        axiosInstance.get(contestEndpoints.recentlyExpContests)
             .catch((error) => {
                 if (error.response.status === 404) {
                     swal({
@@ -24,7 +24,7 @@ const HomePage = () => {
                     })
                 }
             })
-            .then((response) => dispatch(setAllContestsData(response.data)))
+            .then((response) => dispatch(setRecentlyExpContestsData(response.data)))
     }, [dispatch]);
 
     return (

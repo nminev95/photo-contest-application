@@ -74,7 +74,7 @@ const getAllContests = contestsData => {
 */
 const setNextContestPhase = contestsData => {
     return async (id) => {
-        const contest = await contestsData.getContestInfo(id);
+        const contest = await contestsData.getContestInfo(+id);
 
         if (!contest) {
             return {
@@ -83,7 +83,7 @@ const setNextContestPhase = contestsData => {
             };
         }
         const currentPhase = contest.phase_id;
-        await contestsData.setNextPhase(id, +currentPhase);
+        await contestsData.setNextPhase(+id, +currentPhase);
 
         return {
             error: null,
@@ -117,7 +117,18 @@ const createNewPhotoRecord = contestsData => {
         return { error: result.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR };
     };
 };
-
+/**
+* Saves a new photo review record in the database. 
+* @param module contest data SQL queries module.
+* @callback 
+* @async
+* @param {string} comment - A short comment of the uploaded photo.
+* @param {boolean} confirmation - Confirms if the upploaded photo is inappropriate.
+* @param {number} score - The amount of given scores by the jury member.
+* @param {number} userId - The unique user  number.
+* @param {number} photoId - The unique photo number.
+* @return {Promise<object>}
+*/
 const createPhotoReview = contestsData => {
     return async (score, comment, isInappropriate, userId, photoId) => {
         if (isInappropriate === 'true' || isInappropriate === true) {
@@ -135,6 +146,21 @@ const createPhotoReview = contestsData => {
     };
 };
 
+/**
+* Saves a contest record.
+* @param module contest data SQL queries module.
+* @callback 
+* @async
+* @param {string} title - The title of the uploaded contest.
+* @param {number} date - First phase time limit.
+* @param {number} date - Second phase time limit.
+* @param {number} spots - The number of participants allowed to take part in the contest.
+* @param {string} filename - The name of the contest cover file.
+* @param {number} restriction_id - The unique restriction number.
+* @param {string} category - The contest category.
+* @param {number} organizer_id - The unique organizator number.
+* @param {object} jury - Optional jury members.
+*/
 const createContest = contestsData => {
     return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury) => {
 
@@ -152,15 +178,17 @@ const createContest = contestsData => {
         });
 
         return {
-            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, contest: {
+            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, 
+            contest: {
                 ...newContest,
                 jury: [...jury, ...allOrganizers],
             },
         };
     };
 };
+
 /**
-* Gets all contests information.
+* Gets top rated photos information from the database.
 * @param module contests data SQL queries module.
 * @callback 
 * @async
@@ -181,12 +209,26 @@ const getAllContestsTopRatedPhotos = contestsData => {
     };
 };
 
-const addDaysAndHours = (days, hours) => {
-    const date = new Date();
-    date.setDate(date.getDate() + days);
-    date.setMonth(date.getMonth() - 1);
-    date.setHours(date.getHours() + (hours + 2));
-    return date;
+/**
+* Gets recently expire contests information from the database.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getRecentlyExpContests = contestsData => {
+    return async () => {
+        const recExpContests = await contestsData.getRecentlyExpireContestsInfo();
+
+        if (!recExpContests) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                recExpContests: null,
+            };
+        }
+
+        return { error: null, recExpContests: recExpContests };
+    };
 };
 
 export default {
@@ -197,7 +239,7 @@ export default {
     createPhotoReview,
     createContest,
     getAllContestsTopRatedPhotos,
-    addDaysAndHours,
+    getRecentlyExpContests,
 };
 
 

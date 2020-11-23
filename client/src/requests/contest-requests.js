@@ -6,6 +6,7 @@ const contestEndpoints = {
     contestEntry: '/entries/',
     createContest: '/contests/create',
     topRatedPhotos: '/contests/photos',
+    recentlyExpContests: '/contests/first-phase-exp'
 }
 
 export default contestEndpoints;

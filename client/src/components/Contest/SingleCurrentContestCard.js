@@ -63,7 +63,10 @@ const SingleCurrentContestView = (props) => {
                         image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}>
-                        <GridListTileBar actionIcon={<CountdownTimerComponent contestData={contest} />} title={contest.title} classes={{
+                        <GridListTileBar 
+                        actionIcon={<CountdownTimerComponent contestData={contest} />} 
+                        title={contest.title} 
+                        classes={{
                             root: classes.counterBar,
                             title: classes.text,
                             actionIcon: classes.timer,
