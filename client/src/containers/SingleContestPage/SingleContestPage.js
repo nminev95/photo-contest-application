@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ContestBackgroundImageBox from '../../components/Contest/ContestBackgroundImageBox';
 import ContestInfo from '../../components/Contest/ContestInfo';
 import axiosInstance from '../../requests/axios';
@@ -8,15 +8,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setContestDetails } from '../../redux/actions/index'
 import ContestPhotosGrid from '../../components/Contest/ContestPhotosGrid';
 import { useParams } from 'react-router-dom';
+import ContestEntriesAndScoresTabs from '../../components/Contest/ContestEntriesAndScoresTabs';
 
 const SingleContestPage = () => {
 
-    const { id } = useParams()
+    const { id } = useParams();
+
     const dispatch = useDispatch();
+
     const userInfo = useSelector(state => state.loginState.user);
     const contestInfo = useSelector(state => state.singleContestState);
     const contestJury = contestInfo.jury;
-
+    const [tabValue, setTabValue] = useState('entries');
+    
     useEffect(() => {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}`)
             .catch((error) => {
@@ -47,14 +51,20 @@ const SingleContestPage = () => {
         }
     }
 
-    console.log(contestInfo)
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+    };
+
+    console.log(tabValue)
     return (
         <>
             <ContestBackgroundImageBox />
             <ContestInfo />
+            <ContestEntriesAndScoresTabs handleTabChange={handleTabChange} tabValue={tabValue}/>
             {renderContestPhotosGrid}
         </>
     )
 }
 
 export default SingleContestPage;
+
