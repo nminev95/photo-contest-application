@@ -43,10 +43,20 @@ const getContestInfo = async (id) => {
             id = ?
     `;
 
+    const sql3 = `
+        SELECT 
+            user_id AS id, (SELECT username FROM users WHERE id = user_id) AS username
+        FROM 
+            contest_jury_invitations
+        WHERE 
+            contest_id = ?`;
+
     const entries = await pool.query(sql1, [id]);
     const contest = await pool.query(sql2, [id]);
+    const jury = await pool.query(sql3, [id]);
 
     contest[0].entries = entries;
+    contest[0].jury = jury;
 
     return contest[0];
 };
