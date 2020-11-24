@@ -11,16 +11,15 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
         backgroundColor: theme.palette.background.paper,
-        justifyContent: 'center',
-        paddingTop: '5px'
+        paddingTop: '5px',
+        textAlign: 'left',
+       
     },
 
     container: {
         marginTop: '50px',
         marginBottom: '50px',
         maxWidth: '900px',
-        justifyContent: 'center',
-        // backgroundColor: '#f50057',
     
     },
     text: {
@@ -53,7 +52,7 @@ const UsersRankingsList = (props) => {
                 <PersonIcon className={styles.userIcon}/> Users Ranking
                 </Typography>
                 <List className={styles.root} >
-                    {usersData.map((user) => <SingleUserInfo user={user} key={user.id} />)}
+                    {usersData.map((user, index) => <SingleUserInfo user={user} place={index + 1} key={user.id} />)}
                 </List>
             </Box>
         </Container>
