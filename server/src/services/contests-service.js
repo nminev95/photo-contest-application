@@ -245,11 +245,12 @@ const getContestResults = contestsData => {
 
         const mapResultsWithReviews = results.reduce((acc, entryResults) => {
 
-            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id } = entryResults;
+            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id, username, avatarUrl, authorAvatar, author } = entryResults;
+            const addDate = date.toISOString().split('T')[0];
             
             if (!acc.get(id)) {
                 acc.set(id, {
-                    id, title, story, originalSize, thumbnailSize, date, rating, reviews: [],
+                    id, title, story, originalSize, thumbnailSize, addDate, rating, author, authorAvatar, reviews: [],
                 });
             }
 
@@ -257,6 +258,8 @@ const getContestResults = contestsData => {
                 id: review_id,
                 score,
                 comment,
+                username,
+                avatarUrl,
             };
 
             if (reviewObject.id) {
@@ -266,7 +269,7 @@ const getContestResults = contestsData => {
             return acc;
         }, new Map());
 
-        return { error: null, results: [...mapResultsWithReviews] };
+        return { error: null, results: [...mapResultsWithReviews.values()] };
     };
 };
 

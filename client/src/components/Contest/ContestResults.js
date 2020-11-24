@@ -3,16 +3,12 @@ import SingleContestResultCard from "./SingleContestResultCard";
 
 const ContestResults = () => {
 
-    const contestInfo = useSelector(state => state.singleContestState);
-    const contestEntries = contestInfo.entries;
+    const contestResults = useSelector(state => state.contestResultsState);
 
     return (
-        contestEntries ? (
-            <div style={{textAlign: '-webkit-center'}}>
-            <SingleContestResultCard entries={contestEntries} />
-            <SingleContestResultCard entries={contestEntries} />
-            <SingleContestResultCard entries={contestEntries} />
-
+        contestResults ? (
+            <div style={{ textAlign: '-webkit-center' }}>
+                {contestResults.map((entry) => <SingleContestResultCard key={entry.id} entry={entry}/>)}
             </div>
         ) : (null)
     )

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SingleContestResultCard = ({ entries }) => {
+const SingleContestResultCard = ({ entry }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -59,22 +59,22 @@ const SingleContestResultCard = ({ entries }) => {
               className={classes.avatar}
             />
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="By maistie_williams on September 14, 2016"
+          title={entry.title}
+          subheader={`by ${entry.author} on ${entry.addDate}`}
         />
         <CardMedia
           className={classes.media}
-          image={`http://localhost:4000/public/1605388300201_496211660.jpg`}
-          title="Paella dish"
+          image={`http://localhost:4000/public/${entry.originalSize}`}
+          title={entry.title}
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            This is my photo descriptionnnnn!
+            {entry.story}
         </Typography>
         </CardContent>
         <CardActions disableSpacing>
 
-          <StarIcon style={{ color: "#ffb300" }} fontSize='large' />Average rating here
+          <StarIcon style={{ color: "#ffb300" }} fontSize='large' />{entry.rating.toFixed(2)}/10
 
           <IconButton
             className={clsx(classes.expand, {

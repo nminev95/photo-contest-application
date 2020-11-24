@@ -279,7 +279,12 @@ const getRecentlyExpireContestsInfo = async () => {
 const getAllContestResults = async (id) => {
     const sql = `
     SELECT 
-        p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT ROUND(AVG(score), 2) FROM reviews WHERE photo_id = p.id) as rating, r.comment, r.score, r.id as review_id 
+        p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT username from users WHERE id = p.user_id) AS author, 
+        (SELECT avatarUrl from users WHERE id = p.user_id) AS authorAvatar,
+        (SELECT ROUND(AVG(score), 2) FROM reviews WHERE photo_id = p.id) as rating, 
+        r.comment, r.score, r.id as review_id,
+        (SELECT username from users WHERE id = r.user_id) as username, 
+        (SELECT avatarUrl from users WHERE id = r.user_id) as avatarUrl
     FROM 
         photos p 
     JOIN 
