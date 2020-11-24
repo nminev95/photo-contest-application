@@ -50,9 +50,9 @@ const getContestById = contestsData => {
 * @async
 * @return {Promise<object>}
 */
-const getAllContests = contestsData => {
+const getAllOpenContests = contestsData => {
     return async () => {
-        const contests = await contestsData.getAllContestsInfo();
+        const contests = await contestsData.getAllOpenContestsInfo();
 
         if (!contests) {
             return {
@@ -249,7 +249,7 @@ const getContestResults = contestsData => {
 
 export default {
     getContestById,
-    getAllContests,
+    getAllOpenContests,
     setNextContestPhase,
     createNewPhotoRecord,
     createPhotoReview,
