@@ -4,6 +4,7 @@ import multer from 'multer';
 const extensionsMap = new Map([
     ['image/png', 'png'],
     ['image/jpeg', 'jpg'],
+    ['image/jpeg', 'jpeg'],
 ]);
 
 const generateFileName = (extension) => {
