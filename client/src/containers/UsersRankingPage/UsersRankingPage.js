@@ -11,7 +11,6 @@ const UsersRankingPage = () => {
 
     const dispatch = useDispatch();
     const usersRankingsData = useSelector(state => state.usersRankingsState);
-    console.log(usersRankingsData)
 
     useEffect(() => {
         axiosInstance.get(userEndpoints.getUsersRankings)

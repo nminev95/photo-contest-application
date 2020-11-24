@@ -115,9 +115,9 @@ const ProfileDropdown = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                {userState.user.role === 'Organizer' ? (
+                {userState.user.role === 'Organizer' && 
                     <OpenCreateContestFormButton />
-                ) : (null)}
+                }
                 <StyledMenuItem onClick={() => {
                     handleClose();
                     history.push('/profile')
@@ -127,21 +127,14 @@ const ProfileDropdown = () => {
                     </ListItemIcon>
                     <ListItemText primary="View profile" />
                 </StyledMenuItem>
-                {userState.user.role === 'Organizer' ? (
+                {userState.user.role === 'Organizer' &&
                     <StyledMenuItem>
                         <ListItemIcon>
                             <DraftsIcon fontSize="small" />
                         </ListItemIcon>
                         <ListItemText primary="Your contests" />
                     </StyledMenuItem>
-                ) : (
-                        <StyledMenuItem onClick={() => history.push(`/users/contests`)}>
-                            <ListItemIcon>
-                                <DraftsIcon fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText primary="Your entries" />
-                        </StyledMenuItem>
-                    )}
+                }
                 <StyledMenuItem>
                     <ListItemIcon>
                         <InboxIcon fontSize="small" />

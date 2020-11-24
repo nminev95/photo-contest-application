@@ -64,10 +64,14 @@ const SingleUserInfo = (props) => {
                 <ListItemText
                     className={styles.userInfo} />
                 <ListItemAvatar>
-                    <Avatar
-                        alt={user.username}
-                        className={styles.large}
-                        src={`http://localhost:4000/public/avatars/${user.avatarUrl}`} />
+                    {user.avatarUrl ? (
+                        <Avatar
+                            alt={user.username}
+                            className={styles.large}
+                            src={`http://localhost:4000/public/avatars/${user.avatarUrl}`} />
+                    ) : (
+                            <Avatar className={styles.large}></Avatar>
+                        )}
                 </ListItemAvatar>
             </ListItem>
             <Divider variant="inset" component="li" />

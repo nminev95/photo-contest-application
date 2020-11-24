@@ -78,6 +78,9 @@ const Navbar = () => {
               <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
               <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
               <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
+              {userState.user.role === 'Photo Junkie'  &&
+                <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/contests')}>My entries</MenuItem>
+              }
               {userState.user.role === 'Organizer' ? (
                 <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>
               ) : (null)}
