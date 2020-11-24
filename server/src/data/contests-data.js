@@ -276,6 +276,21 @@ const getRecentlyExpireContestsInfo = async () => {
     return await pool.query(sql);
 };
 
+const getAllContestResults = async (id) => {
+    const sql = `
+    SELECT 
+        p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT ROUND(AVG(score), 2) FROM reviews WHERE photo_id = p.id) as rating
+    FROM 
+        photos p 
+    WHERE 
+        contest_id = ? 
+    ORDER BY 
+        rating 
+    DESC
+    `;
+
+    return await pool.query(sql, [id])
+}
 
 export default {
     getAllContestsInfo,
@@ -288,4 +303,5 @@ export default {
     sendJuryInvitations,
     getAllOrganizersForJury,
     getRecentlyExpireContestsInfo,
+    getAllContestResults,
 };

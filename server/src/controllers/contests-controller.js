@@ -24,6 +24,20 @@ contestsController
             }
         },
     )
+    .get('/:id/results',
+        authMiddleware,
+        roleMiddleware(['Photo Junkie', 'Organizer']),
+        async (req, res) => {
+            const { id } = req.params;
+            const { contests, error } = await contestsService.getContestResults(contestsData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Results not found!' });
+            } else {
+                res.status(200).send(contests);
+            }
+        },
+    )
     .get('/first-phase-exp',
         authMiddleware,
         async (req, res) => {

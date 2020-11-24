@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import contestsData from '../data/contests-data.js';
 import ERRORS from './../constants/service-errors.js';
 
 /**
@@ -178,7 +179,7 @@ const createContest = contestsData => {
         });
 
         return {
-            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR, 
+            error: newContest.affectedRows > 0 ? null : ERRORS.UNSPECIFIED_ERROR,
             contest: {
                 ...newContest,
                 jury: [...jury, ...allOrganizers],
@@ -231,6 +232,21 @@ const getRecentlyExpContests = contestsData => {
     };
 };
 
+const getContestResults = contestsData => {
+    return async (id) => {
+        const results = await contestsData.getAllContestResults(id);
+
+        if (!results) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                results: null,
+            };
+        }
+
+        return { error: null, results: results };
+    };
+};
+
 export default {
     getContestById,
     getAllContests,
@@ -240,6 +256,7 @@ export default {
     createContest,
     getAllContestsTopRatedPhotos,
     getRecentlyExpContests,
+    getContestResults,
 };
 
 

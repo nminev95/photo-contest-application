@@ -918,7 +918,7 @@ INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Nice work!', '2', '16');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Average!', '3', '16');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Nice photo!', '4', '16');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very goodood job!', '5', '16');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very good job!', '5', '16');
 
 INSERT INTO `photo_contest_db`.`reviews`
 (`score`, `comment`, `user_id`, `photo_id`)
