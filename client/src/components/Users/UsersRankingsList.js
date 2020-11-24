@@ -3,12 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import SingleUserInfo from './SingleUserInfo';
 import Typography from '@material-ui/core/Typography';
+import PersonIcon from '@material-ui/icons/Person';
 import { Container } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: 600,
         backgroundColor: theme.palette.background.paper,
         justifyContent: 'center',
         paddingTop: '5px'
@@ -16,27 +17,28 @@ const useStyles = makeStyles((theme) => ({
 
     container: {
         marginTop: '50px',
-        marginBottom: '30px',
-        display: 'flex',
+        marginBottom: '50px',
+        maxWidth: '900px',
         justifyContent: 'center',
-        backgroundColor: '#f50057',
-        maxWidth: '700px'
-    },
-
-    middleContent: {
-        paddingTop: '40px',
-        paddingBottom: '40px',
-        width: '100%',
-        maxWidth: 600,
+        // backgroundColor: '#f50057',
+    
     },
     text: {
-        color: 'white',
+        color: 'black',
         fontSize: '30px',
         fontFamily: '"Segoe UI"',
         fontWeight: '500',
         marginTop: '10px',
         textAlign: 'center',
     },
+    userIcon: {
+        color: 'black',
+        paddingBottom: '10px',
+        fontSize:'50px',
+    },
+    box: {
+        marginBottom: '60px',
+    }
 }));
 
 const UsersRankingsList = (props) => {
@@ -46,14 +48,14 @@ const UsersRankingsList = (props) => {
 
     return (
         <Container xs={12} sm={6} md={3} className={styles.container} >
-            <div className={styles.middleContent}>
+            <Box borderTop={3} borderBottom={3} className={styles.box}>
                 <Typography className={styles.text} >
-                    Users Ranking
+                <PersonIcon className={styles.userIcon}/> Users Ranking
                 </Typography>
                 <List className={styles.root} >
-                    {usersData.map((user) => <SingleUserInfo user={user} />)}
+                    {usersData.map((user) => <SingleUserInfo user={user} key={user.id} />)}
                 </List>
-            </div>
+            </Box>
         </Container>
     );
 }

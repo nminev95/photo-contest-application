@@ -8,26 +8,42 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
-    large: {
-      width: theme.spacing(7),
-      height: theme.spacing(7),
+    userInfo: {
+        justifyContent: 'left'
     },
-  }));
+    large: {
+        width: theme.spacing(7),
+        height: theme.spacing(7),
+    },
+}));
 
 
 const SingleUserInfo = (props) => {
- 
+
     const styles = useStyles();
     const { user } = props;
 
-    console.log(user)
     return (
         <>
-            <ListItem>
-                <ListItemText primary={user.firstName} secondary={user.points} />
+            <ListItem >
+                <ListItemText
+                    alignItems="flex-start"
+                    className={styles.userInfo}
+                    primary={`${user.firstName} ${user.lastName}`}
+                    secondary={user.points} />
+
+                <ListItemText
+                    alignItems="flex-start"
+                    className={styles.userInfo} />
+                <ListItemText
+                    alignItems="flex-start"
+                    className={styles.userInfo} />
                 <ListItemAvatar>
-                    <Avatar alt={user.username} className={styles.large} src={`http://localhost:4000/public/avatars/${user.avatarUrl}`}/>                  
-                </ListItemAvatar> 
+                    <Avatar
+                        alt={user.username}
+                        className={styles.large}
+                        src={`http://localhost:4000/public/avatars/${user.avatarUrl}`} />
+                </ListItemAvatar>
             </ListItem>
             <Divider variant="inset" component="li" />
         </>
