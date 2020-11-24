@@ -69,7 +69,7 @@ contestsController
             const { error, contest } = await contestsService.createContest(contestsData)(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer, JSON.parse(jury));
 
             if (error) {
-                res.status(500).send({ message: 'Internal Server Error' });
+                res.status(500).send({ message: 'Internal Server Error!' });
             } else {
                 res.status(200).send(contest);
             }

@@ -185,6 +185,32 @@ const getPastContestsByUserId = async (id) => {
 
     return await pool.query(sql, [id]);
 };
+
+/**
+* Gets all users, ordered by ranking from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getAllUsersOrderedByRanking = async () => {
+
+    const sql = `
+        SELECT
+	        id, 
+	        username, 
+	        firstName,
+	        lastName, 
+	        points, 
+            (SELECT type FROM ranks  WHERE id = rank_id) AS rank
+        FROM 
+            users 
+        WHERE role_id = 1
+        ORDER BY points
+        DESC
+    `;
+
+    return await pool.query(sql);
+};
+
 export default {
     createAccount,
     getUserInfo,
@@ -192,4 +218,5 @@ export default {
     getAllHighLevelUsers,
     getCurrentContestsByUserId,
     getPastContestsByUserId,
+    getAllUsersOrderedByRanking,
 };

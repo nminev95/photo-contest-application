@@ -157,6 +157,28 @@ const getUserPastContests = usersData => {
     };
 };
 
+/**
+* Gets users, ordered by ranking.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getUsersByRanking = usersData => {
+    return async () => {
+        
+        const usersRanking = await usersData.getAllUsersOrderedByRanking();
+       
+        if (!usersRanking.length) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                usersRanking: null,
+            };
+        }
+        
+        return { error: null, usersRanking: usersRanking };
+    };
+};
 export default {
     createUser,
     signInUser,
@@ -164,4 +186,5 @@ export default {
     getHighLevelUsers,
     getUserCurrentContests,
     getUserPastContests,
+    getUsersByRanking,
 };

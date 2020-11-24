@@ -21,9 +21,9 @@ authController
             const { error, user } = await usersService.createUser(usersData)(userData);
 
             if (error === ERRORS.DUPLICATE_RECORD) {
-                res.status(409).send({ message: 'Username is not available' });
+                res.status(409).send({ message: 'Username is not available!' });
             } else if (error === ERRORS.NO_MATCH) {
-                res.status(403).send({ message: 'Passwords don\'t match' });
+                res.status(403).send({ message: 'Passwords don\'t match!' });
             } else {
                 res.status(201).send(user);
             }
@@ -37,7 +37,7 @@ authController
 
             if (error === ERRORS.INVALID_SIGNIN) {
                 res.status(401).send({
-                    message: 'Invalid username/password',
+                    message: 'Invalid username/password!',
                 });
             } else {
                 const payload = {
