@@ -15,7 +15,7 @@ contestsController
         roleMiddleware(['Photo Junkie', 'Organizer']),
         async (req, res) => {
 
-            const { contests, error } = await contestsService.getAllContests(contestsData)();
+            const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'Contests not found!' });

@@ -1,19 +1,19 @@
 import pool from '../data/pool.js';
 
 /**
-* Gets all contests information from the database.
+* Gets all open contests information from the database.
 * @async
 * @return {Promise<object>}
 */
-const getAllContestsInfo = async () => {
+const getAllOpenContestsInfo = async () => {
 
     const sql = `
         SELECT 
             *
         FROM
             contests c
-        WHERE NOT 
-            c.phase_id=3 
+        WHERE  
+            c.phase_id = 1 
     `;
 
     return await pool.query(sql);
@@ -278,7 +278,7 @@ const getRecentlyExpireContestsInfo = async () => {
 
 
 export default {
-    getAllContestsInfo,
+    getAllOpenContestsInfo,
     getContestInfo,
     setNextPhase,
     sendNewPhotoInfo,
