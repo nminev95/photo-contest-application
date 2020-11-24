@@ -196,9 +196,10 @@ const getAllUsersOrderedByRanking = async () => {
     const sql = `
         SELECT
 	        id, 
-	        username, 
+            username, 
 	        firstName,
-	        lastName, 
+            lastName,
+            avatarUrl, 
 	        points, 
             (SELECT type FROM ranks  WHERE id = rank_id) AS rank
         FROM 

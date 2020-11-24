@@ -103,12 +103,6 @@ const MobileDropdown = () => {
                     </ListItemIcon>
                     <ListItemText primary="All contests" />
                 </StyledMenuItem>
-                <StyledMenuItem>
-                    <ListItemIcon>
-                        <InboxIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Explore photos" />
-                </StyledMenuItem>
                 {userState.user.role === 'Organizer' ? (
                     <StyledMenuItem>
                         <ListItemIcon>
