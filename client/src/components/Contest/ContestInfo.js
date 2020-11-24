@@ -9,12 +9,41 @@ import UploadPhoto from '../../containers/UploadPhoto/UploadPhoto';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.only('xl')]: {
             width: '65%',
-            height: '450px',
+            height: '430px',
             backgroundColor: "white",
             borderRadius: "7px",
             marginTop: '-8em',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+            margin: 'auto',
+            zIndex: 1,
+        },
+        [theme.breakpoints.only('lg')]: {
+            width: '65%',
+            height: '455px',
+            backgroundColor: "white",
+            borderRadius: "7px",
+            marginTop: '-8em',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+            margin: 'auto',
+            zIndex: 1,
+        },
+        [theme.breakpoints.only('md')]: {
+            width: '65%',
+            height: '510px',
+            backgroundColor: "white",
+            borderRadius: "7px",
+            marginTop: '-8em',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+            margin: 'auto',
+            zIndex: 1,
+        },
+        [theme.breakpoints.only('sm')]: {
+            width: '100%',
+            height: '495px',
+            backgroundColor: "white",
+            borderRadius: "7px",
             boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
             margin: 'auto',
             zIndex: 1,
@@ -30,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     mainGrid: {
+        height: '100%',
         [theme.breakpoints.only('xs')]: {
             width: "147%"
         },
@@ -37,6 +67,24 @@ const useStyles = makeStyles((theme) => ({
     extraGrid: {
         [theme.breakpoints.only('xs')]: {
             display: 'none'
+        },
+    },
+    infoText: {
+        [theme.breakpoints.only('xl')]: {
+            margin: '10px', 
+            padding: '50px'
+        },
+        [theme.breakpoints.only('lg')]: {
+            margin: '10px', 
+            padding:"30px"
+        },
+        [theme.breakpoints.only('md')]: {
+            margin: '10px', 
+            padding:"10px"
+        },
+        [theme.breakpoints.only('sm')]: {
+            margin: '10px', 
+            padding:"10px"
         },
     }
 }))
@@ -55,7 +103,7 @@ const ContestInfo = () => {
                     <Grid item xs={8}>
                         <Paper elevation={3}
                             className={styles.mainGrid}
-                            style={{ margin: '10px' }}><p style={{ margin: '10px', paddingTop: "15px", paddingBottom: "15px" }}>{contestInfo.category}</p></Paper>
+                            style={{ margin: '10px' }}><p className={styles.infoText}>{contestInfo.category}</p></Paper>
                     </Grid>
                     <Grid item className={styles.extraGrid} xs={4}>
                         <Paper style={{ textAlign: "-webkit-center", maxwidth: "100%", paddingTop: "20px" }}>

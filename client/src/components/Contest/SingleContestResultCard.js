@@ -13,11 +13,13 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarIcon from '@material-ui/icons/Star';
+import SingleContestEntryReview from './SingleContestEntryReview';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 845,
-    marginTop: '30px'
+    marginTop: '30px',
   },
   media: {
     height: 0,
@@ -35,60 +37,64 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: red[500],
+    marginRight: 0
   },
 }));
 
 const SingleContestResultCard = ({ entries }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" src={`http://localhost:4000/public/avatars/maisie.jpg`} className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="By maistie_williams on September 14, 2016"
-      ></CardHeader>
-      <CardMedia
-        className={classes.media}
-        image={`http://localhost:4000/public/1605388300201_496211660.jpg`}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This is my photo descriptionnnnn!
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-       
-          <StarIcon style={{ color: "#ffb300" }} fontSize='large'/>Average rating here
-      
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          style={{outline: "none"}}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Card className={classes.root}>
+        <CardHeader
+          avatar={
+            <Avatar
+              aria-label="recipe"
+              src={`http://localhost:4000/public/avatars/maisie.jpg`}
+              className={classes.avatar}
+            />
+          }
+          title="Shrimp and Chorizo Paella"
+          subheader="By maistie_williams on September 14, 2016"
+        />
+        <CardMedia
+          className={classes.media}
+          image={`http://localhost:4000/public/1605388300201_496211660.jpg`}
+          title="Paella dish"
+        />
         <CardContent>
-            Review will go here
+          <Typography variant="body2" color="textSecondary" component="p">
+            This is my photo descriptionnnnn!
+        </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+
+          <StarIcon style={{ color: "#ffb300" }} fontSize='large' />Average rating here
+
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            style={{ outline: "none" }}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <SingleContestEntryReview />
+          </CardContent>
+        </Collapse>
+      </Card>
   );
 }
 
