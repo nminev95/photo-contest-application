@@ -1,4 +1,4 @@
-const getContestResults = (state = [], action) => {
+const contestResultsState = (state = [], action) => {
     switch (action.type) {
         case 'GET_CONTEST_RESULTS':
             return action.payload;
@@ -7,4 +7,4 @@ const getContestResults = (state = [], action) => {
     }
 }
 
-export default getContestResults;
+export default contestResultsState;

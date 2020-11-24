@@ -243,7 +243,30 @@ const getContestResults = contestsData => {
             };
         }
 
-        return { error: null, results: results };
+        const mapResultsWithReviews = results.reduce((acc, entryResults) => {
+
+            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id } = entryResults;
+            
+            if (!acc.get(id)) {
+                acc.set(id, {
+                    id, title, story, originalSize, thumbnailSize, date, rating, reviews: [],
+                });
+            }
+
+            const reviewObject = {
+                id: review_id,
+                score,
+                comment,
+            };
+
+            if (reviewObject.id) {
+                acc.get(id).reviews.push(reviewObject);
+            }
+
+            return acc;
+        }, new Map());
+
+        return { error: null, results: [...mapResultsWithReviews] };
     };
 };
 

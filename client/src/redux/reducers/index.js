@@ -7,6 +7,7 @@ import usersRankingsState from './usersRankings';
 import allContestState from './allContests';
 import loginState from './isLogged';
 import userState from './userInfo';
+import contestResultsState from './contestResults';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
@@ -19,6 +20,7 @@ const allReducers = combineReducers({
     allContestState,
     loginState,
     userState,
+    contestResultsState
 })
 
 export default allReducers;

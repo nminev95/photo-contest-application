@@ -25,8 +25,8 @@ contestsController
         },
     )
     .get('/:id/results',
-        authMiddleware,
-        roleMiddleware(['Photo Junkie', 'Organizer']),
+        // authMiddleware,
+        // roleMiddleware(['Photo Junkie', 'Organizer']),
         async (req, res) => {
             const { id } = req.params;
             const { results, error } = await contestsService.getContestResults(contestsData)(+id);

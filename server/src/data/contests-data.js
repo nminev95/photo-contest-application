@@ -279,9 +279,13 @@ const getRecentlyExpireContestsInfo = async () => {
 const getAllContestResults = async (id) => {
     const sql = `
     SELECT 
-        p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT ROUND(AVG(score), 2) FROM reviews WHERE photo_id = p.id) as rating
+        p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT ROUND(AVG(score), 2) FROM reviews WHERE photo_id = p.id) as rating, r.comment, r.score, r.id as review_id 
     FROM 
         photos p 
+    JOIN 
+        reviews r
+    ON 
+        r.photo_id = p.id
     WHERE 
         contest_id = ? 
     ORDER BY 
@@ -289,8 +293,8 @@ const getAllContestResults = async (id) => {
     DESC
     `;
 
-    return await pool.query(sql, [id])
-}
+    return await pool.query(sql, [id]);
+};
 
 export default {
     getAllOpenContestsInfo,

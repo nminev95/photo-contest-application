@@ -19,6 +19,7 @@ const SingleContestPage = () => {
 
     const userInfo = useSelector(state => state.loginState.user);
     const contestInfo = useSelector(state => state.singleContestState);
+    const [areResultsFetched, setAreResultsFetched] = useState(false);
     const contestJury = contestInfo.jury;
     const [tabValue, setTabValue] = useState('entries');
 
@@ -37,7 +38,7 @@ const SingleContestPage = () => {
             .then((data) => dispatch(setContestDetails(data.data)))
     }, [dispatch, id])
 
-    if (contestInfo && contestInfo.phase_id === 3) {
+    if (contestInfo && !areResultsFetched && contestInfo.phase_id === 3) {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}/results`)
             .catch((error) => {
                 if (error.response.status === 401) {
@@ -49,7 +50,10 @@ const SingleContestPage = () => {
                     })
                 }
             })
-            .then((data) => console.log(data))
+            .then((data) => {
+                dispatch(setContestResults(data.data));
+                setAreResultsFetched(true);
+            })
     }
 
     const renderContestPhotosGrid = () => {
