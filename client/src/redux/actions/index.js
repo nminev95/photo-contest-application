@@ -73,3 +73,10 @@ export const setUsersRankingsData = (usersRankingsnfo) => {
         payload: usersRankingsnfo
     };
 };
+
+export const setContestResults = (contestResults) => {
+    return {
+        type: 'GET_CONTEST_RESULTS',
+        payload: contestResults
+    }
+}

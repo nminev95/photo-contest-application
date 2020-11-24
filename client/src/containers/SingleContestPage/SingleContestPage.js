@@ -5,7 +5,7 @@ import axiosInstance from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import { setContestDetails } from '../../redux/actions/index'
+import { setContestDetails, setContestResults } from '../../redux/actions/index'
 import ContestPhotosGrid from '../../components/Contest/ContestPhotosGrid';
 import { useParams } from 'react-router-dom';
 import ContestEntriesAndScoresTabs from '../../components/Contest/ContestEntriesAndScoresTabs';
@@ -36,6 +36,21 @@ const SingleContestPage = () => {
             })
             .then((data) => dispatch(setContestDetails(data.data)))
     }, [dispatch, id])
+
+    if (contestInfo && contestInfo.phase_id === 3) {
+        axiosInstance.get(`${contestEndpoints.singleContest}${id}/results`)
+            .catch((error) => {
+                if (error.response.status === 401) {
+                    swal({
+                        title: "Oops!",
+                        text: "Contest not found.",
+                        icon: "error",
+                        button: "Go back"
+                    })
+                }
+            })
+            .then((data) => console.log(data))
+    }
 
     const renderContestPhotosGrid = () => {
         switch (true) {
