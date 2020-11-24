@@ -66,3 +66,10 @@ export const setRecentlyExpContestsData = (recentlyExpContestsInfo) => {
         payload: recentlyExpContestsInfo
     };
 };
+
+export const setUsersRankingsData = (usersRankingsnfo) => {
+    return {
+        type: 'SET_USERS_RANKINGS_DATA',
+        payload: usersRankingsnfo
+    };
+};

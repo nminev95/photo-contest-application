@@ -2,7 +2,7 @@ import express from 'express';
 import * as ERRORS from '../constants/service-errors.js';
 import usersData from '../data/users-data.js';
 import usersService from '../services/users-service.js';
-import { authMiddleware } from '../auth/auth-middleware.js';
+import { authMiddleware, roleMiddleware} from '../auth/auth-middleware.js';
 
 const usersController = express.Router();
 
@@ -61,6 +61,20 @@ usersController
                 res.status(200).send(pastContests);
             }
         },
-    );
+    )
+    .get('/rankings',
+    authMiddleware,
+    roleMiddleware(['Organizer']),
+    async (req, res) => {
+
+        const { usersRanking, error } = await usersService.getUsersByRanking(usersData)();
+
+        if (error === ERRORS.RECORD_NOT_FOUND) {
+            res.status(404).send({ message: 'No users found!' });
+        } else {
+            res.status(200).send(usersRanking);
+        }
+    },
+);
 
 export default usersController;
