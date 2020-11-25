@@ -8,7 +8,7 @@ import usersController from './controllers/users-controller.js';
 import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
 import authController from './controllers/auth-controller.js';
-
+import getUserScores from './services/contests-service.js';
 
 const require = createRequire(import.meta.url);
 const app = express();
@@ -31,6 +31,9 @@ app.all('*', (req, res) =>
     res.status(404).send({ message: 'Resource not found!' }),
 );
 
-server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+server.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+    setInterval(() => console.log('check'), 5000)
+});
 
 // app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
