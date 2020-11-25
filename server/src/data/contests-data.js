@@ -373,6 +373,19 @@ const getUnawardedContests = async () => {
     return await pool.query(sql);
 };
 
+const markContestAwarded = async (id) => {
+    const sql = `
+        UPDATE
+            contests
+        SET 
+            pointsAwarded = 1
+        WHERE 
+            id = ?
+    `;
+
+    return await pool.query(sql, [id]);
+};
+
 export default {
     getAllOpenContestsInfo,
     getContestInfo,
@@ -389,4 +402,5 @@ export default {
     getUnawardedContests,
     getPhaseTwoContestsInfo,
     getFinishedContestsInfo,
+    markContestAwarded,
 };

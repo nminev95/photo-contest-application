@@ -212,6 +212,24 @@ const getAllUsersOrderedByRanking = async () => {
     return await pool.query(sql);
 };
 
+const addUserPoints = async (points, ids) => {
+    
+    ids.map(async (id) => {
+
+        const sql = `
+        UPDATE 
+        users
+        SET 
+        points = points + ?
+        WHERE 
+        id = ?
+        
+        `;
+        
+        return await pool.query(sql, [points, id]);
+    });
+};
+
 export default {
     createAccount,
     getUserInfo,
@@ -220,4 +238,5 @@ export default {
     getCurrentContestsByUserId,
     getPastContestsByUserId,
     getAllUsersOrderedByRanking,
+    addUserPoints,
 };
