@@ -15,9 +15,8 @@ const contestsController = express.Router();
 contestsController
     .get('/',
         authMiddleware,
-        createValidator(createContestEntrySchema),
+        roleMiddleware(['Photo Junkie', 'Organizer']),
         async (req, res) => {
-
             const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -120,6 +119,7 @@ contestsController
     )
     .post('/:id',
         authMiddleware,
+        createValidator(createContestEntrySchema),
         multer({ storage: storage }).single('image'),
         async (req, res) => {
             const { id } = req.params;
