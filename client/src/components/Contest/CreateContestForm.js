@@ -59,7 +59,7 @@ const CreateContestForm = ({ handleClose }) => {
             validators: {
                 required: true,
                 minLen: 6,
-                maxLen: 100
+                maxLen: 200
             }
         },
         firstPhaseLimit: {
@@ -179,7 +179,7 @@ const CreateContestForm = ({ handleClose }) => {
 
         setContestForm({ ...contestForm, [name]: copyControl });
     };
-        console.log(contestForm)
+    
     const handleSubmit = (ev) => {
 
         if (!contestForm.title.valid || !contestForm.category.valid || !contestCover) {
