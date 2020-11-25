@@ -298,6 +298,18 @@ const getUserScores = contestsData => {
     };
 };
 
+const getFinishedAndUnawaredContests = contestsData => {
+    return async () => {
+        const contests = await contestsData.getUnawardedContests();
+
+        if (contests.length === 0) {
+            return;
+        }
+    
+        return contests;
+    };
+};
+
 export default {
     getContestById,
     getAllOpenContests,
@@ -309,6 +321,7 @@ export default {
     getRecentlyExpContests,
     getContestResults,
     getUserScores,
+    getFinishedAndUnawaredContests,
 };
 
 
