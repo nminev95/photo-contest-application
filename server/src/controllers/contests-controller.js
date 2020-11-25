@@ -1,11 +1,11 @@
 import express from 'express';
 import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
-import * as ERRORS from '../constants/service-errors.js';
+import ERRORS from '../constants/service-errors.js';
 import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
-import { createContestEntrySchema } from '../validations/schemas/create-contest-entry-schema.js';
+// import { createContestEntrySchema } from '../validations/schemas/create-contest-entry-schema.js';
 // import { createContestSchema } from '../validations/schemas/create-contest-schema.js';
-import { createValidator } from '../validations/validator-middleware.js';
+// import { createValidator } from '../validations/validator-middleware.js';
 import multer from 'multer';
 import storage from './../storage.js';
 import sharp from 'sharp';
@@ -13,25 +13,23 @@ import sharp from 'sharp';
 const contestsController = express.Router();
 
 contestsController
-.get('/',
-authMiddleware,
-async (req, res) => {
-    const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
+    .get('/',
+        authMiddleware,
+        async (req, res) => {
+            const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
 
-    if (error === ERRORS.RECORD_NOT_FOUND) {
-        res.status(404).send({ message: 'Contests not found!' });
-    } else {
-        res.status(200).send(contests);
-    }
-},
-)
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Contests not found!' });
+            } else {
+                res.status(200).send(contests);
+            }
+        },
+    )
     .get('/phase/2',
         authMiddleware,
         roleMiddleware(['Organizer']),
         async (req, res) => {
-
             const { contestsPhaseTwo, error } = await contestsService.getPhaseTwoContests(contestsData)();
-
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'Contests not found!' });
             } else {
@@ -39,19 +37,19 @@ async (req, res) => {
             }
         },
     )
-    .get('/finished',
-    authMiddleware,
-    roleMiddleware(['Organizer']),
-    async (req, res) => {
-        const { finishedContests, error } = await contestsService.getFinishedContests(contestsData)();
+    .get('/phase/3',
+        authMiddleware,
+        roleMiddleware(['Organizer']),
+        async (req, res) => {
+            const { finishedContests, error } = await contestsService.getFinishedContests(contestsData)();
 
-        if (error === ERRORS.RECORD_NOT_FOUND) {
-            res.status(404).send({ message: 'Contests not found!' });
-        } else {
-            res.status(200).send(finishedContests);
-        }
-    },
-)
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Contests not found!' });
+            } else {
+                res.status(200).send(finishedContests);
+            }
+        },
+    )
     .get('/:id/results',
         authMiddleware,
         roleMiddleware(['Photo Junkie', 'Organizer']),
@@ -160,9 +158,9 @@ async (req, res) => {
         },
     )
     .post('/:id',
-        authMiddleware,
-        createValidator(createContestEntrySchema),
-        multer({ storage: storage }).single('image'),
+    authMiddleware,
+    multer({ storage: storage }).single('image'),
+    // createValidator(createContestEntrySchema),
         async (req, res) => {
             const { id } = req.params;
             const user_id = req.user.id;

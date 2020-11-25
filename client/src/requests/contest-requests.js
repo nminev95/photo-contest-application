@@ -1,5 +1,7 @@
 const contestEndpoints = {
     allContests: '/contests',
+    contestsPhaseTwo: '/contests/phase/2',
+    finishedContests: '/contests/phase/3',
     singleContest: '/contests/',
     addNewPhoto: '/contests/',
     getAllCategories: '/contests/categories',

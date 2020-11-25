@@ -1,9 +1,8 @@
 import { Grid, Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import SentimentDissatisfiedRoundedIcon from '@material-ui/icons/SentimentDissatisfiedRounded';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const EmptyPageComponent = () => {
     const styles = useStyles();
-    const history = useHistory();
 
     return (
         <>
@@ -55,20 +53,9 @@ const EmptyPageComponent = () => {
                             Ooops... 
                         </p>
                         <p style={{ margin: '10px', paddingTop: "5 px", paddingBottom: "15px", fontSize: "30px" }}>
-                            It seems like you are not taking part in any contests!
+                            It seems like there is no content to be showed!
                         </p>
                     </Typography>
-                    <Grid container spacing={2} justify="center" >
-                        <Grid item>
-                            <Button
-                                style={{ marginTop: '80px' }}
-                                variant="contained"
-                                color="secondary"
-                                onClick={() => history.push('/contests')}>
-                                Back to all contests
-                            </Button>
-                        </Grid>
-                    </Grid>
             </Box>
         </>
     )

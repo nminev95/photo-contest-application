@@ -76,13 +76,18 @@ const Navbar = () => {
             <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
               <MobileDropdown />
               <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
-              <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
               {userState.user.role === 'Photo Junkie'  &&
-                <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/contests')}>My entries</MenuItem>
-              }
-              {userState.user.role === 'Organizer' ? (
-                <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>
-              ) : (null)}
+              <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Open Contests</MenuItem>}
+              {userState.user.role === 'Photo Junkie'  &&
+                <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/contests')}>My entries</MenuItem>}
+                {userState.user.role === 'Organizer' &&
+                <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Contests Phase I </MenuItem>}
+              {userState.user.role === 'Organizer' &&
+                <MenuItem className={classes.navLinks}  onClick={() => history.push('/contests/phase/2')}> Contests Phase II </MenuItem>}
+                     {userState.user.role === 'Organizer' &&
+                <MenuItem className={classes.navLinks}  onClick={() => history.push('/contests/phase/3')}>Finished Contests </MenuItem>}
+                     {userState.user.role === 'Organizer' &&
+                <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>}
               <div className={classes.grow} />
               <MessagesDropdown />
               <MenuItem style={{ padding: "0" }}>
