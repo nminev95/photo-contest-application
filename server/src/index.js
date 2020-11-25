@@ -33,7 +33,7 @@ app.all('*', (req, res) =>
 
 server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
-    setInterval(() => console.log('check'), 5000)
+    setInterval(() => console.log('check'), 5000);
 });
 
 // app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

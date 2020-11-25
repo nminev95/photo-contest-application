@@ -13,18 +13,45 @@ import sharp from 'sharp';
 const contestsController = express.Router();
 
 contestsController
-    .get('/',
+.get('/',
+authMiddleware,
+async (req, res) => {
+    const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
+
+    if (error === ERRORS.RECORD_NOT_FOUND) {
+        res.status(404).send({ message: 'Contests not found!' });
+    } else {
+        res.status(200).send(contests);
+    }
+},
+)
+    .get('/phase/2',
         authMiddleware,
+        roleMiddleware(['Organizer']),
         async (req, res) => {
-            const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
+
+            const { contestsPhaseTwo, error } = await contestsService.getPhaseTwoContests(contestsData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'Contests not found!' });
             } else {
-                res.status(200).send(contests);
+                res.status(200).send(contestsPhaseTwo);
             }
         },
     )
+    .get('/finished',
+    authMiddleware,
+    roleMiddleware(['Organizer']),
+    async (req, res) => {
+        const { finishedContests, error } = await contestsService.getFinishedContests(contestsData)();
+
+        if (error === ERRORS.RECORD_NOT_FOUND) {
+            res.status(404).send({ message: 'Contests not found!' });
+        } else {
+            res.status(200).send(finishedContests);
+        }
+    },
+)
     .get('/:id/results',
         authMiddleware,
         roleMiddleware(['Photo Junkie', 'Organizer']),
