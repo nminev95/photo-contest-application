@@ -67,10 +67,10 @@ export const setRecentlyExpContestsData = (recentlyExpContestsInfo) => {
     };
 };
 
-export const setUsersRankingsData = (usersRankingsnfo) => {
+export const setUsersRankingsData = (usersRankingsInfo) => {
     return {
         type: 'SET_USERS_RANKINGS_DATA',
-        payload: usersRankingsnfo
+        payload: usersRankingsInfo
     };
 };
 
@@ -78,5 +78,19 @@ export const setContestResults = (contestResults) => {
     return {
         type: 'GET_CONTEST_RESULTS',
         payload: contestResults
+    }
+}
+
+export const setContestPhaseTwoData = (contestPhaseTwoResults) => {
+    return {
+        type: 'SET_CONTESTS_PHASE_TWO_DATA',
+        payload: contestPhaseTwoResults
+    }
+}
+
+export const setFinishedContestsData = (finishedContestsResults) => {
+    return {
+        type: 'SET_FINISHED_CONTESTS_DATA',
+        payload: finishedContestsResults
     }
 }

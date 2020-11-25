@@ -54,7 +54,7 @@ const getAllOpenContests = contestsData => {
     return async () => {
         const contests = await contestsData.getAllOpenContestsInfo();
 
-        if (!contests) {
+        if (!contests.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
                 contests: null,
@@ -76,7 +76,7 @@ const getPhaseTwoContests = contestsData => {
     return async () => {
         const contestsPhaseTwo = await contestsData.getPhaseTwoContestsInfo();
 
-        if (!contestsPhaseTwo) {
+        if (!contestsPhaseTwo.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
                 contestsPhaseTwo: null,
@@ -98,7 +98,7 @@ const getFinishedContests = contestsData => {
     return async () => {
         const finishedContests = await contestsData.getFinishedContestsInfo();
 
-        if (!finishedContests) {
+        if (!finishedContests.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
                 finishedContests: null,
