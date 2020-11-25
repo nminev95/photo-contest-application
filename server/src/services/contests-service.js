@@ -291,7 +291,7 @@ const getContestResults = contestsData => {
 
             const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id, username, avatarUrl, authorAvatar, author, reviewAuthorPoints, reviewAuthorRank } = entryResults;
             const addDate = date.toISOString().split('T')[0];
-            
+
             if (!acc.get(id)) {
                 acc.set(id, {
                     id, title, story, originalSize, thumbnailSize, addDate, rating, author, authorAvatar, reviews: [],
@@ -342,15 +342,65 @@ const getUserScores = contestsData => {
     };
 };
 
-const getFinishedAndUnawaredContests = contestsData => {
+const getFinishedAndUnawardedContests = contestsData => {
     return async () => {
         const contests = await contestsData.getUnawardedContests();
 
         if (contests.length === 0) {
             return;
         }
-    
+
         return contests;
+    };
+};
+
+const awardPointsForFinishedContests = usersData => {
+    return async () => {
+        const contests = await getFinishedAndUnawardedContests(contestsData)();
+
+        if (!contests) {
+            return;
+        }
+
+        contests.map(async (contest) => {
+            const scores = await getUserScores(contestsData)(contest.id);
+            const firstThree = [];
+
+            const userScoresMap = await scores.reduce((acc, score) => {
+                if (!acc.get(score.rating)) {
+                    acc.set(score.rating, [score.user_id]);
+                } else {
+                    acc.get(score.rating).push(score.user_id);
+                }
+
+                return acc;
+            }, new Map());
+
+            await userScoresMap.forEach((value, key) => {
+                if (firstThree.length === 3) {
+                    return;
+                }
+                firstThree.push({
+                    rating: key,
+                    users: value,
+                });
+            });
+
+            let firstPlacePoints;
+            const secondPlacePoints = firstThree[1].users.length === 1 ? 35 : 25;
+            const thirdPlacePoints = firstThree[2].users.length === 1 ? 20 : 10;
+
+            if (firstThree[0].rating >= (secondPlacePoints * 2)) {
+                firstPlacePoints = 75;
+            } else {
+                firstPlacePoints = firstThree[0].users.length === 1 ? 50 : 40;
+            }
+
+            await usersData.addUserPoints(firstPlacePoints, firstThree[0].users);
+            await usersData.addUserPoints(secondPlacePoints, firstThree[1].users);
+            await usersData.addUserPoints(thirdPlacePoints, firstThree[2].users);
+            await contestsData.markContestAwarded(contest.id);
+        });
     };
 };
 
@@ -365,9 +415,10 @@ export default {
     getRecentlyExpContests,
     getContestResults,
     getUserScores,
-    getFinishedAndUnawaredContests,
+    getFinishedAndUnawardedContests,
     getPhaseTwoContests,
     getFinishedContests,
+    awardPointsForFinishedContests,
 };
 
 
