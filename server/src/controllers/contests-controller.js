@@ -3,6 +3,9 @@ import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
 import * as ERRORS from '../constants/service-errors.js';
 import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
+import { createContestEntrySchema } from '../validations/schemas/create-contest-entry-schema.js';
+// import { createContestSchema } from '../validations/schemas/create-contest-schema.js';
+import { createValidator } from '../validations/validator-middleware.js';
 import multer from 'multer';
 import storage from './../storage.js';
 import sharp from 'sharp';
@@ -12,7 +15,7 @@ const contestsController = express.Router();
 contestsController
     .get('/',
         authMiddleware,
-        roleMiddleware(['Photo Junkie', 'Organizer']),
+        createValidator(createContestEntrySchema),
         async (req, res) => {
 
             const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
@@ -25,8 +28,8 @@ contestsController
         },
     )
     .get('/:id/results',
-        // authMiddleware,
-        // roleMiddleware(['Photo Junkie', 'Organizer']),
+        authMiddleware,
+        roleMiddleware(['Photo Junkie', 'Organizer']),
         async (req, res) => {
             const { id } = req.params;
             const { results, error } = await contestsService.getContestResults(contestsData)(+id);

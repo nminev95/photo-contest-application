@@ -1,4 +1,4 @@
-export const createUserSchema = {
+export const createContestEntrySchema = {
     title: value => {
         if (!value) {
             return 'Title is required';

@@ -1,6 +1,7 @@
 export const createValidator = schema => {
     return (req, res, next) => {
         const body = req.body;
+        const file = req.file;
         const bodyKeys = Object.keys(body);
         const validations = Object.keys(schema);
 
@@ -9,7 +10,7 @@ export const createValidator = schema => {
         }
 
         const fails = validations
-            .map(v => schema[v](body[v]))
+            .map((v) => v === 'filename' ? schema[v](file[v]) : schema[v](body[v]))
             .filter(e => e !== null);
 
         if (fails.length > 0) {
