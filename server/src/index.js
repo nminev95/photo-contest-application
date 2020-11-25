@@ -8,9 +8,8 @@ import usersController from './controllers/users-controller.js';
 import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
 import authController from './controllers/auth-controller.js';
-// import getUserScores from './services/contests-service.js';
 import contestsData from './data/contests-data.js';
-import contestsService from './services/contests-service.js'
+import contestsService from './services/contests-service.js';
 
 const require = createRequire(import.meta.url);
 const app = express();
@@ -37,10 +36,36 @@ server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
     setInterval(async () => {
         const contests = await contestsService.getFinishedAndUnawaredContests(contestsData)();
-        // contests.map((contest) => console.log(contest))
-        const scores = await contestsService.getUserScores(contestsData)(1);
-        // console.log(contests);
+
+        if (contests.length === 0) {
+            return;
+        }
+       
+        contests.map(async (contest) => {
+            const scores = await contestsService.getUserScores(contestsData)(1);
+            const arr = [];
+
+            const userScoresMap = scores.reduce((acc, score) => {
+                if (!acc.get(score.rating)) {
+                    acc.set(score.rating, [score.user_id]);
+                } else {
+                    acc.get(score.rating).push(score.user_id);
+                }
+
+                return acc;
+            }, new Map());
+                        
+            userScoresMap.forEach((value, key) => {
+                if (arr.length === 3) {
+                    return;
+                }
+                arr.push({
+                    rating: key, 
+                    users: value,
+                });
+            })
+            // console.log(arr);
+        });
+
     }, 5000);
 });
-
-// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
