@@ -20,6 +20,44 @@ const getAllOpenContestsInfo = async () => {
 };
 
 /**
+* Gets all contests information in phase 2 from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getPhaseTwoContestsInfo = async () => {
+
+    const sql = `
+        SELECT 
+            *
+        FROM
+            contests c
+        WHERE  
+            c.phase_id = 2 
+    `;
+
+    return await pool.query(sql);
+};
+
+/**
+* Gets all contests information in phase 3 (finished) from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getFinishedContestsInfo = async () => {
+
+    const sql = `
+        SELECT 
+            *
+        FROM
+            contests c
+        WHERE  
+            c.phase_id = 3 
+    `;
+
+    return await pool.query(sql);
+};
+
+/**
 * Gets contest's information found by unique contest number.
 * @async
 * @param {number} id - The unique contest number.
@@ -349,4 +387,6 @@ export default {
     getAllContestResults,
     getUserResults,
     getUnawardedContests,
+    getPhaseTwoContestsInfo,
+    getFinishedContestsInfo,
 };

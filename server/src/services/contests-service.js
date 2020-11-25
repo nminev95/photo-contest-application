@@ -66,6 +66,50 @@ const getAllOpenContests = contestsData => {
 };
 
 /**
+* Gets Phase II contests information.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getPhaseTwoContests = contestsData => {
+    return async () => {
+        const contestsPhaseTwo = await contestsData.getPhaseTwoContestsInfo();
+
+        if (!contestsPhaseTwo) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contestsPhaseTwo: null,
+            };
+        }
+
+        return { error: null, contestsPhaseTwo: contestsPhaseTwo };
+    };
+};
+
+/**
+* Gets Phase II contests information.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getFinishedContests = contestsData => {
+    return async () => {
+        const finishedContests = await contestsData.getFinishedContestsInfo();
+
+        if (!finishedContests) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                finishedContests: null,
+            };
+        }
+
+        return { error: null, finishedContests: finishedContests };
+    };
+};
+
+/**
 * Sets the next contest phase.
 * @param module contests data SQL queries module.
 * @callback 
@@ -322,6 +366,8 @@ export default {
     getContestResults,
     getUserScores,
     getFinishedAndUnawaredContests,
+    getPhaseTwoContests,
+    getFinishedContests,
 };
 
 

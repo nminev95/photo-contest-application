@@ -77,7 +77,6 @@ const SingleContestPage = () => {
         setTabValue(newValue);
     };
 
-    console.log(tabValue)
     return (
         <>
             <ContestBackgroundImageBox />
