@@ -275,6 +275,29 @@ const getContestResults = contestsData => {
     };
 };
 
+const getUserScores = contestsData => {
+    return async (id) => {
+        const contest = await contestsData.getContestInfo(id);
+
+        if (!contest) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                scoresAndRanking: null,
+            };
+        }
+
+        if (contest.phase_id !== 3) {
+            return {
+                error: ERRORS.OPERATION_NOT_PERMITTED,
+                scoresAndRanking: null,
+            };
+        }
+        const scoresAndRanking = await contestsData.getUserResults(id);
+
+        return { error: null, scores: scoresAndRanking };
+    };
+};
+
 export default {
     getContestById,
     getAllOpenContests,
@@ -285,6 +308,7 @@ export default {
     getAllContestsTopRatedPhotos,
     getRecentlyExpContests,
     getContestResults,
+    getUserScores,
 };
 
 
