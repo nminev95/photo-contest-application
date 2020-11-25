@@ -66,6 +66,7 @@ contestsController
     .post('/create',
         authMiddleware,
         roleMiddleware(['Organizer']),
+        // createValidator(createContestSchema),
         multer({ storage: storage }).single('image'),
         async (req, res) => {
 

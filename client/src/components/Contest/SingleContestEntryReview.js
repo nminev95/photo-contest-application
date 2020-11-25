@@ -27,12 +27,6 @@ const SingleContestEntryReview = ({ review }) => {
                 } />
             <Divider />
         </>
-        //   datetime={
-        //     <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-        //       <span>{moment().fromNow()}</span>
-        //     </Tooltip>
-        //   }
-
     );
 };
 

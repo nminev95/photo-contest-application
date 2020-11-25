@@ -75,7 +75,6 @@ const Navbar = () => {
           <AppBar position="static" style={{ backgroundColor: "black" }}>
             <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
               <MobileDropdown />
-              <MenuItem className={classes.navLinks}>Dashboard</MenuItem>
               <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
               <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}>All Contests</MenuItem>
               {userState.user.role === 'Photo Junkie'  &&

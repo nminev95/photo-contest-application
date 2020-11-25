@@ -135,12 +135,6 @@ const ProfileDropdown = () => {
                         <ListItemText primary="Your contests" />
                     </StyledMenuItem>
                 }
-                <StyledMenuItem>
-                    <ListItemIcon>
-                        <InboxIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Settings" />
-                </StyledMenuItem>
                 <StyledMenuItem onClick={() => handleLogout()}>
                     <ListItemIcon>
                         <InboxIcon fontSize="small" />
