@@ -245,7 +245,7 @@ const getContestResults = contestsData => {
 
         const mapResultsWithReviews = results.reduce((acc, entryResults) => {
 
-            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id, username, avatarUrl, authorAvatar, author } = entryResults;
+            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id, username, avatarUrl, authorAvatar, author, reviewAuthorPoints, reviewAuthorRank } = entryResults;
             const addDate = date.toISOString().split('T')[0];
             
             if (!acc.get(id)) {
@@ -260,6 +260,8 @@ const getContestResults = contestsData => {
                 comment,
                 username,
                 avatarUrl,
+                reviewAuthorRank,
+                reviewAuthorPoints,
             };
 
             if (reviewObject.id) {

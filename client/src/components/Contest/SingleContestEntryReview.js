@@ -3,28 +3,25 @@ import { Comment, Tooltip, Avatar } from 'antd';
 import StarIcon from '@material-ui/icons/Star';
 import { Divider } from '@material-ui/core';
 
-const SingleContestEntryReview = () => {
+const SingleContestEntryReview = ({ review }) => {
 
     return (
         <>
             <Comment
-                author={<a>Han Solo</a>}
+                author={<Tooltip title={`Rank: ${review.reviewAuthorRank}, Points: ${review.reviewAuthorPoints}`}>{review.username}</Tooltip>}
                 avatar={
                     <Avatar
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                        alt="Han Solo"
-                        
+                        src={`http://localhost:4000/public/avatars/${review.avatarUrl}`}
+                        alt={review.username}
                     />
                 }
                 content={
-                    <div style={{display:"inline-flex"}}>
+                    <div style={{ display: "block", width:"100%" }}>
                         <div style={{ float: 'left', paddingRight: '25px', textAlign: "left" }}>
-                            We supply a series of design principles, practical patterns and high quality design
-                            resources (Sketch and Axure), to help people create their product prototypes beautifully
-                            and efficiently.
+                            {review.comment}
                         </div>
                         <div style={{ float: 'right' }}>
-                            <StarIcon style={{ color: "#ffb300" }} fontSize='medium' /><p>7/10</p>
+                            <StarIcon style={{ color: "#ffb300" }} fontSize='medium' /><p>{review.score}/10</p>
                         </div>
                     </div>
                 } />

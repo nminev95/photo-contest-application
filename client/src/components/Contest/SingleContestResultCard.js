@@ -50,51 +50,48 @@ const SingleContestResultCard = ({ entry }) => {
   };
 
   return (
-      <Card className={classes.root}>
-        <CardHeader
-          avatar={
-            <Avatar
-              aria-label="recipe"
-              src={`http://localhost:4000/public/avatars/maisie.jpg`}
-              className={classes.avatar}
-            />
-          }
-          title={entry.title}
-          subheader={`by ${entry.author} on ${entry.addDate}`}
-        />
-        <CardMedia
-          className={classes.media}
-          image={`http://localhost:4000/public/${entry.originalSize}`}
-          title={entry.title}
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {entry.story}
+    <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar
+            aria-label="recipe"
+            src={`http://localhost:4000/public/avatars/${entry.authorAvatar}`}
+            className={classes.avatar}
+          />
+        }
+        title={entry.title}
+        subheader={`by ${entry.author} on ${entry.addDate}`}
+      />
+      <CardMedia
+        className={classes.media}
+        image={`http://localhost:4000/public/${entry.originalSize}`}
+        title={entry.title}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {entry.story}
         </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-
-          <StarIcon style={{ color: "#ffb300" }} fontSize='large' />{entry.rating.toFixed(2)}/10
-
+      </CardContent>
+      <CardActions disableSpacing>
+        <StarIcon style={{ color: "#ffb300" }} fontSize='large' />{entry.rating.toFixed(2)}/10
           <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            style={{ outline: "none" }}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <SingleContestEntryReview />
-          </CardContent>
-        </Collapse>
-      </Card>
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          style={{ outline: "none" }}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          {entry.reviews.map((review) => <SingleContestEntryReview review={review} />)}
+        </CardContent>
+      </Collapse>
+    </Card>
   );
 }
 
