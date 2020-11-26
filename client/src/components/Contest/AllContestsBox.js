@@ -19,8 +19,8 @@ const AllContestsBox = (props) => {
     const { contestsData } = props;
    
     return (      
-        <Container style={{marginTop:'70px'}}>
-            <Grid container  spacing={8} className={classes.cardGrid} maxwidth="md" >
+        <Container style={{marginTop:'70px', maxWidth: '1800px'}}>
+            <Grid container  spacing={4} className={classes.cardGrid}  >
                 {contestsData.map((contest) => <SingleContestCard contest={contest} key={contest.id} />)}
             </Grid>
         </Container>

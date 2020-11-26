@@ -11,8 +11,6 @@ const PhaseTwoContestsPage = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
     const contestsData = useSelector(state => state.contestsPhaseTwoState);
-console.log(error)
-    console.log(contestsData)
 
     useEffect(() => {
         axiosInstance.get(contestEndpoints.contestsPhaseTwo)
