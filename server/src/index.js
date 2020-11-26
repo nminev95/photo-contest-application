@@ -8,9 +8,8 @@ import usersController from './controllers/users-controller.js';
 import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
 import authController from './controllers/auth-controller.js';
-// import getUserScores from './services/contests-service.js';
-import contestsData from './data/contests-data.js';
-import contestsService from './services/contests-service.js'
+import contestsService from './services/contests-service.js';
+import usersData from './data/users-data.js';
 
 const require = createRequire(import.meta.url);
 const app = express();
@@ -35,12 +34,5 @@ app.all('*', (req, res) =>
 
 server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
-    setInterval(async () => {
-        const contests = await contestsService.getFinishedAndUnawaredContests(contestsData)();
-        // contests.map((contest) => console.log(contest))
-        const scores = await contestsService.getUserScores(contestsData)(1);
-        // console.log(contests);
-    }, 5000);
+    setInterval(() => contestsService.awardPointsForFinishedContests(usersData)(), 60000);
 });
-
-// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
