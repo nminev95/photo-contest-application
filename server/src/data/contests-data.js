@@ -305,6 +305,8 @@ const getRecentlyExpireContestsInfo = async () => {
             contests 
         WHERE 
             firstPhaseLimit > NOW() 
+        AND 
+            phase_id = 1
         ORDER BY 
             firstPhaseLimit ASC
         LIMIT 
