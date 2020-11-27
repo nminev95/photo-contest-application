@@ -174,6 +174,30 @@ VALUES
 ('Cold And Blue', 'Welcome to our Cold And Blue competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.',
 (SELECT NOW() + INTERVAL 28 DAY), (SELECT NOW() + INTERVAL 15 HOUR), '150', '1606481727977_958824032.jpeg', '1', '1', '24');
 
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Famous Landmarks', 'Welcome to our Famous Landmarks competition. How many times have you heard: "You eat with your eyes first"? Food contains all of the elements of design that can make a striking image. Color, texture, pattern, line, shape, and form are all there, yet the key ingredient is to capture the image in a way that makes the viewer want. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', '1606482957170_427778791.jpeg', '1', '2', '21');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Wedding Details', 'Welcome to our Wedding Details competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', '1606483053752_332774290.jpeg', '1', '2', '23');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Snowboarding', 'Welcome to our Snowboarding competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '100', '1606483174320_692738722.jpeg', '1', '2', '22');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Sunset', 'Welcome to our Sunset competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
+(SELECT NOW() + INTERVAL 25 DAY), (SELECT NOW() + INTERVAL 23 HOUR), '120', '1606483581218_773179798.jpeg', '1', '2', '22');
+
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`
