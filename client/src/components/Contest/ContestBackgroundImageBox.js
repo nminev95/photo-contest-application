@@ -10,7 +10,7 @@ const ContestBackgroundImageBox = () => {
             [theme.breakpoints.up('md')]: {
                 height: '500px',
                 width: '100%',
-                backgroundImage: `url(http://localhost:4000/public/contest-covers/${contestInfo.contestCover})`,
+                backgroundImage: `url(http://localhost:4000/public/${contestInfo.contestCover})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -19,7 +19,7 @@ const ContestBackgroundImageBox = () => {
             [theme.breakpoints.down('sm')]: {
                 height: '450px',
                 width: '100%',
-                backgroundImage: `url(http://localhost:4000/public/contest-covers/${contestInfo.contestCover})`,
+                backgroundImage: `url(http://localhost:4000/public/${contestInfo.contestCover})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",

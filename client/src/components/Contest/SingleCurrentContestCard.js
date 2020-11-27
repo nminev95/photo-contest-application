@@ -54,13 +54,14 @@ const SingleCurrentContestView = (props) => {
     const { id } = contest;
     const classes = useStyles();
     const history = useHistory();
+    console.log(contest.contestCover)
 
     return (
         <Grid item xs={12} sm={3}   >
             <Card className={classes.card} >
                 <CardActionArea>
                     <CardMedia
-                        image={`http://localhost:4000/public/contest-covers/${contest.contestCover}`}
+                        image={`http://localhost:4000/public/${contest.contestCover}`}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}>
                         <GridListTileBar 

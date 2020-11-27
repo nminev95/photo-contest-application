@@ -5,7 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import { Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -127,14 +126,6 @@ const ProfileDropdown = () => {
                     </ListItemIcon>
                     <ListItemText primary="View profile" />
                 </StyledMenuItem>
-                {userState.user.role === 'Organizer' &&
-                    <StyledMenuItem>
-                        <ListItemIcon>
-                            <DraftsIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText primary="Your contests" />
-                    </StyledMenuItem>
-                }
                 <StyledMenuItem onClick={() => handleLogout()}>
                     <ListItemIcon>
                         <InboxIcon fontSize="small" />
