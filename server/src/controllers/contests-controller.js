@@ -3,9 +3,9 @@ import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
 import ERRORS from '../constants/service-errors.js';
 import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
-// import { createContestEntrySchema } from '../validations/schemas/create-contest-entry-schema.js';
-// import { createContestSchema } from '../validations/schemas/create-contest-schema.js';
-// import { createValidator } from '../validations/validator-middleware.js';
+import { createContestEntrySchema } from '../validations/schemas/create-contest-entry-schema.js';
+import { createContestSchema } from '../validations/schemas/create-contest-schema.js';
+import { createValidator } from '../validations/validator-middleware.js';
 import multer from 'multer';
 import storage from './../storage.js';
 import sharp from 'sharp';
@@ -160,7 +160,7 @@ contestsController
     .post('/:id',
     authMiddleware,
     multer({ storage: storage }).single('image'),
-    // createValidator(createContestEntrySchema),
+    createValidator(createContestEntrySchema),
         async (req, res) => {
             const { id } = req.params;
             const user_id = req.user.id;

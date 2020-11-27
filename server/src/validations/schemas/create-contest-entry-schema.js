@@ -21,7 +21,7 @@ export const createContestEntrySchema = {
 
         return null;
     },
-    image: value => {
+    filename: value => {
         if (!value) {
             return 'Photo upload is required';
         }
