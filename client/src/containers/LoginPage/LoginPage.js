@@ -17,6 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -121,17 +122,7 @@ const LoginPage = () => {
             return { ...data, [input.name]: input.value };
         }, {});
 
-        axiosInstance.post(authEndpoints.loginUser, userData)
-            .catch((error) => {
-                if (error.response.status === 401) {
-                    swal({
-                        title: "Oops!",
-                        text: "Looks like the entered username/password combination is invalid.",
-                        icon: "error",
-                        button: "Try again"
-                    })
-                }
-            })
+        axios.post('http://localhost:4000/auth/login', userData)
             .then((response) => {
                 if (response) {
                     swal({
@@ -145,6 +136,17 @@ const LoginPage = () => {
                         dispatch(login(decode(response.data.accessToken)));
                     });
 
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                if (error.response.status === 403) {
+                    swal({
+                        title: "Oops!",
+                        text: "Looks like the entered username/password combination is invalid.",
+                        icon: "error",
+                        button: "Try again"
+                    })
                 }
             })
     }

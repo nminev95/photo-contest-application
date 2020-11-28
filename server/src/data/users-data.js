@@ -36,12 +36,13 @@ const createAccount = async (username, password, email, firstName, lastName, rol
 * @param {number} id - The unique user number.
 * @return {Promise<object>}
 */
-const getUserInfo = async (id) => {
+const getUserInfo = async (id, username) => {
 
     const sql = `
         SELECT 
             u.id AS id, 
-            u.username AS username, 
+            u.username AS username,
+            u.password AS password, 
             u.email AS email, 
             u.firstName AS firstName,
             u.lastName AS lastName,
@@ -57,10 +58,12 @@ const getUserInfo = async (id) => {
         ON 
             u.rank_id = r.id
         WHERE 
-            u.id = ?
+            (u.id IS NULL OR u.id = ?)
+        OR 
+            (u.username IS NULL OR u.username = ?)
     `;
 
-    const result = await pool.query(sql, [id]);
+    const result = await pool.query(sql, [id, username]);
 
     return result[0];
 };

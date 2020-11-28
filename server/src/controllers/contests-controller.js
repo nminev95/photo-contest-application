@@ -70,22 +70,6 @@ contestsController
             }
         },
     )
-    // .get('/:id/scores',
-    //     authMiddleware,
-    //     roleMiddleware(['Photo Junkie', 'Organizer']),
-    //     async (req, res) => {
-    //         const { id } = req.params;
-    //         const { results, error } = await contestsService.getUserScores(contestsData)(+id);
-
-    //         if (error === ERRORS.RECORD_NOT_FOUND) {
-    //             res.status(404).send({ message: 'Results not found!' });
-    //         } else if (error === ERRORS.OPERATION_NOT_PERMITTED) {
-    //             res.status(401).send({ message: 'Contest has not finished yet!' });
-    //         } else {
-    //             res.status(200).send(results);
-    //         }
-    //     },
-    // )
     .get('/first-phase-exp',
         authMiddleware,
         async (req, res) => {

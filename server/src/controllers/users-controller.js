@@ -10,7 +10,6 @@ usersController
     .get('/:id/profile',
         authMiddleware,
         async (req, res) => {
-
             const { id } = req.user;
             const { user, error } = await usersService.getUserById(usersData)(+id);
 

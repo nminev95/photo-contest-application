@@ -15,7 +15,7 @@ import { DEFAULT_USER_ROLE } from '../constants/config.js';
 const createUser = usersData => {
     return async (userData) => {
         const { username, password, passwordConfirm, email, firstName, lastName } = userData;
-        const existingUser = await usersData.getUserInfo(username);
+        const existingUser = await usersData.getUserInfo(null, username);
 
         if (existingUser) {
             return {
@@ -49,7 +49,7 @@ const createUser = usersData => {
 */
 const signInUser = usersData => {
     return async (username, password) => {
-        const user = await usersData.getUserInfo(username);
+        const user = await usersData.getUserInfo(null, username);
 
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return {
@@ -75,7 +75,7 @@ const signInUser = usersData => {
 */
 const getUserById = usersData => {
     return async (id) => {
-        const user = await usersData.getUserInfo(id);
+        const user = await usersData.getUserInfo(id, null);
 
         if (!user) {
             return {
