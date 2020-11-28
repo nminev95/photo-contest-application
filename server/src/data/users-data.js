@@ -212,17 +212,24 @@ const getAllUsersOrderedByRanking = async () => {
     return await pool.query(sql);
 };
 
+/**
+* Adds points to users accounts. 
+* @async
+* @param {number} points - Points to be added.
+* @param {number} ids - The unique users numbers.
+* @return {Promise<object>}
+*/
 const addUserPoints = async (points, ids) => {
     
     ids.map(async (id) => {
 
         const sql = `
-        UPDATE 
-        users
-        SET 
-        points = points + ?
-        WHERE 
-        id = ?
+            UPDATE 
+                users
+            SET 
+                points = points + ?
+            WHERE 
+                id = ?
         
         `;
         
