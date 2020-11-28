@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(10),
         display: 'flex',
     },
+    container: {
+        marginTop:'60px',
+        maxWidth: '1800px'
+    }
 }));
 
 const AllContestsBox = (props) => {
@@ -19,7 +23,7 @@ const AllContestsBox = (props) => {
     const { contestsData } = props;
    
     return (      
-        <Container style={{marginTop:'70px', maxWidth: '1800px'}}>
+        <Container className={classes.container} >
             <Grid container  spacing={5} className={classes.cardGrid}  >
                 {contestsData.map((contest) => <SingleContestCard contest={contest} key={contest.id} />)}
             </Grid>
