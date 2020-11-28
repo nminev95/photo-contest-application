@@ -104,12 +104,23 @@ const UserProfilePersonalInfo = (props) => {
                         <div className={classes.Buttons}>
                             <Grid container spacing={2} justify="center" >
                                 <Grid item>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        onClick={() => history.push(`/users/past-contests`)}>
-                                        Contest history
-                                    </Button>
+                                    {props.showHistory ? (
+                                        <Button
+                                            style={{ outline: 'none' }}
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() => props.toggleShowHistory(true)}>
+                                            Hide contest history
+                                        </Button>
+                                    ) : (
+                                            <Button
+                                                style={{ outline: 'none' }}
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={() => props.toggleShowHistory(true)}>
+                                                Show contest history
+                                            </Button>
+                                        )}
                                 </Grid>
                             </Grid>
                         </div>
