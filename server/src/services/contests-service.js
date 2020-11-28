@@ -120,6 +120,7 @@ const getFinishedContests = contestsData => {
 const setNextContestPhase = contestsData => {
     return async (id) => {
         const contest = await contestsData.getContestInfo(+id);
+        let currentPhase;
 
         if (!contest) {
             return {
@@ -127,15 +128,23 @@ const setNextContestPhase = contestsData => {
                 contest: null,
             };
         }
-        const currentPhase = contest.phase_id;
-        await contestsData.setNextPhase(+id, +currentPhase);
+
+        if (new Date() > contest.firstPhaseLimit) {
+            await contestsData.setNextPhase(+id, 1);
+            currentPhase = 2;
+        }
+
+        if (new Date() > contest.secondPhaseLimit) {
+            await contestsData.setNextPhase(+id, 2);
+            currentPhase = 3;
+        }
 
         return {
             error: null,
             contest:
             {
                 ...contest,
-                phase_id: contest.phase_id + 1,
+                phase_id: currentPhase,
             },
         };
     };

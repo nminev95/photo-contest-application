@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { BASE_URL } from '../../constants/constants';
-import { setContestDetails } from '../../redux/actions';
+import { setContestDetails, setRecentlyExpContestsData } from '../../redux/actions';
 import axiosInstance from '../../requests/axios';
 import contestEndpoints from '../../requests/contest-requests';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,11 +28,16 @@ const useStyles = makeStyles((theme) => ({
 const CountdownTimerComponent = ({ contestData }) => {
     const dispatch = useDispatch();
     const location = useLocation();
+    const soonExpiringContestsData = useSelector(state => state.recentlyExpContestState); 
     const firstPhaseEndDate = new Date(contestData.firstPhaseLimit);
     const secondPhaseEndDate = new Date(contestData.secondPhaseLimit);
     const thirdPhaseEndDate = new Date();
     const styles = useStyles();
     const setNextContestPhase = () => {
+        if (contestData.phase_id === 1) {
+            const filteredContests = soonExpiringContestsData.filter(contest => +contest.id !== +contestData.id);
+            dispatch(setRecentlyExpContestsData(filteredContests))
+        }
         axiosInstance.put(`${BASE_URL}${contestEndpoints.singleContest}${+contestData.id}`)
             .catch((error) => {
                 if (error.response.status === 401) {
@@ -44,7 +49,7 @@ const CountdownTimerComponent = ({ contestData }) => {
                     })
                 }
             })
-            .then((response) => dispatch(setContestDetails(response.data)))
+            .then((response) => dispatch(setContestDetails(response.data)))  
     }
 
     const renderCountdown = (phase) => {
@@ -60,6 +65,10 @@ const CountdownTimerComponent = ({ contestData }) => {
             case phase === 3 && location.pathname.includes('users'):
                 return (
                     <SmallTimer endDate={thirdPhaseEndDate} setNextPhase={setNextContestPhase}/>
+                );
+            case phase === 1 && location.pathname.includes('home'):
+                return (
+                    <SmallTimer endDate={firstPhaseEndDate} setNextPhase={setNextContestPhase}/>
                 );
             case phase === 1:
                 return (

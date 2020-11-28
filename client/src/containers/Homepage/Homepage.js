@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LatestContestsGrid from '../../components/HomePageComponents/LatestContestsGrid';
 import TextBox from '../../components/HomePageComponents/TextBox';
 import contestEndpoints from '../../requests/contest-requests';
 import axiosInstance from '../../requests/axios';
 import swal from '@sweetalert/with-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRecentlyExpContestsData, setUserData } from '../../redux/actions/index';
+import { setNextContestPhase, setRecentlyExpContestsData, setUserData } from '../../redux/actions/index';
 import userEndpoints from '../../requests/user-requests';
 
 const HomePage = () => {
 
     const dispatch = useDispatch();
-    const contestsData = useSelector(state => state.recentlyExpContestState);
+    const contestsData = useSelector(state => state.recentlyExpContestState); 
 
     useEffect(() => {
         axiosInstance.get(contestEndpoints.recentlyExpContests)
@@ -26,7 +26,7 @@ const HomePage = () => {
                 }
             })
             .then((response) => dispatch(setRecentlyExpContestsData(response.data)))
-    }, [dispatch]);
+    }, [dispatch, contestsData.length]);
 
     useEffect(() => {
         axiosInstance.get(userEndpoints.userProfile)

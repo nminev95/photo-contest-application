@@ -5,9 +5,7 @@ const SmallTimer = ({ endDate, setNextPhase }) => {
         < Countdown
             autoStart={true}
             date={endDate}
-            onComplete={() => {
-                setNextPhase()
-            }}>
+            onComplete={setNextPhase}>
         </Countdown>
     )
 }
