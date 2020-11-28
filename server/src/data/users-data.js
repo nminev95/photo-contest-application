@@ -30,39 +30,13 @@ const createAccount = async (username, password, email, firstName, lastName, rol
     };
 };
 
-/** 
-* Finds a user in the database by username. 
-* @async
-* @param {string} username - The username of the  searched user.
-* @returns {Promise<object>} Promise with the user data if found in the database.
-*/
-const getUserInfo = async (username) => {
-
-    const sql = `
-        SELECT
-            u.id, u.username, u.password, r.type as role
-        FROM
-            users u
-        JOIN
-            roles r
-        ON
-            u.role_id = r.id
-        WHERE 
-            username = ?
-    `;
-
-    const result = await pool.query(sql, [username]);
-
-    return result[0];
-};
-
 /**
 * Gets user information found by unique user number.
 * @async
 * @param {number} id - The unique user number.
 * @return {Promise<object>}
 */
-const getById = async (id) => {
+const getUserInfo = async (id) => {
 
     const sql = `
         SELECT 
@@ -74,7 +48,8 @@ const getById = async (id) => {
             u.points AS points,
             u.info AS info,
             r.type AS rank,
-           (SELECT DATE_FORMAT(u.registerDate, "%M %d %Y")) AS registered
+            (SELECT DATE_FORMAT(u.registerDate, "%M %d %Y")) AS registered,
+            u.avatarUrl as avatar
         FROM 
             users u
         JOIN    
@@ -220,7 +195,7 @@ const getAllUsersOrderedByRanking = async () => {
 * @return {Promise<object>}
 */
 const addUserPoints = async (points, ids) => {
-    
+
     ids.map(async (id) => {
 
         const sql = `
@@ -232,7 +207,7 @@ const addUserPoints = async (points, ids) => {
                 id = ?
         
         `;
-        
+
         return await pool.query(sql, [points, id]);
     });
 };
@@ -240,7 +215,6 @@ const addUserPoints = async (points, ids) => {
 export default {
     createAccount,
     getUserInfo,
-    getById,
     getAllHighLevelUsers,
     getCurrentContestsByUserId,
     getPastContestsByUserId,

@@ -9,6 +9,7 @@ import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAward } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
+import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,6 +59,11 @@ const useStyles = makeStyles((theme) => ({
             width: "147%",
             marginTop: "20px",
         },
+    },
+    avatar: {
+        width: theme.spacing(9),
+        height: theme.spacing(9),
+        marginTop: '30px'
     }
 }));
 
@@ -68,49 +74,61 @@ const UserProfilePersonalInfo = (props) => {
     const history = useHistory();
 
     return (
-            <div style={{ display: "flex", justifyContent: 'center' }}>
-                <Box className={classes.container} justify="center" >
-                    <Grid container spacing={2} justify="center" >
-                        <Container maxwidth="md">
-                            <Typography className={classes.Name} component="h6" variant="h4" align="center" color="textPrimary" gutterBottom style={{ marginTop: "75px" }}>
-                                {userData.firstName} {userData.lastName}
-                            </Typography>
-                            <div>
-                                <Grid container spacing={2} justify="center" >
-                                    <Grid item style={{ paddingRight: "0px" }}>
-                                        <  EmojiEventsIcon style={{ fontSize: 40 }}> </ EmojiEventsIcon>
-                                    </Grid>
-                                    <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
-                                        {userData.rank}
-                                    </Typography>
-                                    <Grid item>
-                                        <FontAwesomeIcon icon={faAward} size="2x" style={{ marginTop: "4px", marginLeft: "25px" }} />
-                                    </Grid>
-                                    <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
-                                        {userData.points}
-                                    </Typography>
+        <div style={{ display: "flex", justifyContent: 'center' }}>
+            <Box className={classes.container} justify="center" >
+                <Grid container spacing={2} justify="center" >
+                    <Container maxwidth="md" style={{ textAlign: '-webkit-center' }}>
+                        <Avatar alt={userData.username} src={`http://localhost:4000/public/avatars/${userData.avatar}`} className={classes.avatar} />
+                        <Typography className={classes.Name} component="h6" variant="h4" align="center" color="textPrimary" gutterBottom style={{ marginTop: "20px" }}>
+                            {userData.firstName} {userData.lastName}
+                        </Typography>
+                        <div>
+                            <Grid container spacing={2} justify="center" >
+                                <Grid item style={{ paddingRight: "0px" }}>
+                                    <  EmojiEventsIcon style={{ fontSize: 40 }}> </ EmojiEventsIcon>
                                 </Grid>
-                                <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                                    Joined on: {userData.registered}
+                                <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
+                                    {userData.rank}
                                 </Typography>
-                            </div>
-                            <div className={classes.Buttons}>
-                                <Grid container spacing={2} justify="center" >
-                                    <Grid item>
+                                <Grid item>
+                                    <FontAwesomeIcon icon={faAward} size="2x" style={{ marginTop: "4px", marginLeft: "25px" }} />
+                                </Grid>
+                                <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
+                                    {userData.points}
+                                </Typography>
+                            </Grid>
+                            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                                Joined on: {userData.registered}
+                            </Typography>
+                        </div>
+                        <div className={classes.Buttons}>
+                            <Grid container spacing={2} justify="center" >
+                                <Grid item>
+                                    {props.showHistory ? (
                                         <Button
+                                            style={{ outline: 'none' }}
                                             variant="contained"
                                             color="secondary"
-                                            onClick={() => history.push(`/users/past-contests`)}>
-                                            Contest history
-                                    </Button>
-                                    </Grid>
+                                            onClick={() => props.toggleShowHistory(true)}>
+                                            Hide contest history
+                                        </Button>
+                                    ) : (
+                                            <Button
+                                                style={{ outline: 'none' }}
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={() => props.toggleShowHistory(true)}>
+                                                Show contest history
+                                            </Button>
+                                        )}
                                 </Grid>
-                            </div>
-                        </Container>
+                            </Grid>
+                        </div>
+                    </Container>
 
-                    </Grid>
-                </Box>
-            </div>
+                </Grid>
+            </Box>
+        </div>
     )
 }
 
