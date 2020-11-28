@@ -3,7 +3,6 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import CountdownTimerComponent from './CountdownTimerComponent';
 import ProgressStepper from './ProgressStepper';
-import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UploadPhoto from '../../containers/UploadPhoto/UploadPhoto';
 
@@ -89,9 +88,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 //entries === spots
-const ContestInfo = () => {
+const ContestInfo = ({ contestInfo }) => {
 
-    const contestInfo = useSelector(state => state.singleContestState);
     const styles = useStyles();
 
     return (

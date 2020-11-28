@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const CountdownTimerComponent = ({ contestData }) => {
+    
     const dispatch = useDispatch();
     const location = useLocation();
     const soonExpiringContestsData = useSelector(state => state.recentlyExpContestState); 
@@ -33,6 +34,7 @@ const CountdownTimerComponent = ({ contestData }) => {
     const secondPhaseEndDate = new Date(contestData.secondPhaseLimit);
     const thirdPhaseEndDate = new Date();
     const styles = useStyles();
+
     const setNextContestPhase = () => {
         if (contestData.phase_id === 1) {
             const filteredContests = soonExpiringContestsData.filter(contest => +contest.id !== +contestData.id);
