@@ -13,12 +13,18 @@ import usersData from './data/users-data.js';
 
 const require = createRequire(import.meta.url);
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
 const redis = require('redis');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+    },
+});
 
 export const client = redis.createClient(6379);
-io.on('connection', () => console.log('socket!!'));
+io.on('connection', (socket) => {
+    socket.emit('hello', 'world');
+});
 
 passport.use(jwtStrategy);
 app.use(cors());

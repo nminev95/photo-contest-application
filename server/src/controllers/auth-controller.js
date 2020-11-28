@@ -36,7 +36,7 @@ authController
             const { error, user } = await usersService.signInUser(usersData)(username, password);
 
             if (error === ERRORS.INVALID_SIGNIN) {
-                res.status(403).send({
+                res.status(401).send({
                     message: 'Invalid username/password!',
                 });
             } else {

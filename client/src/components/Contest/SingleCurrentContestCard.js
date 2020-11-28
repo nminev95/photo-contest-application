@@ -54,7 +54,6 @@ const SingleCurrentContestView = (props) => {
     const { id } = contest;
     const classes = useStyles();
     const history = useHistory();
-    console.log(contest.contestCover)
 
     return (
         <Grid item xs={12} sm={3}   >

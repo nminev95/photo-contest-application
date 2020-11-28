@@ -16,6 +16,7 @@ import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
+import socketIOClient from "socket.io-client";
 // const socket = io.connect(BASE_URL);
 
 const App = () => {
@@ -25,6 +26,12 @@ const App = () => {
   if (accessToken) {
     dispatch(login(decode(accessToken)));
   }
+
+  const socket = socketIOClient("http://localhost:4000")
+  socket.on("hello", (arg) => {
+    console.log('haha')
+    console.log(arg); // world
+  });
 
   return (
     <div className="App">

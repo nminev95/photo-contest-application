@@ -47,6 +47,7 @@ const getUserInfo = async (id, username) => {
             u.firstName AS firstName,
             u.lastName AS lastName,
             u.points AS points,
+            (SELECT type FROM roles WHERE id = u.role_id) AS role,
             u.info AS info,
             r.type AS rank,
             (SELECT DATE_FORMAT(u.registerDate, "%M %d %Y")) AS registered,

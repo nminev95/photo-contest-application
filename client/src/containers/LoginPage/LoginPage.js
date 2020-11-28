@@ -122,7 +122,7 @@ const LoginPage = () => {
             return { ...data, [input.name]: input.value };
         }, {});
 
-        axios.post('http://localhost:4000/auth/login', userData)
+        axiosInstance.post(authEndpoints.loginUser, userData)
             .then((response) => {
                 if (response) {
                     swal({
@@ -140,7 +140,7 @@ const LoginPage = () => {
             })
             .catch((error) => {
                 console.log(error)
-                if (error.response.status === 403) {
+                if (error.response.status === 401) {
                     swal({
                         title: "Oops!",
                         text: "Looks like the entered username/password combination is invalid.",
