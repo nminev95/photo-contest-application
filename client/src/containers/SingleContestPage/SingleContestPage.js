@@ -39,7 +39,7 @@ const SingleContestPage = () => {
     }, [dispatch, id])
 
     if (contestInfo && !areResultsFetched && contestInfo.phase_id === 3) {
-        axiosInstance.get(`${contestEndpoints.singleContest}${id}/results`)
+        axiosInstance.get(`${contestEndpoints.singleContest}${id}/results`) 
             .catch((error) => {
                 if (error.response.status === 401) {
                     swal({

@@ -11,8 +11,8 @@ const ProfilePage = () => {
 
     const dispatch = useDispatch();
     const userData = useSelector(state => state.userState);
-
-    useEffect(() => {
+    
+    if (!userData) {
         axiosInstance.get(userEndpoints.userProfile)
             .then((response) => dispatch(setUserData(response.data)))
             .catch((error) => {
@@ -25,7 +25,8 @@ const ProfilePage = () => {
                     })
                 }
             })
-    }, [dispatch]);
+    }
+
 
     return (
         <React.Fragment>

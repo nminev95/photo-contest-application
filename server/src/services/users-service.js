@@ -75,7 +75,7 @@ const signInUser = usersData => {
 */
 const getUserById = usersData => {
     return async (id) => {
-        const user = await usersData.getById(id);
+        const user = await usersData.getUserInfo(id);
 
         if (!user) {
             return {

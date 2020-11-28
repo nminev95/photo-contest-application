@@ -64,6 +64,8 @@ const ProfileDropdown = () => {
     const styles = useStyles();
     const history = useHistory();
     const userState = useSelector(state => state.loginState);
+    const userInfo = useSelector(state => state.userState);
+
     const dispatch = useDispatch()
 
     const handleLogout = () => {
@@ -103,7 +105,7 @@ const ProfileDropdown = () => {
                     color="inherit"
                     onClick={handleClick}
                 >
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    {userInfo && <Avatar alt={userInfo.username} src={`http://localhost:4000/public/avatars/${userInfo.avatar}`} /> }
                 </IconButton>
             </MenuItem>
             <StyledMenu
