@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         transition: '0.5s all ease-in-out',
         '&:hover': {
             opacity: '1',
-            transform: 'scale(1.05)',
+            transform: 'scale(1.08)',
             cursor: 'pointer'
         }
     },
@@ -48,25 +48,23 @@ const SingleContestCard = (props) => {
     return (
         <Grid item xs={12} sm={6} md={3} >
             <Card className={classes.card} >
-                <CardActionArea>
+                <CardActionArea style={{ outline: 'none' }}>
                     <CardMedia
                         image={`http://localhost:4000/public/${contest.contestCover}`}
                         className={classes.media}
-                        outline="none"
                         onClick={() => history.push(`/contests/${id}`)} />
+                </CardActionArea>
                     <CardContent>
                         <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
                             {contest.title}
                         </Typography>
                     </CardContent>
-                </CardActionArea>
                 <CardActions style={{ justifyContent: 'center' }}>
                     <Button
                         variant="contained"
                         className={classes.button}
                         size="small"
                         color="secondary"
-                        outline="none"
                         onClick={() => history.push(`/contests/${id}`)} >
                         See more
                 </Button>
