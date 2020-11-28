@@ -316,6 +316,12 @@ const getRecentlyExpireContestsInfo = async () => {
     return await pool.query(sql);
 };
 
+/**
+* Gets contest full information from the database.
+* @async
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const getAllContestResults = async (id) => {
     const sql = `
         SELECT 
@@ -343,6 +349,12 @@ const getAllContestResults = async (id) => {
     return await pool.query(sql, [id]);
 };
 
+/**
+* Gets user results information from the database.
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
 const getUserResults = async (id) => {
     const sql = `
         SELECT 
@@ -360,6 +372,11 @@ const getUserResults = async (id) => {
     return await pool.query(sql, [id]);
 };
 
+/**
+* Gets unawarded information from the database.
+* @async
+* @return {Promise<object>}
+*/
 const getUnawardedContests = async () => {
     const sql = `
         SELECT 
@@ -375,6 +392,12 @@ const getUnawardedContests = async () => {
     return await pool.query(sql);
 };
 
+/**
+* Updates the contest status to awarded.
+* @async
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const markContestAwarded = async (id) => {
     const sql = `
         UPDATE

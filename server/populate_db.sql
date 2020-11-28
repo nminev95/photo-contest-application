@@ -142,13 +142,13 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Sport', 'Welcome to our Sport competition. Sports photography refers to the genre of photography that covers all types of sports. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
-(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 15 HOUR), '120', '1606481510895_981577679.jpeg', '1', '1', '22');
+(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 18 HOUR), '120', '1606481510895_981577679.jpeg', '1', '1', '22');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Interior', 'Welcome to our Interior competition. Interior photography is the practice of taking photos of indoor spaces—from rooms to pieces of furniture. Knowing how to shoot an interior is essential for a wide number of fields, including real estate photography, architectural photography, and interior design photography. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
-(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 15 HOUR), '120', '1606481538487_859010055.jpeg', '1', '1', '22');
+(SELECT NOW() + INTERVAL 21 DAY), (SELECT NOW() + INTERVAL 17 HOUR), '120', '1606481538487_859010055.jpeg', '1', '1', '22');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -160,7 +160,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Waterfalls', 'Welcome to our Waterfalls competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
-(SELECT NOW() + INTERVAL 20 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '120', '1606481615746_477573046.jpeg', '1', '1', '22');
+(SELECT NOW() + INTERVAL 22 DAY), (SELECT NOW() + INTERVAL 20 HOUR), '120', '1606481615746_477573046.jpeg', '1', '1', '22');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)

@@ -7,10 +7,8 @@ import PastContestsGrid from '../../components/Contest/PastContestsGrid';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserPastContestsData } from '../../redux/actions/index';
 
-const AllUserPastContests = (props) => {
+const AllUserPastContests = () => {
 
-    // const userState = useSelector(state => state.loginState);
-    // const id = userState.user.sub;
     const userPastContestsData = useSelector(state => state.userPastContestsState);
     const userData = useSelector(state => state.userState);
     const [error, setError] = useState(null);

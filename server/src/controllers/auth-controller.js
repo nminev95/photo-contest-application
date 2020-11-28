@@ -77,10 +77,12 @@ authController
     .delete('/logout',
         authMiddleware,
         async (req, res) => {
+
             const { id } = req.user;
+            
             client.del(id, (err, response) => {
                 if (+response === 1) {
-                    res.status(200).json({ message: 'Token removed successfuly!' });
+                    res.status(200).json({ message: 'Token removed successfully!' });
                 } else {
                     res.status(500).json({ message: 'Internal server error!' });
                 }

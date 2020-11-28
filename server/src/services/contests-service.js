@@ -167,9 +167,9 @@ const createNewPhotoRecord = contestsData => {
 * @param module contest data SQL queries module.
 * @callback 
 * @async
+* @param {number} score - The amount of given scores by the jury member.
 * @param {string} comment - A short comment of the uploaded photo.
 * @param {boolean} confirmation - Confirms if the upploaded photo is inappropriate.
-* @param {number} score - The amount of given scores by the jury member.
 * @param {number} userId - The unique user  number.
 * @param {number} photoId - The unique photo number.
 * @return {Promise<object>}
@@ -263,6 +263,7 @@ const getAllContestsTopRatedPhotos = contestsData => {
 */
 const getRecentlyExpContests = contestsData => {
     return async () => {
+        
         const recExpContests = await contestsData.getRecentlyExpireContestsInfo();
 
         if (!recExpContests) {
@@ -276,6 +277,14 @@ const getRecentlyExpContests = contestsData => {
     };
 };
 
+/**
+* Gets contest full information found by unique contest number.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const getContestResults = contestsData => {
     return async (id) => {
         const results = await contestsData.getAllContestResults(id);
@@ -319,6 +328,7 @@ const getContestResults = contestsData => {
     };
 };
 
+
 const getUserScores = contestsData => {
     return async (id) => {
         const contest = await contestsData.getContestInfo(id);
@@ -342,8 +352,16 @@ const getUserScores = contestsData => {
     };
 };
 
+/**
+* Gets unawared contest information.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const getFinishedAndUnawardedContests = contestsData => {
     return async () => {
+
         const contests = await contestsData.getUnawardedContests();
 
         if (contests.length === 0) {
@@ -354,6 +372,13 @@ const getFinishedAndUnawardedContests = contestsData => {
     };
 };
 
+/**
+* Saves points record in the database when a contest finishes.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const awardPointsForFinishedContests = usersData => {
     return async () => {
         const contests = await getFinishedAndUnawardedContests(contestsData)();

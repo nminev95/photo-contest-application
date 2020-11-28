@@ -16,6 +16,7 @@ contestsController
     .get('/',
         authMiddleware,
         async (req, res) => {
+
             const { contests, error } = await contestsService.getAllOpenContests(contestsData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -29,7 +30,9 @@ contestsController
         authMiddleware,
         roleMiddleware(['Organizer']),
         async (req, res) => {
+
             const { contestsPhaseTwo, error } = await contestsService.getPhaseTwoContests(contestsData)();
+
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'Contests not found!' });
             } else {
@@ -41,6 +44,7 @@ contestsController
         authMiddleware,
         roleMiddleware(['Organizer']),
         async (req, res) => {
+            
             const { finishedContests, error } = await contestsService.getFinishedContests(contestsData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
@@ -54,6 +58,7 @@ contestsController
         authMiddleware,
         roleMiddleware(['Photo Junkie', 'Organizer']),
         async (req, res) => {
+
             const { id } = req.params;
             const { results, error } = await contestsService.getContestResults(contestsData)(+id);
 
@@ -135,6 +140,7 @@ contestsController
     .get('/:id',
         authMiddleware,
         async (req, res) => {
+
             const { id } = req.params;
             const { contest, error } = await contestsService.getContestById(contestsData)(+id);
 
@@ -147,6 +153,7 @@ contestsController
     )
     .put('/:id',
         async (req, res) => {
+
             const { id } = req.params;
             const { contest, error } = await contestsService.setNextContestPhase(contestsData)(+id);
 
@@ -162,6 +169,7 @@ contestsController
     multer({ storage: storage }).single('image'),
     createValidator(createContestEntrySchema),
         async (req, res) => {
+
             const { id } = req.params;
             const user_id = req.user.id;
             const title = req.body.title;
@@ -187,6 +195,7 @@ contestsController
     .post('/:id/entries/:id/rate',
         authMiddleware,
         async (req, res) => {
+
             const photoId = req.params.id;
             const userId = req.user.id;
             const score = req.body.score || 0;

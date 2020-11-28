@@ -133,6 +133,7 @@ const getUserCurrentContests = usersData => {
         return { error: null, contests: contests };
     };
 };
+
 /**
 * Gets user uploaded photos.
 * @param module users data SQL queries module.
