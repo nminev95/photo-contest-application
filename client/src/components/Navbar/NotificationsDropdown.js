@@ -94,39 +94,18 @@ const NotificationsDropdown = () => {
             >
                 {notificationsState.juryInvitations && notificationsState.juryInvitations.map((notification) => {
                     return (
-                        <MenuItem>
-                            <SingleNotification key={notification.contest} notificationData={notification} type='juryInvitation' />
+                        <MenuItem key={notification.contest_id}>
+                            <SingleNotification notificationData={notification} handleClose={handleClose} type='juryInvitation' />
                         </MenuItem>
                     )
                 })}
                 {notificationsState.privateContestInvitations && notificationsState.privateContestInvitations.map((notification) => {
                     return (
-                        <MenuItem>
-                            <SingleNotification key={notification.contest} notificationData={notification} type='privateContestInvitation' />
+                        <MenuItem key={notification.contest_id}>
+                            <SingleNotification notificationData={notification} handleClose={handleClose} type='privateContestInvitation' />
                         </MenuItem>
                     )
                 })}
-                {/* <MenuItem>
-                    <SingleNotification />
-                </MenuItem>
-                <MenuItem>
-                    <SingleNotification />
-                </MenuItem>
-                <MenuItem>
-                    <SingleNotification />
-                </MenuItem>
-                <MenuItem>
-                    <SingleNotification />
-                </MenuItem> */}
-                {/* <Link
-                    component="button"
-                    variant="body2"
-                    onClick={() => {
-                        console.info("I'm a button.");
-                    }}
-                >
-                See all messages
-                </Link> */}
             </StyledMenu>
         </Fragment>
     );
