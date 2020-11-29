@@ -29,7 +29,7 @@ INSERT INTO `photo_contest_db`.`contest_restrictions` (`type`) VALUES ('Invitati
 
 -- Users
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
-VALUES ('john_wick33', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'JohnWick@gmail.com', 'John', 'Wick', 'john.jpg', '73', (SELECT NOW()), '2');
+VALUES ('john_33', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'JohnWick@gmail.com', 'John', 'Wick', 'john.jpg', '73', (SELECT NOW()), '2');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
 VALUES ('magic_johnson11', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'MagicJohnson59@gmail.com', 'Earvin', 'Johnson', 'ervin.jpg', '181', (SELECT NOW()), '3');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
@@ -201,6 +201,30 @@ INSERT INTO `photo_contest_db`.`contests`
 VALUES
 ('Sunset', 'Welcome to our Sunset competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
 (SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 23 HOUR), '120', '1606483581218_773179798.jpeg', '1', '2', '22');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Vintage', 'Welcome to our Vintage competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606640168390_588181385.jpeg', '1', '3', '21');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Reflection', 'Welcome to our Reflection competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
+(SELECT NOW() + INTERVAL 17 DAY), ((SELECT NOW() + INTERVAL 17 DAY) + INTERVAL 24 HOUR), '120', '1606641195307_600378132.jpeg', '1', '3', '21');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Lighthouses', 'Welcome to our Lighthouses competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606642965372_739595540.jpeg', '1', '3', '23');
+
+INSERT INTO `photo_contest_db`.`contests` 
+(`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
+VALUES
+('Christmas time', 'Welcome to our Christmas time competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
+(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606643814578_389338242.jpeg', '1', '3', '24');
 
 
 -- Photos
@@ -754,6 +778,30 @@ INSERT INTO `photo_contest_db`.`photos`
 VALUES
 ('Empire State Building', 'We couldn’t put together a list of world-famous buildings without including this grand Art Deco skyscraper. ', '1605811463026_838669045.jpg', 'thumbnail-1605811463026_838669045.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '16');
 
+-- Vintage
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Vintage Car', "I'm in love with this type of photography. Took this shot 2 years ago but still love it.", '1606640554049_820709399.jpeg', 'thumbnail-1606640554049_820709399.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '21');
+
+-- Reflection 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Town', 'I am in love with the colors in this photo.', '1606641243026_473698258.jpeg', 'thumbnail-1606641243026_473698258.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '22');
+
+-- Lighthouses
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Sankaty Lighthouse', 'Took this shot in Nantucket, USA, last summer.', '1606643015386_892525775.jpeg', 'thumbnail-1606643015386_892525775.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '23');
+
+-- Christmas time 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Presents', "Took this last year. These are my children's Christmas presents", '1606644022413_003731016.jpeg', 'thumbnail-1606644022413_003731016.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '24');
+
 -- Reviews
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '21', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '1');
@@ -852,10 +900,10 @@ INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very good job!', '25', '16');
 
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('4', 'Not the worst!', '21', '17');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Above average!', '22', '17');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Nice photo!', '23', '17');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing photo!', '24', '17');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('4', 'Not bad!', '25', '17');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Above average!', '22', '17');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Nice photo!', '23', '17');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '24', '17');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Not bad!', '25', '17');
 
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('4', 'Not the worst!', '21', '18');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Above average!', '22', '18');
@@ -1133,13 +1181,41 @@ INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing photo!', '24', '96');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('4', 'Not bad!', '25', '96');
 
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '21', '101');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '101');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Very nice photo!', '23', '101');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'I love this photo!', '24', '101');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '25', '101');
+
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '21', '133');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '133');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very nice photo!', '23', '133');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'I love this photo!', '24', '133');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '25', '133');
+
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing photo!', '21', '134');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Amazing photo!', '22', '134');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very nice photo!', '23', '134');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'I love this photo!', '24', '134');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Amazing photo!', '25', '134');
+
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Amazing photo!', '21', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very nice photo!', '22', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Very nice photo!', '23', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'I love this photo!', '24', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Amazing photo!', '25', '135');
+
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Amazing photo!', '21', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Amazing photo!', '22', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Very nice photo!', '23', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'I love this photo!', '24', '135');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Amazing photo!', '25', '135');
+
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Amazing photo!', '21', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Very nice photo!', '23', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Very nice photo!', '21', '17');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very nice photo!', '22', '17');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Very nice photo!', '21', '37');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing!', '22', '37');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing!', '21', '56');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Amazing!', '22', '90');
 
