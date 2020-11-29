@@ -6,23 +6,6 @@
 Photopedia is a SPA. 
 <br/>
 
-
-
-
-### _Photo Junkie Endpoints_
-- All contests in Phase I (Open contests)
-- Photo Junkie contest entry endpoint
-- All Photo Junkie current contests
-- All Photo Junkie past contests
-- Photo Junkie current points and rank 
-
-### _Organizator Endpoints_
-- All contests in Phase I
-- All contests in Phase II
-- All contests in Phase III (Finished)
-- Photo Junkies list ordered by Ranking
-- Setup a new Contest endpoint
-- Preview photo and leave a review endpoint
 ---
 
 ##  Project Requirements
@@ -73,25 +56,53 @@ Photopedia is a SPA.
 
 ### Client
 
-7. Navigate to the `client` folder. Open the terminal and run the following commands:
+10. Navigate to the `client` folder. Open the terminal and run the following commands:
 
  
-   `npm install`
+    `npm install`
 
-   `npm run start`
+    `npm run start`
   
+11. Please, note that there are several pre-created users. 
+ - To test all the features that each **participant(Photo Junkie)** can access, log in with the following credentials:
 
+     _username_: `john_33`
+
+     _password_: `ASDF123!`
+
+ - To test all the features that each **Orginizer** can access, log in with the following credentials:
+
+     _username_: `david_org`
+
+     _password_: `ASDF123!`  
+
+12. For your convenience, we provide a brief description of the endpoints and some previews
+#### _Photo Junkie Endpoints_
+- All contests in Phase I (Open contests)
+- Photo Junkie contest entry endpoint
+- All Photo Junkie current contests
+- All Photo Junkie past contests
+- Users ranking
+
+#### _Organizer Endpoints_
+- All contests in Phase I
+- All contests in Phase II
+- All contests in Phase III (Finished)
+- Photo Junkies list ordered by Ranking
+- Setup a new Contest endpoint
+- Preview photo and leave a review endpoint
 
 ---
 
 ### Built With
 
- - [React JS](https://reactjs.org/) - library used for our client.
+ - [React JS](https://reactjs.org/) 
  - [Express.js](https://expressjs.com/)
- - [Redux](https://redux.js.org/) - to store data.
+ - [MariaDB](https://mariadb.org/)
+ - [Redux](https://redux.js.org/) 
  - [Redis](https://redis.io/)
- - [Material-UI](https://mdbootstrap.com/) - to design our components in the client.
- - [JWT](https://jwt.io/) - for authentication.
+ - [Material-UI](https://material-ui.com/) 
+ - [JWT](https://jwt.io/)
 
 ---
 
