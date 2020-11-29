@@ -11,6 +11,7 @@ import allContestState from './allContests';
 import { combineReducers } from 'redux';
 import loginState from './isLogged';
 import userState from './userInfo';
+import userNotificationsState from './userNotifications';
 
 const allReducers = combineReducers({
     userCurrentContestState,
@@ -25,6 +26,7 @@ const allReducers = combineReducers({
     allContestState,
     loginState,
     userState,
+    userNotificationsState,
 })
 
 export default allReducers;

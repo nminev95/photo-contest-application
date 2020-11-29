@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 import HomePage from './containers/HomePage/Homepage';
 import LoginPage from './containers/LoginPage/LoginPage';
@@ -15,7 +15,7 @@ import FinishedContestsPage from './containers/FinishedContestsPage/FinishedCont
 import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/AllUserCurrentContestsPage';
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from './redux/actions';
+import { login, setNotifications } from './redux/actions';
 import socketIOClient from "socket.io-client";
 // const socket = io.connect(BASE_URL);
 
@@ -28,29 +28,36 @@ const App = () => {
   }
 
   const socket = socketIOClient("http://localhost:4000")
-  socket.on("hello", (arg) => {
-    console.log('haha')
-    console.log(arg); // world
+  
+  socket.on("notifications", (notifications) => {
+    dispatch(setNotifications(notifications))
+    console.log(notifications); // world
+  });
+
+  socket.on("connect", () => {
+    const user = decode(localStorage.getItem('accessToken'))
+    console.log(JSON.stringify(user))
+    socket.emit('login', JSON.stringify(user));
   });
 
   return (
     <div className="App">
       <Router>
-          <Navbar />
-          <Switch >
-            <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage}  redirectRoute={'/home'} /> 
-            <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
-            <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
-            <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/contests/phase/2" auth={isLoggedIn} component={PhaseTwoContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/contests/phase/3" auth={isLoggedIn} component={FinishedContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
-            <GuardedRoute exact path="/users/ranking" auth={isLoggedIn} component={UsersRankingPage} redirectRoute={'/'} />
-            <GuardedRoute path="/contests/:id" component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />           
-          </Switch>
-        </Router>
+        <Navbar />
+        <Switch >
+          <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} />
+          <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
+          <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
+          <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/contests/phase/2" auth={isLoggedIn} component={PhaseTwoContestsPage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/contests/phase/3" auth={isLoggedIn} component={FinishedContestsPage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/users/ranking" auth={isLoggedIn} component={UsersRankingPage} redirectRoute={'/'} />
+          <GuardedRoute path="/contests/:id" component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />
+        </Switch>
+      </Router>
     </div>
   );
 }

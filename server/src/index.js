@@ -9,7 +9,9 @@ import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
 import authController from './controllers/auth-controller.js';
 import contestsService from './services/contests-service.js';
+import notificationsService from './services/notifications-service.js';
 import usersData from './data/users-data.js';
+import notificationsData from './data/notifications-data.js';
 
 const require = createRequire(import.meta.url);
 const app = express();
@@ -23,8 +25,20 @@ const io = require('socket.io')(server, {
 
 export const client = redis.createClient(6379);
 io.on('connection', (socket) => {
-    socket.emit('hello', 'world');
+    socket.on('login', (user) => {
+        const parsedUser = JSON.parse(user);
+        if (user) {
+            socket.userId = parsedUser.sub;
+        }
+        // console.log(socket.userId)
+        notificationsService.getAllUserNotifications(notificationsData)(socket);
+    });
+    
+    // const notifications = notificationsService.getAllUserNotifications();
+    socket.emit('get_notifications', ['asdf', 2, socket.userId]);
 });
+
+
 
 passport.use(jwtStrategy);
 app.use(cors());
