@@ -8,7 +8,9 @@ const ContestResults = () => {
     return (
         contestResults ? (
             <div style={{ textAlign: '-webkit-center' }}>
-                {contestResults.map((entry) => <SingleContestResultCard key={entry.id} entry={entry}/>)}
+                {contestResults.map((entry) => <SingleContestResultCard
+                    key={entry.id}
+                    entry={entry} />)}
             </div>
         ) : (null)
     )

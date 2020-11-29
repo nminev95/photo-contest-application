@@ -56,9 +56,11 @@ const ProfilePage = () => {
     return (
         <>
             {userData && <UserProfilePersonalInfo userData={userData} showHistory={showHistory} toggleShowHistory={toggleShowHistory} />}
-            {showHistory ?
-                (renderHistory()) 
-            : (null)}
+            {showHistory ? (
+                renderHistory()
+            ) : (
+                  null
+                )}
         </>
     )
 }

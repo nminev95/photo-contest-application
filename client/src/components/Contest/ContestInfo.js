@@ -70,20 +70,20 @@ const useStyles = makeStyles((theme) => ({
     },
     infoText: {
         [theme.breakpoints.only('xl')]: {
-            margin: '10px', 
+            margin: '10px',
             padding: '50px'
         },
         [theme.breakpoints.only('lg')]: {
-            margin: '10px', 
-            padding:"30px"
+            margin: '10px',
+            padding: "30px"
         },
         [theme.breakpoints.only('md')]: {
-            margin: '10px', 
-            padding:"10px"
+            margin: '10px',
+            padding: "10px"
         },
         [theme.breakpoints.only('sm')]: {
-            margin: '10px', 
-            padding:"10px"
+            margin: '10px',
+            padding: "10px"
         },
     }
 }))
@@ -96,15 +96,24 @@ const ContestInfo = ({ contestInfo }) => {
         <>
             <Box className={styles.container}>
                 <ProgressStepper />
-                <Divider variant="middle" />
-                <Grid container spacing={3}>
-                    <Grid item xs={8}>
-                        <Paper elevation={3}
+                <Divider
+                    variant="middle" />
+                <Grid
+                    container spacing={3}>
+                    <Grid
+                        item xs={8}>
+                        <Paper
+                            elevation={3}
                             className={styles.mainGrid}
-                            style={{ margin: '10px' }}><p className={styles.infoText}>{contestInfo.category}</p></Paper>
+                            style={{ margin: '10px' }}><p
+                                className={styles.infoText}>{contestInfo.category}</p></Paper>
                     </Grid>
-                    <Grid item className={styles.extraGrid} xs={4}>
-                        <Paper style={{ textAlign: "-webkit-center", maxwidth: "100%", paddingTop: "20px" }}>
+                    <Grid
+                        item
+                        className={styles.extraGrid}
+                        xs={4}>
+                        <Paper
+                            style={{ textAlign: "-webkit-center", maxwidth: "100%", paddingTop: "20px" }}>
                             <div>
                                 Contest theme is {contestInfo.title}
                                 <br></br>
@@ -113,9 +122,11 @@ const ContestInfo = ({ contestInfo }) => {
                                 {contestInfo.entries && +contestInfo.spots - contestInfo.entries.length} free places left
                             </div>
                             <div style={{ margin: '20px' }}>
-                                <CountdownTimerComponent contestData={contestInfo} />
+                                <CountdownTimerComponent
+                                    contestData={contestInfo} />
                             </div>
-                            <div style={{ paddingBottom: '20px' }}>
+                            <div
+                                style={{ paddingBottom: '20px' }}>
                                 <UploadPhoto />
                             </div>
                         </Paper>

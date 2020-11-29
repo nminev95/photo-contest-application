@@ -8,7 +8,6 @@ import Box from '@material-ui/core/Box';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAward } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -69,40 +68,79 @@ const useStyles = makeStyles((theme) => ({
 
 
 const UserProfilePersonalInfo = (props) => {
+
     const { userData } = props;
     const classes = useStyles();
-    const history = useHistory();
 
     return (
         <div style={{ display: "flex", justifyContent: 'center' }}>
-            <Box className={classes.container} justify="center" >
-                <Grid container spacing={2} justify="center" >
-                    <Container maxwidth="md" style={{ textAlign: '-webkit-center' }}>
-                        <Avatar alt={userData.username} src={`http://localhost:4000/public/avatars/${userData.avatar}`} className={classes.avatar} />
-                        <Typography className={classes.Name} component="h6" variant="h4" align="center" color="textPrimary" gutterBottom style={{ marginTop: "20px" }}>
+            <Box
+                className={classes.container}
+                justify="center" >
+                <Grid
+                    container
+                    spacing={2}
+                    justify="center" >
+                    <Container
+                        maxwidth="md"
+                        style={{ textAlign: '-webkit-center' }}>
+                        <Avatar
+                            alt={userData.username}
+                            src={`http://localhost:4000/public/avatars/${userData.avatar}`}
+                            className={classes.avatar} />
+                        <Typography
+                            className={classes.Name}
+                            component="h6"
+                            variant="h4"
+                            align="center"
+                            color="textPrimary"
+                            gutterBottom
+                            style={{ marginTop: "20px" }}>
                             {userData.firstName} {userData.lastName}
                         </Typography>
                         <div>
-                            <Grid container spacing={2} justify="center" >
-                                <Grid item style={{ paddingRight: "0px" }}>
-                                    <  EmojiEventsIcon style={{ fontSize: 40 }}> </ EmojiEventsIcon>
+                            <Grid
+                                container spacing={2}
+                                justify="center" >
+                                <Grid item
+                                    style={{ paddingRight: "0px" }}>
+                                    <  EmojiEventsIcon
+                                        style={{ fontSize: 40 }}> </ EmojiEventsIcon>
                                 </Grid>
-                                <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
+                                <Typography
+                                    variant="h6"
+                                    align="center"
+                                    color="textSecondary"
+                                    style={{ marginTop: "14px" }}
+                                    paragraph>
                                     {userData.rank}
                                 </Typography>
                                 <Grid item>
-                                    <FontAwesomeIcon icon={faAward} size="2x" style={{ marginTop: "4px", marginLeft: "25px" }} />
+                                    <FontAwesomeIcon
+                                        icon={faAward}
+                                        size="2x"
+                                        style={{ marginTop: "4px", marginLeft: "25px" }} />
                                 </Grid>
-                                <Typography variant="h6" align="center" color="textSecondary" style={{ marginTop: "14px" }} paragraph>
+                                <Typography
+                                    variant="h6"
+                                    align="center"
+                                    color="textSecondary"
+                                    style={{ marginTop: "14px" }} paragraph>
                                     {userData.points}
                                 </Typography>
                             </Grid>
-                            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                            <Typography
+                                variant="h6"
+                                align="center"
+                                color="textSecondary" paragraph>
                                 Joined on: {userData.registered}
                             </Typography>
                         </div>
                         <div className={classes.Buttons}>
-                            <Grid container spacing={2} justify="center" >
+                            <Grid
+                                container
+                                spacing={2}
+                                justify="center" >
                                 <Grid item>
                                     {props.showHistory ? (
                                         <Button

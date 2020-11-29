@@ -112,12 +112,18 @@ const ContestPhotosGrid = ({ isBlurred }) => {
         <>
             {isBlurred ? (
                 <>
-                    <p style={{ fontSize: '20px', marginTop: '20px' }}>All user entries will be available for view once the contest finishes.</p>
-                    <div className={styles.containerBlurred}>
-                        <div style={{ paddingBottom: "100px" }}>
+                    <p
+                        style={{ fontSize: '20px', marginTop: '20px' }}>
+                        All user entries will be available for view once the contest finishes.</p>
+                    <div
+                        className={styles.containerBlurred}>
+                        <div
+                            style={{ paddingBottom: "100px" }}>
                             {contestInfo.entries && contestInfo.entries.map((entry, index) => {
                                 return (
-                                    <div key={entry.id} className={styles.imageDiv}>
+                                    <div
+                                        key={entry.id}
+                                        className={styles.imageDiv}>
                                         <img
                                             className={styles.image}
                                             alt={entry.title}
@@ -128,17 +134,26 @@ const ContestPhotosGrid = ({ isBlurred }) => {
                                 )
                             }
                             )}
-                            <ViewPhotoFullsize setCurrentIndex={setCurrentIndex} setCurrentPhoto={setCurrentPhoto} isOpen={isOpen} handleClose={handleClose} currentPhoto={currentPhoto} currentIndex={currentIndex} />
+                            <ViewPhotoFullsize
+                                setCurrentIndex={setCurrentIndex}
+                                setCurrentPhoto={setCurrentPhoto}
+                                isOpen={isOpen}
+                                handleClose={handleClose}
+                                currentPhoto={currentPhoto}
+                                currentIndex={currentIndex} />
                         </div>
                     </div>
                 </>
             ) : (
-
-                    <div className={styles.container}>
-                        <div style={{ paddingBottom: "100px" }}>
+                    <div
+                        className={styles.container}>
+                        <div
+                            style={{ paddingBottom: "100px" }}>
                             {contestInfo.entries && contestInfo.entries.map((entry, index) => {
                                 return (
-                                    <div key={entry.id} className={styles.imageDiv}>
+                                    <div
+                                        key={entry.id}
+                                        className={styles.imageDiv}>
                                         <img
                                             className={styles.image}
                                             alt={entry.title}
@@ -149,7 +164,13 @@ const ContestPhotosGrid = ({ isBlurred }) => {
                                 )
                             }
                             )}
-                            <ViewPhotoFullsize setCurrentIndex={setCurrentIndex} setCurrentPhoto={setCurrentPhoto} isOpen={isOpen} handleClose={handleClose} currentPhoto={currentPhoto} currentIndex={currentIndex} />
+                            <ViewPhotoFullsize
+                                setCurrentIndex={setCurrentIndex}
+                                setCurrentPhoto={setCurrentPhoto}
+                                isOpen={isOpen}
+                                handleClose={handleClose}
+                                currentPhoto={currentPhoto}
+                                currentIndex={currentIndex} />
                         </div>
                     </div>
                 )}

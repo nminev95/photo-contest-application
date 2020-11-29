@@ -28,14 +28,20 @@ const AllCurrentContestsBox = ({ currentContestsData }) => {
     return (
         <div>
             <div>
-                <Typography className={classes.text} >
+                <Typography
+                    className={classes.text} >
                     <h1> Your current contests  </h1>
                 </Typography>
             </div>
-            <Divider variant="middle"  />
-            <Container style={{ marginTop: '15px' }}>
-                <Grid container spacing={4} className={classes.cardGrid} maxWidth="md">
-                    {currentContestsData.map((contest) => <SingleCurrentContestView contest={contest} key={contest.id} />)}
+            <Divider
+                variant="middle" />
+            <Container
+                style={{ marginTop: '15px' }}>
+                <Grid
+                    container spacing={4} className={classes.cardGrid} maxWidth="md">
+                    {currentContestsData.map((contest) => <SingleCurrentContestView
+                        contest={contest}
+                        key={contest.id} />)}
                 </Grid>
             </Container>
         </div>

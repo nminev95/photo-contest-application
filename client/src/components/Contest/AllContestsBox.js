@@ -12,20 +12,26 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     container: {
-        marginTop:'60px',
+        marginTop: '60px',
         maxWidth: '1800px'
     }
 }));
 
 const AllContestsBox = (props) => {
-    
+
     const classes = useStyles();
     const { contestsData } = props;
-   
-    return (      
-        <Container className={classes.container} >
-            <Grid container  spacing={5} className={classes.cardGrid}  >
-                {contestsData.map((contest) => <SingleContestCard contest={contest} key={contest.id} />)}
+
+    return (
+        <Container
+            className={classes.container} >
+            <Grid
+                container
+                spacing={5}
+                className={classes.cardGrid}  >
+                {contestsData.map((contest) => <SingleContestCard
+                    contest={contest}
+                    key={contest.id} />)}
             </Grid>
         </Container>
     )

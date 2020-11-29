@@ -36,7 +36,8 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
         <Lightbox
           animationDuration={0}
           mainSrc={`http://localhost:4000/public/${contestEntries[currentIndex].originalSize}`}
-          toolbarButtons={[<RatePhotoPopper photoId={currentPhoto.id} />]}
+          toolbarButtons={[<RatePhotoPopper 
+            photoId={currentPhoto.id} />]}
           nextSrc={`true`}
           prevSrc={'true'}
           imagePadding={30}
@@ -65,7 +66,6 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
       )
     }
   }
-
 
   return (
     <div>

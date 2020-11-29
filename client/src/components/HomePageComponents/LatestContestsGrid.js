@@ -41,16 +41,25 @@ const LatestContestsGrid = (props) => {
 
     return (
 
-        <Container style={{ marginTop: '50px' }} >
-            <Box borderTop={3} borderBottom={3}>
-                <Typography className={classes.text} >
-                   Last chance to take part in ...
+        <Container
+            style={{ marginTop: '50px' }} >
+            <Box
+                borderTop={3}
+                borderBottom={3}>
+                <Typography
+                    className={classes.text} >
+                    Last chance to take part in ...
             </Typography>
-                <Grid container spacing={4} className={classes.cardGrid}  >
-                    { contestsData.map((contest, i) => <SingleCurrentContestCard key={i} contest={contest} />)}
+                <Grid
+                    container
+                    spacing={4}
+                    className={classes.cardGrid}  >
+                    {contestsData.map((contest, i) => <SingleCurrentContestCard
+                        key={i}
+                        contest={contest} />)}
                 </Grid>
             </Box>
-        </Container>     
+        </Container>
     )
 }
 

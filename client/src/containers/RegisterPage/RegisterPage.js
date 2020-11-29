@@ -250,16 +250,33 @@ const RegisterPage = () => {
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
-            <Grid item xs={false} sm={5} md={8} className={classes.image} />
-            <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
+            <Grid item
+                xs={false}
+                sm={5}
+                md={8}
+                className={classes.image} />
+            <Grid item
+                xs={12}
+                sm={7}
+                md={4}
+                component={Paper}
+                elevation={6}
+                square>
+                <div
+                    className={classes.paper}>
+                    <Avatar
+                        className={classes.avatar}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography
+                        component="h1"
+                        variant="h5">
                         Sign up
                     </Typography>
-                    <form className={classes.form} onSubmit={handleSubmit} noValidate>
+                    <form
+                        className={classes.form}
+                        onSubmit={handleSubmit}
+                        noValidate>
                         <Grid item >
                             {renderView}
                         </Grid>

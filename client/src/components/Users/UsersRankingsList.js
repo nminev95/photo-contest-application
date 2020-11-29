@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         paddingTop: '5px',
         textAlign: 'left',
-       
+
     },
 
     container: {
         marginTop: '50px',
         marginBottom: '50px',
         maxWidth: '900px',
-    
+
     },
     text: {
         color: 'black',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     userIcon: {
         color: 'black',
         paddingBottom: '10px',
-        fontSize:'50px',
+        fontSize: '50px',
     },
     box: {
         marginBottom: '60px',
@@ -46,13 +46,27 @@ const UsersRankingsList = (props) => {
     const styles = useStyles();
 
     return (
-        <Container xs={12} sm={6} md={3} className={styles.container} >
-            <Box borderTop={3} borderBottom={3} className={styles.box}>
-                <Typography className={styles.text} >
-                <PersonIcon className={styles.userIcon}/> Users Ranking
+        <Container
+            xs={12}
+            sm={6}
+            md={3}
+            className={styles.container} >
+            <Box
+                borderTop={3}
+                borderBottom={3}
+                className={styles.box}>
+                <Typography
+                    className={styles.text} >
+                    <PersonIcon
+                        className={styles.userIcon} />
+                        Users Ranking
                 </Typography>
-                <List className={styles.root} >
-                    {usersData.map((user, index) => <SingleUserInfo user={user} place={index + 1} key={user.id} />)}
+                <List
+                    className={styles.root} >
+                    {usersData.map((user, index) => <SingleUserInfo
+                        user={user}
+                        place={index + 1}
+                        key={user.id} />)}
                 </List>
             </Box>
         </Container>

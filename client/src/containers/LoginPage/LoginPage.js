@@ -17,7 +17,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -194,18 +193,35 @@ const LoginPage = () => {
     })
 
     return (
-        <Grid container component="main" className={classes.root}>
+        <Grid
+            container
+            component="main"
+            className={classes.root}>
             <CssBaseline />
-            <Grid item xs={false} sm={5} md={8} className={classes.image} />
-            <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
+            <Grid item
+                xs={false}
+                sm={5}
+                md={8}
+                className={classes.image} />
+            <Grid item
+                xs={12}
+                sm={7}
+                md={4}
+                component={Paper}
+                elevation={6}
+                square>
+                <div
+                    className={classes.paper}>
+                    <Avatar
+                        className={classes.avatar}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form
+                        className={classes.form}
+                        noValidate>
                         <Grid item >
                             {renderView}
                         </Grid>
