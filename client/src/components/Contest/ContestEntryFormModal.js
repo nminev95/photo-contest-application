@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useSelector } from "react-redux";
 import { TextField } from "@material-ui/core";
@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Form from 'react-bootstrap/Form';
 import { withRouter } from 'react-router-dom';
 import swal from '@sweetalert/with-react';
+import { useDropzone } from 'react-dropzone';
+import ImageDropAndUpload from "./ImageDropAndUpload";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -30,7 +32,7 @@ const OpenEntryFormButton = (props) => {
     const { upload } = props;
     const { id } = props.match.params;
     const [show, setShow] = useState(false);
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const contestInfo = useSelector(state => state.singleContestState)
@@ -96,7 +98,7 @@ const OpenEntryFormButton = (props) => {
     };
 
     const formData = new FormData();
-    formData.set('image', file);
+    formData.set('image', file[0]);
     formData.set('title', photoData.title.value);
     formData.set('description', photoData.description.value);
 
@@ -151,7 +153,7 @@ const OpenEntryFormButton = (props) => {
                 )
         }
     }
-
+    console.log(file)
     return (
         <>
             {renderEnterContestButton()}
@@ -169,7 +171,7 @@ const OpenEntryFormButton = (props) => {
                 <Modal.Body>
                     In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
                     When done, simply upload your desired photo and submit your entry.
-                    <div>
+                    <div style={{textAlign: '-webkit-center'}}>
                         {photoData.title.valid ? (
                             <TextField
                                 className={styles.inputField}
@@ -216,7 +218,7 @@ const OpenEntryFormButton = (props) => {
                                     helperText="Photo description must be between 20 and 240 characters long."
                                 />
                             )}
-                        <Form style={{ marginTop: '30px' }}>
+                        {/* <Form style={{ marginTop: '30px' }}>
                             <Form.File
                                 className={styles.inputField}
                                 onChange={() => setFile(inputRef.current.files[0])}
@@ -226,7 +228,8 @@ const OpenEntryFormButton = (props) => {
                                 label="Upload your amazing photo here"
                                 custom
                             />
-                        </Form>
+                        </Form> */}
+                        <ImageDropAndUpload file={file} setFile={setFile}/>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
