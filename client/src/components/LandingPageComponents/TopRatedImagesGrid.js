@@ -43,13 +43,22 @@ const TopRtaedImagesGrid = (props) => {
 
     return (
         <div>
-            <Container style={{ marginTop: '50px' }} >
-                <Box borderTop={3} borderBottom={3}>
-                    <Typography className={classes.text} >
+            <Container
+                style={{ marginTop: '50px' }} >
+                <Box
+                    borderTop={3}
+                    borderBottom={3}>
+                    <Typography
+                        className={classes.text} >
                         WINNING PHOTOS
-                </Typography>
-                    <Grid container spacing={5} className={classes.cardGrid} maxwidth="md" >
-                        {photosData.map((photo) => <SinglePhoto photo={photo} key={photo.contest_id} />)}
+                    </Typography>
+                    <Grid
+                        container spacing={5}
+                        className={classes.cardGrid}
+                        maxwidth="md" >
+                        {photosData.map((photo) => <SinglePhoto
+                            photo={photo}
+                            key={photo.contest_id} />)}
                     </Grid>
                 </Box>
             </Container>

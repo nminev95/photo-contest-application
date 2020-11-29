@@ -22,12 +22,13 @@ const AllCurrentContestsPage = () => {
         <>
             {   !error ? (
                 <React.Fragment>
-                    {userCurrentContestsData && <AllCurrentContestsBox currentContestsData={userCurrentContestsData} />}
+                    {userCurrentContestsData && <AllCurrentContestsBox
+                        currentContestsData={userCurrentContestsData} />}
                 </React.Fragment>
             ) : (
-                <React.Fragment>
-                    <EmptyPageComponent />
-                </React.Fragment>
+                    <React.Fragment>
+                        <EmptyPageComponent />
+                    </React.Fragment>
                 )}
         </>
     )

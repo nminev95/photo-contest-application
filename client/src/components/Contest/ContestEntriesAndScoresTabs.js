@@ -21,7 +21,9 @@ const ContestEntriesAndScoresTabs = ({ handleTabChange, tabValue }) => {
     const contestInfo = useSelector(state => state.singleContestState);
 
     return (
-        <Paper square className={classes.root}>
+        <Paper
+            square
+            className={classes.root}>
             <Tabs
                 value={tabValue}
                 onChange={handleTabChange}
@@ -30,12 +32,23 @@ const ContestEntriesAndScoresTabs = ({ handleTabChange, tabValue }) => {
                 textColor="secondary"
                 aria-label="icon label tabs example"
             >
-                <Tab icon={<CollectionsIcon />} style={{ outline: 'none' }} label="All entries" value='entries' />
+                <Tab icon={<CollectionsIcon />}
+                    style={{ outline: 'none' }}
+                    label="All entries"
+                    value='entries' />
                 {contestInfo && contestInfo.phase_id === 3 ? (
-                    <Tab icon={<CheckCircleIcon />} style={{ outline: 'none' }} label="View results" value='results' />
+                    <Tab
+                        icon={<CheckCircleIcon />}
+                        style={{ outline: 'none' }}
+                        label="View results"
+                        value='results' />
                 ) : (
-                    <Tab icon={<CheckCircleIcon />} disabled style={{ outline: 'none' }} label="View results" value='disabledResults' />
-                )}
+                        <Tab
+                            icon={<CheckCircleIcon />}
+                            disabled style={{ outline: 'none' }}
+                            label="View results"
+                            value='disabledResults' />
+                    )}
             </Tabs>
         </Paper>
     );

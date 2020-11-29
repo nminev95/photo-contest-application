@@ -42,7 +42,7 @@ const EmptyPageComponent = () => {
             <Box className={styles.container}>
                 <Grid container spacing={2} justify="center" >
                     <Grid item>
-                        <SentimentDissatisfiedRoundedIcon style={{ fontSize: 80, marginTop: "70px" }}></SentimentDissatisfiedRoundedIcon>
+                        <SentimentDissatisfiedRoundedIcon style={{ fontSize: 80, marginTop: "70px" }}/>
                     </Grid>
                     </Grid>
                     <Typography

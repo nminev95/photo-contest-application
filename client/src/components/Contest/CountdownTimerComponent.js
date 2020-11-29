@@ -13,7 +13,6 @@ import SmallTimer from './SmallTimer';
 const useStyles = makeStyles((theme) => ({
     timer: {
         borderRadius: '10px',
-        // background: '#f50057',
         color: 'white'
     },
     integers: {
@@ -26,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const CountdownTimerComponent = ({ contestData }) => {
-    
+
     const dispatch = useDispatch();
     const location = useLocation();
-    const soonExpiringContestsData = useSelector(state => state.recentlyExpContestState); 
+    const soonExpiringContestsData = useSelector(state => state.recentlyExpContestState);
     const firstPhaseEndDate = new Date(contestData.firstPhaseLimit);
     const secondPhaseEndDate = new Date(contestData.secondPhaseLimit);
     const thirdPhaseEndDate = new Date();
@@ -51,38 +50,52 @@ const CountdownTimerComponent = ({ contestData }) => {
                     })
                 }
             })
-            .then((response) => dispatch(setContestDetails(response.data)))  
+            .then((response) => dispatch(setContestDetails(response.data)))
     }
 
     const renderCountdown = (phase) => {
         switch (true) {
             case phase === 1 && location.pathname.includes('users'):
                 return (
-                    <SmallTimer endDate={firstPhaseEndDate} setNextPhase={setNextContestPhase}/>
+                    <SmallTimer
+                        endDate={firstPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 );
             case phase === 2 && location.pathname.includes('users'):
                 return (
-                    <SmallTimer endDate={secondPhaseEndDate} setNextPhase={setNextContestPhase}/>
+                    <SmallTimer
+                        endDate={secondPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 );
             case phase === 3 && location.pathname.includes('users'):
                 return (
-                    <SmallTimer endDate={thirdPhaseEndDate} setNextPhase={setNextContestPhase}/>
+                    <SmallTimer
+                        endDate={thirdPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 );
             case phase === 1 && location.pathname.includes('home'):
                 return (
-                    <SmallTimer endDate={firstPhaseEndDate} setNextPhase={setNextContestPhase}/>
+                    <SmallTimer
+                        endDate={firstPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 );
             case phase === 1:
                 return (
-                    <FullsizeTimer endDate={firstPhaseEndDate} setNextPhase={setNextContestPhase} />
+                    <FullsizeTimer
+                        endDate={firstPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 )
             case phase === 2:
                 return (
-                    <FullsizeTimer endDate={secondPhaseEndDate} setNextPhase={setNextContestPhase} />
+                    <FullsizeTimer
+                        endDate={secondPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 )
             case phase === 3:
                 return (
-                    <FullsizeTimer endDate={thirdPhaseEndDate} setNextPhase={setNextContestPhase} />
+                    <FullsizeTimer
+                        endDate={thirdPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
                 )
             default:
                 return;

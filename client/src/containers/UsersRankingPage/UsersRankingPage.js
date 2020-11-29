@@ -22,9 +22,10 @@ const UsersRankingPage = () => {
     return (
         <>
             { !error ? (
-                <UsersRankingsList usersData={usersRankingsData} />
+                <UsersRankingsList
+                    usersData={usersRankingsData} />
             ) : (
-                <EmptyPageComponent />
+                    <EmptyPageComponent />
                 )
             }
         </>

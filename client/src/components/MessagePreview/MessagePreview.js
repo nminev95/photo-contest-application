@@ -39,11 +39,15 @@ const MessagePreview = () => {
             >
                 @Username
             </Typography>
-            <ListItem style={{ paddingBottom: "0", paddingTop: "0"}}>
-                <ListItemText primary="Hello there, I really liked your photo and wo..." />
+            <ListItem
+                style={{ paddingBottom: "0", paddingTop: "0" }}>
+                <ListItemText
+                    primary="Hello there, I really liked your photo and wo..." />
             </ListItem>
-            <ListItem style={{ paddingTop: "0", left: "125px" }}>
-                <ListItemText secondary="2 hours ago" />
+            <ListItem
+                style={{ paddingTop: "0", left: "125px" }}>
+                <ListItemText
+                    secondary="2 hours ago" />
             </ListItem>
             <Divider />
         </List>

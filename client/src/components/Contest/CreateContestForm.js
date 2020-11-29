@@ -1,6 +1,6 @@
 import { Avatar, Button, FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form'
 import axiosInstance from "../../requests/axios";
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -39,7 +39,6 @@ const CreateContestForm = ({ handleClose }) => {
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState([]);
     const styles = useStyles();
-    const inputRef = useRef();
     const [contestForm, setContestForm] = useState({
         title: {
             name: 'title',
@@ -146,7 +145,7 @@ const CreateContestForm = ({ handleClose }) => {
     const handleJurySelect = (ev, newValue) => {
         const copyControl = { ...contestForm.jury };
         copyControl.value = newValue;
-        setContestForm({ ...contestForm, jury: copyControl});
+        setContestForm({ ...contestForm, jury: copyControl });
     }
 
     const handleChange = (ev) => {
@@ -180,7 +179,7 @@ const CreateContestForm = ({ handleClose }) => {
 
         setContestForm({ ...contestForm, [name]: copyControl });
     };
-    
+
     const handleSubmit = (ev) => {
 
         if (!contestForm.title.valid || !contestForm.category.valid || !contestCover) {
@@ -197,7 +196,7 @@ const CreateContestForm = ({ handleClose }) => {
             return data
         }, new FormData());
         contestData.set('image', contestCover);
-          
+
         swal({
             title: "Are you sure?",
             text: "Once created, your contest cannot be changed anymore. ",
@@ -341,9 +340,16 @@ const CreateContestForm = ({ handleClose }) => {
                     labelPlacement="start"
                 />
             </RadioGroup>
-            <Grid container spacing={3} style={{ justifyContent: "center", marginTop: "10px" }}>
-                <Grid item xs={3}>
-                    <Form.Label>Participants limit</Form.Label>
+            <Grid
+                container
+                spacing={3}
+                style={{ justifyContent: "center", marginTop: "10px" }}>
+                <Grid
+                    item
+                    xs={3}>
+                    <Form.Label>
+                        Participants limit
+                        </Form.Label>
                     <Form.Control
                         as="select"
                         size="sm"
@@ -358,7 +364,10 @@ const CreateContestForm = ({ handleClose }) => {
                     </Form.Control>
                 </Grid>
             </Grid>
-            <Typography style={{ marginTop: '35px' }} id="discrete-slider-always" gutterBottom>
+            <Typography
+                style={{ marginTop: '35px' }}
+                id="discrete-slider-always"
+                gutterBottom>
                 By default, all organizers are judges. You can send out additional jury invitations to high-ranked photographers:
             </Typography>
             <Autocomplete
@@ -374,13 +383,34 @@ const CreateContestForm = ({ handleClose }) => {
                 onChange={handleJurySelect}
                 renderOption={(user) => (
                     <>
-                        <Avatar alt={user.username} src={`http://localhost:4000/public/avatars/${user.avatar}`} className={styles.small} />
-                        <span>{user.username}</span>
-                        <span style={{ float: "inline-end" }}>{user.rank === 3 ?
-                            (<><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarBorderIcon style={{ color: "#ffb300" }} /></>
-                            ) : (
-                                <><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /><StarIcon style={{ color: "#ffb300" }} /></>
-                            )}</span>
+                        <Avatar
+                            alt={user.username}
+                            src={`http://localhost:4000/public/avatars/${user.avatar}`}
+                            className={styles.small} />
+                        <span>
+                            {user.username}
+                        </span>
+                        <span
+                            style={{ float: "inline-end" }}>{user.rank === 3 ?
+                                (<><StarIcon
+                                    style={{ color: "#ffb300" }} />
+                                    <StarIcon
+                                        style={{ color: "#ffb300" }} />
+                                    <StarIcon
+                                        style={{ color: "#ffb300" }} />
+                                    <StarBorderIcon
+                                        style={{ color: "#ffb300" }} /></>
+                                ) : (
+                                    <>
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} />
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} />
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} />
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} /></>
+                                )}</span>
                     </>
                 )}
                 renderInput={(params) => (
@@ -392,9 +422,19 @@ const CreateContestForm = ({ handleClose }) => {
                 )}
             />
             <ImageDropAndUpload file={contestCover} setFile={setContestCover} />
-            <div style={{ float: 'right' }}>
-                <Button variant="contained" color="primary" style={{ outline: 'none' }} onClick={handleSubmit}>Create contest</Button>
-                <Button variant="contained" onClick={handleClose} style={{ outline: 'none', marginLeft: "15px" }}>
+            <div
+                style={{ float: 'right' }}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ outline: 'none' }}
+                    onClick={handleSubmit}>
+                    Create contest
+                    </Button>
+                <Button
+                    variant="contained"
+                    onClick={handleClose}
+                    style={{ outline: 'none', marginLeft: "15px" }}>
                     Cancel
             </Button>
             </div>

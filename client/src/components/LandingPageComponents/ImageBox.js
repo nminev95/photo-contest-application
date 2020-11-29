@@ -36,16 +36,13 @@ const images = [
 
 ]
 
-
 const ImageBox = () => {
 
     const styles = useStyles();
 
     return (
         <Carousel interval={3000} timeout={500} changeOnFirstRender={true} navButtonsAlwaysInvisible={true}>
-            {
-                images.map((image, i) => <CardMedia key={i} image={image.src} className={styles.image} />  )
-            }
+            {images.map((image, i) => <CardMedia key={i} image={image.src} className={styles.image} />)}
         </Carousel>
     )
 }

@@ -6,7 +6,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import SmallTimer from './SmallTimer';
 import CountdownTimerComponent from './CountdownTimerComponent';
 
 
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SingleCurrentContestView = (props) => {
-    
+
     const { contest } = props;
     const { id } = contest;
     const classes = useStyles();
@@ -64,14 +63,14 @@ const SingleCurrentContestView = (props) => {
                         image={`http://localhost:4000/public/${contest.contestCover}`}
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)}>
-                        <GridListTileBar 
-                        actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />} 
-                        title={contest.title} 
-                        classes={{
-                            root: classes.counterBar,
-                            title: classes.text,
-                            actionIcon: classes.timer,
-                        }}>
+                        <GridListTileBar
+                            actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />}
+                            title={contest.title}
+                            classes={{
+                                root: classes.counterBar,
+                                title: classes.text,
+                                actionIcon: classes.timer,
+                            }}>
                         </GridListTileBar>
                     </CardMedia>
                 </CardActionArea>

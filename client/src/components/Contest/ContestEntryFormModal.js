@@ -127,13 +127,20 @@ const OpenEntryFormButton = (props) => {
         switch (true) {
             case (contestInfo.phase_id === 3):
                 return (
-                    <Button style={{ outline: 'none' }} variant="contained" disabled color="primary">
+                    <Button
+                        style={{ outline: 'none' }}
+                        variant="contained"
+                        disabled
+                        color="primary">
                         Contest finished
                     </Button>
                 )
             case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)):
                 return (
-                    <Button variant="contained" disabled color="primary">
+                    <Button
+                        variant="contained"
+                        disabled
+                        color="primary">
                         You have already entered
                     </Button>
                 )
@@ -141,13 +148,20 @@ const OpenEntryFormButton = (props) => {
                 return;
             case (contestInfo.phase_id === 1):
                 return (
-                    <Button style={{ outline: 'none' }} variant="contained" color="primary" onClick={handleShow}>
+                    <Button
+                        style={{ outline: 'none' }}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleShow}>
                         Enter competition
                     </Button>
                 )
             default:
                 return (
-                    <Button disabled variant="contained" color="primary">
+                    <Button
+                        disabled
+                        variant="contained"
+                        color="primary">
                         Enter competition
                     </Button>
                 )
@@ -171,7 +185,7 @@ const OpenEntryFormButton = (props) => {
                 <Modal.Body>
                     In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
                     When done, simply upload your desired photo and submit your entry.
-                    <div style={{textAlign: '-webkit-center'}}>
+                    <div style={{ textAlign: '-webkit-center' }}>
                         {photoData.title.valid ? (
                             <TextField
                                 className={styles.inputField}
@@ -218,7 +232,7 @@ const OpenEntryFormButton = (props) => {
                                     helperText="Photo description must be between 20 and 240 characters long."
                                 />
                             )}
-                        <ImageDropAndUpload file={file} setFile={setFile}/>
+                        <ImageDropAndUpload file={file} setFile={setFile} />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

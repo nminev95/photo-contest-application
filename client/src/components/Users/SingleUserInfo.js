@@ -38,10 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleUserInfo = (props) => {
 
-
     const styles = useStyles();
     const { user, place } = props;
-
 
     return (
         <>
@@ -50,7 +48,10 @@ const SingleUserInfo = (props) => {
                     {place === 1 && <FontAwesomeIcon icon={faMedal} size="4x" className={styles.medalGold} />}
                     {place === 2 && <FontAwesomeIcon icon={faMedal} size="4x" className={styles.medalSilver} />}
                     {place === 3 && <FontAwesomeIcon icon={faMedal} size="4x" className={styles.medalBronze} />}
-                    {place > 3 && <Avatar className={styles.placeAvatar}>{place}</Avatar>}
+                    {place > 3 && <Avatar
+                        className={styles.placeAvatar}>
+                        {place}
+                    </Avatar>}
                 </ListItemAvatar>
                 <ListItemText
                     primary={`${user.firstName} ${user.lastName}`}
@@ -70,11 +71,14 @@ const SingleUserInfo = (props) => {
                             className={styles.large}
                             src={`http://localhost:4000/public/avatars/${user.avatarUrl}`} />
                     ) : (
-                            <Avatar className={styles.large}></Avatar>
+                            <Avatar
+                                className={styles.large} />
                         )}
                 </ListItemAvatar>
             </ListItem>
-            <Divider variant="inset" component="li" />
+            <Divider
+                variant="inset"
+                component="li" />
         </>
     )
 }
