@@ -54,12 +54,12 @@ const ProfilePage = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {userData && <UserProfilePersonalInfo userData={userData} showHistory={showHistory} toggleShowHistory={toggleShowHistory} />}
             {showHistory ?
                 (renderHistory()) 
             : (null)}
-        </React.Fragment>
+        </>
     )
 }
 
