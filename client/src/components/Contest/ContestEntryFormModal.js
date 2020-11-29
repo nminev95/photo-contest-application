@@ -218,17 +218,6 @@ const OpenEntryFormButton = (props) => {
                                     helperText="Photo description must be between 20 and 240 characters long."
                                 />
                             )}
-                        {/* <Form style={{ marginTop: '30px' }}>
-                            <Form.File
-                                className={styles.inputField}
-                                onChange={() => setFile(inputRef.current.files[0])}
-                                ref={inputRef}
-                                name='file'
-                                id="custom-file"
-                                label="Upload your amazing photo here"
-                                custom
-                            />
-                        </Form> */}
                         <ImageDropAndUpload file={file} setFile={setFile}/>
                     </div>
                 </Modal.Body>

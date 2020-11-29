@@ -10,6 +10,7 @@ import swal from "sweetalert";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { contestCategoryError, contestTitleError } from "../../validations/helper-errors";
+import ImageDropAndUpload from "./ImageDropAndUpload";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateContestForm = ({ handleClose }) => {
 
     const [highLevelUsers, setHighLevelUsers] = useState([]);
-    const [contestCover, setContestCover] = useState('');
+    const [contestCover, setContestCover] = useState([]);
     const styles = useStyles();
     const inputRef = useRef();
     const [contestForm, setContestForm] = useState({
@@ -390,16 +391,7 @@ const CreateContestForm = ({ handleClose }) => {
                         className={styles.inputField} />
                 )}
             />
-            <Form style={{ marginTop: '30px', marginBottom: "30px" }}>
-                <Form.File
-                    className={styles.inputField}
-                    onChange={() => setContestCover(inputRef.current.files[0])}
-                    ref={inputRef}
-                    id="custom-file"
-                    label="Upload a cover image for your contest"
-                    custom
-                />
-            </Form>
+            <ImageDropAndUpload file={contestCover} setFile={setContestCover} />
             <div style={{ float: 'right' }}>
                 <Button variant="contained" color="primary" style={{ outline: 'none' }} onClick={handleSubmit}>Create contest</Button>
                 <Button variant="contained" onClick={handleClose} style={{ outline: 'none', marginLeft: "15px" }}>

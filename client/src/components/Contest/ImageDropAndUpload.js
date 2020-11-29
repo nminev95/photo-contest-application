@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDropzone } from 'react-dropzone';
 import { makeStyles } from "@material-ui/core/styles";
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 const thumbsContainer = {
     display: 'flex',
@@ -15,12 +16,12 @@ const thumb = {
     borderRadius: 2,
     border: '1px solid #eaeaea',
     marginBottom: 8,
-    marginRight: 8,
     justifyContent: 'center',
     width: 300,
     height: 300,
     padding: 4,
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    alignItems: 'center'
 };
 
 const thumbInner = {
@@ -32,7 +33,8 @@ const thumbInner = {
 const img = {
     display: 'block',
     width: 'auto',
-    height: '100%'
+    height: '100%',
+    maxHeight: '300px',
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -48,11 +50,16 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.only('md')]: {
             width: '40vw',
-        }
+        },
+        transition: '0.5s all ease-in-out',
+        '&:hover': {
+            boxShadow: `0px 0px 1px 1px`,
+            opacity: '0.7',
+        },
     }
 }))
 
-const ImageDropAndUpload = ({file, setFile}) => {
+const ImageDropAndUpload = ({ file, setFile }) => {
     const styles = useStyles()
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
@@ -79,13 +86,13 @@ const ImageDropAndUpload = ({file, setFile}) => {
         </div>
     ))
     return (
-        <section className={styles.uploadBox} style={{border: '1px lightgray solid', borderRadius: '5px', textAlign: 'center'}}>
-            <div style={{outline: 'none'}} {...getRootProps({ className: 'dropzone' })}>
+        <section className={styles.uploadBox} style={{ border: '1px lightgray solid', borderRadius: '5px', textAlign: 'center' }}>
+            <div style={{ outline: 'none' }} {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
-                <p style={{color: "gray", marginTop: '15px'}}>Drag 'n' drop some files here, or click to select files</p>
-            <aside style={thumbsContainer}>
-                {thumbs}
-            </aside>
+                <p style={{ color: "gray", marginTop: '15px' }}><AddAPhotoIcon fontSize='large' />Click here to upload your entry or simply drag and drop.</p>
+                <aside style={thumbsContainer}>
+                    {thumbs}
+                </aside>
             </div>
         </section>
 
