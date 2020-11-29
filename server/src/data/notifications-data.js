@@ -5,7 +5,8 @@ const getNotificationsById = async (id) => {
         SELECT 
             contest_id, user_id, 
             (SELECT title FROM contests WHERE id = contest_id) as contest, 
-            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy
+            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy,
+            isRead
         FROM 
             contest_jury_invitations
         WHERE 
@@ -16,7 +17,9 @@ const getNotificationsById = async (id) => {
         SELECT
             contest_id, user_id, 
             (SELECT title FROM contests WHERE id = contest_id) as contest,
-            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy
+            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy,
+            isRead
+
         FROM
             private_contest_invitations
         WHERE 
@@ -31,6 +34,35 @@ const getNotificationsById = async (id) => {
     return notifications;
 };
 
+const changeNotificationToRead = async (userId, contestId) => {
+
+    const sql1 = `
+        UPDATE 
+            contest_jury_invitations
+        SET 
+            isRead = 1
+        WHERE 
+            user_id = ?
+        AND 
+            contest_id = ?
+    `;
+
+    const sql2 = `
+        UPDATE 
+            contest_jury_invitations
+        SET 
+            isRead = 1
+        WHERE 
+            user_id = ?
+        AND 
+            contest_id = ?
+    `;
+
+    await pool.query(sql1, [userId, contestId]);
+    await pool.query(sql2, [userId, contestId]);
+};
+
 export default {
     getNotificationsById,
+    changeNotificationToRead,
 };

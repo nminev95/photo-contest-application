@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             boxShadow: `0px 0px 1px 1px`,
             opacity: '0.7',
+            cursor: 'pointer'
         },
     }
 }))

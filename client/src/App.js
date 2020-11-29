@@ -17,7 +17,6 @@ import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, setNotifications } from './redux/actions';
 import socketIOClient from "socket.io-client";
-// const socket = io.connect(BASE_URL);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,13 +30,13 @@ const App = () => {
   
   socket.on("notifications", (notifications) => {
     dispatch(setNotifications(notifications))
-    console.log(notifications); // world
   });
 
   socket.on("connect", () => {
-    const user = decode(localStorage.getItem('accessToken'))
-    console.log(JSON.stringify(user))
-    socket.emit('login', JSON.stringify(user));
+    if (accessToken) {
+      const user = decode(localStorage.getItem('accessToken'))
+      socket.emit('login', JSON.stringify(user));
+    }
   });
 
   return (

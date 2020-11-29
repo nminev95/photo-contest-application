@@ -39,7 +39,6 @@ const CreateContestForm = ({ handleClose }) => {
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState([]);
     const styles = useStyles();
-    const inputRef = useRef();
     const [contestForm, setContestForm] = useState({
         title: {
             name: 'title',
@@ -196,7 +195,7 @@ const CreateContestForm = ({ handleClose }) => {
             }
             return data
         }, new FormData());
-        contestData.set('image', contestCover);
+        contestData.set('image', contestCover[0]);
           
         swal({
             title: "Are you sure?",
