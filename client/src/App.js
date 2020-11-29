@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch} from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/HomePage/HomePage';
+import HomePage from './containers/HomePage/Homepage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import decode from 'jwt-decode';
