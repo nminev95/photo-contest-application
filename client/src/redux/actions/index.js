@@ -1,3 +1,5 @@
+import { notification } from "antd";
+
 export const login = (userInfo) => {
     return {
         type: 'SIGN_IN',
@@ -92,5 +94,12 @@ export const setFinishedContestsData = (finishedContestsResults) => {
     return {
         type: 'SET_FINISHED_CONTESTS_DATA',
         payload: finishedContestsResults
+    }
+}
+
+export const setNotifications = (notifications) => {
+    return {
+        type: 'SET_NOTIFICATIONS',
+        payload: notifications,
     }
 }

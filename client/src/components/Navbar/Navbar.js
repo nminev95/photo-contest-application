@@ -2,13 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MobileDropdown from './MobileDropdown';
 import ProfileDropdown from './ProfileDropdown';
-import MessagesDropdown from './MessagesDropdown';
+import NotificationsDropdown from './NotificationsDropdown';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
@@ -89,14 +86,14 @@ const Navbar = () => {
                      {userState.user.role === 'Organizer' &&
                 <MenuItem className={classes.navLinks}  onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>}
               <div className={classes.grow} />
-              <MessagesDropdown />
-              <MenuItem style={{ padding: "0" }}>
-                <IconButton style={{ outline: 'none' }} aria-label="show 11 new notifications" color="inherit">
+              <NotificationsDropdown />
+              {/* <MenuItem style={{ padding: "0" }}>
+                <IconButton style={{ outline: 'none' }} aria-label="show new notifications" color="inherit">
                   <Badge badgeContent={11} color="secondary">
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>
-              </MenuItem>
+              </MenuItem> */}
               <ProfileDropdown />
             </Toolbar>
           </AppBar>

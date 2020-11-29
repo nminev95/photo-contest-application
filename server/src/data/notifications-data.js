@@ -3,7 +3,9 @@ import pool from '../data/pool.js';
 const getNotificationsById = async (id) => {
     const sql1 = `
         SELECT 
-            * 
+            contest_id, user_id, 
+            (SELECT title FROM contests WHERE id = contest_id) as contest, 
+            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy
         FROM 
             contest_jury_invitations
         WHERE 
@@ -12,7 +14,9 @@ const getNotificationsById = async (id) => {
 
     const sql2 = `
         SELECT
-            *
+            contest_id, user_id, 
+            (SELECT title FROM contests WHERE id = contest_id) as contest,
+            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy
         FROM
             private_contest_invitations
         WHERE 

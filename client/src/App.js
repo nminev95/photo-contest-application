@@ -15,7 +15,7 @@ import FinishedContestsPage from './containers/FinishedContestsPage/FinishedCont
 import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/AllUserCurrentContestsPage';
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from './redux/actions';
+import { login, setNotifications } from './redux/actions';
 import socketIOClient from "socket.io-client";
 // const socket = io.connect(BASE_URL);
 
@@ -30,7 +30,7 @@ const App = () => {
   const socket = socketIOClient("http://localhost:4000")
   
   socket.on("notifications", (notifications) => {
-
+    dispatch(setNotifications(notifications))
     console.log(notifications); // world
   });
 
