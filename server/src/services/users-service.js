@@ -181,6 +181,15 @@ const getUsersByRanking = usersData => {
     };
 };
 
+/**
+* Changes the notification status.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @param {number} id - The unique user number.
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const markNotificationRead = usersData => {
     return async (userId, contestId) => {
 

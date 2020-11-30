@@ -215,7 +215,13 @@ const addUserPoints = async (points, ids) => {
         return await pool.query(sql, [points, id]);
     });
 };
-
+/**
+* Changes notification status.
+* @async
+* @param {number} id - The unique user number.
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const changeNotificationToRead = async (userId, contestId) => {
 
     const sql1 = `
@@ -244,39 +250,6 @@ const changeNotificationToRead = async (userId, contestId) => {
     await pool.query(sql2, [userId, contestId]);
 };
 
-const getNotificationsById = async (id) => {
-    const sql1 = `
-        SELECT 
-            contest_id, user_id, 
-            (SELECT title FROM contests WHERE id = contest_id) as contest, 
-            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy,
-            isRead
-        FROM 
-            contest_jury_invitations
-        WHERE 
-            user_id = ?
-        `;
-
-    const sql2 = `
-        SELECT
-            contest_id, user_id, 
-            (SELECT title FROM contests WHERE id = contest_id) as contest,
-            (SELECT username FROM users WHERE id = (SELECT organizer_id FROM contests WHERE id = contest_id)) as invitedBy,
-            isRead
-
-        FROM
-            private_contest_invitations
-        WHERE 
-            user_id = ?
-    `;
-
-    const notifications = {
-        juryInvitations: await pool.query(sql1, [id]),
-        privateContestInvitations: await pool.query(sql2, [id]),
-    };
-
-    return notifications;
-};
 export default {
     createAccount,
     getUserInfo,
@@ -286,5 +259,5 @@ export default {
     getAllUsersOrderedByRanking,
     addUserPoints,
     changeNotificationToRead,
-    getNotificationsById,
+    
 };
