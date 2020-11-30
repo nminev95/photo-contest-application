@@ -37,6 +37,7 @@ const App = () => {
     dispatch(setNotifications(notifications))
   });
   
+ 
   return (
     <div className="App">
       <Router>

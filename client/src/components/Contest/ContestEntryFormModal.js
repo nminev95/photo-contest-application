@@ -37,7 +37,8 @@ const OpenEntryFormButton = (props) => {
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
     const styles = useStyles();
-    
+    const [isEnrolled, setIsEnrolled] = useState(false);
+
     const [photoData, setPhotoData] = useState({
         title: {
             value: '',
@@ -121,6 +122,10 @@ const OpenEntryFormButton = (props) => {
         })
     };
 
+    const handleEnroll = () => {
+        setIsEnrolled(prevState => !prevState);
+    }
+
     const renderEnterContestButton = () => {
         switch (true) {
             case (contestInfo.phase_id === 3):
@@ -144,10 +149,10 @@ const OpenEntryFormButton = (props) => {
                 )
             case (userInfo.user.role === 'Organizer'):
                 return;
-            case (contestInfo.phase_id === 1):
+            case (contestInfo.phase_id === 1 && isEnrolled):
                 return (
                     <Button
-                        style={{ outline: 'none' }}
+                        style={{ outline: 'none', marginRight: '10px'  }}
                         variant="contained"
                         color="primary"
                         onClick={handleShow}>
@@ -155,20 +160,28 @@ const OpenEntryFormButton = (props) => {
                     </Button>
                 )
             default:
-                return (
-                    <Button
-                        disabled
-                        variant="contained"
-                        color="primary">
-                        Enter competition
-                    </Button>
-                )
+                return;
         }
     }
-    console.log(file)
+
     return (
-        <>
+        <>  
             {renderEnterContestButton()}
+            {isEnrolled ? (<Button
+                style={{ outline: 'none'}}
+                variant="contained"
+                color="primary"
+                onClick={handleEnroll}
+            >Leave</Button>
+            ) : (
+                    <Button
+                        style={{ outline: 'none' }}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleEnroll}
+                    >Enroll me</Button>
+                )}
+        
             <Modal
                 show={show}
                 onHide={handleClose}
