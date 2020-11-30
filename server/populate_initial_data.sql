@@ -677,6 +677,26 @@ INSERT INTO `photo_contest_db`.`photos`
 VALUES
 ('Endless', 'Took this photo the last day before my coming home from Varna.', '1605717132918_296702201.jpg', 'thumbnail-1605717132918_296702201.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '7');
 
+-- Cold and Blue 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Winter', 'Took this shot last winter.', '1606774971089_448357216.jpeg', 'thumbnail-1606774971089_448357216.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '8');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Winter Story', 'Took this shot last winter.', '1606775008633_433727106.jpeg', 'thumbnail-1606775008633_433727106.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '8');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Ice Cold', 'Took this shot last winter.', '1606775059279_107414337.jpeg', 'thumbnail-1606775059279_107414337.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '8');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Cold Blue', 'Took this shot last winter.', '1606775084797_056710527.jpeg', 'thumbnail-1606775084797_056710527.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '8');
 
 -- Cars
 INSERT INTO `photo_contest_db`.`photos`
@@ -727,6 +747,81 @@ INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
 ('Mercedes', 'Amazing car!', '1605973163643_021843391.jpg', 'thumbnail-1605973163643_021843391.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '9');
+
+-- Fashion 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Yellow Passion', 'In love witk her style.', '1606774487581_277394510.jpeg', 'thumbnail-1606774487581_277394510.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '10');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Autumn Style', 'In love witk her style.', '1606774529297_824310850.jpeg', 'thumbnail-1606774529297_824310850.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '10');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Rainbow', 'In love witk her style.', '1606774562325_177705739.jpeg', 'thumbnail-1606774562325_177705739.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '10');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('P I N K', 'In love witk her style.', '1606774604295_889880521.jpeg', 'thumbnail-1606774604295_889880521.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '10');
+
+-- Interior 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Modern', 'Love this flat.', '1606773801757_072631252.jpeg', 'thumbnail-1606773801757_072631252.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '12');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Lovely', 'Love this flat.', '1606773991178_004400414.jpeg', 'thumbnail-1606773991178_004400414.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '12');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Blue and Yellow', 'Love this flat.', '1606774030632_773319410.jpeg', 'thumbnail-1606774030632_773319410.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '12');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Modern', 'Love this flat.', '1606774062035_294616489.jpeg', 'thumbnail-1606774062035_294616489.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '12');
+
+-- Diamonds
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('White Diamonds', 'Sparkling beauty.', '1606775571306_444736528.jpeg', 'thumbnail-1606775571306_444736528.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '13');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pink Diamond', 'Sparkling beauty.', '1606775616881_955336634.jpeg', 'thumbnail-1606775616881_955336634.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '13');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Yellow Diamond', 'Sparkling beauty.', '1606775652808_477337500.jpeg', 'thumbnail-1606775652808_477337500.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '13');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Blue Diamond', 'Sparkling beauty.', '1606775689357_374442544.jpeg', 'thumbnail-1606775689357_374442544.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '13');
+
+-- Waterfalls
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Smolyan Waterfalls', 'Took this shot in September.', '1606776225367_522853593.jpeg', 'thumbnail-1606776225367_522853593.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '14');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Krushuna Waterfalls', 'Took this shot last summer.', '1606776277352_062595305.jpeg', 'thumbnail-1606776277352_062595305.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '14');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Smolyan Waterfalls', 'Amazing photo, love it!', '1606776319825_183872031.jpeg', 'thumbnail-1606776319825_183872031.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '14');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Krushuna Waterfalls', 'Amazing nature.', '1606776187889_941209649.jpeg', 'thumbnail-1606776187889_941209649.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '14');
 
 -- Arhitecture
 INSERT INTO `photo_contest_db`.`photos`
