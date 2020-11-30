@@ -1,3 +1,8 @@
 * {
   text-align: center;
 }
+
+.App {
+  background-color: #EAE8FF;
+  min-height: 100%;
+}

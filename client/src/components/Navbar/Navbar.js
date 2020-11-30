@@ -61,7 +61,7 @@ const Navbar = () => {
   return (
     <div className={classes.grow}>
       {!userState.isLogged ? (
-        <AppBar position="static" className={classes.appBar} style={{ backgroundColor: "black" }} >
+        <AppBar position="static" className={classes.appBar} style={{ backgroundColor: "#2D3142" }} >
           <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
             <div className={classes.grow} />
             <Button onClick={() => history.push('/users/register')} style={{  marginLeft:"5px", marginRight:"10px", color:"white" }}  variant="outlined">Register</Button>
@@ -69,7 +69,7 @@ const Navbar = () => {
           </Toolbar>
         </AppBar>
       ) : (
-          <AppBar position="static" style={{ backgroundColor: "black" }}>
+          <AppBar position="static" style={{ backgroundColor: "#2D3142" }}>
             <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
               <MobileDropdown />
               <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>

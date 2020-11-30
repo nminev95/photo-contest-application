@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         marginTop: '60px',
-        maxWidth: '1800px'
+        maxWidth: '1800px',
     }
 }));
 

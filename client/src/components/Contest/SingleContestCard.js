@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -16,10 +17,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         transition: '0.5s all ease-in-out',
+        backgroundColor: '#D8D5DB',
         '&:hover': {
-            opacity: '1',
             transform: 'scale(1.08)',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            backgroundColor: '#ADACB5',
         }
     },
     media: {
@@ -30,12 +32,20 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: '"Segoe UI"',
         fontSize: '12px',
         fontWeight: '1px',
+        backgroundColor: '#D8D5DB',
+        color: '2D3142',
+        '&:hover': {
+            backgroundColor: '#2D3142',
+            color: '#D8D5DB',
+        }
+
     },
     text: {
         color: 'black',
         fontSize: '20px',
         fontFamily: '"Segoe UI"',
         fontWeight: '500',
+
     },
 }));
 
@@ -44,6 +54,7 @@ const SingleContestCard = (props) => {
     const { id } = contest;
     const classes = useStyles();
     const history = useHistory();
+    console.log(contest)
 
     return (
         <Grid item xs={12} sm={6} md={3} >
@@ -54,17 +65,26 @@ const SingleContestCard = (props) => {
                         className={classes.media}
                         onClick={() => history.push(`/contests/${id}`)} />
                 </CardActionArea>
-                    <CardContent>
-                        <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
-                            {contest.title}
-                        </Typography>
-                    </CardContent>
+                <CardContent>
+                    <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
+                        {contest.title} #{contest.id}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '10px' }}>
+                        {contest.spots} starting free spots
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '10px' }}>
+                        {Math.floor((new Date(contest.firstPhaseLimit).getTime() - new Date().getTime()) / (1000 * 3600 * 24))} days left until entry closes
+                    </Typography>
+                    <Divider style={{ marginBottom: '10px' }} />
+                    <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '10px' }}>
+                        {contest.category.slice(0, 80)}...
+                    </Typography>
+                </CardContent>
                 <CardActions style={{ justifyContent: 'center' }}>
                     <Button
                         variant="contained"
                         className={classes.button}
                         size="small"
-                        color="secondary"
                         onClick={() => history.push(`/contests/${id}`)} >
                         See more
                 </Button>
