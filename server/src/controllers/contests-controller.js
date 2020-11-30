@@ -54,28 +54,14 @@ contestsController
                 res.status(200).send(finishedContests);
             }
         },
-        )
-        .get('/:id',
-            authMiddleware,
-            async (req, res) => {
-    
-                const { id } = req.params;
-                const { contest, error } = await contestsService.getContestById(contestsData)(+id);
-    
-                if (error === ERRORS.RECORD_NOT_FOUND) {
-                    res.status(404).send({ message: 'Contest not found!' });
-                } else {
-                    res.status(200).send(contest);
-                }
-            },
-        )
+    )
     .get('/:id/results',
-        authMiddleware,
-        roleMiddleware(['Photo Junkie', 'Organizer']),
-        async (req, res) => {
-
-            const { id } = req.params;
-            const { results, error } = await contestsService.getContestResults(contestsData)(+id);
+    authMiddleware,
+    roleMiddleware(['Photo Junkie', 'Organizer']),
+    async (req, res) => {
+        
+        const { id } = req.params;
+        const { results, error } = await contestsService.getContestResults(contestsData)(+id);
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
                 res.status(404).send({ message: 'Results not found!' });
@@ -98,14 +84,28 @@ contestsController
         },
     )
     .get('/photos',
+    async (req, res) => {
+        
+        const { photos, error } = await contestsService.getAllContestsTopRatedPhotos(contestsData)();
+        
+        if (error === ERRORS.RECORD_NOT_FOUND) {
+            res.status(404).send({ message: 'No photos found!' });
+        } else {
+            res.status(200).send(photos);
+        }
+    },
+    )
+    .get('/:id',
+        authMiddleware,
         async (req, res) => {
-
-            const { photos, error } = await contestsService.getAllContestsTopRatedPhotos(contestsData)();
-
+    
+            const { id } = req.params;
+            const { contest, error } = await contestsService.getContestById(contestsData)(+id);
+    
             if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'No photos found!' });
+                res.status(404).send({ message: 'Contest not found!' });
             } else {
-                res.status(200).send(photos);
+                res.status(200).send(contest);
             }
         },
     )

@@ -12,7 +12,8 @@ import ERRORS from './../constants/service-errors.js';
 */
 const getContestById = contestsData => {
     return async (id) => {
-        const contest = await contestsData.getContestInfo(id);
+
+        const contest = await contestsData.getContestInfo(+id);
 
         if (!contest) {
             return {
