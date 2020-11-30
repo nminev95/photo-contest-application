@@ -10,6 +10,9 @@ import socketIOClient from "socket.io-client";
 import decode from 'jwt-decode';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotifications } from '../../redux/actions';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axiosInstance from '../../requests/axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,23 +38,23 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
 
     const classes = useStyles();
     const history = useHistory();
-    const socket = socketIOClient("http://localhost:4000");
     const notificationsState = useSelector(state => state.userNotificationsState);
     const dispatch = useDispatch();
     
-    const markRead = (contestId) => {
-        const user = decode(localStorage.getItem('accessToken'))
-        socket.emit('mark_read', JSON.stringify(user), JSON.stringify(contestId))
-        // const filteredJuryNotifications = notificationsState.juryInvitations.filter((notification) => !!notification.isRead === false);
-        // const filteredContestNotifications = notificationsState.privateContestInvitations.filter((notification) => !!notification.isRead === false);
+    const markRead = async (contestId) => {
+        axiosInstance.put('http://localhost:4000/users/notifications', {contestId: contestId} )
+        .then(res => {
+            dispatch(setNotifications(res.data))
+        });
+        // const filteredJuryNotifications = await notificationsState.juryInvitations.filter((notification) => !!notification.isRead === false);
+        // const filteredContestNotifications = await notificationsState.privateContestInvitations.filter((notification) => !!notification.isRead === false);
         // dispatch(setNotifications({
         //     juryInvitations: filteredJuryNotifications,
         //     privateContestInvitations: filteredContestNotifications
         // }))
     }
 
-
-    const renderSingleNotification = (type) => {
+    const renderSingleNotification = (type, notificationData) => {
         if (type === 'juryInvitation') {
             return (
                 <List className={classes.root}>
@@ -125,7 +128,7 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
     }
 
     return (
-        renderSingleNotification(type)
+        renderSingleNotification(type, notificationData)
     )
 }
 

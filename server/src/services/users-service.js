@@ -121,7 +121,7 @@ const getHighLevelUsers = usersData => {
 */
 const getUserCurrentContests = usersData => {
     return async (id) => {
-        
+
         const contests = await usersData.getCurrentContestsByUserId(id);
         if (!contests.length) {
             return {
@@ -129,7 +129,7 @@ const getUserCurrentContests = usersData => {
                 contests: null,
             };
         }
-        
+
         return { error: null, contests: contests };
     };
 };
@@ -144,16 +144,16 @@ const getUserCurrentContests = usersData => {
 */
 const getUserPastContests = usersData => {
     return async (id) => {
-        
+
         const pastContests = await usersData.getPastContestsByUserId(id);
-       
+
         if (!pastContests.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
                 pastContests: null,
             };
         }
-        
+
         return { error: null, pastContests: pastContests };
     };
 };
@@ -167,17 +167,34 @@ const getUserPastContests = usersData => {
 */
 const getUsersByRanking = usersData => {
     return async () => {
-        
+
         const usersRanking = await usersData.getAllUsersOrderedByRanking();
-       
+
         if (!usersRanking.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
                 usersRanking: null,
             };
         }
-        
+
         return { error: null, usersRanking: usersRanking };
+    };
+};
+
+const markNotificationRead = usersData => {
+    return async (userId, contestId) => {
+
+        await usersData.changeNotificationToRead(userId, contestId);
+        const allNotifications = await usersData.getNotificationsById(userId);
+        const unreadContestNotifications = allNotifications.privateContestInvitations.filter((notification) => !!notification.isRead === false);
+        const unreadJuryNotifications = allNotifications.juryInvitations.filter((notification) => !!notification.isRead === false);
+
+        return {
+            error: null, notifications: {
+                privateContestInvitations: unreadContestNotifications,
+                juryInvitations: unreadJuryNotifications,
+            },
+        };
     };
 };
 export default {
@@ -188,4 +205,5 @@ export default {
     getUserCurrentContests,
     getUserPastContests,
     getUsersByRanking,
+    markNotificationRead,
 };

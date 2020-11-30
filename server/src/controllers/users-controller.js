@@ -2,7 +2,7 @@ import express from 'express';
 import * as ERRORS from '../constants/service-errors.js';
 import usersData from '../data/users-data.js';
 import usersService from '../services/users-service.js';
-import { authMiddleware, roleMiddleware} from '../auth/auth-middleware.js';
+import { authMiddleware, roleMiddleware } from '../auth/auth-middleware.js';
 
 const usersController = express.Router();
 
@@ -62,18 +62,31 @@ usersController
         },
     )
     .get('/rankings',
-    authMiddleware,
-    roleMiddleware(['Organizer']),
-    async (req, res) => {
+        authMiddleware,
+        roleMiddleware(['Organizer']),
+        async (req, res) => {
 
-        const { usersRanking, error } = await usersService.getUsersByRanking(usersData)();
+            const { usersRanking, error } = await usersService.getUsersByRanking(usersData)();
 
-        if (error === ERRORS.RECORD_NOT_FOUND) {
-            res.status(404).send({ message: 'No users found!' });
-        } else {
-            res.status(200).send(usersRanking);
-        }
-    },
-);
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'No users found!' });
+            } else {
+                res.status(200).send(usersRanking);
+            }
+        })
+    .put('/notifications',
+        authMiddleware,
+        async (req, res) => {
+            const { id } = req.user;
+            const { contestId } = req.body;
+            const { notifications, error } = await usersService.markNotificationRead(usersData)(+id, +contestId);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Not found!' });
+            } else {
+                res.status(200).send(notifications);
+            }
+        },
+    );
 
 export default usersController;

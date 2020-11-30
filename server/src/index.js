@@ -25,25 +25,39 @@ const io = require('socket.io')(server, {
     },
 });
 
+const socketsMap = new Map();
+let interval;
+
 io.on('connection', (socket) => {
     socket.on('login', (user) => {
+        if (interval) {
+            clearInterval();
+        }
         const parsedUser = JSON.parse(user);
         if (user) {
             socket.userId = parsedUser.sub;
         }
+
+        if (!socketsMap.get(parsedUser)) {
+            socketsMap.set(parsedUser, socket.id);
+        }
+       
         notificationsService.getAllUserNotifications(notificationsData)(socket);
 
-        // const checkInterval = setInterval(() => {
+        // interval = setInterval(() => {
         //     notificationsService.getAllUserNotifications(notificationsData)(socket);
-        // }, 60000);
+        // }, 5000);
     });
-    socket.on('mark_read', (user, contestId) => {
+    socket.on('mark_read', async (user, contestId) => {
         const parsedUser = JSON.parse(user);
         if (user) {
             socket.userId = parsedUser.sub;
         }
-        notificationsService.markNotificationRead(notificationsData)(socket, contestId);
-        notificationsService.getAllUserNotifications(notificationsData)(socket);
+        // console.log(socket.id)
+        // const news = await notificationsService.markNotificationRead(notificationsData)(socket, contestId, socketsMap);
+        // console.log(news)
+        // await socket.emit('filtered_notifications', news);
+        
     });
     socket.on('disconnect', () => {
         clearInterval();

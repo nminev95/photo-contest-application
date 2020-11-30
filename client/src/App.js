@@ -17,28 +17,28 @@ import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, setNotifications } from './redux/actions';
 import socketIOClient from "socket.io-client";
+import { useEffect } from 'react';
+import { notification } from 'antd';
+
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginState.isLogged);
   const accessToken = localStorage.getItem('accessToken');
-  if (accessToken) {
-    dispatch(login(decode(accessToken)));
-  }
-
   const socket = socketIOClient("http://localhost:4000")
-  
+
+  useEffect(() => {
+    if (accessToken) {
+      const user = decode(localStorage.getItem('accessToken'))
+      dispatch(login(decode(accessToken)));
+      socket.emit('login', JSON.stringify(user));
+    }
+  }, [])
+
   socket.on("notifications", (notifications) => {
     dispatch(setNotifications(notifications))
   });
-
-  socket.on("connect", () => {
-    if (accessToken) {
-      const user = decode(localStorage.getItem('accessToken'))
-      socket.emit('login', JSON.stringify(user));
-    }
-  });
-
+  
   return (
     <div className="App">
       <Router>
