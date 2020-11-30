@@ -272,7 +272,7 @@ const getAllContestsTopRatedPhotos = contestsData => {
 */
 const getRecentlyExpContests = contestsData => {
     return async () => {
-        
+
         const recExpContests = await contestsData.getRecentlyExpireContestsInfo();
 
         if (!recExpContests) {
@@ -341,20 +341,6 @@ const getContestResults = contestsData => {
 const getUserScores = contestsData => {
     return async (id) => {
         const contest = await contestsData.getContestInfo(id);
-
-        // if (!contest) {
-        //     return {
-        //         error: ERRORS.RECORD_NOT_FOUND,
-        //         scoresAndRanking: null,
-        //     };
-        // }
-
-        // if (contest.phase_id !== 3) {
-        //     return {
-        //         error: ERRORS.OPERATION_NOT_PERMITTED,
-        //         scoresAndRanking: null,
-        //     };
-        // }
         const scoresAndRanking = await contestsData.getUserResults(id);
 
         return scoresAndRanking;
@@ -438,6 +424,29 @@ const awardPointsForFinishedContests = usersData => {
     };
 };
 
+const enrollUser = contestsData => {
+    return async (userId, contestId) => {
+        const contest = await contestsData.getContestInfo(contestId);
+
+        if (!contest) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contest: null,
+            };
+        }
+
+        await contestsData.enrollUserInContest(userId, contestId);
+
+        return {
+            error: null,
+            enroll: {
+                userId,
+                contestId,
+            },
+        };
+    };
+};
+
 export default {
     getContestById,
     getAllOpenContests,
@@ -453,6 +462,7 @@ export default {
     getPhaseTwoContests,
     getFinishedContests,
     awardPointsForFinishedContests,
+    enrollUser,
 };
 
 

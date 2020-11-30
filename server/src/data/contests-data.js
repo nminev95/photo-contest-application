@@ -421,6 +421,17 @@ const markContestAwarded = async (id) => {
     return await pool.query(sql, [id]);
 };
 
+const enrollUserInContest = async (userId, contestId) => {
+    const sql = `
+        INSERT INTO
+            contest_enrolled_users (user_id, contest_id)
+        VALUES 
+            (?, ?);
+    `;
+
+    return await pool.query(sql, [userId, contestId]);
+};
+
 export default {
     getAllOpenContestsInfo,
     getContestInfo,
@@ -438,4 +449,5 @@ export default {
     getPhaseTwoContestsInfo,
     getFinishedContestsInfo,
     markContestAwarded,
+    enrollUserInContest,
 };

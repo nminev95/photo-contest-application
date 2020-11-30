@@ -136,6 +136,20 @@ contestsController
             }
         },
     )
+    .post('/:id/enrolled', 
+    authMiddleware,
+        async (req, res) => {
+            const userId = req.user.id;
+            const contestId = req.params.id;
+            const { enroll, error } = await contestsService.enrollUser(contestsData)(+userId, +contestId);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Contest not found!' });
+            } else {
+                res.status(200).send(enroll);
+            }
+        },
+    )
     .put('/:id',
         async (req, res) => {
 
