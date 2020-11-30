@@ -54,7 +54,21 @@ contestsController
                 res.status(200).send(finishedContests);
             }
         },
-    )
+        )
+        .get('/:id',
+            authMiddleware,
+            async (req, res) => {
+    
+                const { id } = req.params;
+                const { contest, error } = await contestsService.getContestById(contestsData)(+id);
+    
+                if (error === ERRORS.RECORD_NOT_FOUND) {
+                    res.status(404).send({ message: 'Contest not found!' });
+                } else {
+                    res.status(200).send(contest);
+                }
+            },
+        )
     .get('/:id/results',
         authMiddleware,
         roleMiddleware(['Photo Junkie', 'Organizer']),
@@ -95,6 +109,19 @@ contestsController
             }
         },
     )
+    .put('/:id',
+        async (req, res) => {
+
+            const { id } = req.params;
+            const { contest, error } = await contestsService.setNextContestPhase(contestsData)(+id);
+
+            if (error === ERRORS.RECORD_NOT_FOUND) {
+                res.status(404).send({ message: 'Contest not found!' });
+            } else {
+                res.status(200).send(contest);
+            }
+        },
+    )
     .post('/create',
         authMiddleware,
         roleMiddleware(['Organizer']),
@@ -117,33 +144,6 @@ contestsController
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error!' });
-            } else {
-                res.status(200).send(contest);
-            }
-        },
-    )
-    .get('/:id',
-        authMiddleware,
-        async (req, res) => {
-
-            const { id } = req.params;
-            const { contest, error } = await contestsService.getContestById(contestsData)(+id);
-
-            if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'Contest not found!' });
-            } else {
-                res.status(200).send(contest);
-            }
-        },
-    )
-    .put('/:id',
-        async (req, res) => {
-
-            const { id } = req.params;
-            const { contest, error } = await contestsService.setNextContestPhase(contestsData)(+id);
-
-            if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'Contest not found!' });
             } else {
                 res.status(200).send(contest);
             }

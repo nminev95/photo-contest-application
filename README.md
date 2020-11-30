@@ -3,7 +3,7 @@
 <br/>
 
 ## Description
-Final Project Assignment for "Telerik Academy Alpha" with JavaScript: 
+**Final Project Assignment for "Telerik Academy Alpha" with JavaScript:** </br>
 Design and implement a single-page web application that will allow photo lovers to take part in photo contests. There are two types of users: Photo Junkies and Organizers. Each role has a different view depending on the contest phase. 
 
 ### Photo Junkies
@@ -71,38 +71,59 @@ Design and implement a single-page web application that will allow photo lovers 
     `npm run start:dev`
   
 ---
+### Endpoints
+For your convenience, we provide a brief description of the endpoints and some previews
+### _For Contests_
+**GET '/contests/'** = Will retrieve all open contests information
 
-### Client
+**GET '/contests/phase/2'** = Will retrieve all contests information in phase 2
 
-10. Navigate to the `client` folder. Open the terminal and run the following commands:
+**GET '/contests/phase/3'** = Will retrieve all contests information in phase 3
 
- 
-    `npm install`
+**GET '/contests/:id'** = Will retrieve contest information found by unique contest number (id)
 
-    `npm run start`
-  
-11. Please, note that there are several pre-created users. 
- - To test all the features that each **participant(Photo Junkie)** can access, log in with the following credentials:
+**GET '/contests/:id/results'** = Will retrieve all results found by contest unique number
 
-     _username_: `john_33`
+**GET '/contests/first-phase-exp'** = Will retrieve all contests which will be set to Phase 2 soon
 
-     _password_: `ASDF123!`
+**GET '/contests/photos'** = Will retrieve all contests top rated photos
 
- - To test all the features that each **Orginizer** can access, log in with the following credentials:
+**PUT '/contests/:id'** = Will set contest to the next phase
 
-     _username_: `david_org`
+**POST '/contests/'** = Will create a new contest
+Request Body 
+```js
+{
+    "title": string,
+    "category": string,
+    "firstPhaseLimit": number,
+    "secondPhaseLimit": number,
+    "restrictions": string,
+    "spots": number,
+    "filename": string, 
+}
+```
 
-     _password_: `ASDF123!`  
+**POST '/contests/:id'** = Will upload a new photo 
+Request Body 
+```js
+{
+    "title": string,
+    "description": string,
+    "filename": string, 
+}
+```
 
-12. For your convenience, we provide a brief description of the endpoints and some previews
-#### For Contests
-- All contests in Phase I (Open contests)
-- Photo Junkie contest entry endpoint
-- All Photo Junkie current contests
-- All Photo Junkie past contests
-- Users ranking
-
-#### For Users
+**POST '/contests/:id/entries/:id/rate'** = Will create a new review
+Request Body 
+```js
+{
+    "score": number,
+    "comment": string,
+    "isInappropriate": boolean, 
+}
+```
+### _For Users_
 **GET '/users/:id/profile'** = Will retrieve user information
 
 **GET '/users/experts'** = Will retrieve all high level users information
@@ -143,6 +164,29 @@ Request Body
 
 
 ---
+
+### Client
+
+10. Navigate to the `client` folder. Open the terminal and run the following commands:
+
+ 
+    `npm install`
+
+    `npm run start`
+  
+11. Please, note that there are several pre-created users. 
+ - To test all the features that each **participant(Photo Junkie)** can access, log in with the following credentials:
+
+     _username_: `john_33`
+
+     _password_: `ASDF123!`
+
+ - To test all the features that each **Orginizer** can access, log in with the following credentials:
+
+     _username_: `david_org`
+
+     _password_: `ASDF123!`  
+
 
 ### Built With
 
