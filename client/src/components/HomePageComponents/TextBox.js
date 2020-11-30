@@ -60,7 +60,7 @@ const TextBox = () => {
                         justify="center" >
                         <Grid item>
                             <Button
-                                style={{ marginTop: '60px' }}
+                                style={{ marginTop: '60px', marginBottom: '25px' }}
                                 variant="contained"
                                 color="secondary"
                                 onClick={() => history.push('/contests')}>

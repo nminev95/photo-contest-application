@@ -39,10 +39,16 @@ const EmptyPageComponent = () => {
 
     return (
         <>
-            <Box className={styles.container}>
-                <Grid container spacing={2} justify="center" >
-                    <Grid item>
-                        <SentimentDissatisfiedRoundedIcon style={{ fontSize: 80, marginTop: "70px" }}/>
+            <Box 
+            className={styles.container}>
+                <Grid 
+                container 
+                spacing={2} 
+                justify="center" >
+                    <Grid 
+                    item>
+                        <SentimentDissatisfiedRoundedIcon 
+                        style={{ fontSize: 80, marginTop: "70px" }}/>
                     </Grid>
                     </Grid>
                     <Typography

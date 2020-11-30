@@ -8,7 +8,10 @@ const SingleContestEntryReview = ({ review }) => {
     return (
         <>
             <Comment
-                author={<Tooltip title={`Rank: ${review.reviewAuthorRank}, Points: ${review.reviewAuthorPoints}`}>{review.username}</Tooltip>}
+                author={<Tooltip
+                    title={`Rank: ${review.reviewAuthorRank}, 
+                    Points: ${review.reviewAuthorPoints}`}>{review.username}
+                </Tooltip>}
                 avatar={
                     <Avatar
                         src={`http://localhost:4000/public/avatars/${review.avatarUrl}`}
@@ -16,12 +19,18 @@ const SingleContestEntryReview = ({ review }) => {
                     />
                 }
                 content={
-                    <div style={{ display: "block", width:"100%" }}>
-                        <div style={{ float: 'left', paddingRight: '25px', textAlign: "left" }}>
+                    <div s
+                        tyle={{ display: "block", width: "100%" }}>
+                        <div
+                            style={{ float: 'left', paddingRight: '25px', textAlign: "left" }}>
                             {review.comment}
                         </div>
-                        <div style={{ float: 'right' }}>
-                            <StarIcon style={{ color: "#ffb300" }} fontSize='medium' /><p>{review.score}/10</p>
+                        <div
+                            style={{ float: 'right' }}>
+                            <StarIcon
+                                style={{ color: "#ffb300" }}
+                                fontSize='medium' />
+                                <p>{review.score}/10</p>
                         </div>
                     </div>
                 } />

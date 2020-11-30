@@ -66,21 +66,44 @@ const SingleContestCard = (props) => {
                         onClick={() => history.push(`/contests/${id}`)} />
                 </CardActionArea>
                 <CardContent>
-                    <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
-                        {contest.title} #{contest.id}
+                    <Typography
+                        className={classes.text}
+                        variant="body2"
+                        color="textSecondary"
+                        component="p">
+                        {contest.title}
+                        #{contest.id}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '10px' }}>
-                        {contest.spots} starting free spots
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '10px' }}>
-                        {Math.floor((new Date(contest.firstPhaseLimit).getTime() - new Date().getTime()) / (1000 * 3600 * 24))} days left until entry closes
-                    </Typography>
-                    <Divider style={{ marginBottom: '10px' }} />
-                    <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '10px' }}>
-                        {contest.category.slice(0, 80)}...
-                    </Typography>
+                    {contest.phase_id === 1 &&
+                        <>
+                            <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                component="p"
+                                style={{ marginBottom: '10px' }}>
+                                {contest.spots} starting free spots
+                            </Typography>
+                            <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                component="p"
+                                style={{ marginBottom: '10px' }}>
+                                {Math.floor((new Date(contest.firstPhaseLimit).getTime() - new Date().getTime()) / (1000 * 3600 * 24))} days left until entry closes
+                            </Typography>
+                            </>
+                        }
+                            <Divider
+                                style={{ marginBottom: '10px' }} />
+                            <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                component="p"
+                                style={{ marginBottom: '10px' }}>
+                                {contest.category.slice(0, 80)}...
+                            </Typography>
                 </CardContent>
-                <CardActions style={{ justifyContent: 'center' }}>
+                <CardActions
+                    style={{ justifyContent: 'center' }}>
                     <Button
                         variant="contained"
                         className={classes.button}

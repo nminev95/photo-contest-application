@@ -20,9 +20,10 @@ import authEndpoints from '../../requests/auth-requests';
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
+        backgroundColor: 'red',
     },
     image: {
-        backgroundImage: 'url(http://wallarthd.com/wp-content/uploads/2014/08/Awesome-Black-And-White-Butterfly-Wallpaper-HD.jpg)',
+        backgroundImage: 'url(http://localhost:4000/public/carousel/photo_camera.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -39,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3),
         backgroundColor: theme.palette.secondary.main,
     },
-
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
@@ -283,12 +283,14 @@ const RegisterPage = () => {
                         <Button
                             type="submit"
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             className={classes.submit}
                         >   Register
                         </Button>
                     </form>
-                    <Grid container justify="flex-end" >
+                    <Grid 
+                    container 
+                    justify="flex-end" >
                         <Grid item >
                             <Link
                                 component="button"
