@@ -1,12 +1,14 @@
 import { Button } from "@material-ui/core";
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from 'react-router-dom';
 import swal from '@sweetalert/with-react';
 import ImageDropAndUpload from "./ImageDropAndUpload";
+import axiosInstance from "../../requests/axios";
+import { setContestDetails } from "../../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -31,14 +33,14 @@ const OpenEntryFormButton = (props) => {
     const { id } = props.match.params;
     const [show, setShow] = useState(false);
     const [file, setFile] = useState([]);
+    const dispatch = useDispatch();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const contestInfo = useSelector(state => state.singleContestState)
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
-  
+    const enrolledUsers = contestInfo.enrolled;
     const styles = useStyles();
-    const [isEnrolled, setIsEnrolled] = useState(false);
 
     const [photoData, setPhotoData] = useState({
         title: {
@@ -124,10 +126,31 @@ const OpenEntryFormButton = (props) => {
     };
 
     const handleEnroll = () => {
-        setIsEnrolled(prevState => !prevState);
-    }  
+        axiosInstance.post(`http://localhost:4000/contests/${contestInfo.id}/enrolled`)
+            .then(() => {
+                const copy = [...contestInfo.enrolled]
+                copy.push(
+                    {
+                        userId: userInfo.user.sub,
+                        contestId: contestInfo.id
+                    })
+                dispatch(setContestDetails({
+                    ...contestInfo,
+                    enrolled: copy
+                }))
+            })
+    }
 
-    // (enrolledUsers && enrolledUsers.some((enroll) => enroll.user_id === userInfo.user.sub)) ? setIsEnrolled(true) : setIsEnrolled(false);
+    const handleLeave = () => {
+        axiosInstance.delete(`http://localhost:4000/contests/${contestInfo.id}/enrolled`)
+            .then(() => {
+                const filteredEnrolls = contestInfo.enrolled.filter((enroll) => enroll.userId !== userInfo.user.sub && enroll.contestId !== contestInfo.id);
+                dispatch(setContestDetails({
+                    ...contestInfo,
+                    enrolled: filteredEnrolls
+                }))
+            })
+    }
 
     const renderEnterContestButton = () => {
         switch (true) {
@@ -152,10 +175,10 @@ const OpenEntryFormButton = (props) => {
                 )
             case (userInfo.user.role === 'Organizer'):
                 return;
-            case (contestInfo.phase_id === 1 && isEnrolled):
+            case (contestInfo.phase_id === 1):
                 return (
                     <Button
-                        style={{ outline: 'none', marginRight: '10px'  }}
+                        style={{ outline: 'none', marginRight: '10px' }}
                         variant="contained"
                         color="primary"
                         onClick={handleShow}>
@@ -168,13 +191,13 @@ const OpenEntryFormButton = (props) => {
     }
 
     return (
-        <>  
+        <>
             {renderEnterContestButton()}
-            {isEnrolled ? (<Button
-                style={{ outline: 'none'}}
+            {enrolledUsers && enrolledUsers.some((user) => user.userId === userInfo.user.sub) ? (<Button
+                style={{ outline: 'none' }}
                 variant="contained"
                 color="primary"
-                onClick={handleEnroll}
+                onClick={handleLeave}
             >Leave</Button>
             ) : (
                     <Button
@@ -184,7 +207,7 @@ const OpenEntryFormButton = (props) => {
                         onClick={handleEnroll}
                     >Enroll me</Button>
                 )}
-        
+
             <Modal
                 show={show}
                 onHide={handleClose}
