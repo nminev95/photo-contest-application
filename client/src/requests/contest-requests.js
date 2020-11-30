@@ -6,7 +6,7 @@ const contestEndpoints = {
     addNewPhoto: '/contests/',
     getAllCategories: '/contests/categories',
     contestEntry: '/entries/',
-    createContest: '/contests/create',
+    createContest: '/contests/',
     topRatedPhotos: '/contests/photos',
     recentlyExpContests: '/contests/first-phase-exp'
 }
