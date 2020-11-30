@@ -36,6 +36,7 @@ const OpenEntryFormButton = (props) => {
     const contestInfo = useSelector(state => state.singleContestState)
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
+  
     const styles = useStyles();
     const [isEnrolled, setIsEnrolled] = useState(false);
 
@@ -124,7 +125,9 @@ const OpenEntryFormButton = (props) => {
 
     const handleEnroll = () => {
         setIsEnrolled(prevState => !prevState);
-    }
+    }  
+
+    // (enrolledUsers && enrolledUsers.some((enroll) => enroll.user_id === userInfo.user.sub)) ? setIsEnrolled(true) : setIsEnrolled(false);
 
     const renderEnterContestButton = () => {
         switch (true) {
@@ -156,7 +159,7 @@ const OpenEntryFormButton = (props) => {
                         variant="contained"
                         color="primary"
                         onClick={handleShow}>
-                        Enter competition
+                        Upload photo
                     </Button>
                 )
             default:

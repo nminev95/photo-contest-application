@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const TopRtaedImagesGrid = (props) => {
+const TopRatedImagesGrid = (props) => {
 
     const classes = useStyles();
     const { photosData } = props;
@@ -66,4 +66,4 @@ const TopRtaedImagesGrid = (props) => {
     )
 }
 
-export default TopRtaedImagesGrid;
+export default TopRatedImagesGrid;
