@@ -43,17 +43,6 @@ export const createContestSchema = {
 
         return null;
     },
-    lastName: value => {
-        if (!value) {
-            return 'Last name is required';
-        }
-        
-        if (typeof value !== 'string' || value.trim().length < 2 || value.trim().length > 40) {
-            return 'Last name should be a string in range [2..40]';
-        }
-
-        return null;
-    },
     restrictions: value => {
         if (!value) {
             return 'Contest restrictions are required';
@@ -76,7 +65,7 @@ export const createContestSchema = {
 
         return null;
     },
-    contestCover: value => {
+    filename: value => {
         if (!value) {
             return 'Contest cover image is required';
         }
