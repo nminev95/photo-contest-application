@@ -122,7 +122,7 @@ contestsController
             }
         },
     )
-    .post('/create',
+    .post('/',
         authMiddleware,
         roleMiddleware(['Organizer']),
         // createValidator(createContestSchema),
