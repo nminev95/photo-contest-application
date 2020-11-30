@@ -1,13 +1,11 @@
 import { Button } from "@material-ui/core";
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useSelector } from "react-redux";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Form from 'react-bootstrap/Form';
 import { withRouter } from 'react-router-dom';
 import swal from '@sweetalert/with-react';
-import { useDropzone } from 'react-dropzone';
 import ImageDropAndUpload from "./ImageDropAndUpload";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +37,7 @@ const OpenEntryFormButton = (props) => {
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
     const styles = useStyles();
-    const inputRef = useRef();
+    
     const [photoData, setPhotoData] = useState({
         title: {
             value: '',
@@ -247,7 +245,10 @@ const OpenEntryFormButton = (props) => {
                         style={{ outline: 'none', marginLeft: "15px" }}
                         variant="contained"
                         color="secondary"
-                        onClick={handleClose}
+                        onClick={() => {
+                            handleClose()
+                            setFile([]);
+                        }}
                     >
                         Cancel
                     </Button>

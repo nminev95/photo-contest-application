@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDropzone } from 'react-dropzone';
 import { makeStyles } from "@material-ui/core/styles";
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';

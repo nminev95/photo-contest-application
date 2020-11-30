@@ -18,8 +18,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login, setNotifications } from './redux/actions';
 import socketIOClient from "socket.io-client";
 import { useEffect } from 'react';
-import { notification } from 'antd';
-
 
 const App = () => {
   const dispatch = useDispatch();

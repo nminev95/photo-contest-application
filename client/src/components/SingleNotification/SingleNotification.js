@@ -6,12 +6,8 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { Button, List } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import socketIOClient from "socket.io-client";
-import decode from 'jwt-decode';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setNotifications } from '../../redux/actions';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import axiosInstance from '../../requests/axios';
 
 const useStyles = makeStyles((theme) => ({

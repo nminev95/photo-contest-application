@@ -34,7 +34,7 @@ const SingleContestPage = () => {
                 }
             })
             .then((data) => dispatch(setContestDetails(data.data)))
-    }, [dispatch, contestInfo.phase_id, id])
+    }, [dispatch, contestInfo.phase_id, id, contestInfo.entries])
 
     if (contestInfo && !areResultsFetched && contestInfo.phase_id === 3) {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}/results`)

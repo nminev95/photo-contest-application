@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Badge, Button, IconButton, Paper } from '@material-ui/core';
+import { Badge, Button, IconButton } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useSelector } from 'react-redux';
 import SingleNotification from '../SingleNotification/SingleNotification';

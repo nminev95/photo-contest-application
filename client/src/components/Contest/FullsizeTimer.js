@@ -1,6 +1,5 @@
 import { Grid } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
-import { useReducer } from "react";
 import Countdown from "react-countdown";
 
 const useStyles = makeStyles((theme) => ({
