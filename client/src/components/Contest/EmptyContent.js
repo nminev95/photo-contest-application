@@ -75,7 +75,8 @@ const EmptyContent = () => {
                                     style={{ fontSize: 100 }}>
                                 </PhotoCameraOutlinedIcon>
                             </Grid>
-                            <Grid item>
+                            <Grid 
+                            item>
                                 <ImageOutlinedIcon
                                     style={{ fontSize: 60 }}>
                                 </ImageOutlinedIcon>

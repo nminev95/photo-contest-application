@@ -50,7 +50,8 @@ const SingleContestResultCard = ({ entry }) => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classes.root}>
       <CardHeader
         avatar={
           <Avatar
@@ -72,8 +73,11 @@ const SingleContestResultCard = ({ entry }) => {
           {entry.story}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <StarIcon style={{ color: "#ffb300" }} fontSize='large' />{entry.rating.toFixed(2)}/10
+      <CardActions
+        disableSpacing>
+        <StarIcon
+          style={{ color: "#ffb300" }}
+          fontSize='large' />{entry.rating.toFixed(2)}/10
           <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -86,9 +90,13 @@ const SingleContestResultCard = ({ entry }) => {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse
+        in={expanded}
+        timeout="auto"
+        unmountOnExit>
         <CardContent>
-          {entry.reviews.map((review) => <SingleContestEntryReview review={review} />)}
+          {entry.reviews.map((review) => <SingleContestEntryReview
+            review={review} />)}
         </CardContent>
       </Collapse>
     </Card>

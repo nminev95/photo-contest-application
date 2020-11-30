@@ -1,3 +1,10 @@
+/**
+* Gets all user notifications.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const getAllUserNotifications = notificationsData => {
     return async (socket) => {
         const notifications = await notificationsData.getNotificationsById(socket.userId);

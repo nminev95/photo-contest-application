@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(http://wallarthd.com/wp-content/uploads/2014/08/Awesome-Black-And-White-Butterfly-Wallpaper-HD.jpg)',
+        backgroundImage: 'url(http://localhost:4000/public/carousel/photo_camera.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -228,7 +228,7 @@ const LoginPage = () => {
                         <Button
                             type="submit"
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             className={classes.submit}
                             onClick={handleSubmit}
                         > Sign in

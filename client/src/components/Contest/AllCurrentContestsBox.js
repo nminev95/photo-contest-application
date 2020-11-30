@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(10),
-        paddingBottom: theme.spacing(10),
+        paddingBottom: theme.spacing(18),
         display: 'flex',
     },
     text: {
@@ -38,7 +38,10 @@ const AllCurrentContestsBox = ({ currentContestsData }) => {
             <Container
                 style={{ marginTop: '15px' }}>
                 <Grid
-                    container spacing={4} className={classes.cardGrid} maxWidth="md">
+                    container 
+                    spacing={4} 
+                    className={classes.cardGrid} 
+                    maxWidth="md">
                     {currentContestsData.map((contest) => <SingleCurrentContestView
                         contest={contest}
                         key={contest.id} />)}

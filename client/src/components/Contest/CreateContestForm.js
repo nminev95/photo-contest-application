@@ -433,6 +433,7 @@ const CreateContestForm = ({ handleClose }) => {
                     </Button>
                 <Button
                     variant="contained"
+                    color="secondary"
                     onClick={handleClose}
                     style={{ outline: 'none', marginLeft: "15px" }}>
                     Cancel

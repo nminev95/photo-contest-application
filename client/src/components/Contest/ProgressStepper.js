@@ -169,7 +169,10 @@ const ProgressStepper = () => {
 
   return (
     <div className={classes.root}>
-      <Stepper alternativeLabel activeStep={contestInfo.phase_id - 1} connector={<ColorlibConnector />}>
+      <Stepper 
+      alternativeLabel 
+      activeStep={contestInfo.phase_id - 1} 
+      connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

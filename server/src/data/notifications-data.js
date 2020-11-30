@@ -1,5 +1,11 @@
 import pool from '../data/pool.js';
 
+/**
+* Gets all user notifications.
+* @async
+* @param {number} id - The unique user number.
+* @return {Promise<object>}
+*/
 const getNotificationsById = async (id) => {
     const sql1 = `
         SELECT 

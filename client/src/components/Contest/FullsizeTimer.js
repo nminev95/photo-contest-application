@@ -27,8 +27,12 @@ const FullsizeTimer = ({ endDate, setNextPhase }) => {
                 key={endDate.toString()}
                 date={endDate}
                 renderer={props => (
-                    <Grid container spacing={2} style={{ padding: '8px', justifyContent: 'center' }}>
-                        <Grid item xl={3}>
+                    <Grid 
+                    container 
+                    spacing={2} 
+                    style={{ padding: '8px', justifyContent: 'center' }}>
+                        <Grid 
+                        item xl={3}>
                             <div className={styles.integers}>
                                 {props.days}
                             </div>

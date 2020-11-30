@@ -76,8 +76,11 @@ const ImageDropAndUpload = ({ file, setFile }) => {
     }, [file]);
 
     const thumbs = file.map(file => (
-        <div style={thumb} key={file.name}>
-            <div style={thumbInner}>
+        <div 
+        style={thumb} 
+        key={file.name}>
+            <div 
+            style={thumbInner}>
                 <img
                     alt={file.name}
                     src={file.preview}
@@ -87,11 +90,19 @@ const ImageDropAndUpload = ({ file, setFile }) => {
         </div>
     ))
     return (
-        <section className={styles.uploadBox} style={{ border: '1px lightgray solid', borderRadius: '5px', textAlign: 'center' }}>
-            <div style={{ outline: 'none' }} {...getRootProps({ className: 'dropzone' })}>
+        <section 
+        className={styles.uploadBox}
+        style={{ border: '1px lightgray solid', borderRadius: '5px', textAlign: 'center' }}>
+            <div 
+            style={{ outline: 'none' }} {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
-                <p style={{ color: "gray", marginTop: '15px' }}><AddAPhotoIcon fontSize='large' />Click here to upload your entry or simply drag and drop.</p>
-                <aside style={thumbsContainer}>
+                <p 
+                style={{ color: "gray", marginTop: '15px' }}><AddAPhotoIcon 
+                fontSize='large' />
+                Click here to upload your entry or simply drag and drop.
+                </p>
+                <aside 
+                style={thumbsContainer}>
                     {thumbs}
                 </aside>
             </div>
