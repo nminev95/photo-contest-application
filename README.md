@@ -103,19 +103,19 @@ Design and implement a single-page web application that will allow photo lovers 
 - Users ranking
 
 #### For Users
-**GET '/:id/profile'** = Will retrieve user information
+**GET '/users/:id/profile'** = Will retrieve user information
 
-**GET '/experts'** = Will retrieve all high level users information
+**GET '/users/experts'** = Will retrieve all high level users information
 
-**GET '/contests'** = Will retrieve all user current contests information
+**GET '/users//contests'** = Will retrieve all user current contests information
 
-**GET '/past-contests'** = Will retrieve all user past contests information
+**GET '/users/past-contests'** = Will retrieve all user past contests information
 
-**GET '/rankings'** = Will retrieve all users ordered by their Ranking
+**GET '/users/rankings'** = Will retrieve all users ordered by their Ranking
 
-**PUT '/notifications'** = Will confirm if an user confirms the invitation
+**PUT '/users/notifications'** = Will confirm if an user confirms the invitation
 
-**POST '/register'** = Will register a new user
+**POST '/auth/register'** = Will register a new user
 
 Request Body 
 ```js
@@ -129,7 +129,7 @@ Request Body
 }
 ```
 
-**POST '/login'** = Will login an existing user
+**POST '/auth/login'** = Will login an existing user
 
 Request Body 
 ```js
@@ -139,7 +139,7 @@ Request Body
 }
 ```
 
-**DELETE '/logout'** = Will logout an existing user
+**DELETE '/auth/logout'** = Will logout an existing user
 
 
 ---
