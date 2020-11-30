@@ -8,11 +8,8 @@ import usersController from './controllers/users-controller.js';
 import { createRequire } from 'module';
 import contestsController from './controllers/contests-controller.js';
 import authController from './controllers/auth-controller.js';
-import contestsService from './services/contests-service.js';
 import notificationsService from './services/notifications-service.js';
-import usersData from './data/users-data.js';
 import notificationsData from './data/notifications-data.js';
-// import socketsListen from './controllers/sockets-controller.js';
 
 const require = createRequire(import.meta.url);
 const app = express();

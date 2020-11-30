@@ -24,6 +24,23 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `photo_contest_db` /*!40100 DEFAULT CHA
 USE `photo_contest_db`;
 
 --
+-- Table structure for table `contest_enrolled_users`
+--
+
+DROP TABLE IF EXISTS `contest_enrolled_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contest_enrolled_users` (
+  `contest_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  KEY `fk_contests_has_users_users1_idx` (`user_id`),
+  KEY `fk_contests_has_users_contests1_idx` (`contest_id`),
+  CONSTRAINT `fk_contests_has_users_contests1` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_contests_has_users_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `contest_jury_invitations`
 --
 
@@ -95,7 +112,7 @@ CREATE TABLE `contests` (
   CONSTRAINT `fk_contests_contest_phases1` FOREIGN KEY (`phase_id`) REFERENCES `contest_phases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_contest_restrictions1` FOREIGN KEY (`restrictions_id`) REFERENCES `contest_restrictions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_contests_users1` FOREIGN KEY (`organizer_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +157,7 @@ CREATE TABLE `photos` (
   KEY `fk_photos_contests1_idx` (`contest_id`),
   CONSTRAINT `fk_photos_contests1` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_photos_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +211,7 @@ CREATE TABLE `reviews` (
   KEY `fk_reviews_photos1_idx` (`photo_id`),
   CONSTRAINT `fk_reviews_photos1` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=348 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,4 +265,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-29 20:06:33
+-- Dump completed on 2020-11-30 12:29:59
