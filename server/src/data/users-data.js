@@ -244,35 +244,6 @@ const changeNotificationToRead = async (userId, contestId) => {
     await pool.query(sql2, [userId, contestId]);
 };
 
-const getNotification = async (userId, contestId) => {
-    const sql1 = `
-        SELECT 
-            *
-        FROM 
-            contest_jury_invitations
-        WHERE  
-            user_id = ?
-        AND
-            contest_id = ?
-    `;
-
-    const sql2 = `
-        SELECT 
-            *
-        FROM 
-            private_contest_invitations
-        WHERE
-            user_id = ?
-        AND
-            contest_id = ?
-    `;
-
-    const res1 = await pool.query(sql1, [userId, contestId]);
-    const res2 = await pool.query(sql2, [userId, contestId]);
-
-    return [...res1, ...res2];
-};
-
 const getNotificationsById = async (id) => {
     const sql1 = `
         SELECT 
@@ -315,6 +286,5 @@ export default {
     getAllUsersOrderedByRanking,
     addUserPoints,
     changeNotificationToRead,
-    getNotification,
     getNotificationsById,
 };

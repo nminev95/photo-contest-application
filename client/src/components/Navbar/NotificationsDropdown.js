@@ -2,10 +2,11 @@ import React, { Fragment } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Badge, IconButton } from '@material-ui/core';
+import { Badge, Button, IconButton, Paper } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useSelector } from 'react-redux';
 import SingleNotification from '../SingleNotification/SingleNotification';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const StyledMenu = withStyles({
     paper: {
@@ -38,6 +39,18 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             marginLeft: "15px",
             maxHeight: '600px'
+        },
+    },
+    noContent: {
+        [theme.breakpoints.only('xs')]: {
+            marginLeft: "15px"
+        },
+        [theme.breakpoints.only('sm')]: {
+            marginLeft: "24px"
+        },
+        [theme.breakpoints.up('md')]: {
+            marginLeft: "15px",
+            maxHeight: '600px',
         },
     },
 }))
@@ -84,29 +97,45 @@ const NotificationsDropdown = () => {
                         </Badge>
                     </IconButton>
                 )}
-            <StyledMenu
-                className={styles.menuDropdown}
-                id="customized-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                {notificationsState.juryInvitations && notificationsState.juryInvitations.map((notification) => {
-                    return (
-                        <MenuItem key={notification.contest_id}>
-                            <SingleNotification notificationData={notification} handleClose={handleClose} type='juryInvitation' />
-                        </MenuItem>
-                    )
-                })}
-                {notificationsState.privateContestInvitations && notificationsState.privateContestInvitations.map((notification) => {
-                    return (
-                        <MenuItem key={notification.contest_id}>
-                            <SingleNotification notificationData={notification} handleClose={handleClose} type='privateContestInvitation' />
-                        </MenuItem>
-                    )
-                })}
-            </StyledMenu>
+            {notificationsCount ? (
+                <StyledMenu
+                    className={styles.menuDropdown}
+                    id="customized-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    {notificationsState.juryInvitations && notificationsState.juryInvitations.map((notification) => {
+                        return (
+                            <MenuItem key={notification.contest_id}>
+                                <SingleNotification notificationData={notification} handleClose={handleClose} type='juryInvitation' />
+                            </MenuItem>
+                        )
+                    })}
+                    {notificationsState.privateContestInvitations && notificationsState.privateContestInvitations.map((notification) => {
+                        return (
+                            <MenuItem key={notification.contest_id}>
+                                <SingleNotification notificationData={notification} handleClose={handleClose} type='privateContestInvitation' />
+                            </MenuItem>
+                        )
+                    })}
+                </StyledMenu>
+            ) : (
+                    <StyledMenu
+                        className={styles.noContent}
+                        id="customized-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    ><MenuItem style={{ color: "gray", whiteSpace:"initial", width: '400px', margin:'20px' }}><VisibilityIcon fontSize='large' style={{marginRight:'10px'}}/>Looks like you are already up to date and don't have any new notifications.</MenuItem>
+                        <Button variant="contained"
+                            color="secondary"
+                            style={{ outline: 'none', marginBottom: '10px' }}
+                            onClick={handleClose}>Hide</Button>
+                    </StyledMenu>
+                )}
         </Fragment>
     );
 }

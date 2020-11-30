@@ -38,7 +38,6 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
 
     const classes = useStyles();
     const history = useHistory();
-    const notificationsState = useSelector(state => state.userNotificationsState);
     const dispatch = useDispatch();
     
     const markRead = async (contestId) => {
@@ -46,12 +45,6 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
         .then(res => {
             dispatch(setNotifications(res.data))
         });
-        // const filteredJuryNotifications = await notificationsState.juryInvitations.filter((notification) => !!notification.isRead === false);
-        // const filteredContestNotifications = await notificationsState.privateContestInvitations.filter((notification) => !!notification.isRead === false);
-        // dispatch(setNotifications({
-        //     juryInvitations: filteredJuryNotifications,
-        //     privateContestInvitations: filteredContestNotifications
-        // }))
     }
 
     const renderSingleNotification = (type, notificationData) => {

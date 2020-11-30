@@ -48,17 +48,6 @@ io.on('connection', (socket) => {
         //     notificationsService.getAllUserNotifications(notificationsData)(socket);
         // }, 5000);
     });
-    socket.on('mark_read', async (user, contestId) => {
-        const parsedUser = JSON.parse(user);
-        if (user) {
-            socket.userId = parsedUser.sub;
-        }
-        // console.log(socket.id)
-        // const news = await notificationsService.markNotificationRead(notificationsData)(socket, contestId, socketsMap);
-        // console.log(news)
-        // await socket.emit('filtered_notifications', news);
-        
-    });
     socket.on('disconnect', () => {
         clearInterval();
     });

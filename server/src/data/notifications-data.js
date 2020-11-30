@@ -34,35 +34,7 @@ const getNotificationsById = async (id) => {
     return notifications;
 };
 
-const changeNotificationToRead = async (userId, contestId) => {
-
-    const sql1 = `
-        UPDATE 
-            contest_jury_invitations
-        SET 
-            isRead = 1
-        WHERE 
-            user_id = ?
-        AND 
-            contest_id = ?
-    `;
-
-    const sql2 = `
-        UPDATE 
-            contest_jury_invitations
-        SET 
-            isRead = 1
-        WHERE 
-            user_id = ?
-        AND 
-            contest_id = ?
-    `;
-
-    await pool.query(sql1, [userId, contestId]);
-    await pool.query(sql2, [userId, contestId]);
-};
 
 export default {
     getNotificationsById,
-    changeNotificationToRead,
 };
