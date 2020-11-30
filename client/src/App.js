@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/HomePage/HomePage';
+import HomePage from './containers/HomePage/Homepage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import decode from 'jwt-decode';
@@ -16,6 +16,7 @@ import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from './redux/actions';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,12 @@ const App = () => {
 
   return (
     <div className="App">
+        <Scrollbars
+        // This will activate auto-height
+        style={{ width: '100%', height: '100%'}}
+        universal
+        autoHideDuration={200}
+        >
       <Router>
         <Navbar />
         <Switch >
@@ -44,6 +51,7 @@ const App = () => {
           <GuardedRoute path="/contests/:id" component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />
         </Switch>
       </Router>
+      </Scrollbars>
     </div>
   );
 }
