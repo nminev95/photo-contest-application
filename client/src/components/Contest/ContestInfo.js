@@ -117,9 +117,9 @@ const ContestInfo = ({ contestInfo }) => {
                             <div>
                                 Contest theme is {contestInfo.title}
                                 <br></br>
-                                {contestInfo.entries && contestInfo.entries.length} photographers entered
+                                {contestInfo.enrolled && contestInfo.enrolled.length} photographers entered
                                 <br></br>
-                                {contestInfo.entries && +contestInfo.spots - contestInfo.entries.length} free places left
+                                {contestInfo.enrolled && +contestInfo.spots - contestInfo.enrolled.length} free places left
                             </div>
                             <div style={{ margin: '20px' }}>
                                 <CountdownTimerComponent

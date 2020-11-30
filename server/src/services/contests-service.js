@@ -448,6 +448,29 @@ const enrollUser = contestsData => {
     };
 };
 
+const disenrollUser = contestsData => {
+    return async (userId, contestId) => {
+        const contest = await contestsData.getContestInfo(contestId);
+
+        if (!contest) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contest: null,
+            };
+        }
+
+        await contestsData.disenrollUserFromContest(userId, contestId);
+
+        return {
+            error: null,
+            enroll: {
+                userId,
+                contestId,
+            },
+        };
+    };
+};
+
 export default {
     getContestById,
     getAllOpenContests,
@@ -464,6 +487,7 @@ export default {
     getFinishedContests,
     awardPointsForFinishedContests,
     enrollUser,
+    disenrollUser,
 };
 
 

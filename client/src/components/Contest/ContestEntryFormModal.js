@@ -1,12 +1,14 @@
 import { Button } from "@material-ui/core";
 import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from 'react-router-dom';
 import swal from '@sweetalert/with-react';
 import ImageDropAndUpload from "./ImageDropAndUpload";
+import axiosInstance from "../../requests/axios";
+import { setContestDetails } from "../../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -31,13 +33,14 @@ const OpenEntryFormButton = (props) => {
     const { id } = props.match.params;
     const [show, setShow] = useState(false);
     const [file, setFile] = useState([]);
+    const dispatch = useDispatch();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const contestInfo = useSelector(state => state.singleContestState)
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
+    const enrolledUsers = contestInfo.enrolled;
     const styles = useStyles();
-    const [isEnrolled, setIsEnrolled] = useState(false);
 
     const [photoData, setPhotoData] = useState({
         title: {
@@ -123,7 +126,74 @@ const OpenEntryFormButton = (props) => {
     };
 
     const handleEnroll = () => {
-        setIsEnrolled(prevState => !prevState);
+        axiosInstance.post(`http://localhost:4000/contests/${contestInfo.id}/enrolled`)
+            .catch((error) => {
+                if (error.response.status > 300) {
+                    swal({
+                        title: "Oops!",
+                        text: "Something went wrong.",
+                        icon: "error",
+                        button: "Go back"
+                    })
+                }
+            })
+            .then(() => {
+                swal({
+                    title: "Success!",
+                    text: "You have registered for this contest succesfully.",
+                    icon: "success",
+                    button: false,
+                    timer: 1500
+                })
+                const copy = [...contestInfo.enrolled]
+                copy.push(
+                    {
+                        user_id: userInfo.user.sub,
+                        contest_id: contestInfo.id
+                    })
+                dispatch(setContestDetails({
+                    ...contestInfo,
+                    enrolled: copy
+                }))
+            })
+    }
+
+    const handleLeave = () => {
+        swal({
+            title: "Are you sure?",
+            text: "By cancelling your registration, you risk someone else taking your spot in the contest.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((isTrue) => {
+            if (isTrue) {
+                axiosInstance.delete(`http://localhost:4000/contests/${contestInfo.id}/enrolled`)
+                    .catch((error) => {
+                        if (error.response.status > 300) {
+                            swal({
+                                title: "Oops!",
+                                text: "Something went wrong.",
+                                icon: "error",
+                                button: "Go back"
+                            })
+                        }
+                    })
+                    .then(() => {
+                        const filteredEnrolls = contestInfo.enrolled.filter((enroll) => enroll.user_id !== userInfo.user.sub && enroll.contest_id !== contestInfo.id);
+                        dispatch(setContestDetails({
+                            ...contestInfo,
+                            enrolled: filteredEnrolls
+                        }))
+                    })
+            }
+            swal({
+                title: "Success!",
+                text: "You have succesfully been removed from the contest.",
+                icon: "success",
+                button: false,
+                timer: 1500
+            })
+        })
     }
 
     const renderEnterContestButton = () => {
@@ -149,14 +219,14 @@ const OpenEntryFormButton = (props) => {
                 )
             case (userInfo.user.role === 'Organizer'):
                 return;
-            case (contestInfo.phase_id === 1 && isEnrolled):
+            case (contestInfo.phase_id === 1 && enrolledUsers.some((user) => user.user_id === userInfo.user.sub)):
                 return (
                     <Button
-                        style={{ outline: 'none', marginRight: '10px'  }}
+                        style={{ outline: 'none', marginRight: '10px' }}
                         variant="contained"
                         color="primary"
                         onClick={handleShow}>
-                        Enter competition
+                        Upload photo
                     </Button>
                 )
             default:
@@ -164,24 +234,35 @@ const OpenEntryFormButton = (props) => {
         }
     }
 
-    return (
-        <>  
-            {renderEnterContestButton()}
-            {isEnrolled ? (<Button
-                style={{ outline: 'none'}}
-                variant="contained"
-                color="primary"
-                onClick={handleEnroll}
-            >Leave</Button>
-            ) : (
+    const renderEnrollButton = () => {
+        switch (true) {
+            case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)): 
+                return;
+            case (enrolledUsers && enrolledUsers.some((user) => user.user_id === userInfo.user.sub)):
+                return (
+                    <Button
+                        style={{ outline: 'none' }}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleLeave}
+                    >Leave</Button>
+                )
+            default:
+                return (
                     <Button
                         style={{ outline: 'none' }}
                         variant="contained"
                         color="primary"
                         onClick={handleEnroll}
                     >Enroll me</Button>
-                )}
-        
+                )
+        }
+    }
+
+    return (
+        <>
+            {renderEnterContestButton()}
+            {renderEnrollButton()}
             <Modal
                 show={show}
                 onHide={handleClose}

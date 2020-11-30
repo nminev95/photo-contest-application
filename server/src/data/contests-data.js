@@ -432,6 +432,19 @@ const enrollUserInContest = async (userId, contestId) => {
     return await pool.query(sql, [userId, contestId]);
 };
 
+const disenrollUserFromContest = async (userId, contestId) => {
+    const sql = `
+        DELETE FROM
+            contest_enrolled_users 
+        WHERE 
+            user_id = ?
+        AND 
+            contest_id = ?
+    `;
+
+    return await pool.query(sql, [userId, contestId]);
+};
+
 export default {
     getAllOpenContestsInfo,
     getContestInfo,
@@ -450,4 +463,5 @@ export default {
     getFinishedContestsInfo,
     markContestAwarded,
     enrollUserInContest,
+    disenrollUserFromContest,
 };
