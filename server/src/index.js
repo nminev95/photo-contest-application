@@ -11,6 +11,7 @@ import authController from './controllers/auth-controller.js';
 import usersService from './services/users-service.js';
 import usersData from './data/users-data.js';
 
+const socketsMap = new Map();
 const require = createRequire(import.meta.url);
 const app = express();
 const redis = require('redis');
@@ -22,23 +23,18 @@ const io = require('socket.io')(server, {
     },
 });
 
-
-const socketsMap = new Map();
 io.on('connection', (socket) => {
     socket.on('login', (user) => {
         const parsedUser = JSON.parse(user);
+        
         if (user) {
             socket.userId = parsedUser.sub;
         }
 
-        if (!socketsMap.get(parsedUser.sub)) {
-            socketsMap.set(parsedUser.sub, socket.id);
-        }
-        console.log(socketsMap);
+        socketsMap.set(parsedUser.sub, socket.id);
         usersService.getAllUserNotifications(usersData)(socket);
     });
     socket.on('new_jury_invitations', (invitationsArray, senderId) => {
-        console.log(senderId)
         const juryInvitations = JSON.parse(invitationsArray);
         const requestSender = JSON.parse(senderId);
         juryInvitations.map(async (invitation) => {
@@ -49,15 +45,13 @@ io.on('connection', (socket) => {
                 if (notifications.juryInvitations.length !== 0 || notifications.privateContestInvitations.length !== 0) {
                     const unreadContestNotifications = notifications.privateContestInvitations.filter((notification) => !!notification.isRead === false);
                     const unreadJuryNotifications = notifications.juryInvitations.filter((notification) => !!notification.isRead === false);
-                    console.log(invitation.id, requestSender);
+                    
                     if (+invitation.id !== +requestSender) {
-                        console.log('different');
-                        io.to(socketsMap.get(invitation.id)).emit('new_jury_notifications', {
+                        io.to(socketsMap.get(+invitation.id)).emit('new_jury_notifications', {
                             privateContestInvitations: unreadContestNotifications,
                             juryInvitations: unreadJuryNotifications,
                         });
                     } else {
-                        console.log('same!');
                         socket.emit('new_jury_notifications', {
                             privateContestInvitations: unreadContestNotifications,
                             juryInvitations: unreadJuryNotifications,
@@ -69,7 +63,6 @@ io.on('connection', (socket) => {
     });
     socket.on('logout', (userId) => {
         const parsedId = JSON.parse(userId);
-
         if (socketsMap.get(parsedId)) {
             socketsMap.delete(parsedId);
         }
