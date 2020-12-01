@@ -75,7 +75,7 @@ const Navbar = () => {
       ) : (
           <AppBar position="static" style={{ backgroundColor: "#2D3142" }}>
             <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
-              <div style={{ maxHeight: '100px' }}>
+              <div style={{ maxHeight: '100px', maxWidth: '350px' }}>
                 <img alt='photopedia-logo' style={{ maxHeight: '70px', margin: '10px' }} src={logo}></img>
               </div>
               <MobileDropdown />

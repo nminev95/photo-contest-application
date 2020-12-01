@@ -9,6 +9,7 @@ import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAward } from '@fortawesome/free-solid-svg-icons';
 import { Avatar, Tooltip } from '@material-ui/core';
+import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,16 +37,17 @@ const useStyles = makeStyles((theme) => ({
     container: {
         [theme.breakpoints.up('sm')]: {
             width: '38%',
-            height: '430px',
+            height: '480px',
             backgroundColor: "white",
             borderRadius: "10px",
             boxShadow: '0 1px 3px rgba(0,0,0,0.20), 0 1px 2px rgba(0,0,0,0.24)',
-            marginTop: '-9em',
+            marginTop: '-18em',
+            marginBottom: '5em',
             zIndex: 1,
         },
         [theme.breakpoints.only('xs')]: {
             width: '100%',
-            height: '430px',
+            height: '470px',
             backgroundColor: "white",
             borderRadius: "10px",
             boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
@@ -70,14 +72,30 @@ const UserProfilePersonalInfo = (props) => {
 
     const { userData } = props;
     const classes = useStyles();
-    console.log(userData)
 
     const getNextRank = (currentRank) => {
         switch (true) {
+            case (currentRank === 'Junkie'):
+                return 'Next rank: Enthusiast';
+            case (currentRank === 'Enthusiast'):
+                return 'Next rank: Master';
             case (currentRank === 'Master'):
-                return 'Wise'
+                return 'Next rank: Wise and Benevolent Photo Dictator';
             default:
-                return;
+                return 'Looks like you are already max rank possible. Good job!';
+        }
+    }
+
+    const getPointsLeft = (currentPoints) => {
+        switch (true) {
+            case (Number(currentPoints) < 50):
+                return `Points left until next rank: ${50 - Number(currentPoints)}`;
+            case (Number(currentPoints) > 50 && Number(currentPoints) < 150):
+                return `Points left until next rank: ${150 - Number(currentPoints)}`;
+            case (Number(currentPoints) > 150 && Number(currentPoints) < 1000):
+                return `Points left until next rank: ${1000 - Number(currentPoints)}`;
+            default:
+                return 'Points won\'t affect your rank anymore. You are already max rank.';
         }
     }
     return (
@@ -106,6 +124,22 @@ const UserProfilePersonalInfo = (props) => {
                             style={{ marginTop: "20px" }}>
                             {userData.firstName} {userData.lastName}
                         </Typography>
+                        <Grid container style={{justifyContent: 'center'}}>
+                            <Grid item style={{alignSelf: "center"}}>
+                            <EmailIcon  style={{ fontSize: 30, color: "gray " }} />
+                            </Grid>
+                            <Grid item>
+
+                            <Typography
+                                variant="h6"
+                                align="center"
+                                color="textSecondary"
+                                style={{ marginTop: "14px"}}
+                                paragraph>
+                                {userData.email}
+                            </Typography>
+                                </Grid>
+                        </Grid>
                         <div style={{ marginTop: '10px' }}>
                             <Grid
                                 container spacing={2}
@@ -115,7 +149,7 @@ const UserProfilePersonalInfo = (props) => {
                                     <  EmojiEventsIcon
                                         style={{ fontSize: 40, color: "cc8f00" }}> </ EmojiEventsIcon>
                                 </Grid>
-                                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Next rank: {getNextRank(userData.rank)}</p>} arrow style={{ fontSize: '78px' }}>
+                                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>{getNextRank(userData.rank)}</p>} arrow>
                                     <Typography
                                         variant="h6"
                                         align="center"
@@ -131,13 +165,15 @@ const UserProfilePersonalInfo = (props) => {
                                         size="2x"
                                         style={{ marginTop: "4px", marginLeft: "25px", color: "d45b3e" }} />
                                 </Grid>
-                                <Typography
-                                    variant="h6"
-                                    align="center"
-                                    color="textSecondary"
-                                    style={{ marginTop: "14px" }} paragraph>
-                                    {userData.points}
-                                </Typography>
+                                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>{getPointsLeft(userData.points)}</p>} arrow>
+                                    <Typography
+                                        variant="h6"
+                                        align="center"
+                                        color="textSecondary"
+                                        style={{ marginTop: "14px" }} paragraph>
+                                        {userData.points}
+                                    </Typography>
+                                </Tooltip>
                             </Grid>
                             <Typography
                                 style={{ marginTop: '10px' }}
