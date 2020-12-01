@@ -40,7 +40,13 @@ const CreateContestForm = ({ handleClose }) => {
 
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState([]);
-    const userInfo = useSelector(state => state.loginState.user);
+    const [isContestPrivate, setIsContestPrivate] = useState(false);
+
+    const toggleIsPrivate = () => {
+        setIsContestPrivate(prevState => !prevState);
+    }
+
+    const userId = useSelector(state => state.loginState.user.sub);
     const styles = useStyles();
     const [contestForm, setContestForm] = useState({
         title: {
@@ -89,6 +95,12 @@ const CreateContestForm = ({ handleClose }) => {
         },
         jury: {
             name: 'jury',
+            value: [],
+            valid: true,
+            validators: {}
+        },
+        privateContestParticipants: {
+            name: 'privateParticipants',
             value: [],
             valid: true,
             validators: {}
@@ -154,6 +166,11 @@ const CreateContestForm = ({ handleClose }) => {
     const handleChange = (ev) => {
 
         const { name, value } = ev.target;
+
+        if (name === 'restrictions') {
+            toggleIsPrivate();
+        }
+
         const copyControl = { ...contestForm[name] };
         copyControl.value = value;
         copyControl.valid = true;
@@ -192,7 +209,7 @@ const CreateContestForm = ({ handleClose }) => {
         const contestData = Object.values(contestForm).reduce((data, input) => {
             if (Array.isArray(input.value)) {
                 const jsonArray = JSON.stringify(input.value);
-                socket.emit('new_jury_invitations', jsonArray);
+                console.log(userId)
                 data.set(input.name, jsonArray);
             } else {
                 data.set(input.name, input.value);
@@ -200,7 +217,7 @@ const CreateContestForm = ({ handleClose }) => {
             return data
         }, new FormData());
         contestData.set('image', contestCover[0]);
-          
+
         swal({
             title: "Are you sure?",
             text: "Once created, your contest cannot be changed anymore. ",
@@ -223,7 +240,7 @@ const CreateContestForm = ({ handleClose }) => {
                         })
                         .then((response) => {
                             if (response) {
-                                socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(response.data.id));
+                                socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(userId));
                                 console.log(response)
                                 swal({
                                     title: "Success!",
@@ -346,7 +363,7 @@ const CreateContestForm = ({ handleClose }) => {
                     labelPlacement="start"
                 />
             </RadioGroup>
-            <Grid
+            {!isContestPrivate ? (<Grid
                 container
                 spacing={3}
                 style={{ justifyContent: "center", marginTop: "10px" }}>
@@ -369,7 +386,59 @@ const CreateContestForm = ({ handleClose }) => {
                         <option>100</option>
                     </Form.Control>
                 </Grid>
-            </Grid>
+            </Grid>) : (
+                <Autocomplete
+                multiple
+                limitTags={3}
+                name="jury"
+                id="multiple-limit-tags"
+                disableCloseOnSelect
+                filterSelectedOptions={true}
+                options={highLevelUsers}
+                getOptionLabel={(user) => user.username}
+                value={contestForm.jury.value}
+                onChange={handleJurySelect}
+                renderOption={(user) => (
+                    <>
+                        <Avatar
+                            alt={user.username}
+                            src={`http://localhost:4000/public/avatars/${user.avatar}`}
+                            className={styles.small} />
+                        <span>
+                            {user.username}
+                        </span>
+                        <span
+                            style={{ float: "inline-end" }}>{user.rank === 3 ?
+                                (<><StarIcon
+                                    style={{ color: "#ffb300" }} />
+                                    <StarIcon
+                                        style={{ color: "#ffb300" }} />
+                                    <StarIcon
+                                        style={{ color: "#ffb300" }} />
+                                    <StarBorderIcon
+                                        style={{ color: "#ffb300" }} /></>
+                                ) : (
+                                    <>
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} />
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} />
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} />
+                                        <StarIcon
+                                            style={{ color: "#ffb300" }} /></>
+                                )}</span>
+                    </>
+                )}
+                renderInput={(params) => (
+                    <TextField {...params}
+                        variant="outlined"
+                        label="Contest jury"
+                        placeholder="Send jury invitations"
+                        className={styles.inputField} />
+                )}
+            />
+            )}
             <Typography
                 style={{ marginTop: '35px' }}
                 id="discrete-slider-always"

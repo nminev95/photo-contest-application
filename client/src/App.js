@@ -16,27 +16,27 @@ import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, setNotifications } from './redux/actions';
-import socketIOClient from 'socket.io-client';
-import { useEffect } from 'react';
-import { notification } from 'antd';
+import socketIOClient from 'socket.io-client'; import { useEffect } from 'react';
+;
 export const socket = socketIOClient("http://localhost:4000")
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginState.isLogged);
   const accessToken = localStorage.getItem('accessToken');
-  const juryInvitationsState = useSelector(state => state.userNotificationsState.juryInvitations);
-  const privateContestInvitationsState = useSelector(state => state.userNotificationsState.privateContestInvitations);
+
   if (accessToken) {
     dispatch(login(decode(accessToken)));
   }
-  socket.on("connect", () => {
-    if (accessToken) {
-      dispatch(login(decode(accessToken)));
-      const user = decode(localStorage.getItem('accessToken'))
-      socket.emit('login', JSON.stringify(user));
-    }
-  });
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      if (accessToken) {
+        const user = decode(localStorage.getItem('accessToken'))
+        socket.emit('login', JSON.stringify(user));
+      }
+    });
+  }, [])
 
   socket.on("notifications", (notifications) => {
     dispatch(setNotifications(notifications))
@@ -61,7 +61,7 @@ const App = () => {
           <GuardedRoute exact path="/contests/phase/3" auth={isLoggedIn} component={FinishedContestsPage} redirectRoute={'/'} />
           <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
           <GuardedRoute exact path="/users/ranking" auth={isLoggedIn} component={UsersRankingPage} redirectRoute={'/'} />
-          <GuardedRoute path="/contests/:id" component={SingleContestPage} auth={isLoggedIn} redirectRoute={'/'} />
+          <GuardedRoute path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
         </Switch>
       </Router>
     </div>

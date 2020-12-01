@@ -15,6 +15,7 @@ import axiosInstance from '../../requests/axios';
 import authEndpoints from '../../requests/auth-requests';
 import swal from 'sweetalert';
 import { logout } from '../../redux/actions'
+import { socket } from '../../App';
 
 const StyledMenu = withStyles({
     paper: {
@@ -69,6 +70,7 @@ const ProfileDropdown = () => {
     const dispatch = useDispatch()
 
     const handleLogout = () => {
+        
         axiosInstance.delete(authEndpoints.logoutUser)
             .catch((err) => {
                 if (err.response.status === 500) {
@@ -80,8 +82,9 @@ const ProfileDropdown = () => {
                     })
                 }
             }).then(() => {
-                localStorage.clear()
-                dispatch(logout())
+                socket.emit('logout', JSON.stringify(userState.user.sub));
+                localStorage.clear();
+                dispatch(logout());
                 history.push('/');
             })
     }

@@ -17,6 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
+import { socket } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -132,7 +133,9 @@ const LoginPage = () => {
                         timer: 1500
                     }).then(() => {
                         localStorage.setItem("accessToken", response.data.accessToken);
-                        dispatch(login(decode(response.data.accessToken)));
+                        const user = decode(response.data.accessToken)
+                        socket.emit('login', JSON.stringify(user));
+                        dispatch(login(user));
                     });
 
                 }
