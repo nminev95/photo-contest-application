@@ -183,8 +183,10 @@ const getAllUsersOrderedByRanking = async () => {
             (SELECT type FROM ranks  WHERE id = rank_id) AS rank
         FROM 
             users 
-        WHERE role_id = 1
-        ORDER BY points
+        WHERE 
+            role_id = 1
+        ORDER BY 
+            points
         DESC
     `;
 
@@ -290,6 +292,18 @@ const getNotificationsById = async (id) => {
     return notifications;
 };
 
+const getAllUsersFromDatabase = async () => {
+    const sql =
+        `SELECT
+            id,
+            avatarUrl AS avatar,
+            username,
+            rank_id AS rank
+        FROM
+            users`;
+
+    return await pool.query(sql);
+};
 
 export default {
     createAccount,
@@ -301,4 +315,5 @@ export default {
     addUserPoints,
     changeNotificationToRead,
     getNotificationsById,
+    getAllUsersFromDatabase,
 };

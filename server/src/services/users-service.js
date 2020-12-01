@@ -123,6 +123,7 @@ const getUserCurrentContests = usersData => {
     return async (id) => {
 
         const contests = await usersData.getCurrentContestsByUserId(id);
+
         if (!contests.length) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
@@ -223,6 +224,21 @@ const getAllUserNotifications = usersData => {
     };
 };
 
+const getAllUsers = usersData => {
+    return async () => {
+        const users = await usersData.getAllUsersFromDatabase();
+
+        if (!users.length) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                usersRanking: null,
+            };
+        }
+
+        return { error: null, usersRanking: users };
+    };  
+};
+
 export default {
     createUser,
     signInUser,
@@ -233,4 +249,5 @@ export default {
     getUsersByRanking,
     markNotificationRead,
     getAllUserNotifications,
+    getAllUsers,
 };

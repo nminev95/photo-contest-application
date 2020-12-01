@@ -366,7 +366,7 @@ const CreateContestForm = ({ handleClose }) => {
             {!isContestPrivate ? (<Grid
                 container
                 spacing={3}
-                style={{ justifyContent: "center", marginTop: "10px" }}>
+                style={{ justifyContent: "center" }}>
                 <Grid
                     item
                     xs={3}>
