@@ -86,13 +86,13 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Pastel colours', 'Welcome to our Abstract Pastel Colours competition. When a fully saturated colour is diluted by white, it becomes a pastel colour. These shades are generally more delicate, so it’s better to photograph them in a softer, diffused light, to avoid making them look washed out. A carefully composed photo that uses pastel colours can have a gentle and unique quality to it. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
-(SELECT NOW() + INTERVAL 20 DAY), ((SELECT NOW() + INTERVAL 20 DAY) + INTERVAL 20 HOUR), '80', '1606480787442_039088705.jpeg', '1', '3', '21');
+(SELECT NOW() - INTERVAL 20 DAY), ((SELECT NOW() - INTERVAL 20 DAY) + INTERVAL 20 HOUR), '80', '1606480787442_039088705.jpeg', '1', '3', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Portraits', "Welcome to our Portraits competition. Portrait photography is all about the face. A photographer's goal is to take a carefully crafted photograph of a person's distinguishing facial features while capturing the person's attitude, identity, and personality. The photo may include a blurred background and the person's body, but those factors are not emphasized in the image. . During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 18 HOUR), '150', '1606480969980_656006010.jpeg', '1', '3', '21');
+(SELECT NOW() - INTERVAL 25 DAY), ((SELECT NOW() - INTERVAL 25 DAY) + INTERVAL 18 HOUR), '150', '1606480969980_656006010.jpeg', '1', '3', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -104,7 +104,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Animals', 'Welcome to our Animals competition. If you are out in the wild, photographing animals, then you are shooting wildlife photography. It involves documenting the creatures, in and out of their habitats. One of the most importain features is the backlighting. It refers to the positioning of light behind your subject, such that your subject is located between you and the source of light. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.',
-(SELECT NOW() + INTERVAL 16 DAY), ((SELECT NOW() + INTERVAL 16 DAY) + INTERVAL 21 HOUR), '150', '1606481192800_288867563.jpeg', '1', '3', '21');
+(SELECT NOW() - INTERVAL 16 DAY), ((SELECT NOW() - INTERVAL 16 DAY) + INTERVAL 21 HOUR), '150', '1606481192800_288867563.jpeg', '1', '3', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -116,7 +116,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Flowers', 'Welcome to our Flowers competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 80 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 20 HOUR), '120', '1606481330244_562243874.jpeg', '1', '3', '21');
+(SELECT NOW() - INTERVAL 25 DAY), ((SELECT NOW() - INTERVAL 25 DAY) + INTERVAL 20 HOUR), '120', '1606481330244_562243874.jpeg', '1', '3', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -206,25 +206,25 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Vintage', 'Welcome to our Vintage competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606640168390_588181385.jpeg', '1', '3', '21');
+(SELECT NOW() - INTERVAL 15 DAY), ((SELECT NOW() - INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606640168390_588181385.jpeg', '1', '3', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Reflection', 'Welcome to our Reflection competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
-(SELECT NOW() + INTERVAL 17 DAY), ((SELECT NOW() + INTERVAL 17 DAY) + INTERVAL 24 HOUR), '120', '1606641195307_600378132.jpeg', '1', '3', '21');
+(SELECT NOW() - INTERVAL 17 DAY), ((SELECT NOW() - INTERVAL 17 DAY) + INTERVAL 24 HOUR), '120', '1606641195307_600378132.jpeg', '1', '3', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Lighthouses', 'Welcome to our Lighthouses competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606642965372_739595540.jpeg', '1', '3', '23');
+(SELECT NOW() - INTERVAL 15 DAY), ((SELECT NOW() - INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606642965372_739595540.jpeg', '1', '3', '23');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Christmas time', 'Welcome to our Christmas time competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606643814578_389338242.jpeg', '1', '3', '24');
+(SELECT NOW() - INTERVAL 15 DAY), ((SELECT NOW() - INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606643814578_389338242.jpeg', '1', '3', '24');
 
 
 -- Photos
