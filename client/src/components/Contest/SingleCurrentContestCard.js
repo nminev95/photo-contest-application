@@ -8,8 +8,6 @@ import { useHistory } from 'react-router-dom';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import CountdownTimerComponent from './CountdownTimerComponent';
 
-
-
 const useStyles = makeStyles((theme) => ({
     card: {
         height: '100%',

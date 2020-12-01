@@ -6,11 +6,11 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Check from '@material-ui/icons/Check';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import { useSelector } from 'react-redux';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import ThumbsUpDownIcon from '@material-ui/icons/ThumbsUpDown';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 const useQontoStepIconStyles = makeStyles({
   root: {
@@ -113,9 +113,9 @@ function ColorlibStepIcon(props) {
   const { active, completed } = props;
 
   const icons = {
-    1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
+    1: <AddPhotoAlternateIcon />,
+    2: <ThumbsUpDownIcon />,
+    3: <AssignmentTurnedInIcon />,
   };
 
   return (
