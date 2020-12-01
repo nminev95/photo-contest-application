@@ -11,12 +11,12 @@ usersController
         authMiddleware,
         roleMiddleware(['Organizer']),
         async (req, res) => {
-            const { user, error } = await usersService.getAllUsers(usersData)();
+            const { users, error } = await usersService.getAllUsers(usersData)();
 
             if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'User not found!' });
+                res.status(404).send({ message: 'Users not found!' });
             } else {
-                res.status(200).send(user);
+                res.status(200).send(users);
             }
         },
     )

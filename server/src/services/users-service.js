@@ -235,7 +235,7 @@ const getAllUsers = usersData => {
             };
         }
 
-        return { error: null, usersRanking: users };
+        return { error: null, users: users };
     };  
 };
 

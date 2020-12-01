@@ -12,7 +12,9 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { contestCategoryError, contestTitleError } from "../../validations/helper-errors";
 import ImageDropAndUpload from "./ImageDropAndUpload";
 import { socket } from "../../App";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUsers } from "../../redux/actions";
+import AutocompleteInputField from "./AutocompleteInputField";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -41,13 +43,14 @@ const CreateContestForm = ({ handleClose }) => {
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState([]);
     const [isContestPrivate, setIsContestPrivate] = useState(false);
-
+    const dispatch = useDispatch();
+    const userId = useSelector(state => state.loginState.user.sub);
+    const allUsers = useSelector(state => state.allUsersState)
+    const styles = useStyles();
     const toggleIsPrivate = () => {
         setIsContestPrivate(prevState => !prevState);
     }
 
-    const userId = useSelector(state => state.loginState.user.sub);
-    const styles = useStyles();
     const [contestForm, setContestForm] = useState({
         title: {
             name: 'title',
@@ -122,6 +125,20 @@ const CreateContestForm = ({ handleClose }) => {
             .then((response) => setHighLevelUsers(response.data))
     }, [])
 
+    useEffect(() => {
+        axiosInstance.get(userEndpoints.getAllUsers)
+            .catch((error) => {
+                if (error.response.status > 300) {
+                    swal({
+                        title: "Oops!",
+                        text: "Something went wrong.",
+                        icon: "error",
+                        button: "Go back"
+                    })
+                }
+            })
+            .then((response) => dispatch(setUsers(response.data)))
+    }, [])
 
     const firstPhaseLimitMarks = [
         {
@@ -161,6 +178,12 @@ const CreateContestForm = ({ handleClose }) => {
         const copyControl = { ...contestForm.jury };
         copyControl.value = newValue;
         setContestForm({ ...contestForm, jury: copyControl });
+    }
+
+    const handlePrivateParticipantsSelect = (ev, newValue) => {
+        const copyControl = { ...contestForm.privateContestParticipants };
+        copyControl.value = newValue;
+        setContestForm({ ...contestForm, privateContestParticipants: copyControl });
     }
 
     const handleChange = (ev) => {
@@ -209,7 +232,7 @@ const CreateContestForm = ({ handleClose }) => {
         const contestData = Object.values(contestForm).reduce((data, input) => {
             if (Array.isArray(input.value)) {
                 const jsonArray = JSON.stringify(input.value);
-                console.log(userId)
+
                 data.set(input.name, jsonArray);
             } else {
                 data.set(input.name, input.value);
@@ -387,116 +410,31 @@ const CreateContestForm = ({ handleClose }) => {
                     </Form.Control>
                 </Grid>
             </Grid>) : (
-                <Autocomplete
-                multiple
-                limitTags={3}
-                name="jury"
-                id="multiple-limit-tags"
-                disableCloseOnSelect
-                filterSelectedOptions={true}
-                options={highLevelUsers}
-                getOptionLabel={(user) => user.username}
-                value={contestForm.jury.value}
-                onChange={handleJurySelect}
-                renderOption={(user) => (
-                    <>
-                        <Avatar
-                            alt={user.username}
-                            src={`http://localhost:4000/public/avatars/${user.avatar}`}
-                            className={styles.small} />
-                        <span>
-                            {user.username}
-                        </span>
-                        <span
-                            style={{ float: "inline-end" }}>{user.rank === 3 ?
-                                (<><StarIcon
-                                    style={{ color: "#ffb300" }} />
-                                    <StarIcon
-                                        style={{ color: "#ffb300" }} />
-                                    <StarIcon
-                                        style={{ color: "#ffb300" }} />
-                                    <StarBorderIcon
-                                        style={{ color: "#ffb300" }} /></>
-                                ) : (
-                                    <>
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} />
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} />
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} />
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} /></>
-                                )}</span>
-                    </>
+                    <AutocompleteInputField
+                        users={allUsers}
+                        placeholder={'Invite participants'}
+                        label={'Private contest participants'}
+                        value={contestForm.privateContestParticipants.value}
+                        handleValueChange={handlePrivateParticipantsSelect}
+                    />
                 )}
-                renderInput={(params) => (
-                    <TextField {...params}
-                        variant="outlined"
-                        label="Contest jury"
-                        placeholder="Send jury invitations"
-                        className={styles.inputField} />
-                )}
-            />
-            )}
             <Typography
                 style={{ marginTop: '35px' }}
                 id="discrete-slider-always"
                 gutterBottom>
                 By default, all organizers are judges. You can send out additional jury invitations to high-ranked photographers:
             </Typography>
-            <Autocomplete
-                multiple
-                limitTags={3}
-                name="jury"
-                id="multiple-limit-tags"
-                disableCloseOnSelect
-                filterSelectedOptions={true}
-                options={highLevelUsers}
-                getOptionLabel={(user) => user.username}
+            <AutocompleteInputField
+                users={highLevelUsers}
+                placeholder={'Send jury invitations'}
+                label={'Contest jury'}
                 value={contestForm.jury.value}
-                onChange={handleJurySelect}
-                renderOption={(user) => (
-                    <>
-                        <Avatar
-                            alt={user.username}
-                            src={`http://localhost:4000/public/avatars/${user.avatar}`}
-                            className={styles.small} />
-                        <span>
-                            {user.username}
-                        </span>
-                        <span
-                            style={{ float: "inline-end" }}>{user.rank === 3 ?
-                                (<><StarIcon
-                                    style={{ color: "#ffb300" }} />
-                                    <StarIcon
-                                        style={{ color: "#ffb300" }} />
-                                    <StarIcon
-                                        style={{ color: "#ffb300" }} />
-                                    <StarBorderIcon
-                                        style={{ color: "#ffb300" }} /></>
-                                ) : (
-                                    <>
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} />
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} />
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} />
-                                        <StarIcon
-                                            style={{ color: "#ffb300" }} /></>
-                                )}</span>
-                    </>
-                )}
-                renderInput={(params) => (
-                    <TextField {...params}
-                        variant="outlined"
-                        label="Contest jury"
-                        placeholder="Send jury invitations"
-                        className={styles.inputField} />
-                )}
+                handleValueChange={handleJurySelect}
             />
-            <ImageDropAndUpload file={contestCover} setFile={setContestCover} />
+            <ImageDropAndUpload
+                file={contestCover}
+                setFile={setContestCover}
+            />
             <div
                 style={{ float: 'right' }}>
                 <Button

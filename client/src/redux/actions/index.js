@@ -103,3 +103,10 @@ export const setNotifications = (notifications) => {
         payload: notifications,
     }
 }
+
+export const setUsers = (users) => {
+    return {
+        type: 'GET_ALL_USERS',
+        payload: users,
+    }
+} 
