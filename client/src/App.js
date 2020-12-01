@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/HomePage/Homepage';
+import HomePage from './containers/HomePage/HomePage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import decode from 'jwt-decode';
@@ -15,16 +15,30 @@ import FinishedContestsPage from './containers/FinishedContestsPage/FinishedCont
 import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/AllUserCurrentContestsPage';
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from './redux/actions';
+import { login, setNotifications } from './redux/actions';
+import socketIOClient from 'socket.io-client';
+import { useEffect } from 'react';
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginState.isLogged);
   const accessToken = localStorage.getItem('accessToken');
+  const socket = socketIOClient("http://localhost:4000")
 
   if (accessToken) {
     dispatch(login(decode(accessToken)));
   }
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      const user = decode(localStorage.getItem('accessToken'))
+      socket.emit('login', JSON.stringify(user));
+    });
+  }, [])
+
+  socket.on("notifications", (notifications) => {
+    dispatch(setNotifications(notifications))
+  });
 
   return (
     <div className="App">
