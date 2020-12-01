@@ -766,6 +766,27 @@ INSERT INTO `photo_contest_db`.`photos`
 VALUES
 ('P I N K', 'In love witk her style.', '1606774604295_889880521.jpeg', 'thumbnail-1606774604295_889880521.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '10');
 
+-- Sport 
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Beach Volleyball', 'Took this shot this summer.', '1606807352861_080396105.jpeg', 'thumbnail-1606807352861_080396105.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '11');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Basketball', "Took this shot at my son's school", '1606807471141_467147202.jpeg', 'thumbnail-1606807471141_467147202.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '11');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Dad and Son', 'My best friend and his son', '1606807576990_346714954.jpeg', 'thumbnail-1606807576990_346714954.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '11');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Swimming', 'My best friend at the competition.', '1606807630374_308027795.jpeg', 'thumbnail-1606807630374_308027795.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '11');
+
 -- Interior 
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
@@ -823,6 +844,24 @@ INSERT INTO `photo_contest_db`.`photos`
 VALUES
 ('Krushuna Waterfalls', 'Amazing nature.', '1606776187889_941209649.jpeg', 'thumbnail-1606776187889_941209649.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '14');
 
+-- Jewelries
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Diamond Ring', "My best friend's diamond ring.", '1606806654351_458664511.jpeg', 'thumbnail-1606806654351_458664511.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '15');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('White and Yellow Gold', 'Two kinds of gold.', '1606806703626_560881952.jpeg', 'thumbnail-1606806703626_560881952.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '15');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Diamond Rings', "My best friend's diamond ring.Love them.", '1606806740687_775284489.jpeg', 'thumbnail-1606806740687_775284489.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '15');
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Massive Gold', 'Massive gold jewelries.', '1606806772327_794410237.jpeg', 'thumbnail-1606806772327_794410237.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '15');
+
 -- Arhitecture
 INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
@@ -872,6 +911,29 @@ INSERT INTO `photo_contest_db`.`photos`
 (`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
 VALUES
 ('Empire State Building', 'We couldn’t put together a list of world-famous buildings without including this grand Art Deco skyscraper. ', '1605811463026_838669045.jpg', 'thumbnail-1605811463026_838669045.jpg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '12', '16');
+
+-- Famous Landmarks
+
+-- Wedding details
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Wedding details', 'Took this shot in 2016.', '1606808386524_186699655.jpeg', 'thumbnail-1606808386524_186699655.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '1', '18');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Wedding Rings', "My sister's wedding.", '1606808434911_261853923.jpeg', 'thumbnail-1606808434911_261853923.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '2', '18');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Pink Roses', "My best friend's wedding flowers.", '1606808473220_594472585.jpeg', 'thumbnail-1606808473220_594472585.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '3', '18');
+
+INSERT INTO `photo_contest_db`.`photos`
+(`title`, `story`, `originalSize`, `thumbnailSize`, `date`, `user_id`, `contest_id`)
+VALUES
+('Gorgeous Bride', 'Took this shot in 2019.', '1606808506759_000902692.jpeg', 'thumbnail-1606808506759_000902692.jpeg', (SELECT DATE_FORMAT((SELECT NOW()),'%Y/%m/%d')), '4', '18');
 
 -- Vintage
 INSERT INTO `photo_contest_db`.`photos`

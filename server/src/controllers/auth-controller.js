@@ -79,7 +79,7 @@ authController
         async (req, res) => {
 
             const { id } = req.user;
-            
+
             client.del(id, (err, response) => {
                 if (+response === 1) {
                     res.status(200).json({ message: 'Token removed successfully!' });
