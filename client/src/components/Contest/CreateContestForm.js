@@ -40,7 +40,7 @@ const CreateContestForm = ({ handleClose }) => {
 
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState([]);
-    const userInfo = useSelector(state => state.loginState.user);
+    const userId = useSelector(state => state.loginState.user.sub);
     const styles = useStyles();
     const [contestForm, setContestForm] = useState({
         title: {
@@ -192,7 +192,7 @@ const CreateContestForm = ({ handleClose }) => {
         const contestData = Object.values(contestForm).reduce((data, input) => {
             if (Array.isArray(input.value)) {
                 const jsonArray = JSON.stringify(input.value);
-                socket.emit('new_jury_invitations', jsonArray);
+                console.log(userId)
                 data.set(input.name, jsonArray);
             } else {
                 data.set(input.name, input.value);
@@ -223,7 +223,7 @@ const CreateContestForm = ({ handleClose }) => {
                         })
                         .then((response) => {
                             if (response) {
-                                socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(response.data.id));
+                                socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(userId));
                                 console.log(response)
                                 swal({
                                     title: "Success!",

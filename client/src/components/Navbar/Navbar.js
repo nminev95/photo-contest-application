@@ -94,13 +94,6 @@ const Navbar = () => {
                 <MenuItem className={classes.navLinks} onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>}
               <div className={classes.grow} />
               <NotificationsDropdown />
-              {/* <MenuItem style={{ padding: "0" }}>
-                <IconButton style={{ outline: 'none' }} aria-label="show new notifications" color="inherit">
-                  <Badge badgeContent={11} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-              </MenuItem> */}
               <ProfileDropdown />
             </Toolbar>
           </AppBar>
