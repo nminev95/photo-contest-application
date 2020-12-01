@@ -18,25 +18,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login, setNotifications } from './redux/actions';
 import socketIOClient from 'socket.io-client';
 import { useEffect } from 'react';
+import { notification } from 'antd';
+export const socket = socketIOClient("http://localhost:4000")
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginState.isLogged);
   const accessToken = localStorage.getItem('accessToken');
-  const socket = socketIOClient("http://localhost:4000")
-
+  const juryInvitationsState = useSelector(state => state.userNotificationsState.juryInvitations);
+  const privateContestInvitationsState = useSelector(state => state.userNotificationsState.privateContestInvitations);
   if (accessToken) {
     dispatch(login(decode(accessToken)));
   }
-
-  useEffect(() => {
-    socket.on("connect", () => {
+  socket.on("connect", () => {
+    if (accessToken) {
+      dispatch(login(decode(accessToken)));
       const user = decode(localStorage.getItem('accessToken'))
       socket.emit('login', JSON.stringify(user));
-    });
-  }, [])
+    }
+  });
 
   socket.on("notifications", (notifications) => {
+    dispatch(setNotifications(notifications))
+  });
+
+  socket.on("new_jury_notifications", (notifications) => {
     dispatch(setNotifications(notifications))
   });
 

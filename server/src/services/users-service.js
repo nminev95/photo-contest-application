@@ -214,7 +214,7 @@ const getAllUserNotifications = usersData => {
         if (notifications.juryInvitations.length !== 0 || notifications.privateContestInvitations.length !== 0) {
             const unreadContestNotifications = notifications.privateContestInvitations.filter((notification) => !!notification.isRead === false);
             const unreadJuryNotifications = notifications.juryInvitations.filter((notification) => !!notification.isRead === false);
-            console.log('render')
+            
             socket.emit('notifications', {
                 privateContestInvitations: unreadContestNotifications,
                 juryInvitations: unreadJuryNotifications,

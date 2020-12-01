@@ -22,16 +22,40 @@ const io = require('socket.io')(server, {
     },
 });
 
+const socketsMap = new Map();
+
 io.on('connection', (socket) => {
     socket.on('login', (user) => {
         const parsedUser = JSON.parse(user);
         if (user) {
             socket.userId = parsedUser.sub;
         }
+
+        if (!socketsMap.get(parsedUser.sub)) {
+            socketsMap.set(parsedUser.sub, socket.id);
+        }
+        console.log(socketsMap);
         usersService.getAllUserNotifications(usersData)(socket);
     });
-});
+    socket.on('new_jury_invitations', (invitationsArray) => {
+        const juryInvitations = JSON.parse(invitationsArray);
+        juryInvitations.map(async (invitation) => {
 
+            if (socketsMap.get(invitation.id)) {
+                const notifications = await usersData.getNotificationsById(invitation.id);
+
+                if (notifications.juryInvitations.length !== 0 || notifications.privateContestInvitations.length !== 0) {
+                    const unreadContestNotifications = notifications.privateContestInvitations.filter((notification) => !!notification.isRead === false);
+                    const unreadJuryNotifications = notifications.juryInvitations.filter((notification) => !!notification.isRead === false);
+                    io.emit('new_jury_notifications', {
+                        privateContestInvitations: unreadContestNotifications,
+                        juryInvitations: unreadJuryNotifications,
+                    });
+                }
+            }
+        });
+    });
+});
 
 passport.use(jwtStrategy);
 app.use(cors());

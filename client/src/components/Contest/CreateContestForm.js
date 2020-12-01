@@ -11,6 +11,8 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { contestCategoryError, contestTitleError } from "../../validations/helper-errors";
 import ImageDropAndUpload from "./ImageDropAndUpload";
+import { socket } from "../../App";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -38,6 +40,7 @@ const CreateContestForm = ({ handleClose }) => {
 
     const [highLevelUsers, setHighLevelUsers] = useState([]);
     const [contestCover, setContestCover] = useState([]);
+    const userInfo = useSelector(state => state.loginState.user);
     const styles = useStyles();
     const [contestForm, setContestForm] = useState({
         title: {
@@ -189,6 +192,7 @@ const CreateContestForm = ({ handleClose }) => {
         const contestData = Object.values(contestForm).reduce((data, input) => {
             if (Array.isArray(input.value)) {
                 const jsonArray = JSON.stringify(input.value);
+                socket.emit('new_jury_invitations', jsonArray);
                 data.set(input.name, jsonArray);
             } else {
                 data.set(input.name, input.value);
@@ -219,6 +223,8 @@ const CreateContestForm = ({ handleClose }) => {
                         })
                         .then((response) => {
                             if (response) {
+                                socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(response.data.id));
+                                console.log(response)
                                 swal({
                                     title: "Success!",
                                     text: "Your contest was successfully created.",
