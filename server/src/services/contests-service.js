@@ -505,10 +505,7 @@ const checkForMissingResultsAndFill = contestsData => {
 
                     return acc;
                 }, new Set());
-                console.log(juries);
-
-                console.log(reviews);
-
+              
                 for (const personId of reviews) {
                     if (juries.has(personId)) {
                         juries.delete(personId);
@@ -522,6 +519,14 @@ const checkForMissingResultsAndFill = contestsData => {
                 }
             }
         });
+    };
+};
+
+const checkIfUserHasVoted = contestsData => {
+    return async (userId, photoId) => {
+        const hasVoted = await contestsData.checkOrganizerHasVoted(userId, photoId);
+        
+        return { hasVoted: !!(hasVoted.length !== 0) };
     };
 };
 
@@ -542,6 +547,7 @@ export default {
     awardPointsForFinishedContests,
     enrollUser,
     disenrollUser,
+    checkIfUserHasVoted,
 };
 
 

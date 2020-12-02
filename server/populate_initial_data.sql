@@ -80,7 +80,6 @@ INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstN
 VALUES ('tamara_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Tamara_Anderson@yahoo.com', 'Tamara', 'Anderson', '1040', (SELECT NOW()), '4', '2');
 -- pass: ASDF123!
 
-
 -- Contests
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -98,7 +97,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Food', 'Welcome to our Food competition. How many times have you heard: "You eat with your eyes first"? Food contains all of the elements of design that can make a striking image. Color, texture, pattern, line, shape, and form are all there, yet the key ingredient is to capture the image in a way that makes the viewer want. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 23 HOUR), '100', '1606481162942_260528137.jpeg', '1', '2', '21');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 23 HOUR), '100', '1606481162942_260528137.jpeg', '1', '2', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -110,7 +109,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Landscapes', 'Landscape photography is the art of capturing pictures of nature and the outdoors in a way that brings your viewer into the scene. From grand landscapes to intimate details, the best photos demonstrate the photographer’s own connection to nature and capture the essence of the world around them. Photographer from all level are welcome to enter. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 15 HOUR), '120', '1606481242285_881580394.jpeg', '1', '2', '21');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 15 HOUR), '120', '1606481242285_881580394.jpeg', '1', '2', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -122,7 +121,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Black & White', "Welcome to Black & White Contest. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 150 participants.",
-(SELECT NOW() + INTERVAL 15 DAY), ((SELECT NOW() + INTERVAL 15 DAY) + INTERVAL 18 HOUR), '120', '1606481375019_443333149.jpeg', '1', '2', '21');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 18 HOUR), '120', '1606481375019_443333149.jpeg', '1', '2', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -134,7 +133,7 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Cars', "Welcome to our Cars competition. Taking photos of cars is many people's passion. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. This competition has a limit of 150 participants.",
-(SELECT NOW() + INTERVAL 20 DAY), ((SELECT NOW() + INTERVAL 20 DAY) + INTERVAL 20 HOUR), '150', '1606481453671_116820854.jpeg', '1', '2', '21');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 20 HOUR), '150', '1606481453671_116820854.jpeg', '1', '2', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -182,25 +181,25 @@ INSERT INTO `photo_contest_db`.`contests`
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Famous Landmarks', 'Welcome to our Famous Landmarks competition. How many times have you heard: "You eat with your eyes first"? Food contains all of the elements of design that can make a striking image. Color, texture, pattern, line, shape, and form are all there, yet the key ingredient is to capture the image in a way that makes the viewer want. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 23 HOUR), '100', '1606482957170_427778791.jpeg', '1', '2', '21');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 23 HOUR), '100', '1606482957170_427778791.jpeg', '1', '2', '21');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Wedding Details', 'Welcome to our Wedding Details competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 23 HOUR), '100', '1606483053752_332774290.jpeg', '1', '2', '23');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 23 HOUR), '100', '1606483053752_332774290.jpeg', '1', '2', '23');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Snowboarding', 'Welcome to our Snowboarding competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 23 HOUR), '100', '1606483174320_692738722.jpeg', '1', '2', '22');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 23 HOUR), '100', '1606483174320_692738722.jpeg', '1', '2', '22');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
 VALUES
 ('Sunset', 'Welcome to our Sunset competition. During Phase 1 of the competition all applicants must submit their artwork. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 120 participants.',
-(SELECT NOW() + INTERVAL 25 DAY), ((SELECT NOW() + INTERVAL 25 DAY) + INTERVAL 23 HOUR), '120', '1606483581218_773179798.jpeg', '1', '2', '22');
+(SELECT NOW() - INTERVAL 4 HOUR), ((SELECT NOW() - INTERVAL 4 HOUR) + INTERVAL 23 HOUR), '120', '1606483581218_773179798.jpeg', '1', '2', '22');
 
 INSERT INTO `photo_contest_db`.`contests` 
 (`title`, `category`, `firstPhaseLimit`, `secondPhaseLimit`, `spots`, `contestCover`, `restrictions_id`, `phase_id`, `organizer_id`)
@@ -225,7 +224,6 @@ INSERT INTO `photo_contest_db`.`contests`
 VALUES
 ('Christmas time', 'Welcome to our Christmas time competition. During Phase 2 our judges rate all photos by their relevance, quality and story. The winners are announced in the final Phase 3. This competition has a limit of 100 participants.',
 (SELECT NOW() - INTERVAL 15 DAY), ((SELECT NOW() - INTERVAL 15 DAY) + INTERVAL 24 HOUR), '100', '1606643814578_389338242.jpeg', '1', '3', '24');
-
 
 -- Photos
 INSERT INTO `photo_contest_db`.`photos`

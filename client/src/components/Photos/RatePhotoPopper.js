@@ -50,7 +50,7 @@ const RatePhotoPopper = ({ photoId }) => {
     const [score, setScore] = useState(0)
     const [comment, setComment] = useState('');
     const [isInappropriate, setIsInappropriate] = useState(false);
-    const contesInfo = useSelector(state => state.singleContestState);
+    const contestInfo = useSelector(state => state.singleContestState);
     const open = Boolean(anchorEl);
     const id = open ? 'transitions-popper' : undefined;
     const handleClick = (event) => {
@@ -62,7 +62,7 @@ const RatePhotoPopper = ({ photoId }) => {
         setComment('');
         setIsInappropriate(false);
     }, [photoId])
-
+    
     const handleSubmit = () => {
 
         const review = {
@@ -81,7 +81,7 @@ const RatePhotoPopper = ({ photoId }) => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axiosInstance.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
+                        axiosInstance.post(`${contestEndpoints.singleContest}${contestInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
                             .catch((error) => {
                                 if (error.response) {
                                     swal({
@@ -117,7 +117,7 @@ const RatePhotoPopper = ({ photoId }) => {
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axiosInstance.post(`${contestEndpoints.singleContest}${contesInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
+                        axiosInstance.post(`${contestEndpoints.singleContest}${contestInfo.id}${contestEndpoints.contestEntry}${photoId}/rate`, review)
                             .catch((error) => {
                                 if (error.response) {
                                     swal({
