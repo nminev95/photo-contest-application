@@ -124,21 +124,21 @@ const UserProfilePersonalInfo = (props) => {
                             style={{ marginTop: "20px" }}>
                             {userData.firstName} {userData.lastName}
                         </Typography>
-                        <Grid container style={{justifyContent: 'center'}}>
-                            <Grid item style={{alignSelf: "center"}}>
-                            <EmailIcon  style={{ fontSize: 30, color: "gray " }} />
+                        <Grid container style={{ justifyContent: 'center' }}>
+                            <Grid item style={{ alignSelf: "center" }}>
+                                <EmailIcon style={{ fontSize: 30, color: "gray " }} />
                             </Grid>
                             <Grid item>
 
-                            <Typography
-                                variant="h6"
-                                align="center"
-                                color="textSecondary"
-                                style={{ marginTop: "14px"}}
-                                paragraph>
-                                {userData.email}
-                            </Typography>
-                                </Grid>
+                                <Typography
+                                    variant="h6"
+                                    align="center"
+                                    color="textSecondary"
+                                    style={{ marginTop: "14px" }}
+                                    paragraph>
+                                    {userData.email}
+                                </Typography>
+                            </Grid>
                         </Grid>
                         <div style={{ marginTop: '10px' }}>
                             <Grid
@@ -149,7 +149,11 @@ const UserProfilePersonalInfo = (props) => {
                                     <  EmojiEventsIcon
                                         style={{ fontSize: 40, color: "cc8f00" }}> </ EmojiEventsIcon>
                                 </Grid>
-                                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>{getNextRank(userData.rank)}</p>} arrow>
+                                <Tooltip
+                                    title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>
+                                        {getNextRank(userData.rank)}
+                                    </p>}
+                                    arrow>
                                     <Typography
                                         variant="h6"
                                         align="center"
@@ -165,12 +169,15 @@ const UserProfilePersonalInfo = (props) => {
                                         size="2x"
                                         style={{ marginTop: "4px", marginLeft: "25px", color: "d45b3e" }} />
                                 </Grid>
-                                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>{getPointsLeft(userData.points)}</p>} arrow>
+                                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>
+                                    {getPointsLeft(userData.points)}</p>}
+                                    arrow>
                                     <Typography
                                         variant="h6"
                                         align="center"
                                         color="textSecondary"
-                                        style={{ marginTop: "14px" }} paragraph>
+                                        style={{ marginTop: "14px" }}
+                                        paragraph>
                                         {userData.points}
                                     </Typography>
                                 </Tooltip>

@@ -109,14 +109,21 @@ const NotificationsDropdown = () => {
                     {notificationsState.juryInvitations && notificationsState.juryInvitations.map((notification) => {
                         return (
                             <MenuItem key={notification.contest_id}>
-                                <SingleNotification notificationData={notification} handleClose={handleClose} type='juryInvitation' />
+                                <SingleNotification
+                                    notificationData={notification}
+                                    handleClose={handleClose}
+                                    type='juryInvitation' />
                             </MenuItem>
                         )
                     })}
                     {notificationsState.privateContestInvitations && notificationsState.privateContestInvitations.map((notification) => {
                         return (
-                            <MenuItem key={notification.contest_id}>
-                                <SingleNotification notificationData={notification} handleClose={handleClose} type='privateContestInvitation' />
+                            <MenuItem
+                                key={notification.contest_id}>
+                                <SingleNotification
+                                    notificationData={notification}
+                                    handleClose={handleClose}
+                                    type='privateContestInvitation' />
                             </MenuItem>
                         )
                     })}
@@ -129,11 +136,20 @@ const NotificationsDropdown = () => {
                         keepMounted
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
-                    ><MenuItem style={{ color: "gray", whiteSpace:"initial", width: '400px', margin:'20px' }}><VisibilityIcon fontSize='large' style={{marginRight:'10px'}}/>Looks like you are already up to date and don't have any new notifications.</MenuItem>
-                        <Button variant="contained"
+                    ><MenuItem
+                        style={{ color: "gray", whiteSpace: "initial", width: '400px', margin: '20px' }}>
+                            <VisibilityIcon
+                                fontSize='large'
+                                style={{ marginRight: '10px' }} />
+                        Looks like you are already up to date and don't have any new notifications.
+                        </MenuItem>
+                        <Button
+                            variant="contained"
                             color="secondary"
                             style={{ outline: 'none', marginBottom: '10px' }}
-                            onClick={handleClose}>Hide</Button>
+                            onClick={handleClose}>
+                            Hide
+                        </Button>
                     </StyledMenu>
                 )}
         </Fragment>

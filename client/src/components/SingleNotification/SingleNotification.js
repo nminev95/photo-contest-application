@@ -35,12 +35,12 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
     const classes = useStyles();
     const history = useHistory();
     const dispatch = useDispatch();
-    
+
     const markRead = async (contestId) => {
-        axiosInstance.put('http://localhost:4000/users/notifications', {contestId: contestId} )
-        .then(res => {
-            dispatch(setNotifications(res.data))
-        });
+        axiosInstance.put('http://localhost:4000/users/notifications', { contestId: contestId })
+            .then(res => {
+                dispatch(setNotifications(res.data))
+            });
     }
 
     const renderSingleNotification = (type, notificationData) => {
@@ -55,10 +55,13 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
                     >
                         @{notificationData.invitedBy}
                     </Typography>
-                    <ListItem style={{ paddingBottom: "0", paddingTop: "0", whiteSpace: 'initial' }}>
-                        <ListItemText primary={`Hey there! I have added you as a jury for my new contest - #${notificationData.contest_id} ${notificationData.contest}.`} />
+                    <ListItem
+                        style={{ paddingBottom: "0", paddingTop: "0", whiteSpace: 'initial' }}>
+                        <ListItemText
+                            primary={`Hey there! I have added you as a jury for my new contest - #${notificationData.contest_id} ${notificationData.contest}.`} />
                     </ListItem>
-                    <ListItem style={{ marginBottom: '10px' }}>
+                    <ListItem
+                        style={{ marginBottom: '10px' }}>
                         <Button
                             variant="contained"
                             color="primary"
@@ -74,7 +77,9 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
                             onClick={() => {
                                 markRead(notificationData.contest_id);
 
-                            }}>Mark as read</Button>
+                            }}>
+                            Mark as read
+                                </Button>
                     </ListItem>
                     <Divider />
                 </List>
@@ -91,9 +96,11 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
                         @{notificationData.invitedBy}
                     </Typography>
                     <ListItem style={{ paddingBottom: "0", paddingTop: "0", whiteSpace: 'initial' }}>
-                        <ListItemText primary={`Hello! I have created a special invitational contest and would like you to participate in it - #${notificationData.contest_id} ${notificationData.contest}.`} />
+                        <ListItemText
+                            primary={`Hello! I have created a special invitational contest and would like you to participate in it - #${notificationData.contest_id} ${notificationData.contest}.`} />
                     </ListItem>
-                    <ListItem style={{ marginBottom: '10px' }}>
+                    <ListItem
+                        style={{ marginBottom: '10px' }}>
                         <Button
                             variant="contained"
                             color="primary"
@@ -102,13 +109,15 @@ const SingleNotification = ({ notificationData, type, handleClose }) => {
                                 history.push(`/contests/${notificationData.contest_id}`)
                                 handleClose()
                             }}>Go to contest</Button>
-                        <Button 
-                            variant="contained" 
-                            color="secondary" 
+                        <Button
+                            variant="contained"
+                            color="secondary"
                             style={{ outline: 'none' }}
                             onClick={() => {
                                 markRead(notificationData.contest_id);
-                            }}>Mark as read</Button>
+                            }}>
+                            Mark as read
+                            </Button>
                     </ListItem>
                     <Divider />
                 </List>

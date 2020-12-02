@@ -63,25 +63,60 @@ const Navbar = () => {
   return (
     <div className={classes.grow}>
       {!userState.isLogged ? (
-        <AppBar position="static" className={classes.appBar} style={{ backgroundColor: "#2D3142" }} >
-          <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
-            <div style={{ maxHeight: '100px' }}>
-              <img alt='photopedia-logo' style={{ maxHeight: '70px', margin: '10px' }} src={logo}></img>
+        <AppBar
+          position="static"
+          className={classes.appBar}
+          style={{ backgroundColor: "#2D3142" }} >
+          <Toolbar
+            style={{ paddingRight: "0", paddingLeft: "0" }}>
+            <div
+              style={{ maxHeight: '100px' }}>
+              <img
+                alt='photopedia-logo'
+                style={{ maxHeight: '70px', margin: '10px' }}
+                src={logo}>
+
+              </img>
             </div>
-            <div className={classes.grow} />
-            <Button onClick={() => history.push('/users/register')} style={{ marginLeft: "5px", marginRight: "10px", color: "white" }} variant="outlined">Register</Button>
-            <Button onClick={() => history.push('/users/login')} style={{ marginLeft: "5px", marginRight: "10px", color: "white" }} variant="outlined" >Sign in</Button>
+            <div
+              className={classes.grow} />
+            <Button
+              onClick={() => history.push('/users/register')}
+              style={{ marginLeft: "5px", marginRight: "10px", color: "white" }}
+              variant="outlined">
+              Register
+              </Button>
+            <Button
+              onClick={() => history.push('/users/login')}
+              style={{ marginLeft: "5px", marginRight: "10px", color: "white" }}
+              variant="outlined" >
+              Sign in
+              </Button>
           </Toolbar>
         </AppBar>
       ) : (
-          <AppBar position="static" style={{ backgroundColor: "#2D3142" }}>
-            <Toolbar style={{ paddingRight: "0", paddingLeft: "0" }}>
-              <div style={{ maxHeight: '100px', maxWidth: '350px' }}>
-                <img alt='photopedia-logo' style={{ maxHeight: '70px', margin: '10px' }} src={logo}></img>
+          <AppBar
+            position="static"
+            style={{ backgroundColor: "#2D3142" }}>
+            <Toolbar
+              style={{ paddingRight: "0", paddingLeft: "0" }}>
+              <div
+                style={{ maxHeight: '100px', maxWidth: '350px' }}>
+                <img
+                  alt='photopedia-logo'
+                  style={{ maxHeight: '70px', margin: '10px' }}
+                  src={logo}>
+
+                </img>
               </div>
               <MobileDropdown />
-              <div style={{ display: 'flex', width: '63%', justifyContent: 'center' }}>
-                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Home</p>} arrow>
+              <div
+                style={{ display: 'flex', width: '63%', justifyContent: 'center' }}>
+                <Tooltip
+                  title={<p style={{ fontSize: '17px', margin: '8px auto' }}>
+                    Home
+                  </p>}
+                  arrow>
                   <IconButton
                     aria-label="home"
                     style={{ color: 'white', outline: 'none' }}
@@ -89,7 +124,11 @@ const Navbar = () => {
                     <FontAwesomeIcon icon={faHome} />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>All contests</p>} arrow>
+                <Tooltip
+                  title={<p style={{ fontSize: '17px', margin: '8px auto' }}>
+                    All contests
+                  </p>}
+                  arrow>
                   <IconButton
                     aria-label="contests"
                     style={{ marginRight: '35px', marginLeft: '35px', color: 'white', outline: 'none' }}
@@ -97,23 +136,32 @@ const Navbar = () => {
                     <FontAwesomeIcon icon={faImages} />
                   </IconButton>
                 </Tooltip>
-                {userState.user.role === 'Photo Junkie' && <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>My entries</p>} arrow>
-                  <IconButton
-                    style={{ outline: 'none', color: 'white' }}
-                    aria-label="my entries"
-                    onClick={() => history.push('/users/contests')}>
-                    <FontAwesomeIcon icon={faCameraRetro} />
-                  </IconButton>
-                </Tooltip>
+                {userState.user.role === 'Photo Junkie' &&
+                  <Tooltip
+                    title={<p style={{ fontSize: '17px', margin: '8px auto' }}>
+                      My entries
+                  </p>}
+                    arrow>
+                    <IconButton
+                      style={{ outline: 'none', color: 'white' }}
+                      aria-label="my entries"
+                      onClick={() => history.push('/users/contests')}>
+                      <FontAwesomeIcon icon={faCameraRetro} />
+                    </IconButton>
+                  </Tooltip>
                 }
-                {userState.user.role === 'Organizer' && <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Rankings</p>} arrow>
-                  <IconButton
-                    style={{ outline: 'none', color: 'white' }}
-                    aria-label="rankings"
-                    onClick={() => history.push('/users/ranking')}>
-                    <FontAwesomeIcon icon={faTrophy} />
-                  </IconButton>
-                </Tooltip>
+                {userState.user.role === 'Organizer' &&
+                  <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>
+                    Rankings
+                  </p>}
+                    arrow>
+                    <IconButton
+                      style={{ outline: 'none', color: 'white' }}
+                      aria-label="rankings"
+                      onClick={() => history.push('/users/ranking')}>
+                      <FontAwesomeIcon icon={faTrophy} />
+                    </IconButton>
+                  </Tooltip>
                 }
                 {/* <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
                 {userState.user.role === 'Photo Junkie' &&
