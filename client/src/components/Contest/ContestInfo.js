@@ -1,10 +1,10 @@
 import { Divider, Grid, Paper } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import CountdownTimerComponent from './CountdownTimerComponent';
 import ProgressStepper from './ProgressStepper';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import UploadPhoto from '../../containers/UploadPhoto/UploadPhoto';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -106,7 +106,8 @@ const ContestInfo = ({ contestInfo }) => {
                             elevation={3}
                             className={styles.mainGrid}
                             style={{ margin: '10px' }}><p
-                                className={styles.infoText}>{contestInfo.category}</p></Paper>
+                                className={styles.infoText}>{contestInfo.category}</p>
+                        </Paper>
                     </Grid>
                     <Grid
                         item
