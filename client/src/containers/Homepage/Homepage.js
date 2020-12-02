@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HomePage = () => {
-    
+
     const styles = useStyles()
     const dispatch = useDispatch();
     const contestsData = useSelector(state => state.recentlyExpContestState);
@@ -112,17 +112,31 @@ const HomePage = () => {
         <>
             {userRole && userRole === 'Photo Junkie' ? (
                 <>
-                    <LatestContestsGrid contestsData={contestsData} text={'Last chance to take part in...'} />
+                    <LatestContestsGrid
+                        contestsData={contestsData}
+                        text={'Last chance to take part in...'} />
                     <TextBox />
                 </>
             ) : (
                     <>
-                        <Box className={styles.image}/>
-                        <Grid container >
-                            <Grid lg={8} md={12} sm={12} item>
-                                <LatestContestsGrid contestsData={contestsData} text={'Hurry up and give your vote if you haven\'t...'} />
+                        <Box
+                            className={styles.image} />
+                        <Grid
+                            container >
+                            <Grid
+                                lg={8}
+                                md={12}
+                                sm={12}
+                                item>
+                                <LatestContestsGrid
+                                    contestsData={contestsData}
+                                    text={'Hurry up and give your vote if you haven\'t...'} />
                             </Grid>
-                            <Grid lg={4} md={12} sm={12} item>
+                            <Grid
+                                lg={4}
+                                md={12}
+                                sm={12}
+                                item>
                                 <TopPerformersRanking
                                     usersData={usersRankingsData.slice(0, 5)} />
                             </Grid>

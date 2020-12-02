@@ -39,7 +39,7 @@ const TextBox = () => {
                     <Box
                         style={{ marginTop: '30px' }}>
                         <div
-                            style={{ padding: '15px' }}>
+                            style={{ padding: '5px' }}>
                             <Typography
                                 style={{ textAlign: 'center' }} >
                                 <h4> Beauty can be seen in everything! </h4>
@@ -51,7 +51,8 @@ const TextBox = () => {
                                 Great photography is about depth of feeling, not depth of field.
                                 It is all about you!
                         <br />
-                                <Typography style={{ textAlign: 'center', paddingTop: '15px' }} >
+                                <Typography 
+                                style={{ textAlign: 'center', paddingTop: '15px' }} >
                                     <h5>  Do not be late and take part in as many contests as you want! </h5>
                                 </Typography>
 
@@ -63,7 +64,7 @@ const TextBox = () => {
                             justify="center" >
                             <Grid item>
                                 <Button
-                                    style={{ marginTop: '60px', marginBottom: '25px' }}
+                                    style={{ marginTop: '30px', marginBottom: '15px' }}
                                     variant="contained"
                                     color="secondary"
                                     onClick={() => history.push('/contests')}>

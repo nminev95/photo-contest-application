@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
     },
     container: {
-        marginTop: '1vh',
+        marginTop: '4vh',
         marginBottom: '50px',
         maxWidth: '500px',
         backgroundColor: 'white'
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '30px',
         fontFamily: '"Segoe UI"',
         fontWeight: '500',
-        marginTop: '10px',
+        marginTop: '0px',
         textAlign: 'center',
     },
     userIcon: {
@@ -32,10 +32,7 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '10px',
         fontSize: '50px',
     },
-    box: {
-        marginBottom: '60px',
-        paddingTop: '15px'
-    }
+    
 }));
 
 const TopPerformersRanking = (props) => {
@@ -50,6 +47,7 @@ const TopPerformersRanking = (props) => {
             md={3}
             className={styles.container} >
             <Box
+                borderTop={3}
                 borderBottom={3}
                 className={styles.box}>
                 <Typography

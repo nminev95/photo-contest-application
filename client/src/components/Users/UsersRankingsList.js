@@ -50,7 +50,6 @@ const UsersRankingsList = (props) => {
             md={3}
             className={styles.container} >
             <Box
-                borderBottom={3}
                 className={styles.box}>
                 <Typography
                     className={styles.text} >
