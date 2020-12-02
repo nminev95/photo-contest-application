@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     cardGrid: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(8),
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(7),
         display: 'flex',
         justifyContent: 'center'
     },
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '25px',
         fontFamily: '"Segoe UI"',
         fontWeight: '500',
-        marginTop: '10px'
+        marginTop: '4vh'
     },
     imageDiv: {
         position: 'relative',
@@ -38,17 +38,17 @@ const LatestContestsGrid = (props) => {
 
     const { contestsData } = props;
     const classes = useStyles();
-
+    
     return (
 
         <Container
-            style={{ marginTop: '50px' }} >
+            style={{ marginTop: '4vh' }} >
             <Box
                 borderTop={3}
                 borderBottom={3}>
                 <Typography
                     className={classes.text} >
-                    Last chance to take part in ...
+                    {props.text}
             </Typography>
                 <Grid
                     container

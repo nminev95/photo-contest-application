@@ -98,6 +98,20 @@ contestsController
             }
         },
     )
+    .get('/second-phase-exp',
+    authMiddleware,
+    roleMiddleware(['Organizer']),
+    async (req, res) => {
+
+        const { recExpContests, error } = await contestsService.getRecentlyExpSecondPhaseContests(contestsData)();
+
+        if (error === ERRORS.RECORD_NOT_FOUND) {
+            res.status(404).send({ message: 'Contest not found!' });
+        } else {
+            res.status(200).send(recExpContests);
+        }
+    },
+)
     .get('/photos',
         async (req, res) => {
 

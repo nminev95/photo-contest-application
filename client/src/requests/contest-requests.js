@@ -8,7 +8,8 @@ const contestEndpoints = {
     contestEntry: '/entries/',
     createContest: '/contests',
     topRatedPhotos: '/contests/photos',
-    recentlyExpContests: '/contests/first-phase-exp'
+    recentlyExpContests: '/contests/first-phase-exp',
+    recentlyExpSecondPhaseContests: '/contests/second-phase-exp'
 }
 
 export default contestEndpoints;
