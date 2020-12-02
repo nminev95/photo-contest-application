@@ -77,7 +77,6 @@ authController
     .delete('/logout',
         authMiddleware,
         async (req, res) => {
-
             const { id } = req.user;
 
             client.del(id, (err, response) => {

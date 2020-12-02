@@ -20,6 +20,33 @@ const getAllOpenContestsInfo = async () => {
 };
 
 /**
+* Gets all invitational contests for the user from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getAllUserPrivateContests = async (userId) => {
+
+    const sql = `
+    SELECT 
+        *
+    FROM
+        contests c
+    JOIN
+        private_contest_invitations p
+    ON
+        p.user_id = ?
+    WHERE  
+        c.phase_id = 1 
+    AND
+        restrictions_id = 2
+    GROUP BY 
+        c.id
+    `;
+
+    return await pool.query(sql, [userId]);
+};
+
+/**
 * Gets all contests information in phase 2 from the database.
 * @async
 * @return {Promise<object>}
@@ -536,14 +563,22 @@ const disenrollUserFromContest = async (userId, contestId) => {
 * @return {Promise<object>}
 */
 const sendPrivateContestInvitations = async (contestId, userId) => {
-    const sql = `
+    const sql1 = `
         INSERT INTO
             private_contest_invitations (contest_id, user_id)
         VALUES
             (?, ?);
     `;
 
-    return await pool.query(sql, [contestId, userId]);
+    const sql2 = `
+        INSERT INTO
+            contest_enrolled_users (contest_id, user_id)
+        VALUES
+            (?, ?);
+    `;
+
+    await pool.query(sql1, [contestId, userId]);
+    await pool.query(sql2, [contestId, userId]);
 };
 
 /**
@@ -650,4 +685,5 @@ export default {
     checkOrganizerHasVoted,
     getRecentlyExpiringPhase2ContestsInfo,
     getNotRatedPhotosNumber,
+    getAllUserPrivateContests,
 };

@@ -68,6 +68,30 @@ const getAllOpenContests = contestsData => {
     };
 };
 
+
+/**
+* Gets all private contests information for the user.
+* @param module contests data SQL queries module.
+* @param number the user id.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getAllPrivateContestsForUser = contestsData => {
+    return async (userId) => {
+        const contests = await contestsData.getAllUserPrivateContests(userId);
+
+        if (!contests.length) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                contests: null,
+            };
+        }
+
+        return { error: null, contests: contests };
+    };
+};
+
 /**
 * Gets Phase II contests information.
 * @param module contests data SQL queries module.
@@ -629,6 +653,7 @@ export default {
     disenrollUser,
     checkIfUserHasVoted,
     getRecentlyExpSecondPhaseContests,
+    getAllPrivateContestsForUser,
 };
 
 
