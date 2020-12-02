@@ -10,8 +10,6 @@ import Navbar from './components/Navbar/Navbar';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import SingleContestPage from './containers/SingleContestPage/SingleContestPage';
 import AllContestsPage from './containers/AllContestsPage/AllContestsPage';
-import PhaseTwoContestsPage from './containers/PhaseTwoContestsPage/PhaseTwoContestsPage';
-import FinishedContestsPage from './containers/FinishedContestsPage/FinishedContestsPage';
 import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/AllUserCurrentContestsPage';
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
 import { useSelector, useDispatch } from 'react-redux';
@@ -61,8 +59,6 @@ const App = () => {
           <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
           <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
           <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
-          <GuardedRoute exact path="/contests/phase/2" auth={isLoggedIn} component={PhaseTwoContestsPage} redirectRoute={'/'} />
-          <GuardedRoute exact path="/contests/phase/3" auth={isLoggedIn} component={FinishedContestsPage} redirectRoute={'/'} />
           <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
           <GuardedRoute exact path="/users/ranking" auth={isLoggedIn} component={UsersRankingPage} redirectRoute={'/'} />
           <GuardedRoute path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />

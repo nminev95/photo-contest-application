@@ -12,14 +12,12 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',   
         paddingTop: '5px',
         textAlign: 'left',
-
     },
-
     container: {
-        marginTop: '50px',
+        marginTop: '-15vh',
         marginBottom: '50px',
         maxWidth: '900px',
-
+        backgroundColor: 'white'
     },
     text: {
         color: 'black',
@@ -36,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     box: {
         marginBottom: '60px',
+        paddingTop: '15px'
     }
 }));
 
@@ -51,7 +50,6 @@ const UsersRankingsList = (props) => {
             md={3}
             className={styles.container} >
             <Box
-                borderTop={3}
                 borderBottom={3}
                 className={styles.box}>
                 <Typography

@@ -5,6 +5,8 @@ import { Box, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import allContestsBackground from '../../assets/images/all_contests.jpg'
 import FilterContestPhasesTabs from './FilterContestPhasesTabs';
+import { useSelector } from 'react-redux';
+import FilterPublicPrivateContestsTabs from './FilterPublicPrivateContestsTabs';
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -13,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     container: {
-        marginTop: '60px',
+        marginTop: '40px',
         maxWidth: '1800px',
     },
     image: {
@@ -38,30 +40,93 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AllContestsBox = (props) => {
+const AllContestsBox = () => {
 
     const classes = useStyles();
-    const { contestsData } = props;
-    const [tabValue, setTabValue] = useState('Phase I');
+    const [phasesTabValue, setPhasesTabValue] = useState('Phase I');
+    const [restrictionsTabValue, setRestrictionsTabValue] = useState('Open contests');
+    const firstPhaseContests = useSelector(state => state.allContestState);
+    const secondPhaseContests = useSelector(state => state.contestsPhaseTwoState);
+    const finishedContests = useSelector(state => state.finishedContestsState);
+    const userRole = useSelector(state => state.loginState.user.role);
 
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
+    const handlePhasesTabChange = (event, newValue) => {
+        setPhasesTabValue(newValue);
     };
+
+    const handleRestrictionsTabChange = (event, newValue) => {
+        setRestrictionsTabValue(newValue);
+    };
+
+    const renderContests = (value) => {
+        switch (true) {
+            case (firstPhaseContests && value === 'Phase I'):
+                return (
+                    <Grid
+                        container
+                        spacing={5}
+                        className={classes.cardGrid}  >
+                        {firstPhaseContests.map((contest) => <SingleContestCard
+                            contest={contest}
+                            key={contest.id} />)}
+                    </Grid>
+                )
+            case (secondPhaseContests && value === 'Phase II'):
+                return (
+                    <Grid
+                        container
+                        spacing={5}
+                        className={classes.cardGrid}  >
+                        {secondPhaseContests.map((contest) => <SingleContestCard
+                            contest={contest}
+                            key={contest.id} />)}
+                    </Grid>
+                )
+            default:
+                if (finishedContests) {
+                    return (
+                        <Grid
+                            container
+                            spacing={5}
+                            className={classes.cardGrid}  >
+                            {finishedContests.map((contest) => <SingleContestCard
+                                contest={contest}
+                                key={contest.id} />)}
+                        </Grid>
+                    )
+                }
+        }
+    }
+
     return (
         <>
             <Box className={classes.image} />
-            <FilterContestPhasesTabs tabValue={tabValue} handleTabChange={handleTabChange} />
-            <Container
-                className={classes.container} >
-                <Grid
-                    container
-                    spacing={5}
-                    className={classes.cardGrid}  >
-                    {contestsData.map((contest) => <SingleContestCard
-                        contest={contest}
-                        key={contest.id} />)}
-                </Grid>
-            </Container>
+            {userRole && userRole === 'Organizer' ? (
+                <>
+                    <FilterContestPhasesTabs tabValue={phasesTabValue} handleTabChange={handlePhasesTabChange} />
+                    <Container
+                        className={classes.container} >
+                        {renderContests(phasesTabValue)}
+                    </Container>
+                </>
+            ) : (
+                    <>
+                        <FilterPublicPrivateContestsTabs tabValue={restrictionsTabValue} handleTabChange={handleRestrictionsTabChange} />
+                        <Container
+                            className={classes.container} >
+                            {restrictionsTabValue === 'Open contests' ? (
+                                <Grid
+                                    container
+                                    spacing={5}
+                                    className={classes.cardGrid}  >
+                                    {firstPhaseContests.map((contest) => <SingleContestCard
+                                        contest={contest}
+                                        key={contest.id} />)}
+                                </Grid>
+                            ) : (null)}
+                        </Container>
+                    </>
+                )}
         </>
     )
 }

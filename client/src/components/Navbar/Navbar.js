@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { Button, IconButton, Tooltip } from '@material-ui/core';
 import logo from './logo.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrophy, faHome, faImages } from '@fortawesome/free-solid-svg-icons';
+import { faTrophy, faHome, faImages, faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -97,14 +97,24 @@ const Navbar = () => {
                     <FontAwesomeIcon icon={faImages} />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Rankings</p>} arrow>
+                {userState.user.role === 'Photo Junkie' && <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>My entries</p>} arrow>
+                  <IconButton
+                    style={{ outline: 'none', color: 'white' }}
+                    aria-label="my entries"
+                    onClick={() => history.push('/users/contests')}>
+                    <FontAwesomeIcon icon={faCameraRetro} />
+                  </IconButton>
+                </Tooltip>
+                }
+                {userState.user.role === 'Organizer' && <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Rankings</p>} arrow>
                   <IconButton
                     style={{ outline: 'none', color: 'white' }}
                     aria-label="rankings"
                     onClick={() => history.push('/users/ranking')}>
-                      <FontAwesomeIcon icon={faTrophy} />
+                    <FontAwesomeIcon icon={faTrophy} />
                   </IconButton>
                 </Tooltip>
+                }
                 {/* <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
                 {userState.user.role === 'Photo Junkie' &&
                   <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Open Contests</MenuItem>}
