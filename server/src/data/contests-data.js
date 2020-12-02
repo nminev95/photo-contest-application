@@ -327,6 +327,29 @@ const getRecentlyExpireContestsInfo = async () => {
 };
 
 /**
+* Gets 4 recently expiring phase 2 contests information from the database.
+* @async
+* @return {Promise<object>}
+*/
+const getRecentlyExpiringPhase2ContestsInfo = async () => {
+
+    const sql = `
+        SELECT * 
+        FROM 
+            contests 
+        WHERE 
+            secondPhaseLimit > NOW() 
+        AND 
+            phase_id = 2
+        ORDER BY 
+            secondPhaseLimit ASC
+        LIMIT 
+            4   
+    `;
+
+    return await pool.query(sql);
+};
+/**
 * Gets contest full information from the database.
 * @async
 * @param {number} id - The unique contest number.
@@ -533,4 +556,5 @@ export default {
     removeParticipationPoints,
     awardPrivateContestParticipationPoints,
     checkOrganizerHasVoted,
+    getRecentlyExpiringPhase2ContestsInfo,
 };

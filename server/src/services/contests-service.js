@@ -302,6 +302,28 @@ const getRecentlyExpContests = contestsData => {
 };
 
 /**
+* Gets recently expiring phase 2 contests information from the database.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
+const getRecentlyExpSecondPhaseContests = contestsData => {
+    return async () => {
+
+        const recExpContests = await contestsData.getRecentlyExpiringPhase2ContestsInfo();
+
+        if (!recExpContests) {
+            return {
+                error: ERRORS.RECORD_NOT_FOUND,
+                recExpContests: null,
+            };
+        }
+
+        return { error: null, recExpContests: recExpContests };
+    };
+};
+/**
 * Gets contest full information found by unique contest number.
 * @param module contests data SQL queries module.
 * @callback 
@@ -548,6 +570,7 @@ export default {
     enrollUser,
     disenrollUser,
     checkIfUserHasVoted,
+    getRecentlyExpSecondPhaseContests,
 };
 
 

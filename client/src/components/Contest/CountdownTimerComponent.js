@@ -79,6 +79,12 @@ const CountdownTimerComponent = ({ contestData }) => {
                         endDate={firstPhaseEndDate}
                         setNextPhase={setNextContestPhase} />
                 );
+            case phase === 2 && location.pathname.includes('home'):
+                return (
+                    <SmallTimer
+                        endDate={secondPhaseEndDate}
+                        setNextPhase={setNextContestPhase} />
+                );
             case phase === 1:
                 return (
                     <FullsizeTimer
