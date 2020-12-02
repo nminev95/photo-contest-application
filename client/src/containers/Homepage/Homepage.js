@@ -74,7 +74,7 @@ const HomePage = () => {
                 })
                 .then((response) => dispatch(setRecentlyExpContestsData(response.data)))
         }
-    }, [dispatch, contestsData.length]);
+    }, [dispatch]);
 
     useEffect(() => {
         axiosInstance.get(userEndpoints.userProfile)

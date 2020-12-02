@@ -334,7 +334,8 @@ const getRecentlyExpireContestsInfo = async () => {
 const getRecentlyExpiringPhase2ContestsInfo = async () => {
 
     const sql = `
-        SELECT * 
+        SELECT 
+            * 
         FROM 
             contests 
         WHERE 
@@ -349,6 +350,44 @@ const getRecentlyExpiringPhase2ContestsInfo = async () => {
 
     return await pool.query(sql);
 };
+
+const getNotRatedPhotosNumber = async (userId, contestId) => {
+    const sql1 = `
+        SELECT 
+            COUNT(*) as notRatedCount
+        FROM 
+            contests c 
+        JOIN 
+            photos p 
+        ON 
+            p.contest_id = c.id 
+        JOIN 
+            reviews r 
+        ON 
+            r.photo_id = p.id
+        WHERE 
+            r.user_id = ? 
+        AND 
+            c.id = ?`;
+
+    const sql2 = `
+        SELECT 
+            COUNT(*) as entriesCount
+        FROM 
+            photos 
+        WHERE 
+            contest_id = ?
+        `;
+
+    const notRated = await pool.query(sql1, [userId, contestId]);
+    const entriesCount = await pool.query(sql2, [contestId]);
+
+    return {
+        notRated: notRated[0].notRatedCount,
+        entriesCount: entriesCount[0].entriesCount,
+    };
+};
+
 /**
 * Gets contest full information from the database.
 * @async
@@ -557,4 +596,5 @@ export default {
     awardPrivateContestParticipationPoints,
     checkOrganizerHasVoted,
     getRecentlyExpiringPhase2ContestsInfo,
+    getNotRatedPhotosNumber,
 };

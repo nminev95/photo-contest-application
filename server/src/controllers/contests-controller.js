@@ -102,9 +102,10 @@ contestsController
     authMiddleware,
     roleMiddleware(['Organizer']),
     async (req, res) => {
-
-        const { recExpContests, error } = await contestsService.getRecentlyExpSecondPhaseContests(contestsData)();
-
+        
+        const userId = req.user.id;
+        const { recExpContests, error } = await contestsService.getRecentlyExpSecondPhaseContests(contestsData)(+userId);
+      
         if (error === ERRORS.RECORD_NOT_FOUND) {
             res.status(404).send({ message: 'Contest not found!' });
         } else {

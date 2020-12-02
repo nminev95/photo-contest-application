@@ -309,10 +309,10 @@ const getRecentlyExpContests = contestsData => {
 * @return {Promise<object>}
 */
 const getRecentlyExpSecondPhaseContests = contestsData => {
-    return async () => {
+    return async userId => {
 
         const recExpContests = await contestsData.getRecentlyExpiringPhase2ContestsInfo();
-
+     
         if (!recExpContests) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
@@ -320,7 +320,21 @@ const getRecentlyExpSecondPhaseContests = contestsData => {
             };
         }
 
-        return { error: null, recExpContests: recExpContests };
+        const contest1NotRatedAndRated = await contestsData.getNotRatedPhotosNumber(userId, recExpContests[0].id);
+        const contest2NotRatedAndRated = await contestsData.getNotRatedPhotosNumber(userId, recExpContests[1].id);
+        const contest3NotRatedAndRated = await contestsData.getNotRatedPhotosNumber(userId, recExpContests[2].id);
+        const contest4NotRatedAndRated = await contestsData.getNotRatedPhotosNumber(userId, recExpContests[3].id);
+        const copy = [...recExpContests];
+        copy[0].rated = contest1NotRatedAndRated.notRated;
+        copy[0].entries = contest1NotRatedAndRated.entriesCount;
+        copy[1].rated = contest2NotRatedAndRated.notRated;
+        copy[1].entries = contest2NotRatedAndRated.entriesCount;
+        copy[2].rated = contest3NotRatedAndRated.notRated;
+        copy[2].entries = contest3NotRatedAndRated.entriesCount;
+        copy[3].rated = contest4NotRatedAndRated.notRated;
+        copy[3].entries = contest4NotRatedAndRated.entriesCount;
+
+        return { error: null, recExpContests: copy };
     };
 };
 /**
