@@ -345,7 +345,7 @@ const getAllContestResults = async (id) => {
             (SELECT avatarUrl from users WHERE id = r.user_id) as avatarUrl
         FROM 
             photos p 
-        JOIN 
+        left JOIN 
             reviews r
         ON 
             r.photo_id = p.id
