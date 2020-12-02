@@ -138,9 +138,10 @@ contestsController
                 restrictions,
                 category,
                 jury,
+                privateContestParticipants,
             } = req.body;
 
-            const { error, contest } = await contestsService.createContest(contestsData)(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer, JSON.parse(jury));
+            const { error, contest } = await contestsService.createContest(contestsData)(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, +organizer, JSON.parse(jury), JSON.parse(privateContestParticipants));
 
             if (error) {
                 res.status(500).send({ message: 'Internal Server Error!' });

@@ -188,7 +188,7 @@ const sendPhotoReview = async (score, comment, isInappropriate, userId, photoId)
 * @param {number} organizer_id - The unique organizator number.
 * @return {Promise<object>}
 */
-const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id) => {
+const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer_id) => {
     const sql = `
         INSERT INTO 
             contests (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id)
@@ -207,7 +207,7 @@ const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots,
         LIMIT 1
     `;
 
-    await pool.query(sql, [title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions_id, category, organizer_id]);
+    await pool.query(sql, [title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer_id]);
     const res = await pool.query(sql2);
 
     const newContest = {
@@ -217,7 +217,7 @@ const createNewContest = async (title, firstPhaseLimit, secondPhaseLimit, spots,
         secondPhaseLimit,
         spots,
         contestCover,
-        restrictions_id,
+        restrictions,
         category,
         organizer_id,
     };
@@ -445,6 +445,17 @@ const disenrollUserFromContest = async (userId, contestId) => {
     return await pool.query(sql, [userId, contestId]);
 };
 
+const sendPrivateContestInvitations = async (contestId, userId) => {
+    const sql = `
+        INSERT INTO
+            private_contest_invitations (contest_id, user_id)
+        VALUES
+            (?, ?);
+    `;
+
+    return await pool.query(sql, [contestId, userId]);
+};
+
 export default {
     getAllOpenContestsInfo,
     getContestInfo,
@@ -464,4 +475,5 @@ export default {
     markContestAwarded,
     enrollUserInContest,
     disenrollUserFromContest,
+    sendPrivateContestInvitations,
 };

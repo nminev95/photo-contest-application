@@ -217,9 +217,17 @@ const createPhotoReview = contestsData => {
 * @param {object} jury - Optional jury members.
 */
 const createContest = contestsData => {
-    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury) => {
+    return async (title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer, jury, privateContestParticipants) => {
 
-        const newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
+        let newContest;
+
+        if (privateContestParticipants.length === 0) {
+            newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, spots, contestCover, restrictions, category, organizer);
+        } else {
+            newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, privateContestParticipants.length, contestCover, restrictions, category, organizer);
+            await privateContestParticipants.map((user) => contestsData.sendPrivateContestInvitations(newContest.id, user.id));
+        }
+
         const allOrganizers = await contestsData.getAllOrganizersForJury();
 
         if (jury.length !== 0) {
@@ -237,6 +245,7 @@ const createContest = contestsData => {
             contest: {
                 ...newContest,
                 jury: [...jury, ...allOrganizers],
+                privateContestParticipants,
             },
         };
     };

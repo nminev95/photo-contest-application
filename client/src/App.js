@@ -46,6 +46,10 @@ const App = () => {
     dispatch(setNotifications(notifications))
   });
 
+  socket.on("new_private_invitations", (notifications) => {
+    dispatch(setNotifications(notifications))
+  });
+
   return (
     <div className="App">
       <Router>

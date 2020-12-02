@@ -103,7 +103,7 @@ const CreateContestForm = ({ handleClose }) => {
             validators: {}
         },
         privateContestParticipants: {
-            name: 'privateParticipants',
+            name: 'privateContestParticipants',
             value: [],
             valid: true,
             validators: {}
@@ -232,7 +232,6 @@ const CreateContestForm = ({ handleClose }) => {
         const contestData = Object.values(contestForm).reduce((data, input) => {
             if (Array.isArray(input.value)) {
                 const jsonArray = JSON.stringify(input.value);
-
                 data.set(input.name, jsonArray);
             } else {
                 data.set(input.name, input.value);
@@ -263,8 +262,14 @@ const CreateContestForm = ({ handleClose }) => {
                         })
                         .then((response) => {
                             if (response) {
-                                socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(userId));
-                                console.log(response)
+                                if (response.data.jury.length !== 0) {
+                                    socket.emit('new_jury_invitations', JSON.stringify(response.data.jury), JSON.stringify(userId));
+                                }
+                                
+                                if (response.data.privateContestParticipants.length !== 0) {
+                                    socket.emit('private_contest_invitations', JSON.stringify(response.data.privateContestParticipants), JSON.stringify(userId));
+                                }
+                                
                                 swal({
                                     title: "Success!",
                                     text: "Your contest was successfully created.",
@@ -380,9 +385,9 @@ const CreateContestForm = ({ handleClose }) => {
                     labelPlacement="start"
                 />
                 <FormControlLabel
-                    value="Invitations only"
+                    value="Invitational"
                     control={<Radio color="primary" />}
-                    label="Invitations only"
+                    label="Invitational"
                     labelPlacement="start"
                 />
             </RadioGroup>

@@ -26,7 +26,7 @@ const io = require('socket.io')(server, {
 io.on('connection', (socket) => {
     socket.on('login', (user) => {
         const parsedUser = JSON.parse(user);
-        
+
         if (user) {
             socket.userId = parsedUser.sub;
         }
@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
                 if (notifications.juryInvitations.length !== 0 || notifications.privateContestInvitations.length !== 0) {
                     const unreadContestNotifications = notifications.privateContestInvitations.filter((notification) => !!notification.isRead === false);
                     const unreadJuryNotifications = notifications.juryInvitations.filter((notification) => !!notification.isRead === false);
-                    
+
                     if (+invitation.id !== +requestSender) {
                         io.to(socketsMap.get(+invitation.id)).emit('new_jury_notifications', {
                             privateContestInvitations: unreadContestNotifications,
@@ -57,6 +57,25 @@ io.on('connection', (socket) => {
                             juryInvitations: unreadJuryNotifications,
                         });
                     }
+                }
+            }
+        });
+    });
+    socket.on('private_contest_invitations', (invitationsArray) => {
+        const privateContestInvitations = JSON.parse(invitationsArray);
+        privateContestInvitations.map(async (invitation) => {
+
+            if (socketsMap.get(invitation.id)) {
+                const notifications = await usersData.getNotificationsById(invitation.id);
+
+                if (notifications.juryInvitations.length !== 0 || notifications.privateContestInvitations.length !== 0) {
+                    const unreadContestNotifications = notifications.privateContestInvitations.filter((notification) => !!notification.isRead === false);
+                    const unreadJuryNotifications = notifications.juryInvitations.filter((notification) => !!notification.isRead === false);
+
+                    io.to(socketsMap.get(+invitation.id)).emit('new_private_invitations', {
+                        privateContestInvitations: unreadContestNotifications,
+                        juryInvitations: unreadJuryNotifications,
+                    });
                 }
             }
         });
