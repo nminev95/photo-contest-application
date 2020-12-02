@@ -224,3 +224,112 @@ and our mentor - _Martin Nedyalkov_
 
 - Mariya Velikova -  `m.velikovaa@gmail.com`
 - Niki Minev  -  `n.minev42@gmail.com`
+
+---
+### Printscreens
+
+- Landingpage
+  
+![Landing page](/printscreens/landingpage_part1.png)
+![Landing page](/printscreens/landingpage_part2.png)
+
+</br>
+
+- Sign in
+  
+![Sign in](/printscreens/sign_in.png)
+
+</br>
+
+- Sign up
+  
+![Register](/printscreens/register.png)
+
+</br>
+
+- Homepage Photo Junkie
+  
+![Homepage](/printscreens/homepage_photo_junkie.png)
+
+</br>
+
+- Homepage Organizer
+  
+![Homepage](/printscreens/homepage_organizer.png)
+
+</br>
+
+- Create Contest - Organizer
+  
+![Create contest](/printscreens/create_contest.png)
+
+</br>
+
+- Open Contests - Photo Junkie View
+  
+![Open Contests](/printscreens/open_contests.png)
+![Open Contests](/printscreens/open_contests_part2.png)
+
+</br>
+
+- Phase I Single Contest preview - Photo Junkie 
+  
+![Single Contest](/printscreens/single_contest_phase_1_pj_view.png)
+
+</br>
+
+- Phase I Single Contest preview entry form
+
+![Single Contest entry form](/printscreens/photo_entry_form.png)
+
+</br>
+
+- Photo Junkie entries
+
+![Current Contests](/printscreens/photo_junkie_entries.png) 
+
+</br>
+
+- Photo Junkie profile
+
+![Current Contests](/printscreens/profilepage_basic_info.png)
+
+</br>
+
+- Phase Ii Single Contest preview - Organizer 
+
+![Single Contest](/printscreens/single_contest_phase_2_organizer_view.png)
+
+</br>
+
+- Phase Ii Single Contest entry preview - Organizer 
+
+![Single Contest entry preview](/printscreens/single_photo_priview.png)
+
+</br>
+
+- Phase Ii Single Contest entry review form - Organizer 
+
+![Single Contest entry preview](/printscreens/rate_photo_form.png)
+
+</br>
+
+- Phase III Past Contests  - Photo Junkie
+
+![Past contests](/printscreens/profilepage_past_contests.png)
+
+</br>
+
+- Phase III Past Contests  - Organizer
+
+![Past contests](/printscreens/photo_junkie_past_contest_preview.png)
+
+</br>
+
+- Phase III Past Contests Results
+
+![Past contests results](/printscreens/single_photo_preview_results.png)
+![Past contests results](/printscreens/single_photo_preview_results_reviews.png)
+
+</br>
+
