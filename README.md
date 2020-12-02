@@ -174,12 +174,14 @@ Request Body
 
     `npm run start`
   
-11. Please, note that there are several pre-created users. 
+11. Please, note that there are several pre-created users who are currently participating in most of the contests: 
  - To test all the features that each **participant(Photo Junkie)** can access, log in with the following credentials:
 
      _username_: `john_33`
 
      _password_: `ASDF123!`
+
+     _`create a new user account` to test the feature **Upload a photo per contest**_
 
  - To test all the features that each **Orginizer** can access, log in with the following credentials:
 

@@ -69,7 +69,8 @@ const LandingPageTextBox = () => {
                             <div
                                 style={{ padding: '15px' }}>
                                 <Typography className={styles.text} >
-                                    "To photograph is to hold one's breath, when all faculties converge to capture fleeting reality. It's at that precise moment that mastering an image becomes a great physical and intellectual joy!"
+                                    "To photograph is to hold one's breath, when all faculties converge to capture fleeting reality. 
+                                    It's at that precise moment that mastering an image becomes a great physical and intellectual joy!"
                             </Typography>
                                 <Typography
                                     className={styles.author}>
@@ -87,7 +88,8 @@ const LandingPageTextBox = () => {
                                 style={{ padding: '15px' }}>
                                 <Typography
                                     className={styles.text} >
-                                    “A great photograph is a full expression of what one feels about what is being photographed in the deepest sense and is thereby a true expression of what one feels about life in its entirety.”
+                                    “A great photograph is a full expression of what one feels about what is being photographed 
+                                    in the deepest sense and is thereby a true expression of what one feels about life in its entirety.”
                             </Typography>
                                 <Typography
                                     className={styles.author}>

@@ -62,7 +62,7 @@ const RatePhotoPopper = ({ photoId }) => {
         setComment('');
         setIsInappropriate(false);
     }, [photoId])
-    
+
     const handleSubmit = () => {
 
         const review = {
@@ -156,11 +156,21 @@ const RatePhotoPopper = ({ photoId }) => {
                 style={{ outline: 'none' }}>
                 {!open ? 'Rate photo' : 'Close menu'}
             </Button>
-            <Popper id={id} open={open} anchorEl={anchorEl} transition disablePortal>
+            <Popper
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                transition disablePortal>
                 {({ TransitionProps }) => (
-                    <Fade {...TransitionProps} timeout={350}>
-                        <Box boxShadow={2} className={styles.paper}>
-                            <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Please provide a score you find suitable for this photo's story/quality/creativeness. Available score values are from 1 (lowest) to 10 (highest).
+                    <Fade {...TransitionProps}
+                        timeout={350}>
+                        <Box
+                            boxShadow={2}
+                            className={styles.paper}>
+                            <Typography
+                                id="discrete-slider-always"
+                                gutterBottom className={styles.text}>
+                                Please provide a score you find suitable for this photo's story/quality/creativeness. Available score values are from 1 (lowest) to 10 (highest).
                                 </Typography>
                             <Rating
                                 name="customized-10"
@@ -170,7 +180,10 @@ const RatePhotoPopper = ({ photoId }) => {
                                 value={score}
                                 onChange={(ev) => setScore(ev.target.value)}
                             /><br></br>
-                            <Typography id="discrete-slider-always" gutterBottom className={styles.text}>Leave a comment for the author what you loved about the photo or what he can improve.
+                            <Typography
+                                id="discrete-slider-always"
+                                gutterBottom className={styles.text}>
+                                Leave a comment for the author what you loved about the photo or what he can improve.
                                 </Typography>
                             <TextField
                                 className={styles.input}
@@ -183,7 +196,8 @@ const RatePhotoPopper = ({ photoId }) => {
                                 value={comment}
                                 onChange={(ev) => setComment(ev.target.value)}
                             /><br></br>
-                            <FormControlLabel className={styles.text}
+                            <FormControlLabel
+                                className={styles.text}
                                 control={
                                     <Checkbox
                                         icon={<ErrorOutlineIcon size="medium" />}

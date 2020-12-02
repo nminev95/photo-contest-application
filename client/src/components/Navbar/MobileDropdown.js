@@ -78,7 +78,10 @@ const MobileDropdown = () => {
 
     return (
         <Fragment>
-            <MenuItem className={styles.dropdown} style={{ height: "83px", padding: "0" }} onClick={handleClick}><MenuIcon />
+            <MenuItem
+                className={styles.dropdown}
+                style={{ height: "83px", padding: "0" }}
+                onClick={handleClick}><MenuIcon />
             </MenuItem>
             <StyledMenu
                 className={styles.menuDropdown}
@@ -90,25 +93,32 @@ const MobileDropdown = () => {
             >
                 <StyledMenuItem>
                     <ListItemIcon>
-                        <SendIcon fontSize="small" />
+                        <SendIcon
+                            fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
+                    <ListItemText
+                        primary="Dashboard" />
                 </StyledMenuItem>
-                <StyledMenuItem onClick={() => {
-                    handleClose();
-                    history.push('contests');
-                }}>
+                <StyledMenuItem
+                    onClick={() => {
+                        handleClose();
+                        history.push('contests');
+                    }}>
                     <ListItemIcon>
-                        <DraftsIcon fontSize="small" />
+                        <DraftsIcon
+                            fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="All contests" />
+                    <ListItemText
+                        primary="All contests" />
                 </StyledMenuItem>
                 {userState.user.role === 'Organizer' ? (
                     <StyledMenuItem>
                         <ListItemIcon>
-                            <InboxIcon fontSize="small" />
+                            <InboxIcon
+                                fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText primary="Rankings" />
+                        <ListItemText
+                            primary="Rankings" />
                     </StyledMenuItem>
                 ) : (null)}
             </StyledMenu>
