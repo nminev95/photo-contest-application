@@ -76,7 +76,7 @@ const Navbar = () => {
                 style={{ maxHeight: '70px', margin: '10px' }}
                 src={logo}>
 
-              </img>
+              </img> 
             </div>
             <div
               className={classes.grow} />
@@ -123,7 +123,7 @@ const Navbar = () => {
                     onClick={() => history.push('/home')}>
                     <FontAwesomeIcon
                       icon={faHome}
-                      style={{ fontSize: 33 }} />
+                      style={{ fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
                 <Tooltip
@@ -137,7 +137,7 @@ const Navbar = () => {
                     onClick={() => history.push('/contests')}>
                     <FontAwesomeIcon
                       icon={faImages}
-                      style={{ fontSize: 33 }} />
+                      style={{ fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
                 {userState.user.role === 'Photo Junkie' &&
@@ -152,7 +152,7 @@ const Navbar = () => {
                       onClick={() => history.push('/users/contests')}>
                       <FontAwesomeIcon
                         icon={faCameraRetro}
-                        style={{ fontSize: 33 }} />
+                        style={{ fontSize: 30 }} />
                     </IconButton>
                   </Tooltip>
                 }
@@ -168,7 +168,7 @@ const Navbar = () => {
                       onClick={() => history.push('/users/ranking')}>
                       <FontAwesomeIcon
                         icon={faTrophy}
-                        style={{ fontSize: 33 }} />
+                        style={{ fontSize: 30 }} />
                     </IconButton>
                   </Tooltip>
                 }

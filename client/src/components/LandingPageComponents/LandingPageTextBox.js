@@ -65,7 +65,8 @@ const LandingPageTextBox = () => {
                         xs={12}
                         sm={6}
                         md={6}  >
-                        <Box border={1}>
+                        <Box 
+                        border={1}>
                             <div
                                 style={{ padding: '15px' }}>
                                 <Typography className={styles.text} >

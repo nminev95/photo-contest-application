@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         transition: '0.5s all ease-in-out',
-        backgroundColor: '#D8D5DB',
+        backgroundColor: '#e0e0e0',
         '&:hover': {
             transform: 'scale(1.08)',
             cursor: 'pointer',
-            backgroundColor: '#ADACB5',
+            backgroundColor: '#9e9e9e',
         }
     },
     media: {
@@ -54,7 +54,6 @@ const SingleContestCard = (props) => {
     const { id } = contest;
     const classes = useStyles();
     const history = useHistory();
-    console.log(contest)
 
     return (
         <Grid item xs={12} sm={6} md={3} >
