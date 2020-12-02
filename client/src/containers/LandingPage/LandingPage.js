@@ -29,10 +29,10 @@ const LandingPage = () => {
                     <LandingPageTextBox />
                 </>
             ) : (
-                    <>
-                        <ImageBox />
-                        <LandingPageTextBox />
-                    </>
+                <>
+                    <ImageBox />
+                    <LandingPageTextBox />
+                </>
                 )}
         </>
     )

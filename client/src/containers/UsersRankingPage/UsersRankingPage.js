@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUsersRankingsData } from '../../redux/actions/index'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
-import rankingsCover from '../../assets/images/rankings_cover.jpg';
+import cover from '../../assets/images/all_contests.jpg';
 
 const useStyles = makeStyles((theme) => ({
     image: {
         [theme.breakpoints.up('md')]: {
             height: '500px',
             width: '100%',
-            backgroundImage: `url(${rankingsCover})`,
+            backgroundImage: `url(${cover})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             height: '450px',
             width: '100%',
-            backgroundImage: `url(${rankingsCover})`,
+            backgroundImage: `url(${cover})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

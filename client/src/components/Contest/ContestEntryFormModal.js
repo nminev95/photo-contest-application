@@ -1,14 +1,14 @@
-import { Button } from "@material-ui/core";
-import { useState } from 'react'
-import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from "react-redux";
-import { TextField } from "@material-ui/core";
+import { setContestDetails } from "../../redux/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from 'react-router-dom';
-import swal from '@sweetalert/with-react';
+import { TextField } from "@material-ui/core";
+import { useState } from 'react'
+import { Button } from "@material-ui/core";
 import ImageDropAndUpload from "./ImageDropAndUpload";
 import axiosInstance from "../../requests/axios";
-import { setContestDetails } from "../../redux/actions";
+import Modal from 'react-bootstrap/Modal'
+import swal from '@sweetalert/with-react';
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -36,6 +36,7 @@ const OpenEntryFormButton = (props) => {
     const dispatch = useDispatch();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const userState = useSelector(state => state.loginState);
     const contestInfo = useSelector(state => state.singleContestState)
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
@@ -235,8 +236,9 @@ const OpenEntryFormButton = (props) => {
     }
 
     const renderEnrollButton = () => {
+
         switch (true) {
-            case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)): 
+            case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)):
                 return;
             case (enrolledUsers && enrolledUsers.some((user) => user.user_id === userInfo.user.sub)):
                 return (
@@ -261,8 +263,8 @@ const OpenEntryFormButton = (props) => {
 
     return (
         <>
-            {renderEnterContestButton()}
-            {renderEnrollButton()}
+            {userState.user.role === 'Photo Junkie' && renderEnterContestButton()}
+            {userState.user.role === 'Photo Junkie' && renderEnrollButton()}
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -272,7 +274,9 @@ const OpenEntryFormButton = (props) => {
                 size='lg'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Upload your entry</Modal.Title>
+                    <Modal.Title>
+                        Upload your entry
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     In order to participate in the contest, you must enter a title for your photo and describe the story behind it.
@@ -342,8 +346,7 @@ const OpenEntryFormButton = (props) => {
                         onClick={() => {
                             handleClose()
                             setFile([]);
-                        }}
-                    >
+                        }}>
                         Cancel
                     </Button>
                 </Modal.Footer>

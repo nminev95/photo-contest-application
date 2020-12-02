@@ -1,11 +1,10 @@
-import AllContestsBox from './../../components/Contest/AllContestsBox';
+import { setAllContestsData, setContestPhaseTwoData, setFinishedContestsData } from '../../redux/actions/index';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import AllContestsBox from './../../components/Contest/AllContestsBox';
 import contestEndpoints from '../../requests/contest-requests';
 import axiosInstance from '../../requests/axios';
 import EmptyPageComponent from '../../components/Contest/EmptyPageComponent';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAllContestsData, setContestPhaseTwoData, setFinishedContestsData } from '../../redux/actions/index';
-import swal from 'sweetalert';
 
 const AllContestsPage = () => {
 
@@ -45,7 +44,7 @@ const AllContestsPage = () => {
             { !error ? (
                 <AllContestsBox />
             ) : (
-                    <EmptyPageComponent />
+                <EmptyPageComponent />
                 )
             }
         </>

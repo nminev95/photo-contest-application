@@ -1545,6 +1545,13 @@ INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'I love this photo!', '24', '191');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '25', '191');
 
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '21', '192');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing photo!', '22', '192');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Very nice photo!', '23', '192');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'I love this photo!', '24', '192');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '25', '192');
+
+
 -- add organizers as jury to contests
 INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '21');
 INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '22');
