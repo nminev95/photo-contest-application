@@ -456,6 +456,45 @@ const sendPrivateContestInvitations = async (contestId, userId) => {
     return await pool.query(sql, [contestId, userId]);
 };
 
+const awardParticipationPoints = async (userId) => {
+    const sql = `
+        UPDATE
+            users
+        SET
+            points = points + 1
+        WHERE 
+            id = ?
+    `;
+
+    return await pool.query(sql, [userId]);
+};
+
+const removeParticipationPoints = async (userId) => {
+    const sql = `
+        UPDATE
+            users
+        SET
+            points = points - 1
+        WHERE 
+            id = ?
+    `;
+
+    return await pool.query(sql, [userId]);
+};
+
+const awardPrivateContestParticipationPoints = async (userId) => {
+    const sql = `
+        UPDATE
+            users
+        SET
+            points = points + 3
+        WHERE 
+            id = ?
+    `;
+
+    return await pool.query(sql, [userId]);
+};
+
 export default {
     getAllOpenContestsInfo,
     getContestInfo,
@@ -476,4 +515,7 @@ export default {
     enrollUserInContest,
     disenrollUserFromContest,
     sendPrivateContestInvitations,
+    awardParticipationPoints,
+    removeParticipationPoints,
+    awardPrivateContestParticipationPoints,
 };

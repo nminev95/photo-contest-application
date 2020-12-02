@@ -226,6 +226,7 @@ const createContest = contestsData => {
         } else {
             newContest = await contestsData.createNewContest(title, firstPhaseLimit, secondPhaseLimit, privateContestParticipants.length, contestCover, restrictions, category, organizer);
             await privateContestParticipants.map((user) => contestsData.sendPrivateContestInvitations(newContest.id, user.id));
+            await privateContestParticipants.map((user) => contestsData.awardPrivateContestParticipationPoints(user.id));
         }
 
         const allOrganizers = await contestsData.getAllOrganizersForJury();
@@ -446,6 +447,7 @@ const enrollUser = contestsData => {
         }
 
         await contestsData.enrollUserInContest(userId, contestId);
+        await contestsData.awardParticipationPoints(userId);
 
         return {
             error: null,
@@ -469,6 +471,7 @@ const disenrollUser = contestsData => {
         }
 
         await contestsData.disenrollUserFromContest(userId, contestId);
+        await contestsData.removeParticipationPoints(userId);
 
         return {
             error: null,
