@@ -495,6 +495,20 @@ const awardPrivateContestParticipationPoints = async (userId) => {
     return await pool.query(sql, [userId]);
 };
 
+const checkOrganizerHasVoted = async (userId, photoId) => {
+    const sql = `
+        SELECT
+            *
+        FROM
+            reviews
+        WHERE 
+            user_id = ?
+        AND 
+            photo_id = ?;
+    `;
+
+    return await pool.query(sql, [userId, photoId]);
+};
 export default {
     getAllOpenContestsInfo,
     getContestInfo,
@@ -518,4 +532,5 @@ export default {
     awardParticipationPoints,
     removeParticipationPoints,
     awardPrivateContestParticipationPoints,
+    checkOrganizerHasVoted,
 };

@@ -4,7 +4,7 @@ export const createPhotoReviewSchema = {
             return 'Score value is required';
         }
         
-        if (typeof value !== 'number') {
+        if (isNaN(value) || +value > 10 || +value < 10) {
             return 'Score value should be a number in range [0..10]';
         }
 
@@ -22,11 +22,7 @@ export const createPhotoReviewSchema = {
         return null;
     },
     isInappropriate: value => {
-        if (!value) {
-            return 'Appropriate status is required';
-        }
-
-        if (typeof value !== 'boolean') {
+        if (!!value !== true && !!value !== false) {
             return 'Appropriate status should be a valid boolean value';
         }
         

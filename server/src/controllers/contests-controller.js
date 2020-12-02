@@ -55,6 +55,21 @@ contestsController
             }
         },
     )
+    .get('/:id/entries/:id/voted',
+        authMiddleware,
+        roleMiddleware(['Organizer']),
+        async (req, res) => {
+            const userId = req.user.id;
+            const photoId = req.params.id;
+            const { hasVoted, error } = await contestsService.checkIfUserHasVoted(contestsData)(+userId, +photoId);
+
+            if (error === ERRORS.OPERATION_NOT_PERMITTED) {
+                res.status(500).send({ message: 'Internal Server Error!' });
+            } else {
+                res.status(200).send(hasVoted);
+            }
+        },
+    )
     .get('/:id/results',
         authMiddleware,
         roleMiddleware(['Photo Junkie', 'Organizer']),
