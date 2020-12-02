@@ -110,10 +110,15 @@ const UserProfilePersonalInfo = (props) => {
                     <Container
                         maxwidth="md"
                         style={{ textAlign: '-webkit-center' }}>
-                        <Avatar
-                            alt={userData.username}
-                            src={`http://localhost:4000/public/avatars/${userData.avatar}`}
-                            className={classes.avatar} />
+                        {userData.avatar ? (
+                            <Avatar
+                                alt={userData.username}
+                                src={`http://localhost:4000/public/avatars/${userData.avatar}`}
+                                className={classes.avatar} />
+                        ) : (
+                                <Avatar
+                                    className={classes.avatar} />
+                            )}
                         <Typography
                             className={classes.Name}
                             component="h6"
