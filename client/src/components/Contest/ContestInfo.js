@@ -1,4 +1,4 @@
-import { Divider, Grid, Paper } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import CountdownTimerComponent from './CountdownTimerComponent';

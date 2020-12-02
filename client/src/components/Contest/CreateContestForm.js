@@ -1,14 +1,11 @@
-import { Avatar, Button, FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
+import {Button, FormControlLabel, Grid, Radio, RadioGroup, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form'
 import axiosInstance from "../../requests/axios";
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import contestEndpoints from "../../requests/contest-requests";
 import userEndpoints from "../../requests/user-requests";
 import swal from "sweetalert";
-import StarIcon from '@material-ui/icons/Star';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { contestCategoryError, contestTitleError } from "../../validations/helper-errors";
 import ImageDropAndUpload from "./ImageDropAndUpload";
 import { socket } from "../../App";
@@ -138,7 +135,7 @@ const CreateContestForm = ({ handleClose }) => {
                 }
             })
             .then((response) => dispatch(setUsers(response.data)))
-    }, [])
+    }, [dispatch])
 
     const firstPhaseLimitMarks = [
         {
