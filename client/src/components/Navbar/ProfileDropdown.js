@@ -108,13 +108,11 @@ const ProfileDropdown = () => {
                     color="inherit"
                     onClick={handleClick}
                 >
-                    {userInfo.avatar ?( 
+                    {userInfo  &&  
                     <Avatar
                         alt={userInfo.username}
-                        src={`http://localhost:4000/public/avatars/${userInfo.avatar}`} />
-                        ) : (
-                            <Avatar/>
-                        )}
+                        src={`http://localhost:4000/public/avatars/${userInfo.avatar}`} />                    
+                    }  
                 </IconButton>
             </MenuItem>
             <StyledMenu
