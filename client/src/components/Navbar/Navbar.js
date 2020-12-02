@@ -2,14 +2,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuItem from '@material-ui/core/MenuItem';
 import MobileDropdown from './MobileDropdown';
 import ProfileDropdown from './ProfileDropdown';
 import NotificationsDropdown from './NotificationsDropdown';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, IconButton, Tooltip } from '@material-ui/core';
 import logo from './logo.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrophy, faHome, faImages } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -79,25 +80,55 @@ const Navbar = () => {
                 <img alt='photopedia-logo' style={{ maxHeight: '70px', margin: '10px' }} src={logo}></img>
               </div>
               <MobileDropdown />
-              <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
-              {userState.user.role === 'Photo Junkie' &&
-                <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Open Contests</MenuItem>}
-              {userState.user.role === 'Photo Junkie' &&
-                <MenuItem className={classes.navLinks} onClick={() => history.push('/users/contests')}>My entries</MenuItem>}
-              {userState.user.role === 'Organizer' &&
-                <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Contests Phase I </MenuItem>}
-              {userState.user.role === 'Organizer' &&
-                <MenuItem className={classes.navLinks} onClick={() => history.push('/contests/phase/2')}> Contests Phase II </MenuItem>}
-              {userState.user.role === 'Organizer' &&
-                <MenuItem className={classes.navLinks} onClick={() => history.push('/contests/phase/3')}>Finished Contests </MenuItem>}
-              {userState.user.role === 'Organizer' &&
-                <MenuItem className={classes.navLinks} onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>}
-              <div className={classes.grow} />
-              <NotificationsDropdown />
-              <ProfileDropdown />
+              <div style={{ display: 'flex', width: '63%', justifyContent: 'center' }}>
+                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Home</p>} arrow>
+                  <IconButton
+                    aria-label="home"
+                    style={{ color: 'white', outline: 'none' }}
+                    onClick={() => history.push('/home')}>
+                    <FontAwesomeIcon icon={faHome} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>All contests</p>} arrow>
+                  <IconButton
+                    aria-label="contests"
+                    style={{ marginRight: '35px', marginLeft: '35px', color: 'white', outline: 'none' }}
+                    onClick={() => history.push('/contests')}>
+                    <FontAwesomeIcon icon={faImages} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>Rankings</p>} arrow>
+                  <IconButton
+                    style={{ outline: 'none', color: 'white' }}
+                    aria-label="rankings"
+                    onClick={() => history.push('/users/ranking')}>
+                      <FontAwesomeIcon icon={faTrophy} />
+                  </IconButton>
+                </Tooltip>
+                {/* <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
+                {userState.user.role === 'Photo Junkie' &&
+                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Open Contests</MenuItem>}
+                {userState.user.role === 'Photo Junkie' &&
+                  <MenuItem className={classes.navLinks} onClick={() => history.push('/users/contests')}>My entries</MenuItem>}
+                {userState.user.role === 'Organizer' &&
+                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Contests Phase I </MenuItem>}
+                {userState.user.role === 'Organizer' &&
+                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests/phase/2')}> Contests Phase II </MenuItem>}
+                {userState.user.role === 'Organizer' &&
+                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests/phase/3')}>Finished Contests </MenuItem>}
+                {userState.user.role === 'Organizer' &&
+                  <MenuItem className={classes.navLinks} onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>} */}
+              </div>
+              <div className={classes.grow}></div>
+              <div style={{ display: 'flex' }}>
+                <NotificationsDropdown />
+                <ProfileDropdown />
+              </div>
+
             </Toolbar>
           </AppBar>
-        )}
+        )
+      }
     </div >
   );
 }
