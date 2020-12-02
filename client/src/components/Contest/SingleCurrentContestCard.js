@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import CountdownTimerComponent from './CountdownTimerComponent';
+import { Tooltip } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -52,25 +54,46 @@ const SingleCurrentContestView = (props) => {
     const { id } = contest;
     const classes = useStyles();
     const history = useHistory();
-
+    const userRole = useSelector(state => state.loginState.user.role);
+    console.log(contest)
     return (
         <Grid item xs={12} sm={3}   >
             <Card className={classes.card} >
                 <CardActionArea>
-                    <CardMedia
-                        image={`http://localhost:4000/public/${contest.contestCover}`}
-                        className={classes.media}
-                        onClick={() => history.push(`/contests/${id}`)}>
-                        <GridListTileBar
-                            actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />}
-                            title={contest.title}
-                            classes={{
-                                root: classes.counterBar,
-                                title: classes.text,
-                                actionIcon: classes.timer,
-                            }}>
-                        </GridListTileBar>
-                    </CardMedia>
+                    {userRole === 'Organizer' ? (
+                        <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>You have rated {contest.rated} out of {contest.entries} photos.</p>}>
+                            <CardMedia
+                                image={`http://localhost:4000/public/${contest.contestCover}`}
+                                className={classes.media}
+                                onClick={() => history.push(`/contests/${id}`)}>
+                                <GridListTileBar
+                                    actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />}
+                                    title={contest.title}
+                                    classes={{
+                                        root: classes.counterBar,
+                                        title: classes.text,
+                                        actionIcon: classes.timer,
+                                    }}>
+                                </GridListTileBar>
+                            </CardMedia>
+                        </Tooltip>
+                    ) : (
+                            <CardMedia
+                                image={`http://localhost:4000/public/${contest.contestCover}`}
+                                className={classes.media}
+                                onClick={() => history.push(`/contests/${id}`)}>
+                                <GridListTileBar
+                                    actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />}
+                                    title={contest.title}
+                                    classes={{
+                                        root: classes.counterBar,
+                                        title: classes.text,
+                                        actionIcon: classes.timer,
+                                    }}>
+                                </GridListTileBar>
+                            </CardMedia>
+                        )}
+
                 </CardActionArea>
             </Card>
         </Grid>
