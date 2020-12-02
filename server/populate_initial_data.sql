@@ -1068,7 +1068,7 @@ VALUES
 -- Reviews
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '21', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '1');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very nice photo!', '23', '1');
+INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'I love this photo!', '24', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '25', '1');
 
@@ -1450,9 +1450,6 @@ INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'I love this photo!', '24', '101');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('10', 'Amazing photo!', '25', '101');
 
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Amazing photo!', '21', '1');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '22', '1');
-INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('5', 'Very nice photo!', '23', '1');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('6', 'Very nice photo!', '21', '17');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('7', 'Very nice photo!', '22', '17');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'Amazing!', '21', '56');
@@ -1547,3 +1544,148 @@ INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Very nice photo!', '23', '191');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('8', 'I love this photo!', '24', '191');
 INSERT INTO `photo_contest_db`.`reviews` (`score`, `comment`, `user_id`, `photo_id`) VALUES ('9', 'Amazing photo!', '25', '191');
+
+---add organizers as jury to contests
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('1', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('2', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('2', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('2', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('2', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('2', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('3', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('3', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('3', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('3', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('3', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('4', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('4', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('4', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('4', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('4', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('5', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('5', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('5', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('5', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('5', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('6', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('6', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('6', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('6', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('6', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('7', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('7', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('7', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('7', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('7', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('8', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('8', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('8', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('8', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('8', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('9', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('9', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('9', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('9', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('9', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('10', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('10', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('10', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('10', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('10', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('11', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('11', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('11', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('11', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('11', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('12', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('12', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('12', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('12', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('12', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('13', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('13', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('13', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('13', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('13', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('14', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('14', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('14', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('14', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('14', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('15', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('15', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('15', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('15', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('15', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('16', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('16', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('16', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('16', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('16', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('17', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('17', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('17', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('17', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('17', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('18', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('18', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('18', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('18', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('18', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('19', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('19', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('19', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('19', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('19', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('20', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('20', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('20', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('20', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('20', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('21', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('21', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('21', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('21', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('21', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('22', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('22', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('22', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('22', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('22', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('23', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('23', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('23', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('23', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('23', '25');
+
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('24', '21');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('24', '22');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('24', '23');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('24', '24');
+INSERT INTO `photo_contest_db`.`contest_jury_invitations` (`contest_id`, `user_id`) VALUES ('24', '25');
