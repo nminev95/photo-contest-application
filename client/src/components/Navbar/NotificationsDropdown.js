@@ -80,20 +80,20 @@ const NotificationsDropdown = () => {
                 <IconButton
                     onClick={handleClick}
                     aria-label="show 4 new mails"
-                    color="inherit"
-                    style={{ height: "83px", outline: 'none' }}>
-                    <Badge badgeContent={notificationsCount} color="secondary">
-                        <NotificationsIcon />
+                    style={{ height: "83px", outline: 'none', color: 'black' }}>
+                    <Badge 
+                    badgeContent={notificationsCount} 
+                    color="secondary">
+                        <NotificationsIcon fontSize="large"/>
                     </Badge>
                 </IconButton>
             ) : (
                     <IconButton
                         onClick={handleClick}
                         aria-label="show 4 new mails"
-                        color="inherit"
-                        style={{ height: "83px", outline: 'none' }}>
+                        style={{ height: "83px", outline: 'none', color: 'black' }}>
                         <Badge color="secondary">
-                            <NotificationsIcon />
+                            <NotificationsIcon fontSize="large"/>
                         </Badge>
                     </IconButton>
                 )}

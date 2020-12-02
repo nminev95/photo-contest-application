@@ -177,7 +177,7 @@ Request Body
 11. Please, note that there are several pre-created users who are currently participating in most of the contests: 
  - To test all the features that each **participant(Photo Junkie)** can access, log in with the following credentials:
 
-     _username_: `john_33`
+     _username_: `john_wick33`
 
      _password_: `ASDF123!`
 

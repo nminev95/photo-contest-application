@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+
   const classes = useStyles();
   const history = useHistory();
   const userState = useSelector(state => state.loginState);
@@ -65,8 +66,7 @@ const Navbar = () => {
       {!userState.isLogged ? (
         <AppBar
           position="static"
-          className={classes.appBar}
-          style={{ backgroundColor: "#2D3142" }} >
+          style={{ backgroundColor: 'white' }} >
           <Toolbar
             style={{ paddingRight: "0", paddingLeft: "0" }}>
             <div
@@ -82,14 +82,14 @@ const Navbar = () => {
               className={classes.grow} />
             <Button
               onClick={() => history.push('/users/register')}
-              style={{ marginLeft: "5px", marginRight: "10px", color: "white" }}
-              variant="outlined">
+              style={{ marginLeft: "5px", marginRight: "10px", backgroundColor: "#c2185b", color: 'white' }}
+              variant="contained" >
               Register
               </Button>
             <Button
               onClick={() => history.push('/users/login')}
-              style={{ marginLeft: "5px", marginRight: "10px", color: "white" }}
-              variant="outlined" >
+              style={{ marginLeft: "5px", marginRight: "10px", backgroundColor: "#c2185b", color: 'white' }}
+              variant="contained" >
               Sign in
               </Button>
           </Toolbar>
@@ -97,7 +97,7 @@ const Navbar = () => {
       ) : (
           <AppBar
             position="static"
-            style={{ backgroundColor: "#2D3142" }}>
+            style={{ backgroundColor: "white" }}>
             <Toolbar
               style={{ paddingRight: "0", paddingLeft: "0" }}>
               <div
@@ -119,9 +119,11 @@ const Navbar = () => {
                   arrow>
                   <IconButton
                     aria-label="home"
-                    style={{ color: 'white', outline: 'none' }}
+                    style={{ color: 'black', outline: 'none' }}
                     onClick={() => history.push('/home')}>
-                    <FontAwesomeIcon icon={faHome} />
+                    <FontAwesomeIcon
+                      icon={faHome}
+                      style={{ fontSize: 33 }} />
                   </IconButton>
                 </Tooltip>
                 <Tooltip
@@ -131,9 +133,11 @@ const Navbar = () => {
                   arrow>
                   <IconButton
                     aria-label="contests"
-                    style={{ marginRight: '35px', marginLeft: '35px', color: 'white', outline: 'none' }}
+                    style={{ marginRight: '35px', marginLeft: '35px', color: 'black', outline: 'none' }}
                     onClick={() => history.push('/contests')}>
-                    <FontAwesomeIcon icon={faImages} />
+                    <FontAwesomeIcon
+                      icon={faImages}
+                      style={{ fontSize: 33 }} />
                   </IconButton>
                 </Tooltip>
                 {userState.user.role === 'Photo Junkie' &&
@@ -143,23 +147,28 @@ const Navbar = () => {
                   </p>}
                     arrow>
                     <IconButton
-                      style={{ outline: 'none', color: 'white' }}
+                      style={{ outline: 'none', color: 'black' }}
                       aria-label="my entries"
                       onClick={() => history.push('/users/contests')}>
-                      <FontAwesomeIcon icon={faCameraRetro} />
+                      <FontAwesomeIcon
+                        icon={faCameraRetro}
+                        style={{ fontSize: 33 }} />
                     </IconButton>
                   </Tooltip>
                 }
                 {userState.user.role === 'Organizer' &&
-                  <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto' }}>
-                    Rankings
+                  <Tooltip
+                    title={<p style={{ fontSize: '17px', margin: '8px auto' }}>
+                      Rankings
                   </p>}
                     arrow>
                     <IconButton
-                      style={{ outline: 'none', color: 'white' }}
+                      style={{ outline: 'none', color: 'black' }}
                       aria-label="rankings"
                       onClick={() => history.push('/users/ranking')}>
-                      <FontAwesomeIcon icon={faTrophy} />
+                      <FontAwesomeIcon
+                        icon={faTrophy}
+                        style={{ fontSize: 33 }} />
                     </IconButton>
                   </Tooltip>
                 }
