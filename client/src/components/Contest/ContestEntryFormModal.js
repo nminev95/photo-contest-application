@@ -238,7 +238,7 @@ const OpenEntryFormButton = (props) => {
     const renderEnrollButton = () => {
 
         switch (true) {
-            case (entries && entries.some(entry => entry.user_id === userInfo.user.sub)):
+            case (entries && entries.some(entry => entry.user_id === userInfo.user.sub) || (contestInfo && contestInfo.restrictions_id === 2)):
                 return;
             case (enrolledUsers && enrolledUsers.some((user) => user.user_id === userInfo.user.sub)):
                 return (

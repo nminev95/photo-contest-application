@@ -240,7 +240,7 @@ const changeNotificationToRead = async (userId, contestId) => {
 
     const sql2 = `
         UPDATE 
-            contest_jury_invitations
+            private_contest_invitations
         SET 
             isRead = 1
         WHERE 
