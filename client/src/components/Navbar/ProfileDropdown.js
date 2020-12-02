@@ -70,7 +70,6 @@ const ProfileDropdown = () => {
     const dispatch = useDispatch()
 
     const handleLogout = () => {
-        
         axiosInstance.delete(authEndpoints.logoutUser)
             .catch((err) => {
                 if (err.response.status === 500) {
@@ -83,8 +82,8 @@ const ProfileDropdown = () => {
                 }
             }).then(() => {
                 socket.emit('logout', JSON.stringify(userState.user.sub));
-                localStorage.clear();
                 dispatch(logout());
+                localStorage.clear();
                 history.push('/');
             })
     }

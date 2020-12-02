@@ -220,10 +220,20 @@ const OpenEntryFormButton = (props) => {
                 )
             case (userInfo.user.role === 'Organizer'):
                 return;
-            case (contestInfo.phase_id === 1 && enrolledUsers.some((user) => user.user_id === userInfo.user.sub)):
+            case (contestInfo.phase_id === 1 && enrolledUsers.some((user) => user.user_id === userInfo.user.sub && contestInfo.restrictions_id === 1)):
                 return (
                     <Button
                         style={{ outline: 'none', marginRight: '10px' }}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleShow}>
+                        Upload photo
+                    </Button>
+                )
+            case (contestInfo.phase_id === 1 && enrolledUsers.some((user) => user.user_id === userInfo.user.sub && contestInfo.restrictions_id === 2)):
+                return (
+                    <Button
+                        style={{ outline: 'none' }}
                         variant="contained"
                         color="primary"
                         onClick={handleShow}>

@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faCamera } from '@fortawesome/free-solid-svg-icons';
 import { Tooltip } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles({
 const FilterPublicPrivateContestsTabs = ({ tabValue, handleTabChange }) => {
 
     const classes = useStyles();
+    const privateContests = useSelector(state => state.privateContestsState);
 
     return (
         <Paper
@@ -35,15 +37,24 @@ const FilterPublicPrivateContestsTabs = ({ tabValue, handleTabChange }) => {
                     style={{ outline: 'none' }}
                     label="Open contests"
                     value='Open contests' />
-                
-                <Tooltip title="You aren't participating in any private contests in the moment.">
-                    <Tab
-                        disabled
-                        icon={<FontAwesomeIcon style={{ fontSize: '25px' }} icon={faEyeSlash} />}
-                        style={{ outline: 'none' }}
-                        label="Invitational"
-                        value='Invitational' />
-                </Tooltip>
+                {privateContests && privateContests.length === 0 ? (
+                    <Tooltip title={<p style={{ fontSize: '15px', margin: '8px auto', lineHeight: '1em' }}>You aren't participating in any private contests in the moment.</p>}>
+                        <span>
+                            <Tab
+                                disabled
+                                icon={<FontAwesomeIcon style={{ fontSize: '25px' }} icon={faEyeSlash} />}
+                                style={{ outline: 'none', pointerEvents: 'none' }}
+                                label="Invitational"
+                                value='Invitational' />
+                        </span>
+                    </Tooltip>
+                ) : (
+                        <Tab
+                            icon={<FontAwesomeIcon style={{ fontSize: '25px' }} icon={faEyeSlash} />}
+                            style={{ outline: 'none' }}
+                            label="Invitational"
+                            value='Invitational' />
+                    )}
             </Tabs>
         </Paper>
     );

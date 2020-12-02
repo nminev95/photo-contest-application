@@ -1,4 +1,4 @@
-import { setAllContestsData, setContestPhaseTwoData, setFinishedContestsData } from '../../redux/actions/index';
+import { setAllContestsData, setContestPhaseTwoData, setFinishedContestsData, setPrivateContests } from '../../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import AllContestsBox from './../../components/Contest/AllContestsBox';
@@ -14,14 +14,30 @@ const AllContestsPage = () => {
     const firstPhaseContests = useSelector(state => state.allContestState);
     const secondPhaseContests = useSelector(state => state.contestsPhaseTwoState);
     const finishedContests = useSelector(state => state.finishedContestsState);
+    const privateContests = useSelector(state => state.privateContestsState);
 
     useEffect(() => {
         if (firstPhaseContests.length === 0) {
             axiosInstance.get(contestEndpoints.allContests)
-            .then((response) => dispatch(setAllContestsData(response.data)))
-            .catch((error) => setError(error));
+                .then((response) => {
+                    if (userRole === 'Organizer') {
+                        dispatch(setAllContestsData(response.data))
+                    } else {
+                        const removedPrivateContests = response.data.filter((contest) => contest.restrictions_id === 1);
+                        dispatch(setAllContestsData(removedPrivateContests))
+                    }
+                })
+                .catch((error) => setError(error));
         }
     }, [dispatch]);
+
+    useEffect(() => {
+        if (privateContests.length === 0) {
+            axiosInstance.get(contestEndpoints.getPrivateContests)
+                .then((response) => dispatch(setPrivateContests(response.data)))
+                .catch((error) => setError(error));
+        }
+    }, []);
 
     useEffect(() => {
         if (userRole === 'Organizer' && secondPhaseContests.length === 0) {
@@ -44,7 +60,7 @@ const AllContestsPage = () => {
             { !error ? (
                 <AllContestsBox />
             ) : (
-                <EmptyPageComponent />
+                    <EmptyPageComponent />
                 )
             }
         </>

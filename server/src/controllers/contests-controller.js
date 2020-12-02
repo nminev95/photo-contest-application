@@ -32,13 +32,10 @@ contestsController
         async (req, res) => {
 
             const userId = req.user.id;
-            const { contests, error } = await contestsService.getAllPrivateContestsForUser(contestsData)(+userId);
+            const { contests } = await contestsService.getAllPrivateContestsForUser(contestsData)(+userId);
 
-            if (error === ERRORS.RECORD_NOT_FOUND) {
-                res.status(404).send({ message: 'You are not in any private contests!' });
-            } else {
-                res.status(200).send(contests);
-            }
+            res.status(200).send(contests);
+           
         },
     )
     .get('/phase/2',

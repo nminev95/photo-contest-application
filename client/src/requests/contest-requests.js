@@ -1,5 +1,6 @@
 const contestEndpoints = {
     allContests: '/contests',
+    getPrivateContests: '/contests/private',
     contestsPhaseTwo: '/contests/phase/2',
     finishedContests: '/contests/phase/3',
     singleContest: '/contests/',

@@ -48,6 +48,7 @@ const AllContestsBox = () => {
     const firstPhaseContests = useSelector(state => state.allContestState);
     const secondPhaseContests = useSelector(state => state.contestsPhaseTwoState);
     const finishedContests = useSelector(state => state.finishedContestsState);
+    const privateContests = useSelector(state => state.privateContestsState);
     const userRole = useSelector(state => state.loginState.user.role);
 
     const handlePhasesTabChange = (event, newValue) => {
@@ -111,9 +112,9 @@ const AllContestsBox = () => {
                 </>
             ) : (
                     <>
-                        <FilterPublicPrivateContestsTabs 
-                        tabValue={restrictionsTabValue} 
-                        handleTabChange={handleRestrictionsTabChange} />
+                        <FilterPublicPrivateContestsTabs
+                            tabValue={restrictionsTabValue}
+                            handleTabChange={handleRestrictionsTabChange} />
                         <Container
                             className={classes.container} >
                             {restrictionsTabValue === 'Open contests' ? (
@@ -125,7 +126,14 @@ const AllContestsBox = () => {
                                         contest={contest}
                                         key={contest.id} />)}
                                 </Grid>
-                            ) : (null)}
+                            ) : (<Grid
+                                container
+                                spacing={5}
+                                className={classes.cardGrid}  >
+                                {privateContests.map((contest) => <SingleContestCard
+                                    contest={contest}
+                                    key={contest.id} />)}
+                            </Grid>)}
                         </Container>
                     </>
                 )}

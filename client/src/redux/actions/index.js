@@ -110,3 +110,10 @@ export const setUsers = (users) => {
         payload: users,
     }
 } 
+
+export const setPrivateContests = (contests) => {
+    return {
+        type: 'SET_PRIVATE_CONTESTS',
+        payload: contests,
+    }
+}

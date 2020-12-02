@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import contestsData from '../data/contests-data.js';
 import ERRORS from './../constants/service-errors.js';
 
 /**
@@ -80,13 +79,6 @@ const getAllOpenContests = contestsData => {
 const getAllPrivateContestsForUser = contestsData => {
     return async (userId) => {
         const contests = await contestsData.getAllUserPrivateContests(userId);
-
-        if (!contests.length) {
-            return {
-                error: ERRORS.RECORD_NOT_FOUND,
-                contests: null,
-            };
-        }
 
         return { error: null, contests: contests };
     };
@@ -457,7 +449,7 @@ const getFinishedAndUnawardedContests = contestsData => {
 * @async
 * @return {Promise<object>}
 */
-const awardPointsForFinishedContests = usersData => {
+const awardPointsForFinishedContests = (usersData, contestsData) => {
     return async () => {
         const contests = await getFinishedAndUnawardedContests(contestsData)();
 
