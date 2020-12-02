@@ -4,12 +4,12 @@
 
 ## Description
 **Final Project Assignment for "Telerik Academy Alpha" with JavaScript:** </br>
-Design and implement a single-page web application that will allow photo lovers to take part in photo contests. There are two types of users: Photo Junkies and Organizers. Each role has a different view depending on the contest phase. 
+Design and implement a single-page web application that will allow photo lovers to take part in photo contests. There are two types of users: Photo Junkies and Organizers. Each role has a different view depending on the contest phase. Both of roles are able to explore all Open contests in Phase I. In Phase II Organizers can leave a review but Photo Junkies can not upload photos. All past conests are in Phase III.
 
 ### Photo Junkies
 - Authenticate users - register/login
 - Photo Junkies can explore all the Open Contests (phase 1)
-- Photo Junkies can upload just one phoro per contest 
+- Photo Junkies can upload just one photo per contest 
 - Photo Junkies are able to check all the contests they are currently participating in
 - They are able to check all their past contests
 - In their Profile page they can check their scores and rank

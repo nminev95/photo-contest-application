@@ -217,6 +217,7 @@ const addUserPoints = async (points, ids) => {
         return await pool.query(sql, [points, id]);
     });
 };
+
 /**
 * Changes notification status.
 * @async
@@ -292,6 +293,11 @@ const getNotificationsById = async (id) => {
     return notifications;
 };
 
+/**
+* Gets all users from the database.
+* @async
+* @return {Promise<object>}
+*/
 const getAllUsersFromDatabase = async () => {
     const sql =
         `SELECT

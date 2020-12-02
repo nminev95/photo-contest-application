@@ -337,6 +337,7 @@ const getRecentlyExpSecondPhaseContests = contestsData => {
         return { error: null, recExpContests: copy };
     };
 };
+
 /**
 * Gets contest full information found by unique contest number.
 * @param module contests data SQL queries module.
@@ -388,7 +389,14 @@ const getContestResults = contestsData => {
     };
 };
 
-
+/**
+* Gets user current scores.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} userId - The unique user number.
+* @return {Promise<object>}
+*/
 const getUserScores = contestsData => {
     return async (id) => {
         const contest = await contestsData.getContestInfo(id);
@@ -475,6 +483,15 @@ const awardPointsForFinishedContests = usersData => {
     };
 };
 
+/**
+* Saves a record for user enrollment.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} contestId - The unique contest number.
+* @return {Promise<object>}
+*/
 const enrollUser = contestsData => {
     return async (userId, contestId) => {
         const contest = await contestsData.getContestInfo(contestId);
@@ -499,6 +516,15 @@ const enrollUser = contestsData => {
     };
 };
 
+/**
+* Removes a record for user enrollment.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} contestId - The unique contest number.
+* @return {Promise<object>}
+*/
 const disenrollUser = contestsData => {
     return async (userId, contestId) => {
         const contest = await contestsData.getContestInfo(contestId);
@@ -523,6 +549,15 @@ const disenrollUser = contestsData => {
     };
 };
 
+/**
+* Checks for missing reviews in contest.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} numberOfJuries - Total amount of jury members.
+* @param {number} id - The unique contest number.
+* @return {Promise<object>}
+*/
 const checkForMissingResultsAndFill = contestsData => {
     return async (id, numberOfJuries, contest) => {
         const { results } = await getContestResults(contestsData)(id);
@@ -558,6 +593,15 @@ const checkForMissingResultsAndFill = contestsData => {
     };
 };
 
+/**
+* Checks if the organizator has already voted.
+* @param module contests data SQL queries module.
+* @callback 
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} photoId - The unique photo number.
+* @return {Promise<object>}
+*/
 const checkIfUserHasVoted = contestsData => {
     return async (userId, photoId) => {
         const hasVoted = await contestsData.checkOrganizerHasVoted(userId, photoId);

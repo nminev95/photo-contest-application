@@ -351,6 +351,13 @@ const getRecentlyExpiringPhase2ContestsInfo = async () => {
     return await pool.query(sql);
 };
 
+/**
+* Gets unrated photos found by user and contest unique numbers.
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} contestId - The unique contest number.
+* @return {Promise<object>}
+*/
 const getNotRatedPhotosNumber = async (userId, contestId) => {
     const sql1 = `
         SELECT 
@@ -483,6 +490,13 @@ const markContestAwarded = async (id) => {
     return await pool.query(sql, [id]);
 };
 
+/**
+* Enrolls user in a contest.
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} contestId - The unique contest number.
+* @return {Promise<object>}
+*/
 const enrollUserInContest = async (userId, contestId) => {
     const sql = `
         INSERT INTO
@@ -494,6 +508,13 @@ const enrollUserInContest = async (userId, contestId) => {
     return await pool.query(sql, [userId, contestId]);
 };
 
+/**
+* Disenrolls user in a contest.
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} contestId - The unique contest number.
+* @return {Promise<object>}
+*/
 const disenrollUserFromContest = async (userId, contestId) => {
     const sql = `
         DELETE FROM
@@ -507,6 +528,13 @@ const disenrollUserFromContest = async (userId, contestId) => {
     return await pool.query(sql, [userId, contestId]);
 };
 
+/**
+* Saves a record for user invitation in the database.
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} contestId - The unique contest number.
+* @return {Promise<object>}
+*/
 const sendPrivateContestInvitations = async (contestId, userId) => {
     const sql = `
         INSERT INTO
@@ -518,6 +546,12 @@ const sendPrivateContestInvitations = async (contestId, userId) => {
     return await pool.query(sql, [contestId, userId]);
 };
 
+/**
+* Updates user points.
+* @async
+* @param {number} userId - The unique user number.
+* @return {Promise<object>}
+*/
 const awardParticipationPoints = async (userId) => {
     const sql = `
         UPDATE
@@ -531,6 +565,12 @@ const awardParticipationPoints = async (userId) => {
     return await pool.query(sql, [userId]);
 };
 
+/**
+* Updates user points.
+* @async
+* @param {number} userId - The unique user number.
+* @return {Promise<object>}
+*/
 const removeParticipationPoints = async (userId) => {
     const sql = `
         UPDATE
@@ -544,6 +584,12 @@ const removeParticipationPoints = async (userId) => {
     return await pool.query(sql, [userId]);
 };
 
+/**
+* Updates user points for a private contest.
+* @async
+* @param {number} userId - The unique user number.
+* @return {Promise<object>}
+*/
 const awardPrivateContestParticipationPoints = async (userId) => {
     const sql = `
         UPDATE
@@ -557,6 +603,13 @@ const awardPrivateContestParticipationPoints = async (userId) => {
     return await pool.query(sql, [userId]);
 };
 
+/**
+* Checks if the organizer has votes a photo.
+* @async
+* @param {number} userId - The unique user number.
+* @param {number} photoId - The unique photo number.
+* @return {Promise<object>}
+*/
 const checkOrganizerHasVoted = async (userId, photoId) => {
     const sql = `
         SELECT

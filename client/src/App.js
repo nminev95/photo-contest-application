@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import HomePage from './containers/HomePage/HomePage';
+import HomePage from './containers/HomePage/Homepage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import RegisterPage from './containers/RegisterPage/RegisterPage';
 import decode from 'jwt-decode';
@@ -12,6 +12,7 @@ import SingleContestPage from './containers/SingleContestPage/SingleContestPage'
 import AllContestsPage from './containers/AllContestsPage/AllContestsPage';
 import AllUserCurrentContestsPage from './containers/AllUserCurrentContestsPage/AllUserCurrentContestsPage';
 import UsersRankingPage from './containers/UsersRankingPage/UsersRankingPage';
+import Footer from './components/Footer/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, setNotifications } from './redux/actions';
 import socketIOClient from 'socket.io-client'; import { useEffect } from 'react';
@@ -63,6 +64,7 @@ const App = () => {
           <GuardedRoute exact path="/users/ranking" auth={isLoggedIn} component={UsersRankingPage} redirectRoute={'/'} />
           <GuardedRoute path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
         </Switch>
+        <Footer/>
       </Router>
     </div>
   );

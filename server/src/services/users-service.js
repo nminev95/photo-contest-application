@@ -208,6 +208,13 @@ const markNotificationRead = usersData => {
     };
 };
 
+/**
+* Gets all user notifications.
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const getAllUserNotifications = usersData => {
     return async (socket) => {
         const notifications = await usersData.getNotificationsById(socket.userId);
@@ -224,6 +231,13 @@ const getAllUserNotifications = usersData => {
     };
 };
 
+/**
+* Gets all users information from the database..
+* @param module users data SQL queries module.
+* @callback 
+* @async
+* @return {Promise<object>}
+*/
 const getAllUsers = usersData => {
     return async () => {
         const users = await usersData.getAllUsersFromDatabase();

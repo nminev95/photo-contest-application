@@ -61,13 +61,16 @@ const SingleCurrentContestView = (props) => {
             <Card className={classes.card} >
                 <CardActionArea>
                     {userRole === 'Organizer' ? (
-                        <Tooltip title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>You have rated {contest.rated} out of {contest.entries} photos.</p>}>
+                        <Tooltip
+                            title={<p style={{ fontSize: '17px', margin: '8px auto', lineHeight: '1em' }}>
+                                You have rated {contest.rated} out of {contest.entries} photos.</p>}>
                             <CardMedia
                                 image={`http://localhost:4000/public/${contest.contestCover}`}
                                 className={classes.media}
                                 onClick={() => history.push(`/contests/${id}`)}>
                                 <GridListTileBar
-                                    actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />}
+                                    actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent
+                                        contestData={contest} />}
                                     title={contest.title}
                                     classes={{
                                         root: classes.counterBar,
@@ -83,7 +86,8 @@ const SingleCurrentContestView = (props) => {
                                 className={classes.media}
                                 onClick={() => history.push(`/contests/${id}`)}>
                                 <GridListTileBar
-                                    actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent contestData={contest} />}
+                                    actionIcon={contest.phase_id !== 3 && <CountdownTimerComponent
+                                        contestData={contest} />}
                                     title={contest.title}
                                     classes={{
                                         root: classes.counterBar,
@@ -93,7 +97,6 @@ const SingleCurrentContestView = (props) => {
                                 </GridListTileBar>
                             </CardMedia>
                         )}
-
                 </CardActionArea>
             </Card>
         </Grid>

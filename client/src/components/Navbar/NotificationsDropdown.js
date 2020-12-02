@@ -81,10 +81,10 @@ const NotificationsDropdown = () => {
                     onClick={handleClick}
                     aria-label="show 4 new mails"
                     style={{ height: "83px", outline: 'none', color: 'black' }}>
-                    <Badge 
-                    badgeContent={notificationsCount} 
-                    color="secondary">
-                        <NotificationsIcon fontSize="large"/>
+                    <Badge
+                        badgeContent={notificationsCount}
+                        color="secondary">
+                        <NotificationsIcon fontSize="large" />
                     </Badge>
                 </IconButton>
             ) : (
@@ -92,8 +92,10 @@ const NotificationsDropdown = () => {
                         onClick={handleClick}
                         aria-label="show 4 new mails"
                         style={{ height: "83px", outline: 'none', color: 'black' }}>
-                        <Badge color="secondary">
-                            <NotificationsIcon fontSize="large"/>
+                        <Badge
+                            color="secondary">
+                            <NotificationsIcon
+                                fontSize="large" />
                         </Badge>
                     </IconButton>
                 )}
@@ -108,7 +110,8 @@ const NotificationsDropdown = () => {
                 >
                     {notificationsState.juryInvitations && notificationsState.juryInvitations.map((notification) => {
                         return (
-                            <MenuItem key={notification.contest_id}>
+                            <MenuItem
+                                key={notification.contest_id}>
                                 <SingleNotification
                                     notificationData={notification}
                                     handleClose={handleClose}

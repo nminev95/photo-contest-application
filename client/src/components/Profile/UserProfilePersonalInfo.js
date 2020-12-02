@@ -217,7 +217,6 @@ const UserProfilePersonalInfo = (props) => {
                             </Grid>
                         </div>
                     </Container>
-
                 </Grid>
             </Box>
         </div>

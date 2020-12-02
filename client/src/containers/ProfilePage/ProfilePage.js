@@ -82,7 +82,10 @@ const ProfilePage = () => {
     return (
         <>
             <Box className={styles.image} />
-            {userData && <UserProfilePersonalInfo userData={userData} showHistory={showHistory} toggleShowHistory={toggleShowHistory} />}
+            {userData && <UserProfilePersonalInfo
+                userData={userData}
+                showHistory={showHistory}
+                toggleShowHistory={toggleShowHistory} />}
             {showHistory ? (
                 renderHistory()
             ) : (

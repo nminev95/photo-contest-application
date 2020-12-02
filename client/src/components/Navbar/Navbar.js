@@ -76,19 +76,19 @@ const Navbar = () => {
                 style={{ maxHeight: '70px', margin: '10px' }}
                 src={logo}>
 
-              </img> 
+              </img>
             </div>
             <div
               className={classes.grow} />
             <Button
               onClick={() => history.push('/users/register')}
-              style={{ marginLeft: "5px", marginRight: "10px", backgroundColor: "#c2185b", color: 'white' }}
+              style={{ marginLeft: "5px", marginRight: "10px", backgroundColor: "#c2185b", color: 'white', outline: 'none' }}
               variant="contained" >
               Register
               </Button>
             <Button
               onClick={() => history.push('/users/login')}
-              style={{ marginLeft: "5px", marginRight: "10px", backgroundColor: "#c2185b", color: 'white' }}
+              style={{ marginLeft: "5px", marginRight: "10px", backgroundColor: "#c2185b", color: 'white', outline: 'none' }}
               variant="contained" >
               Sign in
               </Button>
@@ -186,8 +186,11 @@ const Navbar = () => {
                 {userState.user.role === 'Organizer' &&
                   <MenuItem className={classes.navLinks} onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>} */}
               </div>
-              <div className={classes.grow}></div>
-              <div style={{ display: 'flex' }}>
+              <div
+                className={classes.grow}>
+              </div>
+              <div
+                style={{ display: 'flex' }}>
                 <NotificationsDropdown />
                 <ProfileDropdown />
               </div>

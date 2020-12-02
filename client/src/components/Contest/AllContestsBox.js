@@ -111,7 +111,9 @@ const AllContestsBox = () => {
                 </>
             ) : (
                     <>
-                        <FilterPublicPrivateContestsTabs tabValue={restrictionsTabValue} handleTabChange={handleRestrictionsTabChange} />
+                        <FilterPublicPrivateContestsTabs 
+                        tabValue={restrictionsTabValue} 
+                        handleTabChange={handleRestrictionsTabChange} />
                         <Container
                             className={classes.container} >
                             {restrictionsTabValue === 'Open contests' ? (

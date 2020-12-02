@@ -247,8 +247,6 @@ const LoginPage = () => {
                             </Link>
                             </Grid>
                         </Grid>
-                        <Grid container>
-                        </Grid>
                     </form>
                 </div>
             </Grid>
