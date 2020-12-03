@@ -4,8 +4,7 @@ import ERRORS from '../constants/service-errors.js';
 import contestsData from '../data/contests-data.js';
 import contestsService from '../services/contests-service.js';
 import { createContestEntrySchema } from '../validations/schemas/create-contest-entry-schema.js';
-// import { createContestSchema } from '../validations/schemas/create-contest-schema.js';
-// import { createPhotoReviewSchema } from '../validations/schemas/create-photo-review-schema.js';
+import { createPhotoReviewSchema } from '../validations/schemas/create-photo-review-schema.js';
 import { createValidator } from '../validations/validator-middleware.js';
 import multer from 'multer';
 import storage from './../storage.js';
@@ -166,7 +165,6 @@ contestsController
     .post('/',
         authMiddleware,
         roleMiddleware(['Organizer']),
-        // createValidator(createContestSchema),
         multer({ storage: storage }).single('image'),
         async (req, res) => {
 
@@ -264,7 +262,7 @@ contestsController
         })
     .post('/:id/entries/:id/rate',
         authMiddleware,
-        // createValidator(createPhotoReviewSchema),
+        createValidator(createPhotoReviewSchema),
         async (req, res) => {
 
             const photoId = req.params.id;
