@@ -146,7 +146,7 @@ const RatePhotoPopper = ({ photoId, triggerRender }) => {
                 })
         }
     }
-
+ 
     return (
         <div>
             <Button
