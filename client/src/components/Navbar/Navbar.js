@@ -172,19 +172,6 @@ const Navbar = () => {
                     </IconButton>
                   </Tooltip>
                 }
-                {/* <MenuItem className={classes.navLinks} onClick={() => history.push('/home')}>Home</MenuItem>
-                {userState.user.role === 'Photo Junkie' &&
-                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Open Contests</MenuItem>}
-                {userState.user.role === 'Photo Junkie' &&
-                  <MenuItem className={classes.navLinks} onClick={() => history.push('/users/contests')}>My entries</MenuItem>}
-                {userState.user.role === 'Organizer' &&
-                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests')}> Contests Phase I </MenuItem>}
-                {userState.user.role === 'Organizer' &&
-                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests/phase/2')}> Contests Phase II </MenuItem>}
-                {userState.user.role === 'Organizer' &&
-                  <MenuItem className={classes.navLinks} onClick={() => history.push('/contests/phase/3')}>Finished Contests </MenuItem>}
-                {userState.user.role === 'Organizer' &&
-                  <MenuItem className={classes.navLinks} onClick={() => history.push('/users/ranking')}>Rankings</MenuItem>} */}
               </div>
               <div
                 className={classes.grow}>

@@ -32,13 +32,12 @@ const getContestById = contestsData => {
         if (contest.secondPhaseLimit < new Date()) {
             await contestsData.setNextPhase(id, 2);
             currentPhase = 3;
-            const { results } = await getContestResults(contestsData)(id);
-
-            results.map(async (result) => {
+            const results = await getContestResults(contestsData)(id);
+            results.results.map(async (result) => {
                 const reviewsArray = result.reviews;
                 if (reviewsArray.length !== numberOfJuries) {
                     const reviews = reviewsArray.reduce((acc, review) => {
-                        acc.add(review.reviewAuthorId);
+                        acc.add(review.reviewAuthourId);
 
                         return acc;
                     }, new Set());
@@ -48,11 +47,8 @@ const getContestById = contestsData => {
 
                         return acc;
                     }, new Set());
-                    console.log('revs', reviews)
 
-                    console.log('jur', juries)
                     for (const personId of reviews) {
-                        console.log(personId)
                         if (juries.has(personId)) {
                             juries.delete(personId);
                         }
@@ -190,13 +186,13 @@ const setNextContestPhase = contestsData => {
         if (new Date() > contest.secondPhaseLimit) {
             await contestsData.setNextPhase(id, 2);
             currentPhase = 3;
-            const { results } = await getContestResults(contestsData)(id);
-
-            results.map(async (result) => {
+            
+            const results = await getContestResults(contestsData)(id);
+            results.results.map(async (result) => {
                 const reviewsArray = result.reviews;
                 if (reviewsArray.length !== numberOfJuries) {
                     const reviews = reviewsArray.reduce((acc, review) => {
-                        acc.add(review.reviewAuthorId);
+                        acc.add(review.reviewAuthourId);
 
                         return acc;
                     }, new Set());
@@ -515,7 +511,7 @@ const getFinishedAndUnawardedContests = contestsData => {
 const awardPointsForFinishedContests = (usersData, contestsData) => {
     return async () => {
         const contests = await getFinishedAndUnawardedContests(contestsData)();
-        
+
         if (!contests) {
             return;
         }
@@ -523,7 +519,7 @@ const awardPointsForFinishedContests = (usersData, contestsData) => {
         contests.map(async (contest) => {
             const scores = await getUserScores(contestsData)(contest.id);
             const firstThree = [];
-          
+
             const userScoresMap = await scores.reduce((acc, score) => {
                 if (!acc.get(score.rating)) {
                     acc.set(score.rating, [score.user_id]);
@@ -534,7 +530,7 @@ const awardPointsForFinishedContests = (usersData, contestsData) => {
                 return acc;
             }, new Map());
 
-           
+
             await userScoresMap.forEach((value, key) => {
                 if (firstThree.length === 3) {
                     return;

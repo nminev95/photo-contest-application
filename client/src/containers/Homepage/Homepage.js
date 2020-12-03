@@ -78,7 +78,10 @@ const HomePage = () => {
 
     useEffect(() => {
         axiosInstance.get(userEndpoints.userProfile)
-            .then((response) => dispatch(setUserData(response.data)))
+            .then((response) => {
+                localStorage.setItem('avatar', response.data.avatar)
+                dispatch(setUserData(response.data))
+            })
             .catch((error) => {
                 if (error.response.status === 404) {
                     swal({

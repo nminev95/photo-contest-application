@@ -286,6 +286,7 @@ const OpenEntryFormButton = (props) => {
             {userState.user.role === 'Photo Junkie' && renderEnterContestButton()}
             {userState.user.role === 'Photo Junkie' && renderEnrollButton()}
             <Modal
+                style={{ overflow: 'inherit' }}
                 show={show}
                 onHide={handleClose}
                 backdrop="static"

@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import { useState } from 'react'
 import CreateContestForm from './CreateContestForm';
 
-const OpenCreateContestFormButton = () => {
+const OpenCreateContestFormButton = ({ handleCloseMenu }) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -15,11 +15,16 @@ const OpenCreateContestFormButton = () => {
                 style={{ outline: 'none' }}
                 variant="contained"
                 color="primary"
-                onClick={handleShow}>
+                onClick={() => {
+                    handleShow();
+                    handleCloseMenu();
+                }}>
                 Create contest
             </Button>
             <Modal
+                style={{ overflow: 'inherit' }}
                 show={show}
+                scrollable={true}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
@@ -35,8 +40,8 @@ const OpenCreateContestFormButton = () => {
                 <Modal.Body>
                     You have almost organized your contest! You just need to specify the title, the category it belongs to, a description for the contest
                     and set up the contest limitations and restrictions.
-                    <CreateContestForm 
-                    handleClose={handleClose} />
+                    <CreateContestForm
+                        handleClose={handleClose} />
                 </Modal.Body>
             </Modal>
         </>

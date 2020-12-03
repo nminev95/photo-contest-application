@@ -51,7 +51,8 @@ Design and implement a single-page web application that will allow photo lovers 
 
 6. Run **redis-server.exe**
 
-7. Run **redis-cli.exe**
+7. Run **redis-cli.exe** and test if the server is working by writing **PING**. You should get back as a message **PONG**.
+
 8. Setup `config.js` file. It needs to be on root level in api folder where is `package.json` and other config files.
 
    - `config.json` file with your settings:
@@ -223,7 +224,7 @@ and our mentor - _Martin Nedyalkov_
 ### Authors and Contributors
 
 - Mariya Velikova -  `m.velikovaa@gmail.com`
-- Niki Minev  -  `n.minev42@gmail.com`
+- Niki Minev  -  `nminev95@gmail.com`
 
 ---
 ### Printscreens

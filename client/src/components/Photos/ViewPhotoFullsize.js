@@ -19,6 +19,7 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
   const toggleVoteMode = () => {
     setTriggerVote(prevState => !prevState);
   }
+  
   const renderNextPhoto = (contestEntries, index) => {
     if (index === contestEntries.length - 1) {
       setCurrentPhoto(contestEntries[0]);

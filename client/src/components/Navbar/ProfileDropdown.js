@@ -107,11 +107,11 @@ const ProfileDropdown = () => {
                     color="inherit"
                     onClick={handleClick}
                 >
-                    {userInfo  &&  
-                    <Avatar
-                        alt={userInfo.username}
-                        src={`http://localhost:4000/public/avatars/${userInfo.avatar}`} />                    
-                    }  
+                    {userInfo &&
+                        <Avatar
+                            alt={userInfo.username}
+                            src={`http://localhost:4000/public/avatars/${localStorage.getItem('avatar')}`} />
+                    }
                 </IconButton>
             </MenuItem>
             <StyledMenu
@@ -123,7 +123,7 @@ const ProfileDropdown = () => {
                 onClose={handleClose}
             >
                 {userState.user.role === 'Organizer' &&
-                    <OpenCreateContestFormButton />
+                        <OpenCreateContestFormButton handleCloseMenu={handleClose} />
                 }
                 <StyledMenuItem
                     onClick={() => {

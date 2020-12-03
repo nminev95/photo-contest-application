@@ -69,15 +69,15 @@ VALUES ('akhil_43', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0Qg
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `avatarUrl`, `points`, `registerDate`, `rank_id`) 
 VALUES ('igracio_s', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Ignacio_Sch@yahoo.com', 'Ignacio', 'Schmidt', 'ignacio.jpg', '1340', (SELECT NOW()), '4');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `points`, `registerDate`, `rank_id`, `role_id`) 
-VALUES ('evelyn_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Evelyn_Smith@yahoo.com', 'Evelyn', 'Smith', '1340', (SELECT NOW()), '4', '2');
+VALUES ('evelyn_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Evelyn_Smith@yahoo.com', 'Evelyn', 'Smith', 'evelyn.jpg', '1340', (SELECT NOW()), '4', '2');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `points`, `registerDate`, `rank_id`, `role_id`) 
-VALUES ('david_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'David_Gray@yahoo.com', 'David', 'Gray', '1640', (SELECT NOW()), '4', '2');
+VALUES ('david_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'David_Gray@yahoo.com', 'David', 'Gray', 'david.jpg', '1640', (SELECT NOW()), '4', '2');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `points`, `registerDate`, `rank_id`, `role_id`) 
-VALUES ('christian_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Christian_Young@yahoo.com', 'Christian', 'Young', '1240', (SELECT NOW()), '4', '2');
+VALUES ('christian_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Christian_Young@yahoo.com', 'Christian', 'Young', 'christian.jpg', '1240', (SELECT NOW()), '4', '2');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `points`, `registerDate`, `rank_id`, `role_id`) 
-VALUES ('christina_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Christina_Becker@yahoo.com', 'Christina', 'Becker', '1140', (SELECT NOW()), '4', '2');
+VALUES ('christina_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Christina_Becker@yahoo.com', 'Christina', 'Becker', 'kristina.jpg', '1140', (SELECT NOW()), '4', '2');
 INSERT INTO `photo_contest_db`.`users` (`username`, `password`, `email`, `firstName`, `lastName`, `points`, `registerDate`, `rank_id`, `role_id`) 
-VALUES ('tamara_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Tamara_Anderson@yahoo.com', 'Tamara', 'Anderson', '1040', (SELECT NOW()), '4', '2');
+VALUES ('tamara_org', '$2b$10$FZbFdz..0lh99jcDVY1xreabORv/rHlWykFS1nHueNRu8pPei0QgC', 'Tamara_Anderson@yahoo.com', 'Tamara', 'Anderson', 'tamara.jpg', '1040', (SELECT NOW()), '4', '2');
 -- pass: ASDF123!
 
 -- Contests

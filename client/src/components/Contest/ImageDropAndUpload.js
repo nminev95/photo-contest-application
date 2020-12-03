@@ -40,7 +40,8 @@ const img = {
 const useStyles = makeStyles((theme) => ({
     uploadBox: {
         marginTop: '30px',
-        marginBottom: '10px',
+        marginBottom: '30px',
+        marginLeft: '85px',
         width: '30vw',
         [theme.breakpoints.only('xs')]: {
             width: '60vw',

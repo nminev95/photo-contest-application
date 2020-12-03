@@ -94,8 +94,8 @@ const RatePhotoPopper = ({ photoId, triggerRender }) => {
                             })
                             .then((response) => {
                                 if (response) {
-                                    handleClick();
                                     triggerRender();
+                                    handleClick();
                                     swal({
                                         title: "Success!",
                                         text: "Your review has been successfully submitted.",
@@ -131,6 +131,7 @@ const RatePhotoPopper = ({ photoId, triggerRender }) => {
                             })
                             .then((response) => {
                                 if (response) {
+                                    triggerRender();
                                     handleClick();
                                     swal({
                                         title: "Success!",
