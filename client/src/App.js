@@ -28,14 +28,12 @@ const App = () => {
     dispatch(login(decode(accessToken)));
   }
 
-  useEffect(() => {
-    socket.on("connect", () => {
-      if (accessToken) {
-        const user = decode(localStorage.getItem('accessToken'))
-        socket.emit('login', JSON.stringify(user));
-      }
-    });
-  }, [])
+  socket.on("connect", () => {
+    if (accessToken) {
+      const user = decode(localStorage.getItem('accessToken'))
+      socket.emit('login', JSON.stringify(user));
+    }
+  });
 
   socket.on("notifications", (notifications) => {
     dispatch(setNotifications(notifications))
@@ -57,14 +55,14 @@ const App = () => {
           <GuardedRoute exact path="/" auth={!isLoggedIn} component={LandingPage} redirectRoute={'/home'} />
           <GuardedRoute exact path="/users/register" auth={!isLoggedIn} component={RegisterPage} redirectRoute={'/home'} />
           <GuardedRoute exact path="/users/login" auth={!isLoggedIn} component={LoginPage} redirectRoute={'/home'} />
-          <GuardedRoute path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
+          <GuardedRoute exact path="/home" auth={isLoggedIn} component={HomePage} redirectRoute={'/'} />
           <GuardedRoute exact path="/profile" auth={isLoggedIn} component={ProfilePage} redirectRoute={'/'} />
           <GuardedRoute exact path="/contests" auth={isLoggedIn} component={AllContestsPage} redirectRoute={'/'} />
           <GuardedRoute exact path="/users/contests" auth={isLoggedIn} component={AllUserCurrentContestsPage} redirectRoute={'/'} />
           <GuardedRoute exact path="/users/ranking" auth={isLoggedIn} component={UsersRankingPage} redirectRoute={'/'} />
           <GuardedRoute path="/contests/:id" auth={isLoggedIn} component={SingleContestPage} redirectRoute={'/'} />
         </Switch>
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );

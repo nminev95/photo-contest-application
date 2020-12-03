@@ -141,8 +141,7 @@ const LoginPage = () => {
                 }
             })
             .catch((error) => {
-                console.log(error)
-                if (error.response.status === 401) {
+                if (error) {
                     swal({
                         title: "Oops!",
                         text: "Looks like the entered username/password combination is invalid.",
