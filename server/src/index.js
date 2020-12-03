@@ -11,6 +11,7 @@ import authController from './controllers/auth-controller.js';
 import usersService from './services/users-service.js';
 import usersData from './data/users-data.js';
 import contestsData from './data/contests-data.js';
+import contestsService from './services/contests-service.js';
 
 const socketsMap = new Map();
 const require = createRequire(import.meta.url);
@@ -103,5 +104,5 @@ app.all('*', (req, res) =>
 
 server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
-    // setInterval(() => contestsService.awardPointsForFinishedContests(usersData, contestsData)(), 60000);
+    setInterval(() => contestsService.awardPointsForFinishedContests(usersData, contestsData)(), 60000);
 });

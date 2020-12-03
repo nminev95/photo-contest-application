@@ -196,6 +196,7 @@ Request Body
  - [React JS](https://reactjs.org/) 
  - [Express.js](https://expressjs.com/)
  - [MariaDB](https://mariadb.org/)
+ - [Socket.io](https://socket.io/)
  - [Redux](https://redux.js.org/) 
  - [Redis](https://redis.io/)
  - [Material-UI](https://material-ui.com/) 
@@ -262,7 +263,9 @@ and our mentor - _Martin Nedyalkov_
 
 - Create Contest - Organizer
   
-![Create contest](/printscreens/create_contest.png)
+![Create contest](/printscreens/create_contest1.png)
+
+![Create contest](/printscreens/create_contest2.png)
 
 </br>
 
@@ -294,6 +297,18 @@ and our mentor - _Martin Nedyalkov_
 - Photo Junkie profile
 
 ![Current Contests](/printscreens/profilepage_basic_info.png)
+
+</br>
+
+- User notifications
+
+![Current Contests](/printscreens/live_notifications.png)
+
+</br>
+
+- User - currently no unread notifications
+
+![Current Contests](/printscreens/no_notifications.png)
 
 </br>
 
