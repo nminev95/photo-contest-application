@@ -14,7 +14,11 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
   const contestEntries = contestInfo.entries;
   const contestJury = contestInfo.jury;
   const [hasOrganizerVoted, setHasOrganizerVoted] = useState(false);
+  const [triggerVote, setTriggerVote] = useState(false);
 
+  const toggleVoteMode = () => {
+    setTriggerVote(prevState => !prevState);
+  }
   const renderNextPhoto = (contestEntries, index) => {
     if (index === contestEntries.length - 1) {
       setCurrentPhoto(contestEntries[0]);
@@ -40,7 +44,7 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
       axiosInstance.get(`${contestEndpoints.singleContest}${contestInfo.id}${contestEndpoints.contestEntry}${currentPhoto.id}/voted`)
         .then(res => setHasOrganizerVoted(res.data))
     }
-  }, [currentPhoto])
+  }, [currentPhoto, currentIndex, triggerVote])
 
   const renderLightbox = () => {
     switch (true) {
@@ -73,7 +77,8 @@ const ViewPhotoFullsize = ({ handleClose, setCurrentPhoto, setCurrentIndex, curr
             animationDuration={0}
             mainSrc={`http://localhost:4000/public/${contestEntries[currentIndex].originalSize}`}
             toolbarButtons={[<RatePhotoPopper
-              photoId={currentPhoto.id} />]}
+              photoId={currentPhoto.id}
+              triggerRender={toggleVoteMode} />]}
             nextSrc={`true`}
             prevSrc={'true'}
             imagePadding={30}

@@ -431,7 +431,7 @@ const getNotRatedPhotosNumber = async (userId, contestId) => {
 const getAllContestResults = async (id) => {
     const sql = `
         SELECT 
-            p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT username from users WHERE id = p.user_id) AS author, 
+            p.id, p.title, p.story, p.originalSize, p.thumbnailSize, p.date, (SELECT username from users WHERE id = p.user_id) AS author, r.user_id as reviewAuthourId,
             (SELECT avatarUrl from users WHERE id = p.user_id) AS authorAvatar,
             (SELECT type FROM ranks WHERE id = (SELECT rank_id from users WHERE id = r.user_id)) AS reviewAuthorRank,
             (SELECT points FROM users WHERE id = r.user_id) AS reviewAuthorPoints,

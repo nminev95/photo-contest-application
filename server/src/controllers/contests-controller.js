@@ -264,7 +264,7 @@ contestsController
         })
     .post('/:id/entries/:id/rate',
         authMiddleware,
-        createValidator(createPhotoReviewSchema),
+        // createValidator(createPhotoReviewSchema),
         async (req, res) => {
 
             const photoId = req.params.id;

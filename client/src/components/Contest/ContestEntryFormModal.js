@@ -40,6 +40,7 @@ const OpenEntryFormButton = (props) => {
     const contestInfo = useSelector(state => state.singleContestState)
     const userInfo = useSelector(state => state.loginState)
     const entries = contestInfo.entries;
+    const jury = contestInfo.jury;
     const enrolledUsers = contestInfo.enrolled;
     const styles = useStyles();
 
@@ -119,6 +120,13 @@ const OpenEntryFormButton = (props) => {
             buttons: true,
             dangerMode: true,
         }).then((isTrue) => {
+            const copy = { ...contestInfo }
+            copy.entries.push({
+                title: photoData.title.value,
+                description: photoData.description.value,
+                image: file[0],
+            })
+            dispatch(setContestDetails(copy))
             if (isTrue) {
                 upload(formData, id);
                 handleClose();
@@ -249,6 +257,8 @@ const OpenEntryFormButton = (props) => {
 
         switch (true) {
             case (entries && entries.some(entry => entry.user_id === userInfo.user.sub) || (contestInfo && contestInfo.restrictions_id === 2)):
+                return;
+            case (jury && jury.some(jury => jury.id === userInfo.user.sub)):
                 return;
             case (enrolledUsers && enrolledUsers.some((user) => user.user_id === userInfo.user.sub)):
                 return (

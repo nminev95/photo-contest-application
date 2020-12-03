@@ -6,8 +6,8 @@ import ContestEntryFormModal from "../../components/Contest/ContestEntryFormModa
 
 
 
-const UploadPhoto = () => {
-
+const UploadPhoto = ({ triggerRender }) => {
+    
     const Upload = (formData, id) => {
         axiosInstance.post(contestEndpoints.addNewPhoto + `${id}`, formData)
             .catch((error) => {
@@ -22,6 +22,7 @@ const UploadPhoto = () => {
             })
             .then((response) => {
                 if (response) {
+                    triggerRender();
                     swal({
                         title: "Success!",
                         text: "Your photo has been uploaded successfully!",

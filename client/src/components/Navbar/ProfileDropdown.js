@@ -81,9 +81,9 @@ const ProfileDropdown = () => {
                     })
                 }
             }).then(() => {
+                localStorage.clear();
                 socket.emit('logout', JSON.stringify(userState.user.sub));
                 dispatch(logout());
-                localStorage.clear();
                 history.push('/');
             })
     }

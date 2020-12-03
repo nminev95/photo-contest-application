@@ -32,7 +32,40 @@ const getContestById = contestsData => {
         if (contest.secondPhaseLimit < new Date()) {
             await contestsData.setNextPhase(id, 2);
             currentPhase = 3;
-            await checkForMissingResultsAndFill(id, numberOfJuries, contest);
+            const { results } = await getContestResults(contestsData)(id);
+
+            results.map(async (result) => {
+                const reviewsArray = result.reviews;
+                if (reviewsArray.length !== numberOfJuries) {
+                    const reviews = reviewsArray.reduce((acc, review) => {
+                        acc.add(review.reviewAuthorId);
+
+                        return acc;
+                    }, new Set());
+
+                    const juries = contest.jury.reduce((acc, person) => {
+                        acc.add(person.id);
+
+                        return acc;
+                    }, new Set());
+                    console.log('revs', reviews)
+
+                    console.log('jur', juries)
+                    for (const personId of reviews) {
+                        console.log(personId)
+                        if (juries.has(personId)) {
+                            juries.delete(personId);
+                        }
+                    }
+
+                    if (juries.size > 0) {
+                        for (const personId of juries) {
+                            await contestsData.sendPhotoReview(3, '(This jury has not voted and the photo automatically receives 3 points.)', 0, personId, result.id);
+                        }
+                    }
+                }
+            });
+
         }
 
         return {
@@ -157,7 +190,36 @@ const setNextContestPhase = contestsData => {
         if (new Date() > contest.secondPhaseLimit) {
             await contestsData.setNextPhase(id, 2);
             currentPhase = 3;
-            await checkForMissingResultsAndFill(id, numberOfJuries, contest);
+            const { results } = await getContestResults(contestsData)(id);
+
+            results.map(async (result) => {
+                const reviewsArray = result.reviews;
+                if (reviewsArray.length !== numberOfJuries) {
+                    const reviews = reviewsArray.reduce((acc, review) => {
+                        acc.add(review.reviewAuthorId);
+
+                        return acc;
+                    }, new Set());
+
+                    const juries = contest.jury.reduce((acc, person) => {
+                        acc.add(person.id);
+
+                        return acc;
+                    }, new Set());
+
+                    for (const personId of reviews) {
+                        if (juries.has(personId)) {
+                            juries.delete(personId);
+                        }
+                    }
+
+                    if (juries.size > 0) {
+                        for (const personId of juries) {
+                            await contestsData.sendPhotoReview(3, '(This jury has not voted and the photo automatically receives 3 points.)', 0, personId, result.id);
+                        }
+                    }
+                }
+            });
         }
 
         return {
@@ -328,7 +390,7 @@ const getRecentlyExpSecondPhaseContests = contestsData => {
     return async userId => {
 
         const recExpContests = await contestsData.getRecentlyExpiringPhase2ContestsInfo();
-     
+
         if (!recExpContests) {
             return {
                 error: ERRORS.RECORD_NOT_FOUND,
@@ -375,7 +437,7 @@ const getContestResults = contestsData => {
 
         const mapResultsWithReviews = results.reduce((acc, entryResults) => {
 
-            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id, username, avatarUrl, authorAvatar, author, reviewAuthorPoints, reviewAuthorRank } = entryResults;
+            const { id, title, story, originalSize, thumbnailSize, date, rating, comment, score, review_id, username, avatarUrl, authorAvatar, author, reviewAuthourId, reviewAuthorPoints, reviewAuthorRank } = entryResults;
             const addDate = date.toISOString().split('T')[0];
 
             if (!acc.get(id)) {
@@ -390,6 +452,7 @@ const getContestResults = contestsData => {
                 comment,
                 username,
                 avatarUrl,
+                reviewAuthourId,
                 reviewAuthorRank,
                 reviewAuthorPoints,
             };
@@ -452,7 +515,7 @@ const getFinishedAndUnawardedContests = contestsData => {
 const awardPointsForFinishedContests = (usersData, contestsData) => {
     return async () => {
         const contests = await getFinishedAndUnawardedContests(contestsData)();
-
+        
         if (!contests) {
             return;
         }
@@ -460,7 +523,7 @@ const awardPointsForFinishedContests = (usersData, contestsData) => {
         contests.map(async (contest) => {
             const scores = await getUserScores(contestsData)(contest.id);
             const firstThree = [];
-
+          
             const userScoresMap = await scores.reduce((acc, score) => {
                 if (!acc.get(score.rating)) {
                     acc.set(score.rating, [score.user_id]);
@@ -471,6 +534,7 @@ const awardPointsForFinishedContests = (usersData, contestsData) => {
                 return acc;
             }, new Map());
 
+           
             await userScoresMap.forEach((value, key) => {
                 if (firstThree.length === 3) {
                     return;
@@ -495,6 +559,7 @@ const awardPointsForFinishedContests = (usersData, contestsData) => {
             await usersData.addUserPoints(secondPlacePoints, firstThree[1].users);
             await usersData.addUserPoints(thirdPlacePoints, firstThree[2].users);
             await contestsData.markContestAwarded(contest.id);
+            console.log('points awarded!');
         });
     };
 };
@@ -566,50 +631,6 @@ const disenrollUser = contestsData => {
 };
 
 /**
-* Checks for missing reviews in contest.
-* @param module contests data SQL queries module.
-* @callback 
-* @async
-* @param {number} numberOfJuries - Total amount of jury members.
-* @param {number} id - The unique contest number.
-* @return {Promise<object>}
-*/
-const checkForMissingResultsAndFill = contestsData => {
-    return async (id, numberOfJuries, contest) => {
-        const { results } = await getContestResults(contestsData)(id);
-
-        results.map(async (result) => {
-            const reviewsArray = result.reviews;
-            if (reviewsArray.length !== numberOfJuries) {
-                const reviews = reviewsArray.reduce((acc, person) => {
-                    acc.add(person.id);
-
-                    return acc;
-                }, new Set());
-
-                const juries = contest.jury.reduce((acc, person) => {
-                    acc.add(person.id);
-
-                    return acc;
-                }, new Set());
-              
-                for (const personId of reviews) {
-                    if (juries.has(personId)) {
-                        juries.delete(personId);
-                    }
-                }
-
-                if (juries.size > 0) {
-                    for (const personId of juries) {
-                        await contestsData.sendPhotoReview(3, '(This jury has not voted and the photo automatically receives 3 points.)', 0, personId, result.id);
-                    }
-                }
-            }
-        });
-    };
-};
-
-/**
 * Checks if the organizator has already voted.
 * @param module contests data SQL queries module.
 * @callback 
@@ -621,7 +642,7 @@ const checkForMissingResultsAndFill = contestsData => {
 const checkIfUserHasVoted = contestsData => {
     return async (userId, photoId) => {
         const hasVoted = await contestsData.checkOrganizerHasVoted(userId, photoId);
-        
+
         return { hasVoted: !!(hasVoted.length !== 0) };
     };
 };

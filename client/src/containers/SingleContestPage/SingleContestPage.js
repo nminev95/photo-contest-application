@@ -20,6 +20,11 @@ const SingleContestPage = () => {
     const [areResultsFetched, setAreResultsFetched] = useState(false);
     const contestJury = contestInfo.jury;
     const [tabValue, setTabValue] = useState('entries');
+    const [uploadedState, setUploadedState] = useState(false);
+
+    const triggerUploadedStateRefresh = () => {
+        setUploadedState(prevState => !prevState);
+    }
 
     useEffect(() => {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}`)
@@ -34,7 +39,7 @@ const SingleContestPage = () => {
                 }
             })
             .then((data) => dispatch(setContestDetails(data.data)))
-    }, [dispatch, contestInfo.phase_id, id])
+    }, [dispatch, contestInfo.phase_id, id, uploadedState])
 
     if (contestInfo && !areResultsFetched && contestInfo.phase_id === 3) {
         axiosInstance.get(`${contestEndpoints.singleContest}${id}/results`)
@@ -65,9 +70,9 @@ const SingleContestPage = () => {
                     <ContestPhotosGrid />
                 )
             default:
-                return (
-                    <ContestPhotosGrid isBlurred={true} />
-                )
+                return <p
+                    style={{ fontSize: '20px', marginTop: '20px' }}>
+                    All user entries will be available for view once the contest finishes.</p>
         }
     }
 
@@ -79,6 +84,7 @@ const SingleContestPage = () => {
         <>
             <ContestBackgroundImageBox />
             <ContestInfo
+                triggerRender={triggerUploadedStateRefresh}
                 contestInfo={contestInfo} />
             <ContestEntriesAndScoresTabs
                 handleTabChange={handleTabChange}

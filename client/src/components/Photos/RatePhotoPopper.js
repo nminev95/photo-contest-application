@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RatePhotoPopper = ({ photoId }) => {
+const RatePhotoPopper = ({ photoId, triggerRender }) => {
 
     const styles = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -95,6 +95,7 @@ const RatePhotoPopper = ({ photoId }) => {
                             .then((response) => {
                                 if (response) {
                                     handleClick();
+                                    triggerRender();
                                     swal({
                                         title: "Success!",
                                         text: "Your review has been successfully submitted.",

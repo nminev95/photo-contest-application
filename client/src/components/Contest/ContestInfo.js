@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 //entries === spots
-const ContestInfo = ({ contestInfo }) => {
+const ContestInfo = ({ contestInfo, triggerRender }) => {
 
     const styles = useStyles();
 
@@ -128,7 +128,7 @@ const ContestInfo = ({ contestInfo }) => {
                             </Grid>
                             <Grid
                                 style={{ paddingBottom: '20px' }}>
-                                <UploadPhoto />
+                                <UploadPhoto triggerRender={triggerRender} />
                             </Grid>
                         </Typography>
                     </Grid>
